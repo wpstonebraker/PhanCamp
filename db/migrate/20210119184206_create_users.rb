@@ -10,11 +10,13 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :location
       t.text :about
       t.string :personal_url
+      t.string :email, null: false
 
       t.timestamps
     end
 
     add_index :users, :username, unique: true
     add_index :users, :session_token, unique: true
+    add_index :users, :email, unique: true
   end
 end

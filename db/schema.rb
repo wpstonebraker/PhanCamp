@@ -25,8 +25,10 @@ ActiveRecord::Schema.define(version: 2021_01_19_184206) do
     t.string "location"
     t.text "about"
     t.string "personal_url"
+    t.string "email", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
