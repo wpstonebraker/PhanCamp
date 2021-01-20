@@ -6,7 +6,6 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :session_token, null: false
       t.boolean :is_artist?, null: false, default: true
       t.string :artist_name
-      t.string :language, null: false
       t.string :location
       t.text :about
       t.string :personal_url

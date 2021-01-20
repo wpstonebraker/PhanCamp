@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2021_01_19_184206) do
     t.string "session_token", null: false
     t.boolean "is_artist?", default: true, null: false
     t.string "artist_name"
-    t.string "language", null: false
     t.string "location"
     t.text "about"
     t.string "personal_url"
