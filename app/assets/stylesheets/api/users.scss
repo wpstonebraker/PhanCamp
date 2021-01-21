@@ -2,16 +2,90 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.suf {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid black;
-  font-family: "Roboto", sans-serif;
+.suf-page {
+  background-color: whitesmoke;
+  height: 100vh;
+}
+
+.suf-box {
   width: 600px;
   height: 650px;
+  margin: auto;
+}
+
+.suf-title {
+  padding: 60px;
+  text-align: center;
+}
+
+.suf-divider {
+  border-bottom: 1px dotted grey;
+  margin-bottom: 30px;
+}
+
+.suf {
+  //   display: block;
+  //   margin: auto;
+  display: flex;
+  flex-direction: column;
+  //   border: 1px solid black;
+  font-family: "Roboto", sans-serif;
+
+  // .suf-artist-name-div {
+  //   // padding: 33px 0;
+  // }
 
   div {
+    padding: 5px;
+    // text-align: center;
+    // margin: auto;
+    // display: inline-block;
+    // margin-right: auto;
+    // margin-left: auto;
     border: inherit;
-    background-color: black;
+    // background-color: lightgreen;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    label {
+      margin: auto;
+      //   vertical-align: middle;
+      margin-inline-start: auto;
+      margin-right: 12px;
+      //   display: flex;
+      //   flex-direction: row;
+      //   justify-content: right;
+      //   text-align: right;
+      //   background-color: lightseagreen;
+    }
+
+    input {
+      height: 35px;
+      width: 250px;
+      border: 0.5px solid lightgrey;
+      border-radius: 0px;
+      //   margin-left: 50px;
+      margin-right: 169px;
+      //   text-align: center;
+      //   background-color: lightsalmon;
+    }
+
+    .suf-submit {
+      font-weight: bold;
+      color: white;
+      background-color: #00a1c6;
+      margin: auto;
+      width: 250px;
+      height: 36px;
+    }
+    .suf-guest-demo {
+      font-weight: bold;
+      color: white;
+      background-color: #00a1c6;
+      margin: auto;
+      width: 250px;
+      height: 36px;
+    }
   }
 }

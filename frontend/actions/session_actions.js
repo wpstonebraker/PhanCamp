@@ -29,17 +29,27 @@ const receiveSessionErrors = (errors) => {
 
 export const createNewUser = (user) => {
   return (dispatch) => {
-    return SessionAPIUtil.postUser(user).then((user) => {
-      return dispatch(loginCurrentUser(user));
-    });
+    return SessionAPIUtil.postUser(user).then(
+      (user) => {
+        return dispatch(loginCurrentUser(user));
+      },
+      (errors) => {
+        return dispatch(receiveSessionErrors(errors.responseJSON));
+      }
+    );
   };
 };
 
 export const login = (user) => {
   return (dispatch) => {
-    return SessionAPIUtil.postSession(user).then((user) => {
-      return dispatch(loginCurrentUser(user));
-    });
+    return SessionAPIUtil.postSession(user).then(
+      (user) => {
+        return dispatch(loginCurrentUser(user));
+      },
+      (errors) => {
+        return dispatch(receiveSessionErrors(errors.responseJSON));
+      }
+    );
   };
 };
 

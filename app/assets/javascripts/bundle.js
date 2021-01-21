@@ -127,6 +127,8 @@ var createNewUser = function createNewUser(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.postUser(user).then(function (user) {
       return dispatch(loginCurrentUser(user));
+    }, function (errors) {
+      return dispatch(receiveSessionErrors(errors.responseJSON));
     });
   };
 };
@@ -134,6 +136,8 @@ var login = function login(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.postSession(user).then(function (user) {
       return dispatch(loginCurrentUser(user));
+    }, function (errors) {
+      return dispatch(receiveSessionErrors(errors.responseJSON));
     });
   };
 };
@@ -365,6 +369,8 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       password: ""
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.showErrors = _this.showErrors.bind(_assertThisInitialized(_this));
+    _this.guest = _this.guest.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -384,34 +390,64 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       this.props.login(this.state);
     }
   }, {
+    key: "showErrors",
+    value: function showErrors() {
+      debugger;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, this.props.errors.map(function (error, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+          key: "".concat(i),
+          className: "sif-error ".concat(i)
+        }, error);
+      }));
+    }
+  }, {
+    key: "guest",
+    value: function guest(e) {
+      this.setState({
+        username: "Guest",
+        password: "starwars"
+      });
+      this.props.login(this.state);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$state = this.state,
           username = _this$state.username,
           password = _this$state.password;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "sif-page"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "sif-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+        className: "sif-title"
+      }, "Log in"), this.showErrors(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "sif-divider"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+        onSubmit: this.handleSubmit,
         className: "sif"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-        onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "sif-username"
       }, "Username"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         className: "sif-username",
         type: "text",
         value: username,
         onChange: this.update("username")
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "sif-password"
       }, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         className: "sif-password",
         type: "password",
         value: password,
         onChange: this.update("password")
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "submit",
-        className: "suf-submit",
+        className: "sif-submit",
         value: "Sign in"
-      })));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "sif-guest-login",
+        onClick: this.guest
+      }, "Guest login")))));
     }
   }]);
 
@@ -548,6 +584,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       email: ""
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.showErrors = _this.showErrors.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -567,6 +604,17 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       this.props.signup(this.state);
     }
   }, {
+    key: "showErrors",
+    value: function showErrors() {
+      debugger;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, this.props.errors.map(function (error, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+          key: "".concat(i),
+          className: "suf-error ".concat(i)
+        }, error);
+      }));
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$state = this.state,
@@ -575,10 +623,19 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
           password = _this$state.password,
           email = _this$state.email;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "suf-page"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "suf-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+        className: "suf-title"
+      }, "Sign Up for an Artist Account"), this.showErrors(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "suf-divider"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+        onSubmit: this.handleSubmit,
         className: "suf"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Sign Up for an Artist Account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-        onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "suf-artist-name-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "suf-artist-name"
       }, "Artist/Band name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         className: "suf-artist-name",
@@ -610,7 +667,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
         type: "submit",
         className: "suf-submit",
         value: "Sign up"
-      }))));
+      })))));
     }
   }]);
 
@@ -643,6 +700,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(_ref, ownProps) {
   var errors = _ref.errors;
+  debugger;
   return {
     errors: errors.session
   };

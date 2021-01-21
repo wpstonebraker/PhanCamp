@@ -8,6 +8,8 @@ class LoginForm extends React.Component {
       password: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.showErrors = this.showErrors.bind(this);
+    this.guest = this.guest.bind(this);
   }
 
   update(field) {
@@ -21,29 +23,64 @@ class LoginForm extends React.Component {
     this.props.login(this.state);
   }
 
+  showErrors() {
+    debugger;
+    return (
+      <ul>
+        {this.props.errors.map((error, i) => (
+          <li key={`${i}`} className={`sif-error ${i}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  guest(e) {
+    this.setState({ username: "Guest", password: "starwars" });
+    this.props.login(this.state);
+  }
+
   render() {
     const { username, password } = this.state;
     return (
-      <div className="sif">
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="sif-username">Username</label>
-          <input
-            className="sif-username"
-            type="text"
-            value={username}
-            onChange={this.update("username")}
-          />
-          <br />
-          <label htmlFor="sif-password">Password</label>
-          <input
-            className="sif-password"
-            type="password"
-            value={password}
-            onChange={this.update("password")}
-          />
-          <br />
-          <input type="submit" className="suf-submit" value="Sign in" />
-        </form>
+      <div className="sif-page">
+        <div className="sif-box">
+          <h2 className="sif-title">Log in</h2>
+          {this.showErrors()}
+          <div className="sif-divider"></div>
+
+          <form onSubmit={this.handleSubmit} className="sif">
+            <div>
+              <label htmlFor="sif-username">Username</label>
+              <input
+                className="sif-username"
+                type="text"
+                value={username}
+                onChange={this.update("username")}
+              />
+            </div>
+            <br />
+            <div>
+              <label htmlFor="sif-password">Password</label>
+              <input
+                className="sif-password"
+                type="password"
+                value={password}
+                onChange={this.update("password")}
+              />
+            </div>
+            <br />
+            <div>
+              <input type="submit" className="sif-submit" value="Sign in" />
+            </div>
+            <div>
+              <button className="sif-guest-login" onClick={this.guest}>
+                Guest login
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

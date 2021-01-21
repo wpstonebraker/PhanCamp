@@ -4,6 +4,7 @@ import { createNewUser } from "../../actions/session_actions";
 import SignupForm from "./signup_form";
 
 const mSTP = ({ errors }, ownProps) => {
+  debugger;
   return {
     errors: errors.session,
   };
