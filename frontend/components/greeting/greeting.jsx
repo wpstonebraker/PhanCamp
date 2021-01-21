@@ -29,7 +29,7 @@ const Greeting = ({ currentUser, logout }) => {
   const loggedIn = () => {
     return (
       <div className="greeting-div">
-        <button className="greeting-logout" onClick={() => logout}>
+        <button className="greeting-logout" onClick={logout}>
           Log Out
         </button>
       </div>
@@ -38,9 +38,13 @@ const Greeting = ({ currentUser, logout }) => {
   const loggedOut = () => {
     return (
       <nav className="login-signup">
-        <Link to="/login">Login</Link>
-        &nbsp;or&nbsp;
-        <Link to="/signup">Sign Up!</Link>
+        <Link to="/login" className="greeting-login">
+          login
+        </Link>
+        &nbsp; &nbsp;
+        <Link to="/signup" className="greeting-signup">
+          sign up
+        </Link>
       </nav>
     );
   };

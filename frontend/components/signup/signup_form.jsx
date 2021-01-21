@@ -4,7 +4,7 @@ class SignupForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      artistName: "",
+      artist_name: "",
       username: "",
       password: "",
       email: "",
@@ -24,43 +24,54 @@ class SignupForm extends React.Component {
   }
 
   render() {
-    const { artistName, username, password, email } = this.state;
+    const { artist_name, username, password, email } = this.state;
     return (
-      <div>
+      <div className="suf">
+        <h2>Sign Up for an Artist Account</h2>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="suf-artist-name">Artist/Band name</label>
-          <input
-            className="suf-artist-name"
-            type="text"
-            value={artistName}
-            onChange={this.update("artistName")}
-          />
+          <div>
+            <label htmlFor="suf-artist-name">Artist/Band name</label>
+            <input
+              className="suf-artist-name"
+              type="text"
+              value={artist_name}
+              onChange={this.update("artist_name")}
+            />
+          </div>
           <br />
-          <label htmlFor="suf-username">Username</label>
-          <input
-            className="suf-username"
-            type="text"
-            value={username}
-            onChange={this.update("username")}
-          />
+          <div>
+            <label htmlFor="suf-username">Username</label>
+            <input
+              className="suf-username"
+              type="text"
+              value={username}
+              onChange={this.update("username")}
+            />
+          </div>
           <br />
-          <label htmlFor="suf-password">Password</label>
-          <input
-            className="suf-password"
-            type="password"
-            value={password}
-            onChange={this.update("password")}
-          />
+          <div>
+            <label htmlFor="suf-password">Password</label>
+            <input
+              className="suf-password"
+              type="password"
+              value={password}
+              onChange={this.update("password")}
+            />
+          </div>
           <br />
-          <label htmlFor="suf-email">Email</label>
-          <input
-            className="suf-email"
-            type="text"
-            value={email}
-            onChange={this.update("email")}
-          />
+          <div>
+            <label htmlFor="suf-email">Email</label>
+            <input
+              className="suf-email"
+              type="text"
+              value={email}
+              onChange={this.update("email")}
+            />
+          </div>
           <br />
-          <input type="submit" className="suf-submit" value="Sign up" />
+          <div>
+            <input type="submit" className="suf-submit" value="Sign up" />
+          </div>
         </form>
       </div>
     );

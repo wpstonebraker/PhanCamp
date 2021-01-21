@@ -2,7 +2,6 @@ import { LOGIN_CURRENT_USER } from "../actions/session_actions";
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
-  debugger;
   let newState;
   switch (action.type) {
     case LOGIN_CURRENT_USER:

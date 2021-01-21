@@ -36,7 +36,6 @@ export const createNewUser = (user) => {
 };
 
 export const login = (user) => {
-  debugger;
   return (dispatch) => {
     return SessionAPIUtil.postSession(user).then((user) => {
       return dispatch(loginCurrentUser(user));

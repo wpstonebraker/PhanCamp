@@ -3,7 +3,6 @@ import { logout } from "../../actions/session_actions";
 import Greeting from "./greeting";
 
 const mSTP = ({ session, entities }, ownProps) => {
-  debugger;
   return {
     currentUser: entities.users[session.id],
   };

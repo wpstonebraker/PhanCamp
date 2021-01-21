@@ -1,3 +1,17 @@
 // Place all the styles related to the api/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.suf {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  font-family: "Roboto", sans-serif;
+  width: 600px;
+  height: 650px;
+
+  div {
+    border: inherit;
+    background-color: black;
+  }
+}

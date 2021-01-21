@@ -1,0 +1,27 @@
+.main-header {
+  // position: fixed;
+  margin-left: 100px;
+  margin-right: 100px;
+  height: 100px;
+  width: 700px;
+}
+
+.main-header-top-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-header-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  color: #161113;
+}
+
+.login-signup {
+  font-weight: bold;
+  a:hover {
+    text-decoration: underline;
+  }
+}
