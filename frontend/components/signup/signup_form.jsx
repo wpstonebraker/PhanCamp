@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -117,6 +118,10 @@ class SignupForm extends React.Component {
               </button>
             </div> */}
           </form>
+          <span className="sif-link-signup">
+            Already have an account?&nbsp;
+            <Link to="/login">Log in</Link>.
+          </span>
         </div>
       </div>
     );
