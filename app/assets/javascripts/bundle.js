@@ -423,7 +423,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     value: function guest(e) {
       this.setState({
         username: "Guest",
-        password: "starwars"
+        password: "misterhiro"
       });
       this.props.login(this.state);
     }

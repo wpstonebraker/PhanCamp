@@ -43,7 +43,7 @@ class LoginForm extends React.Component {
   // }
 
   guest(e) {
-    this.setState({ username: "Guest", password: "starwars" });
+    this.setState({ username: "Guest", password: "misterhiro" });
     this.props.login(this.state);
   }
 
