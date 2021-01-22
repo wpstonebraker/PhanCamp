@@ -502,8 +502,8 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       username: "",
       password: ""
     };
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.showErrors = _this.showErrors.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this)); // this.showErrors = this.showErrors.bind(this);
+
     _this.guest = _this.guest.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -521,18 +521,29 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.login(this.state);
-    }
-  }, {
-    key: "showErrors",
-    value: function showErrors() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, this.props.errors.map(function (error, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-          key: "".concat(i),
-          className: "sif-error ".concat(i)
-        }, error);
-      }));
+      var errors = ["Username cannot be blank", "Password cannot be blank"];
+
+      if (this.state.password === "" && this.state.username === "") {
+        this.props.sendErrors(errors);
+      } else if (this.state.password === "") {
+        this.props.sendErrors([errors[1]]);
+      } else if (this.state.username === "") {
+        this.props.sendErrors([errors[0]]);
+      } else {
+        this.props.login(this.state);
+      }
     } // showErrors() {
+    //   return (
+    //     <ul>
+    //       {this.props.errors.map((error, i) => (
+    //         <li key={`${i}`} className={`sif-error ${i}`}>
+    //           {error}
+    //         </li>
+    //       ))}
+    //     </ul>
+    //   );
+    // }
+    // showErrors() {
     // const errors = {};
     // this.props.errors.forEach((error) => {
     //   errors[error.split(" ")[0].toLowerCase()] = error;
@@ -562,6 +573,10 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           username = _this$state.username,
           password = _this$state.password;
+      var errors = {};
+      this.props.errors.forEach(function (error) {
+        errors[error.split(" ")[0].toLowerCase()] = error;
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "sif-page"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("header", {
@@ -583,20 +598,24 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "sif-username"
       }, "Username / email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        className: "sif-username",
+        className: "sif-username ".concat(errors.username ? "error-outline" : ""),
         type: "text",
         value: username,
         onChange: this.update("username")
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         className: "errormsg"
-      }, this.showErrors()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+      }, errors.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "sif-password"
       }, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        className: "sif-password",
+        className: "sif-password ".concat(errors.password ? "error-outline" : ""),
         type: "password",
         value: password,
         onChange: this.update("password")
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        className: "errormsg"
+      }, errors.password), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        className: "errormsg"
+      }, errors.invalid), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "submit",
         className: "sif-submit",
         value: "Log in",
@@ -662,6 +681,9 @@ var mDTP = function mDTP(dispatch) {
     },
     demoLogin: function demoLogin() {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.login)(demo));
+    },
+    sendErrors: function sendErrors(errors) {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.receiveSessionErrors)(errors));
     }
   };
 };

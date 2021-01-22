@@ -10,12 +10,12 @@ import FeatureIndexContainer from "./feature/feature_index_container";
 const App = () => {
   return (
     <div>
-      {/* <header className="main-header"> */}
       <Switch>
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <BannerBarContainer />
       </Switch>
+
       {/* <FeatureIndexContainer /> */}
     </div>
   );

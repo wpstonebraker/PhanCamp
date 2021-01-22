@@ -15,6 +15,7 @@ const mDTP = (dispatch) => {
     login: (user) => dispatch(login(user)),
     clearErrors: (errors) => dispatch(receiveSessionErrors(errors)),
     demoLogin: () => dispatch(login(demo)),
+    sendErrors: (errors) => dispatch(receiveSessionErrors(errors)),
   };
 };
 

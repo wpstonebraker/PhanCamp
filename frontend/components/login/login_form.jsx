@@ -9,7 +9,7 @@ class LoginForm extends React.Component {
       password: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.showErrors = this.showErrors.bind(this);
+    // this.showErrors = this.showErrors.bind(this);
     this.guest = this.guest.bind(this);
   }
 
@@ -21,20 +21,29 @@ class LoginForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.login(this.state);
+    const errors = ["Username cannot be blank", "Password cannot be blank"];
+    if (this.state.password === "" && this.state.username === "") {
+      this.props.sendErrors(errors);
+    } else if (this.state.password === "") {
+      this.props.sendErrors([errors[1]]);
+    } else if (this.state.username === "") {
+      this.props.sendErrors([errors[0]]);
+    } else {
+      this.props.login(this.state);
+    }
   }
 
-  showErrors() {
-    return (
-      <ul>
-        {this.props.errors.map((error, i) => (
-          <li key={`${i}`} className={`sif-error ${i}`}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
-  }
+  // showErrors() {
+  //   return (
+  //     <ul>
+  //       {this.props.errors.map((error, i) => (
+  //         <li key={`${i}`} className={`sif-error ${i}`}>
+  //           {error}
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   );
+  // }
 
   // showErrors() {
   // const errors = {};
@@ -57,6 +66,10 @@ class LoginForm extends React.Component {
 
   render() {
     const { username, password } = this.state;
+    const errors = {};
+    this.props.errors.forEach((error) => {
+      errors[error.split(" ")[0].toLowerCase()] = error;
+    });
     return (
       <div className="sif-page">
         <header className="auth-header">
@@ -74,23 +87,30 @@ class LoginForm extends React.Component {
             <div>
               <label htmlFor="sif-username">Username / email</label>
               <input
-                className="sif-username"
+                className={`sif-username ${
+                  errors.username ? "error-outline" : ""
+                }`}
                 type="text"
                 value={username}
                 onChange={this.update("username")}
               />
             </div>
-            <span className="errormsg">{this.showErrors()}</span>
+            <span className="errormsg">{errors.username}</span>
             <br />
             <div>
               <label htmlFor="sif-password">Password</label>
               <input
-                className="sif-password"
+                className={`sif-password ${
+                  errors.password ? "error-outline" : ""
+                }`}
                 type="password"
                 value={password}
                 onChange={this.update("password")}
               />
             </div>
+            <span className="errormsg">{errors.password}</span>
+            <span className="errormsg">{errors.invalid}</span>
+
             <br />
             <div>
               <input
