@@ -10,7 +10,12 @@ const App = () => {
     <div>
       <header className="main-header">
         <div className="main-header-top-row">
-          <h1 className="main-header-logo">PhanCamp</h1>
+          {/* <h1 className="main-header-logo">PhanCamp</h1> */}
+          <img
+            src={require("../../app/assets/images/logo.png")}
+            alt=""
+            className="main-header-logo"
+          />
           <input className="search-placeholder"></input>
         </div>
         <div className="main-header-bottom-row">

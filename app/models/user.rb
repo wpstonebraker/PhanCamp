@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
     attr_reader :password
 
+    has_one_attached :profile_pic
+
     # Class method for finding a user ONLY if we have the correct username and password
     def self.find_by_credentials(username, password)
         # find the user in the db via their username

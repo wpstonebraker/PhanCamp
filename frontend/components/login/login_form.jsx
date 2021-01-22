@@ -24,7 +24,6 @@ class LoginForm extends React.Component {
   }
 
   showErrors() {
-    debugger;
     return (
       <ul>
         {this.props.errors.map((error, i) => (
@@ -35,6 +34,13 @@ class LoginForm extends React.Component {
       </ul>
     );
   }
+
+  // showErrors() {
+  // const errors = {};
+  // this.props.errors.forEach((error) => {
+  //   errors[error.split(" ")[0].toLowerCase()] = error;
+  // });
+  // }
 
   guest(e) {
     this.setState({ username: "Guest", password: "starwars" });

@@ -13,6 +13,10 @@ class Api::SessionsController < ApplicationController
         # else, render error
         else
             render json: ["Invalid username or password"], status: 401
+            # render json: {
+            #     username: @user.errors.full_messages_for(:username),
+            #     password: @user.errors.full_messages_for(:password)
+            # }, status: 401
         end
     end
 

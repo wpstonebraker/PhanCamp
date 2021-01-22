@@ -12,6 +12,7 @@ class Api::UsersController < ApplicationController
         else
             #if not, give them the unprocessable entity response
             render json: @user.errors.full_messages, status: 422
+            # render json: {}, status: 422
         end
     end
 

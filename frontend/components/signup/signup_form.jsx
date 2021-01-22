@@ -10,7 +10,7 @@ class SignupForm extends React.Component {
       email: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.showErrors = this.showErrors.bind(this);
+    // this.showErrors = this.showErrors.bind(this);
   }
 
   update(field) {
@@ -24,26 +24,32 @@ class SignupForm extends React.Component {
     this.props.signup(this.state);
   }
 
-  showErrors() {
-    debugger;
-    return (
-      <ul>
-        {this.props.errors.map((error, i) => (
-          <li key={`${i}`} className={`suf-error ${i}`}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
-  }
+  // showErrors() {
+  //   debugger;
+  //   return (
+  //     <ul>
+  //       {this.props.errors.map((error, i) => (
+  //         <li key={`${i}`} className={`suf-error ${i}`}>
+  //           {error}
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   );
+  // }
 
   render() {
     const { artist_name, username, password, email } = this.state;
+    const errors = {};
+    this.props.errors.forEach((error) => {
+      debugger;
+      errors[error.split(" ")[0].toLowerCase()] = error;
+    });
+    debugger;
     return (
       <div className="suf-page">
         <div className="suf-box">
           <h2 className="suf-title">Sign Up for an Artist Account</h2>
-          {this.showErrors()}
+          {/* {this.showErrors()} */}
           <div className="suf-divider"></div>
           <form onSubmit={this.handleSubmit} className="suf">
             <div className="suf-artist-name-div">
@@ -55,6 +61,7 @@ class SignupForm extends React.Component {
                 onChange={this.update("artist_name")}
               />
             </div>
+            <span className="suf-errormsg">{errors.artist}</span>
             <br />
             <div>
               <label htmlFor="suf-username">Username</label>
@@ -65,6 +72,7 @@ class SignupForm extends React.Component {
                 onChange={this.update("username")}
               />
             </div>
+            <span className="suf-errormsg">{errors.username}</span>
             <br />
             <div>
               <label htmlFor="suf-password">Password</label>
@@ -75,6 +83,7 @@ class SignupForm extends React.Component {
                 onChange={this.update("password")}
               />
             </div>
+            <span className="suf-errormsg">{errors.password}</span>
             <br />
             <div>
               <label htmlFor="suf-email">Email</label>
@@ -85,6 +94,7 @@ class SignupForm extends React.Component {
                 onChange={this.update("email")}
               />
             </div>
+            <span className="suf-errormsg">{errors.email}</span>
             <br />
             <div>
               <input type="submit" className="suf-submit" value="Sign up" />
