@@ -52,7 +52,7 @@ class SignupForm extends React.Component {
       <div className="suf-page">
         <header className="auth-header">
           <div className="auth-header-logo">
-            <img src={require("../../../app/assets/images/logo.png")} />
+            <img src={window.logo} />
           </div>
         </header>
         <div className="suf-box">

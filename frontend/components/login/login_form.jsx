@@ -58,7 +58,7 @@ class LoginForm extends React.Component {
       <div className="sif-page">
         <header className="auth-header">
           <div className="auth-header-logo">
-            <img src={require("../../../app/assets/images/logo.png")} />
+            <img src={window.logo} />
           </div>
         </header>
         <div className="sif-box">

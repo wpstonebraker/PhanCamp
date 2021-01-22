@@ -5,11 +5,7 @@ const BannerBar = () => {
   return (
     <div className="main-header">
       <div className="main-header-top-row">
-        <img
-          src={require("../../../app/assets/images/logo.png")}
-          alt=""
-          className="main-header-logo"
-        />
+        <img src={window.logo} alt="" className="main-header-logo" />
         <input className="search-placeholder"></input>
       </div>
       <div className="main-header-bottom-row">
