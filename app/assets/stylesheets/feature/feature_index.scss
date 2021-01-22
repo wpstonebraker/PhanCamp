@@ -1,0 +1,29 @@
+.fi-container {
+  display: flex;
+  justify-content: center;
+  background-color: #222222;
+  height: 540px;
+}
+
+.fi-box {
+  display: flex;
+  justify-content: center;
+  width: 1400px;
+
+  img {
+    height: 540px;
+  }
+}
+
+.fi-side {
+  display: flex;
+  flex-direction: column;
+  width: 370px;
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 32.8%;
+    border: 1px solid #222222;
+  }
+}

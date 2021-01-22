@@ -53,7 +53,9 @@ class SignupForm extends React.Component {
       <div className="suf-page">
         <header className="auth-header">
           <div className="auth-header-logo">
-            <img src={window.logo} />
+            <Link to="/">
+              <img src={window.logo} />
+            </Link>
           </div>
         </header>
         <div className="suf-box">
@@ -64,18 +66,23 @@ class SignupForm extends React.Component {
             <div className="suf-artist-name-div">
               <label htmlFor="suf-artist-name">Artist/Band name</label>
               <input
-                className="suf-artist-name"
+                className={`suf-artist-name ${
+                  errors.artist ? "error-outline" : ""
+                }`}
                 type="text"
                 value={artist_name}
                 onChange={this.update("artist_name")}
               />
             </div>
             <span className="errormsg">{errors.artist}</span>
+
             <br />
             <div>
               <label htmlFor="suf-username">Username</label>
               <input
-                className="suf-username"
+                className={`suf-username ${
+                  errors.username ? "error-outline" : ""
+                }`}
                 type="text"
                 value={username}
                 onChange={this.update("username")}
@@ -86,7 +93,9 @@ class SignupForm extends React.Component {
             <div>
               <label htmlFor="suf-password">Password</label>
               <input
-                className="suf-password"
+                className={`suf-password ${
+                  errors.password ? "error-outline" : ""
+                }`}
                 type="password"
                 value={password}
                 onChange={this.update("password")}
@@ -97,7 +106,7 @@ class SignupForm extends React.Component {
             <div>
               <label htmlFor="suf-email">Email</label>
               <input
-                className="suf-email"
+                className={`suf-email ${errors.email ? "error-outline" : ""}`}
                 type="text"
                 value={email}
                 onChange={this.update("email")}

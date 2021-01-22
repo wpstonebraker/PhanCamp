@@ -5,7 +5,7 @@
 
 .auth-header {
   height: 104px;
-  background-color: rgba(204, 204, 204, 0.87);
+  background-color: #dddddd;
   display: flex;
   justify-content: center;
 
@@ -22,3 +22,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+// .error-outline {
+//   background-color: red;
+// }

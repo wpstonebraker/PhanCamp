@@ -10,9 +10,11 @@ const mSTP = ({ errors }, ownProps) => {
 };
 
 const mDTP = (dispatch) => {
+  const demo = { username: "Guest", password: "misterhiro" };
   return {
     login: (user) => dispatch(login(user)),
     clearErrors: (errors) => dispatch(receiveSessionErrors(errors)),
+    demoLogin: () => dispatch(login(demo)),
   };
 };
 

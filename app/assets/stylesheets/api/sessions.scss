@@ -7,7 +7,7 @@
 }
 
 .sif-box {
-  width: 600px;
+  width: 650px;
   height: 650px;
   margin: auto;
 }
@@ -61,8 +61,10 @@
     }
 
     input {
-      height: 35px;
-      width: 250px;
+      font-size: 14px;
+      padding-left: 10px;
+      height: 31px;
+      width: 286px;
       border: 0.5px solid lightgrey;
       border-radius: 0px;
       //   margin-left: 50px;
@@ -72,12 +74,12 @@
     }
 
     .sif-submit {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: bold;
       color: white;
       background-color: #00a1c6;
       margin: auto;
-      width: 250px;
+      width: 300px;
       height: 36px;
     }
     .sif-guest-login {
@@ -86,7 +88,7 @@
       color: white;
       background-color: #00a1c6;
       margin: auto;
-      width: 250px;
+      width: 300px;
       height: 36px;
       border: 0.5px solid lightgrey;
     }

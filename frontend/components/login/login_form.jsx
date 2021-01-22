@@ -44,8 +44,10 @@ class LoginForm extends React.Component {
   // }
 
   guest(e) {
+    e.preventDefault();
     this.setState({ username: "Guest", password: "misterhiro" });
-    this.props.login(this.state);
+    // this.props.login(this.state);
+    this.props.demoLogin();
   }
 
   componentWillUnmount() {
@@ -59,14 +61,16 @@ class LoginForm extends React.Component {
       <div className="sif-page">
         <header className="auth-header">
           <div className="auth-header-logo">
-            <img src={window.logo} />
+            <Link to="/">
+              <img src={window.logo} />
+            </Link>
           </div>
         </header>
         <div className="sif-box">
           <h2 className="sif-title">Log in</h2>
           <div className="sif-divider"></div>
 
-          <form onSubmit={this.handleSubmit} className="sif">
+          <form className="sif">
             <div>
               <label htmlFor="sif-username">Username / email</label>
               <input
@@ -89,13 +93,26 @@ class LoginForm extends React.Component {
             </div>
             <br />
             <div>
-              <input type="submit" className="sif-submit" value="Log in" />
+              <input
+                type="submit"
+                className="sif-submit"
+                value="Log in"
+                onClick={this.handleSubmit}
+              />
             </div>
             <div>
+              <input
+                type="button"
+                className="sif-guest-login"
+                value="Demo login"
+                onClick={this.guest}
+              />
+            </div>
+            {/* <div>
               <button className="sif-guest-login" onClick={this.guest}>
                 Guest login
               </button>
-            </div>
+            </div> */}
           </form>
           <span className="sif-link-signup">
             Don’t have an account? Sign up as&nbsp;

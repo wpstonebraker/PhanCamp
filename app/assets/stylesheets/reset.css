@@ -138,3 +138,11 @@ a:visited {
 * {
   font-family: "Roboto", sans-serif;
 }
+
+input:focus {
+  outline-width: 0;
+}
+
+.error-outline {
+  border-color: red;
+}
