@@ -88,7 +88,7 @@ class LoginForm extends React.Component {
             </div>
             <br />
             <div>
-              <input type="submit" className="sif-submit" value="Sign in" />
+              <input type="submit" className="sif-submit" value="Log in" />
             </div>
             <div>
               <button className="sif-guest-login" onClick={this.guest}>
