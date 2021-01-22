@@ -47,13 +47,22 @@ class LoginForm extends React.Component {
     this.props.login(this.state);
   }
 
+  componentWillUnmount() {
+    const errors = [];
+    this.props.clearErrors(errors);
+  }
+
   render() {
     const { username, password } = this.state;
     return (
       <div className="sif-page">
+        <header className="auth-header">
+          <div className="auth-header-logo">
+            <img src={require("../../../app/assets/images/logo.png")} />
+          </div>
+        </header>
         <div className="sif-box">
           <h2 className="sif-title">Log in</h2>
-          {this.showErrors()}
           <div className="sif-divider"></div>
 
           <form onSubmit={this.handleSubmit} className="sif">
@@ -66,6 +75,7 @@ class LoginForm extends React.Component {
                 onChange={this.update("username")}
               />
             </div>
+            <span className="errormsg">{this.showErrors()}</span>
             <br />
             <div>
               <label htmlFor="sif-password">Password</label>

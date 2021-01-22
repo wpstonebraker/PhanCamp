@@ -1,10 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createNewUser } from "../../actions/session_actions";
+import {
+  createNewUser,
+  receiveSessionErrors,
+} from "../../actions/session_actions";
 import SignupForm from "./signup_form";
 
 const mSTP = ({ errors }, ownProps) => {
-  debugger;
   return {
     errors: errors.session,
   };
@@ -13,6 +15,7 @@ const mSTP = ({ errors }, ownProps) => {
 const mDTP = (dispatch) => {
   return {
     signup: (user) => dispatch(createNewUser(user)),
+    clearErrors: (errors) => dispatch(receiveSessionErrors(errors)),
   };
 };
 

@@ -3,24 +3,26 @@
   // position: fixed;
   // margin-left: 100px;
   // margin-right: 100px;
-  height: 100px;
-  width: 700px;
+  height: 105px;
+  width: 866px;
 }
 
 .main-header-logo {
-  height: 30px;
+  height: 40px;
 }
 
 .main-header-top-row {
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
 }
 
 .main-header-bottom-row {
+  margin-top: 10px;
   display: flex;
   justify-content: space-between;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 10px;
+  font-size: 16px;
   color: #161113;
 }
 

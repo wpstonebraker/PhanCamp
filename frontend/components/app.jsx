@@ -4,31 +4,16 @@ import SignupFormContainer from "./signup/signup_form_container";
 import LoginFormContainer from "./login/login_form_container";
 import { Route, Switch } from "react-router-dom";
 import { AuthRoute } from "../util/route_util";
+import BannerBarContainer from "./banner_bar/banner_bar_container";
 
 const App = () => {
   return (
     <div>
-      <header className="main-header">
-        <div className="main-header-top-row">
-          {/* <h1 className="main-header-logo">PhanCamp</h1> */}
-          <img
-            src={require("../../app/assets/images/logo.png")}
-            alt=""
-            className="main-header-logo"
-          />
-          <input className="search-placeholder"></input>
-        </div>
-        <div className="main-header-bottom-row">
-          <p className="main-header-sub-head">
-            Discover amazing new music and directly support the artists who make
-            it.
-          </p>
-          <GreetingContainer className="main-greeting" />
-        </div>
-      </header>
+      {/* <header className="main-header"> */}
       <Switch>
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
         <AuthRoute exact path="/login" component={LoginFormContainer} />
+        <BannerBarContainer />
       </Switch>
     </div>
   );

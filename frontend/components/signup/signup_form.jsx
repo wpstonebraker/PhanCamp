@@ -24,6 +24,11 @@ class SignupForm extends React.Component {
     this.props.signup(this.state);
   }
 
+  componentWillUnmount() {
+    const errors = [];
+    this.props.clearErrors(errors);
+  }
+
   // showErrors() {
   //   debugger;
   //   return (
@@ -41,12 +46,15 @@ class SignupForm extends React.Component {
     const { artist_name, username, password, email } = this.state;
     const errors = {};
     this.props.errors.forEach((error) => {
-      debugger;
       errors[error.split(" ")[0].toLowerCase()] = error;
     });
-    debugger;
     return (
       <div className="suf-page">
+        <header className="auth-header">
+          <div className="auth-header-logo">
+            <img src={require("../../../app/assets/images/logo.png")} />
+          </div>
+        </header>
         <div className="suf-box">
           <h2 className="suf-title">Sign Up for an Artist Account</h2>
           {/* {this.showErrors()} */}
@@ -61,7 +69,7 @@ class SignupForm extends React.Component {
                 onChange={this.update("artist_name")}
               />
             </div>
-            <span className="suf-errormsg">{errors.artist}</span>
+            <span className="errormsg">{errors.artist}</span>
             <br />
             <div>
               <label htmlFor="suf-username">Username</label>
@@ -72,7 +80,7 @@ class SignupForm extends React.Component {
                 onChange={this.update("username")}
               />
             </div>
-            <span className="suf-errormsg">{errors.username}</span>
+            <span className="errormsg">{errors.username}</span>
             <br />
             <div>
               <label htmlFor="suf-password">Password</label>
@@ -83,7 +91,7 @@ class SignupForm extends React.Component {
                 onChange={this.update("password")}
               />
             </div>
-            <span className="suf-errormsg">{errors.password}</span>
+            <span className="errormsg">{errors.password}</span>
             <br />
             <div>
               <label htmlFor="suf-email">Email</label>
@@ -94,7 +102,7 @@ class SignupForm extends React.Component {
                 onChange={this.update("email")}
               />
             </div>
-            <span className="suf-errormsg">{errors.email}</span>
+            <span className="errormsg">{errors.email}</span>
             <br />
             <div>
               <input type="submit" className="suf-submit" value="Sign up" />
