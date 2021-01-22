@@ -26,3 +26,18 @@
 // .error-outline {
 //   background-color: red;
 // }
+
+.dropdown {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(90deg, rgb(62, 0, 233), rgb(91, 189, 255));
+}
+
+.dropdown-content {
+  height: 400px;
+  width: 200px;
+  position: relative;
+  margin-top: 40px;
+}

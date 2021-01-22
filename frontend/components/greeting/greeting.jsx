@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import DropdownButton from "../banner_bar/dropdown_button";
 
 const Greeting = ({ currentUser, logout }) => {
   // class Greeting extends React.Component {
@@ -29,6 +30,7 @@ const Greeting = ({ currentUser, logout }) => {
   const loggedIn = () => {
     return (
       <div className="greeting-div">
+        {/* <DropdownButton /> */}
         <button className="greeting-logout" onClick={logout}>
           Log Out
         </button>
