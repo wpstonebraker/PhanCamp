@@ -235,7 +235,9 @@ var BannerBar = function BannerBar() {
     className: "main-header-bottom-row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "main-header-sub-head"
-  }, "Discover amazing new music and directly support the artists who make it."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_greeting_greeting_container__WEBPACK_IMPORTED_MODULE_1__.default, {
+  }, "Discover amazing new music and", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    className: "gradient"
+  }, "directly support"), " the artists who make it."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_greeting_greeting_container__WEBPACK_IMPORTED_MODULE_1__.default, {
     className: "main-greeting"
   })));
 };

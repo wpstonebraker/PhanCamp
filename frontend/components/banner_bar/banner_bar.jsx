@@ -14,8 +14,9 @@ const BannerBar = () => {
       </div>
       <div className="main-header-bottom-row">
         <p className="main-header-sub-head">
-          Discover amazing new music and directly support the artists who make
-          it.
+          Discover amazing new music and{" "}
+          <span className="gradient">directly support</span> the artists who
+          make it.
         </p>
         <GreetingContainer className="main-greeting" />
       </div>
