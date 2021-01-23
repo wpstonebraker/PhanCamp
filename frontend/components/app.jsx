@@ -16,7 +16,7 @@ const App = () => {
         <BannerBarContainer />
       </Switch>
 
-      {/* <FeatureIndexContainer /> */}
+      <Route exact path="/" component={FeatureIndexContainer} />
     </div>
   );
 };

@@ -188,7 +188,11 @@ var App = function App() {
     exact: true,
     path: "/login",
     component: _login_login_form_container__WEBPACK_IMPORTED_MODULE_3__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_banner_bar_banner_bar_container__WEBPACK_IMPORTED_MODULE_5__.default, null)));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_banner_bar_banner_bar_container__WEBPACK_IMPORTED_MODULE_5__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+    exact: true,
+    path: "/",
+    component: _feature_feature_index_container__WEBPACK_IMPORTED_MODULE_6__.default
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
@@ -411,17 +415,22 @@ var FeatureIndex = function FeatureIndex() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: window.featurePhish,
     alt: "Main feature Phish"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "fi-main-box"
+  }, "Relive Night 13 of Phish's Legendary Madison Square Garden Run")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "fi-side"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: window.featureGD,
-    alt: "GD feature"
+    alt: "GD feature",
+    className: "fi-side-item"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: window.featureWeen,
-    alt: "Ween feature"
+    alt: "Ween feature",
+    className: "fi-side-item"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: window.featureGoose,
-    alt: "Goose feature"
+    alt: "Goose feature",
+    className: "fi-side-item"
   }))));
 };
 
