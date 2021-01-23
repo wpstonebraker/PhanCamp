@@ -3,7 +3,7 @@ class CreateAlbums < ActiveRecord::Migration[5.2]
     create_table :albums do |t|
       t.string :title, null: false
       t.integer :artist_id, null: false
-      t.date :release_date, null: false
+      t.integer :year, null: false
       t.integer :price, null: false, default: 0
       t.text :description
       t.text :credits, null: false

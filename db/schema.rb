@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_151532) do
   create_table "albums", force: :cascade do |t|
     t.string "title", null: false
     t.integer "artist_id", null: false
-    t.date "release_date", null: false
+    t.integer "year", null: false
     t.integer "price", default: 0, null: false
     t.text "description"
     t.text "credits", null: false
