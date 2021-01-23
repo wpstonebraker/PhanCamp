@@ -5,6 +5,7 @@ import configureStore from "./store/store";
 import { login } from "./actions/session_actions";
 import Root from "./components/root";
 import { getAlbum } from "./actions/album_actions";
+import { getArtistAlbums } from "./util/artist_api.util";
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("root");
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.dispatch = store.dispatch;
 
   window.getAlbum = getAlbum;
+  window.getArtistAlbums = getArtistAlbums;
 
   // testing end
 

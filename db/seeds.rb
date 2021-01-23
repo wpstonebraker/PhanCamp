@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all
+Album.destroy_all
 
 u1 = User.create!(
     artist_name: "Mister Hiro",

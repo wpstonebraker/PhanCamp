@@ -1126,7 +1126,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 /* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./actions/album_actions */ "./frontend/actions/album_actions.js");
+/* harmony import */ var _util_artist_api_util__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./util/artist_api.util */ "./frontend/util/artist_api.util.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -1161,7 +1163,8 @@ document.addEventListener("DOMContentLoaded", function () {
   window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__.login;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
-  window.getAlbum = _actions_album_actions__WEBPACK_IMPORTED_MODULE_6__.getAlbum; // testing end
+  window.getAlbum = _actions_album_actions__WEBPACK_IMPORTED_MODULE_6__.getAlbum;
+  window.getArtistAlbums = _util_artist_api_util__WEBPACK_IMPORTED_MODULE_7__.getArtistAlbums; // testing end
 
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_root__WEBPACK_IMPORTED_MODULE_5__.default, {
     store: store
@@ -1465,6 +1468,25 @@ __webpack_require__.r(__webpack_exports__);
 var getAlbum = function getAlbum(albumId) {
   return $.ajax({
     url: "/api/albums/".concat(albumId)
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/artist_api.util.js":
+/*!******************************************!*\
+  !*** ./frontend/util/artist_api.util.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getArtistAlbums": () => /* binding */ getArtistAlbums
+/* harmony export */ });
+var getArtistAlbums = function getArtistAlbums(artistId) {
+  return $.ajax({
+    url: "/api/artists/".concat(artistId, "/albums")
   });
 };
 
