@@ -1,17 +1,19 @@
 import { connect } from "react-redux";
 import AlbumShow from "./album_show";
 
-const mSTP = ({ entities: { albums, tracks, artists }, ownProps }) => {
+const mSTP = ({ entities: { albums, tracks, artists } }, ownProps) => {
   debugger;
   return {
     tracks: Object.values(tracks),
-    album: albums,
+    album: albums[ownProps.match.params.id],
     artist: artists,
   };
 };
 
 const mDTP = (dispatch) => {
-  return {};
+  return {
+    getAlbum: (albumId) => dispatch(getAlbum(albumId)),
+  };
 };
 
 export default connect(mSTP, mDTP)(AlbumShow);

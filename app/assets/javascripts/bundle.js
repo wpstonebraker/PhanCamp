@@ -249,18 +249,22 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
 
   _createClass(AlbumShow, [{
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      this.props.getAlbum(this.props.match.params.id);
+    }
   }, {
     key: "render",
     value: function render() {
       debugger;
       if (!this.props.album) return null;
+      debugger;
       var _this$props = this.props,
           tracks = _this$props.tracks,
           album = _this$props.album,
           artist = _this$props.artist;
+      debugger;
       var trackItems = tracks.map(function (track) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, track.track_name);
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, track.trackName);
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ol", null, trackItems));
     }
@@ -289,22 +293,35 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mSTP = function mSTP(_ref) {
+var mSTP = function mSTP(_ref, ownProps) {
   var _ref$entities = _ref.entities,
       albums = _ref$entities.albums,
       tracks = _ref$entities.tracks,
-      artists = _ref$entities.artists,
-      ownProps = _ref.ownProps;
+      artists = _ref$entities.artists;
   debugger;
   return {
     tracks: Object.values(tracks),
-    album: albums,
+    album: albums[ownProps.match.params.id],
     artist: artists
   };
 };
 
 var mDTP = function mDTP(dispatch) {
-  return {};
+  return {
+    getAlbum: function (_getAlbum) {
+      function getAlbum(_x) {
+        return _getAlbum.apply(this, arguments);
+      }
+
+      getAlbum.toString = function () {
+        return _getAlbum.toString();
+      };
+
+      return getAlbum;
+    }(function (albumId) {
+      return dispatch(getAlbum(albumId));
+    })
+  };
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_album_show__WEBPACK_IMPORTED_MODULE_1__.default));
@@ -597,7 +614,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -605,16 +621,23 @@ var Discog = function Discog(_ref) {
   var history = _ref.history,
       album = _ref.album,
       getAlbum = _ref.getAlbum;
+
+  var handleClick = function handleClick() {
+    getAlbum(album.id);
+    history.push("/albums/".concat(album.id)); // <Redirect to={`/album/${album.id}`} />;
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
     className: "discog-tile"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", _defineProperty({
-    src: album.photoUrl,
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: album.photoUrl // onClick={() => getAlbum(album.id)}
+    // onClick={() => history.push(`/albums/${album.id}`)}
+    ,
     onClick: function onClick() {
-      return getAlbum(album.id);
-    }
-  }, "onClick", function onClick() {
-    return history.push("/albums/".concat(album.id));
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, album.title));
+      return handleClick();
+    } // onClick={() => <Redirect to={`/album/${album.id}`} />}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, album.title));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Discog);
@@ -1626,7 +1649,6 @@ var albumsReducer = function albumsReducer() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
   var newState;
-  debugger;
 
   switch (action.type) {
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALBUM:

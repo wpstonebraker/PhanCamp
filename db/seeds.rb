@@ -8,6 +8,7 @@
 
 User.destroy_all
 Album.destroy_all
+Track.destroy_all
 
 u1 = User.create!(
     artist_name: "Mister Hiro",
