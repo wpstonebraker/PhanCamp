@@ -1,11 +1,14 @@
 import React from "react";
 import GreetingContainer from "../greeting/greeting_container";
+import { Link } from "react-router-dom";
 
 const BannerBar = () => {
   return (
     <div className="main-header">
       <div className="main-header-top-row">
-        <img src={window.logo} alt="" className="main-header-logo" />
+        <Link to="/">
+          <img src={window.logo} alt="" className="main-header-logo" />
+        </Link>
         <input className="search-placeholder"></input>
       </div>
       <div className="main-header-bottom-row">

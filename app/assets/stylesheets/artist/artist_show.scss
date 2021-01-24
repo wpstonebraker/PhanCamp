@@ -25,7 +25,7 @@
 
 .artist-banner-nav {
   display: flex;
-  background-color: aquamarine;
+  background-color: #f2f2f2;
 
   li {
     margin: 10px 20px;
@@ -37,6 +37,8 @@
   width: 975px;
   height: 100%;
   display: flex;
+  background: #ffffff;
+  border: 0.5px solid grey;
 }
 
 .discog-box {
@@ -47,12 +49,15 @@
 }
 
 .discog-tile {
-  height: 260px;
+  margin: 5px;
+  height: 275px;
   width: 230px;
   outline: 1px solid red;
   img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 230px;
+    height: 230px;
+    // max-width: 100%;
+    // max-height: 100%;
     // display: block;
     // object-fit: scale-down;
     // outline: 1px solid lime;

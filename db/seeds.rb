@@ -70,26 +70,34 @@ bd13 = Album.create!(
 bd13.photo.attach(io: File.open("app/assets/images/albums/bd13.jpeg"), filename: "bd13.jpeg")
 
 
-# jp2000 = Album.create!(
-#     title: '2000.06.14 - Fukuoka, Japan',
-#     artist_id: phish.id,
-#     year: 2000,
-#     description: "trippy sounds",
-#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
-# )
+jp2000 = Album.create!(
+    title: '2000.06.14 - Fukuoka, Japan',
+    artist_id: phish.id,
+    year: 2000,
+    description: "trippy sounds",
+    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+)
 
-# co97 = Album.create!(
-#     title: '1997.11.17 - Denver, CO',
-#     artist_id: phish.id,
-#     year: 1997,
-#     description: "epic tweezer and DWD",
-#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
-# )
+jp2000.photo.attach(io: File.open("app/assets/images/albums/jp2000.jpeg"), filename: "bd13.jpeg")
 
-# mann15 = Album.create!(
-#     title: '2015.08.12 - Philadelphia, PA',
-#     artist_id: phish.id,
-#     year: 2015,
-#     description: "Second row show",
-#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
-# )
+
+co97 = Album.create!(
+    title: '1997.11.17 - Denver, CO',
+    artist_id: phish.id,
+    year: 1997,
+    description: "epic tweezer and DWD",
+    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+)
+
+co97.photo.attach(io: File.open("app/assets/images/albums/co97.jpeg"), filename: "bd13.jpeg")
+
+
+mann15 = Album.create!(
+    title: '2015.08.12 - Philadelphia, PA',
+    artist_id: phish.id,
+    year: 2015,
+    description: "Second row show",
+    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+)
+
+mann15.photo.attach(io: File.open("app/assets/images/albums/mann15.jpeg"), filename: "bd13.jpeg")

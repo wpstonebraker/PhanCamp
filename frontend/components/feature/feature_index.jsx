@@ -5,7 +5,7 @@ const FeatureIndex = (props) => {
   const handleClick = () => {
     // const benchId = this.props.bench.id;
     // props.history.push(`/artists/${benchId}`);
-    props.history.push(`/artists/26`);
+    props.history.push(`/artists/45`);
   };
 
   return (

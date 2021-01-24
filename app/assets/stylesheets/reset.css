@@ -146,3 +146,7 @@ input:focus {
 .error-outline {
   border-color: red;
 }
+
+* {
+  box-sizing: border-box;
+}
