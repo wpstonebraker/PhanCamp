@@ -22,7 +22,7 @@ phish = User.create!(
     password: "misterhiro",
     email: "phish@phish.com",
     about: "The greatest rock band e-e-e-e-EVER",
-    location: "VT",
+    location: "Burlington, VT",
     personal_url: "www.phish.com"
 )
 
@@ -31,8 +31,8 @@ gd = User.create!(
     username: "gratefuldead",
     password: "misterhiro",
     email: "jer@gd.com",
-    about: "A solid band",
-    location: "CA",
+    about: "Phish is an American rock band that formed in Burlington, Vermont, in 1983. The band is known for musical improvisation, extended jams, blending of genres, and a dedicated fan base. The band consists of guitarist Trey Anastasio, bassist Mike Gordon, drummer Jon Fishman, and keyboardist Page McConnell, all of whom perform vocals, with Anastasio being the primary lead vocalist.",
+    location: "San Francisco, CA",
     personal_url: "www.dead.net"
 )
 

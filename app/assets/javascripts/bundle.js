@@ -89,22 +89,39 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_ALBUM": () => /* binding */ RECEIVE_ALBUM,
+/* harmony export */   "RECEIVE_ARTIST_ALBUMS": () => /* binding */ RECEIVE_ARTIST_ALBUMS,
 /* harmony export */   "receiveAlbum": () => /* binding */ receiveAlbum,
-/* harmony export */   "getAlbum": () => /* binding */ getAlbum
+/* harmony export */   "receiveArtistAlbums": () => /* binding */ receiveArtistAlbums,
+/* harmony export */   "getAlbum": () => /* binding */ getAlbum,
+/* harmony export */   "getArtistAlbums": () => /* binding */ getArtistAlbums
 /* harmony export */ });
 /* harmony import */ var _util_album_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/album_api_util */ "./frontend/util/album_api_util.js");
 
 var RECEIVE_ALBUM = "RECEIVE_ALBUM";
+var RECEIVE_ARTIST_ALBUMS = "RECEIVE_ARTIST_ALBUMS";
 var receiveAlbum = function receiveAlbum(album) {
   return {
     type: RECEIVE_ALBUM,
     album: album
   };
 };
+var receiveArtistAlbums = function receiveArtistAlbums(albums) {
+  return {
+    type: RECEIVE_ARTIST_ALBUMS,
+    albums: albums
+  };
+};
 var getAlbum = function getAlbum(albumId) {
   return function (dispatch) {
     return _util_album_api_util__WEBPACK_IMPORTED_MODULE_0__.getAlbum(albumId).then(function (album) {
       return dispatch(receiveAlbum(album));
+    });
+  };
+};
+var getArtistAlbums = function getArtistAlbums(artistId) {
+  return function (dispatch) {
+    return _util_album_api_util__WEBPACK_IMPORTED_MODULE_0__.getArtistAlbums(artistId).then(function (albums) {
+      return dispatch(receiveArtistAlbums(albums));
     });
   };
 };
@@ -198,10 +215,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _greeting_greeting_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./greeting/greeting_container */ "./frontend/components/greeting/greeting_container.js");
 /* harmony import */ var _signup_signup_form_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./signup/signup_form_container */ "./frontend/components/signup/signup_form_container.js");
 /* harmony import */ var _login_login_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./login/login_form_container */ "./frontend/components/login/login_form_container.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
 /* harmony import */ var _banner_bar_banner_bar_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./banner_bar/banner_bar_container */ "./frontend/components/banner_bar/banner_bar_container.js");
 /* harmony import */ var _feature_feature_index_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./feature/feature_index_container */ "./frontend/components/feature/feature_index_container.js");
+/* harmony import */ var _artist_artist_show_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./artist/artist_show_container */ "./frontend/components/artist/artist_show_container.js");
+
 
 
 
@@ -212,7 +231,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__.AuthRoute, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__.AuthRoute, {
     exact: true,
     path: "/signup",
     component: _signup_signup_form_container__WEBPACK_IMPORTED_MODULE_2__.default
@@ -220,7 +239,11 @@ var App = function App() {
     exact: true,
     path: "/login",
     component: _login_login_form_container__WEBPACK_IMPORTED_MODULE_3__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_banner_bar_banner_bar_container__WEBPACK_IMPORTED_MODULE_5__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_banner_bar_banner_bar_container__WEBPACK_IMPORTED_MODULE_5__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+    exact: true,
+    path: "/artists/:id",
+    component: _artist_artist_show_container__WEBPACK_IMPORTED_MODULE_7__.default
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
     exact: true,
     path: "/",
     component: _feature_feature_index_container__WEBPACK_IMPORTED_MODULE_6__.default
@@ -228,6 +251,218 @@ var App = function App() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
+
+/***/ }),
+
+/***/ "./frontend/components/artist/artist_banner.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/artist/artist_banner.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var ArtistBanner = function ArtistBanner(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "artist-banner-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "artist-banner"
+  }, "PLACEHOLDER FOR ARTIST BANNER"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+    className: "artist-banner-nav"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "music"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "community"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "merch")));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ArtistBanner);
+
+/***/ }),
+
+/***/ "./frontend/components/artist/artist_show.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/artist/artist_show.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _discog__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./discog */ "./frontend/components/artist/discog.jsx");
+/* harmony import */ var _artist_banner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./artist_banner */ "./frontend/components/artist/artist_banner.jsx");
+/* harmony import */ var _artist_sidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./artist_sidebar */ "./frontend/components/artist/artist_sidebar.jsx");
+/* harmony import */ var _util_album_api_util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../util/album_api_util */ "./frontend/util/album_api_util.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+
+var ArtistShow = /*#__PURE__*/function (_React$Component) {
+  _inherits(ArtistShow, _React$Component);
+
+  var _super = _createSuper(ArtistShow);
+
+  function ArtistShow(props) {
+    _classCallCheck(this, ArtistShow);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(ArtistShow, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.getArtistAlbums(this.props.artistId);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      debugger;
+      var albums = this.props.albums;
+      var artist = this.props.artist;
+      var items = albums.map(function (album) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_discog__WEBPACK_IMPORTED_MODULE_1__.default, {
+          album: album,
+          key: "".concat(album.id)
+        });
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "artist-show-page-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_artist_banner__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "artist-discog-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "discog-box"
+      }, items), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_artist_sidebar__WEBPACK_IMPORTED_MODULE_3__.default, {
+        artist: artist
+      })));
+    }
+  }]);
+
+  return ArtistShow;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ArtistShow);
+
+/***/ }),
+
+/***/ "./frontend/components/artist/artist_show_container.js":
+/*!*************************************************************!*\
+  !*** ./frontend/components/artist/artist_show_container.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/album_actions */ "./frontend/actions/album_actions.js");
+/* harmony import */ var _artist_show__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./artist_show */ "./frontend/components/artist/artist_show.jsx");
+
+
+
+
+var mSTP = function mSTP(_ref, ownProps) {
+  var _ref$entities = _ref.entities,
+      albums = _ref$entities.albums,
+      artists = _ref$entities.artists;
+  return {
+    albums: Object.values(albums),
+    artistId: ownProps.match.params.id,
+    artist: artists[ownProps.match.params.id]
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    getArtistAlbums: function getArtistAlbums(artistId) {
+      return dispatch((0,_actions_album_actions__WEBPACK_IMPORTED_MODULE_1__.getArtistAlbums)(artistId));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_artist_show__WEBPACK_IMPORTED_MODULE_2__.default));
+
+/***/ }),
+
+/***/ "./frontend/components/artist/artist_sidebar.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/artist/artist_sidebar.jsx ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var ArtistSidebar = function ArtistSidebar(_ref) {
+  var artist = _ref.artist;
+  debugger;
+  if (!artist) return null;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "artist-sidebar-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, artist.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, artist.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, artist.about), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, artist.peronalUrl), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, artist.email)));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ArtistSidebar);
+
+/***/ }),
+
+/***/ "./frontend/components/artist/discog.jsx":
+/*!***********************************************!*\
+  !*** ./frontend/components/artist/discog.jsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var Discog = function Discog(_ref) {
+  var album = _ref.album;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+    className: "discog-tile"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, album.title));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Discog);
 
 /***/ }),
 
@@ -437,7 +672,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
-var FeatureIndex = function FeatureIndex() {
+
+var FeatureIndex = function FeatureIndex(props) {
+  var handleClick = function handleClick() {
+    // const benchId = this.props.bench.id;
+    // props.history.push(`/artists/${benchId}`);
+    props.history.push("/artists/26");
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "fi-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -449,7 +691,9 @@ var FeatureIndex = function FeatureIndex() {
     alt: "Main feature Phish"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "fi-main-box"
-  }, "Relive Night 13 of Phish's Legendary Madison Square Garden Run")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    onClick: handleClick
+  }, "Phishasdkljfg"), "Relive Night 13 of Phish's Legendary Madison Square Garden Run")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "fi-side"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: window.featureGD,
@@ -1126,9 +1370,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 /* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./actions/album_actions */ "./frontend/actions/album_actions.js");
-/* harmony import */ var _util_artist_api_util__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./util/artist_api.util */ "./frontend/util/artist_api.util.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -1164,7 +1406,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.getState = store.getState;
   window.dispatch = store.dispatch;
   window.getAlbum = _actions_album_actions__WEBPACK_IMPORTED_MODULE_6__.getAlbum;
-  window.getArtistAlbums = _util_artist_api_util__WEBPACK_IMPORTED_MODULE_7__.getArtistAlbums; // testing end
+  window.getArtistAlbums = _actions_album_actions__WEBPACK_IMPORTED_MODULE_6__.getArtistAlbums; // testing end
 
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_root__WEBPACK_IMPORTED_MODULE_5__.default, {
     store: store
@@ -1229,12 +1471,48 @@ var albumsReducer = function albumsReducer() {
       newState = Object.assign({}, state, _defineProperty({}, action.album.id, action.album));
       return newState;
 
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ARTIST_ALBUMS:
+      return action.albums.albums;
+
     default:
       return state;
   }
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (albumsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/artists_reducer.js":
+/*!**********************************************!*\
+  !*** ./frontend/reducers/artists_reducer.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/album_actions */ "./frontend/actions/album_actions.js");
+
+
+var artistsReducer = function artistsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var newState;
+
+  switch (action.type) {
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ARTIST_ALBUMS:
+      return action.albums.artist;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (artistsReducer);
 
 /***/ }),
 
@@ -1249,15 +1527,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _albums_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./albums_reducer */ "./frontend/reducers/albums_reducer.js");
-/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+/* harmony import */ var _artists_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./artists_reducer */ "./frontend/reducers/artists_reducer.js");
+/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 
 
 
-var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__.default,
-  albums: _albums_reducer__WEBPACK_IMPORTED_MODULE_0__.default
+
+var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_2__.default,
+  albums: _albums_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
+  artists: _artists_reducer__WEBPACK_IMPORTED_MODULE_1__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (entitiesReducer);
 
@@ -1463,27 +1744,14 @@ var configureStore = function configureStore() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getAlbum": () => /* binding */ getAlbum
+/* harmony export */   "getAlbum": () => /* binding */ getAlbum,
+/* harmony export */   "getArtistAlbums": () => /* binding */ getArtistAlbums
 /* harmony export */ });
 var getAlbum = function getAlbum(albumId) {
   return $.ajax({
     url: "/api/albums/".concat(albumId)
   });
 };
-
-/***/ }),
-
-/***/ "./frontend/util/artist_api.util.js":
-/*!******************************************!*\
-  !*** ./frontend/util/artist_api.util.js ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getArtistAlbums": () => /* binding */ getArtistAlbums
-/* harmony export */ });
 var getArtistAlbums = function getArtistAlbums(artistId) {
   return $.ajax({
     url: "/api/artists/".concat(artistId, "/albums")

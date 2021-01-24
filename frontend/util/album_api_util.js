@@ -3,3 +3,9 @@ export const getAlbum = (albumId) => {
     url: `/api/albums/${albumId}`,
   });
 };
+
+export const getArtistAlbums = (artistId) => {
+  return $.ajax({
+    url: `/api/artists/${artistId}/albums`,
+  });
+};

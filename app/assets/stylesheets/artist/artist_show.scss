@@ -1,0 +1,49 @@
+.artist-show-page-box {
+  margin: auto;
+  width: 975px;
+  height: 100vh;
+  background-color: lightgrey;
+}
+
+.artist-banner-box {
+  margin: auto;
+  display: block;
+  width: 975px;
+  height: 220px;
+  background-color: darksalmon;
+}
+
+.artist-banner {
+  width: 975px;
+  height: 180px;
+}
+
+.artist-banner-nav {
+  display: flex;
+  background-color: aquamarine;
+
+  li {
+    margin: 10px 20px;
+  }
+}
+
+.artist-discog-box {
+  width: 975px;
+  display: flex;
+}
+
+.discog-box {
+  width: 795px;
+  height: 220px;
+  display: flex;
+}
+
+.discog-tile {
+  height: 260px;
+  width: 230px;
+  outline: 1px solid red;
+}
+
+.artist-sidebar-box {
+  display: flex;
+}

@@ -1,4 +1,4 @@
-import { RECEIVE_ALBUM } from "../actions/album_actions";
+import { RECEIVE_ALBUM, RECEIVE_ARTIST_ALBUMS } from "../actions/album_actions";
 
 const albumsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -9,6 +9,8 @@ const albumsReducer = (state = {}, action) => {
         [action.album.id]: action.album,
       });
       return newState;
+    case RECEIVE_ARTIST_ALBUMS:
+      return action.albums.albums;
     default:
       return state;
   }

@@ -1,12 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const FeatureIndex = () => {
+const FeatureIndex = (props) => {
+  const handleClick = () => {
+    // const benchId = this.props.bench.id;
+    // props.history.push(`/artists/${benchId}`);
+    props.history.push(`/artists/26`);
+  };
+
   return (
     <div className="fi-container">
       <div className="fi-box">
         <div className="fi-main">
           <img src={window.featurePhish} alt="Main feature Phish" />
           <div className="fi-main-box">
+            <span onClick={handleClick}>Phishasdkljfg</span>
+            {/* <Link to="/artist/26">PHISH</Link> */}
             Relive Night 13 of Phish's Legendary Madison Square Garden Run
           </div>
         </div>
