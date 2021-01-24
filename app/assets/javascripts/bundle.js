@@ -268,12 +268,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
-var ArtistBanner = function ArtistBanner(props) {
+var ArtistBanner = function ArtistBanner(_ref) {
+  var artist = _ref.artist;
+  if (!artist) return null;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "artist-banner-box"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "artist-banner"
-  }, "PLACEHOLDER FOR ARTIST BANNER"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: artist.bannerUrl,
+    className: "artist-banner-img"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
     className: "artist-banner-nav"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "music"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "community"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "merch")));
 };
@@ -356,7 +361,9 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "artist-show-page-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_artist_banner__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_artist_banner__WEBPACK_IMPORTED_MODULE_2__.default, {
+        artist: artist
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "artist-discog-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "discog-box"
@@ -434,7 +441,22 @@ var ArtistSidebar = function ArtistSidebar(_ref) {
   if (!artist) return null;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "artist-sidebar-box"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, artist.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, artist.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, artist.about), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, artist.peronalUrl), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, artist.email)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    className: "artist-thumbnail-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: artist.thumbnailUrl,
+    className: "artist-thumbnail-pic"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    className: "artist-sidebar-name"
+  }, artist.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    className: "artist-sidebar-location"
+  }, artist.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    className: "artist-sidebar-about"
+  }, artist.about), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    className: "artist-sidebar-website"
+  }, artist.personalUrl), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    className: "artist-sidebar-contact"
+  }, artist.email)));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ArtistSidebar);
@@ -459,7 +481,9 @@ var Discog = function Discog(_ref) {
   var album = _ref.album;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
     className: "discog-tile"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, album.title));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: album.photoUrl
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, album.title));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Discog);

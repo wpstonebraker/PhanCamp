@@ -22,7 +22,7 @@ class ArtistShow extends React.Component {
     });
     return (
       <div className="artist-show-page-box">
-        <ArtistBanner />
+        <ArtistBanner artist={artist} />
         <div className="artist-discog-box">
           <div className="discog-box">{items}</div>
           <ArtistSidebar artist={artist} />

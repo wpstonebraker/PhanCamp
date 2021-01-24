@@ -21,40 +21,43 @@ phish = User.create!(
     username: "Phish",
     password: "misterhiro",
     email: "phish@phish.com",
-    about: "The greatest rock band e-e-e-e-EVER",
+    about: "Phish is an American rock band that formed in Burlington, Vermont, in 1983. The band is known for musical improvisation, extended jams, blending of genres, and a dedicated fan base. The band consists of guitarist Trey Anastasio, bassist Mike Gordon, drummer Jon Fishman, and keyboardist Page McConnell, all of whom perform vocals, with Anastasio being the primary lead vocalist.",
     location: "Burlington, VT",
     personal_url: "www.phish.com"
 )
 
-gd = User.create!(
-    artist_name: "The Grateful Dead",
-    username: "gratefuldead",
-    password: "misterhiro",
-    email: "jer@gd.com",
-    about: "Phish is an American rock band that formed in Burlington, Vermont, in 1983. The band is known for musical improvisation, extended jams, blending of genres, and a dedicated fan base. The band consists of guitarist Trey Anastasio, bassist Mike Gordon, drummer Jon Fishman, and keyboardist Page McConnell, all of whom perform vocals, with Anastasio being the primary lead vocalist.",
-    location: "San Francisco, CA",
-    personal_url: "www.dead.net"
-)
+phish.banner.attach(io: File.open("app/assets/images/artists/phish/banner.png"), filename: "phishbanner.png")
+phish.thumbnail.attach(io: File.open("app/assets/images/artists/phish/thumbnail.png"), filename: "phishthumbnail.png")
 
-goose = User.create!(
-    artist_name: "Goose",
-    username: "Goose",
-    password: "misterhiro",
-    email: "rick@goosetheband.com",
-    about: "The next jam band",
-    location: "CT",
-    personal_url: "www.goosetheband.com"
-)
+# gd = User.create!(
+#     artist_name: "The Grateful Dead",
+#     username: "gratefuldead",
+#     password: "misterhiro",
+#     email: "jer@gd.com",
+#     about: "Phish is an American rock band that formed in Burlington, Vermont, in 1983. The band is known for musical improvisation, extended jams, blending of genres, and a dedicated fan base. The band consists of guitarist Trey Anastasio, bassist Mike Gordon, drummer Jon Fishman, and keyboardist Page McConnell, all of whom perform vocals, with Anastasio being the primary lead vocalist.",
+#     location: "San Francisco, CA",
+#     personal_url: "www.dead.net"
+# )
 
-ween = User.create!(
-    artist_name: "Ween",
-    username: "Ween",
-    password: "misterhiro",
-    email: "dean@ween.com",
-    about: "A rock band",
-    location: "PA",
-    personal_url: "www.ween.com"
-)
+# goose = User.create!(
+#     artist_name: "Goose",
+#     username: "Goose",
+#     password: "misterhiro",
+#     email: "rick@goosetheband.com",
+#     about: "The next jam band",
+#     location: "CT",
+#     personal_url: "www.goosetheband.com"
+# )
+
+# ween = User.create!(
+#     artist_name: "Ween",
+#     username: "Ween",
+#     password: "misterhiro",
+#     email: "dean@ween.com",
+#     about: "A rock band",
+#     location: "PA",
+#     personal_url: "www.ween.com"
+# )
 
 bd13 = Album.create!(
     title: '2017.08.06 - Madison Square Garden',
@@ -64,18 +67,29 @@ bd13 = Album.create!(
     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
 )
 
-jp2000 = Album.create!(
-    title: '2000.06.14 - Fukuoka, Japan',
-    artist_id: phish.id,
-    year: 2000,
-    description: "trippy sounds",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
-)
+bd13.photo.attach(io: File.open("app/assets/images/albums/bd13.jpeg"), filename: "bd13.jpeg")
 
-co97 = Album.create!(
-    title: '1997.11.17 - Denver, CO',
-    artist_id: phish.id,
-    year: 1997,
-    description: "epic tweezer and DWD",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
-)
+
+# jp2000 = Album.create!(
+#     title: '2000.06.14 - Fukuoka, Japan',
+#     artist_id: phish.id,
+#     year: 2000,
+#     description: "trippy sounds",
+#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+# )
+
+# co97 = Album.create!(
+#     title: '1997.11.17 - Denver, CO',
+#     artist_id: phish.id,
+#     year: 1997,
+#     description: "epic tweezer and DWD",
+#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+# )
+
+# mann15 = Album.create!(
+#     title: '2015.08.12 - Philadelphia, PA',
+#     artist_id: phish.id,
+#     year: 2015,
+#     description: "Second row show",
+#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+# )

@@ -10,6 +10,8 @@ class Album < ApplicationRecord
         primary_key: :id,
         class_name: :User
 
+    has_one_attached :photo
+
 
     def set_price
         self.price ||= 0

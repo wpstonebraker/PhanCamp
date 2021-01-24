@@ -16,6 +16,11 @@
 .artist-banner {
   width: 975px;
   height: 180px;
+
+  img {
+    width: 975px;
+    height: 180px;
+  }
 }
 
 .artist-banner-nav {
@@ -28,7 +33,9 @@
 }
 
 .artist-discog-box {
+  padding: 40px;
   width: 975px;
+  height: 100%;
   display: flex;
 }
 
@@ -36,14 +43,52 @@
   width: 795px;
   height: 220px;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .discog-tile {
   height: 260px;
   width: 230px;
   outline: 1px solid red;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    // display: block;
+    // object-fit: scale-down;
+    // outline: 1px solid lime;
+  }
 }
 
 .artist-sidebar-box {
   display: flex;
+  width: 120px;
+
+  li {
+    padding: 5px 0 5px;
+  }
+}
+
+.artist-thumbnail-box {
+  height: 120px;
+  width: 120px;
+
+  img {
+    height: 120px;
+    width: 120px;
+  }
+}
+
+.artist-sidebar-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.artist-sidebar-location {
+  font-size: 12px;
+  color: #888888;
+}
+
+.artist-sidebar-about {
+  font-size: 12px;
+  color: #363636;
 }

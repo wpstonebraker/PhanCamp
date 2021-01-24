@@ -7,11 +7,14 @@ const ArtistSidebar = ({ artist }) => {
   return (
     <div className="artist-sidebar-box">
       <ul>
-        <li>{artist.artistName}</li>
-        <li>{artist.location}</li>
-        <li>{artist.about}</li>
-        <li>{artist.peronalUrl}</li>
-        <li>{artist.email}</li>
+        <li className="artist-thumbnail-box">
+          <img src={artist.thumbnailUrl} className="artist-thumbnail-pic" />
+        </li>
+        <li className="artist-sidebar-name">{artist.artistName}</li>
+        <li className="artist-sidebar-location">{artist.location}</li>
+        <li className="artist-sidebar-about">{artist.about}</li>
+        <li className="artist-sidebar-website">{artist.personalUrl}</li>
+        <li className="artist-sidebar-contact">{artist.email}</li>
       </ul>
     </div>
   );
