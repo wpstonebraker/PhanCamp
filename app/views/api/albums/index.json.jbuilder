@@ -2,9 +2,9 @@ json.albums do
     @albums.each do |album|
         json.set! album.id do
             json.extract! album, :title, :id
-            if album.photo
-                json.photoUrl url_for(album.photo)
-            end
+            # if album.photo
+            json.photoUrl url_for(album.photo)
+            # end
             # json.extract! album, :id
         end
     end

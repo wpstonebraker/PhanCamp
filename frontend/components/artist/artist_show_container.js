@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { getArtistAlbums } from "../../actions/album_actions";
+import { getAlbum, getArtistAlbums } from "../../actions/album_actions";
 import ArtistShow from "./artist_show";
 
 const mSTP = ({ entities: { albums, artists } }, ownProps) => {
@@ -13,6 +13,7 @@ const mSTP = ({ entities: { albums, artists } }, ownProps) => {
 const mDTP = (dispatch) => {
   return {
     getArtistAlbums: (artistId) => dispatch(getArtistAlbums(artistId)),
+    getAlbum: (albumId) => dispatch(getAlbum(albumId)),
   };
 };
 

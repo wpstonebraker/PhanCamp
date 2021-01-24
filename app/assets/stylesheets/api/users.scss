@@ -25,6 +25,7 @@
 }
 
 .suf {
+  box-sizing: content-box;
   //   display: block;
   //   margin: auto;
   display: flex;
@@ -37,6 +38,7 @@
   // }
 
   div {
+    box-sizing: content-box;
     padding: 5px;
     // text-align: center;
     // margin: auto;
@@ -50,6 +52,7 @@
     justify-content: space-between;
 
     label {
+      box-sizing: content-box;
       margin: auto;
       //   vertical-align: middle;
       margin-inline-start: auto;
@@ -62,6 +65,7 @@
     }
 
     input {
+      box-sizing: content-box;
       font-size: 14px;
       padding-left: 10px;
       height: 31px;
@@ -84,7 +88,7 @@
       color: white;
       background-color: #00a1c6;
       margin: auto;
-      width: 300px;
+      width: 282px;
       height: 36px;
     }
     .suf-guest-demo {

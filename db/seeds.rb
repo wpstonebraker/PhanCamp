@@ -29,15 +29,19 @@ phish = User.create!(
 phish.banner.attach(io: File.open("app/assets/images/artists/phish/banner.png"), filename: "phishbanner.png")
 phish.thumbnail.attach(io: File.open("app/assets/images/artists/phish/thumbnail.png"), filename: "phishthumbnail.png")
 
-# gd = User.create!(
-#     artist_name: "The Grateful Dead",
-#     username: "gratefuldead",
-#     password: "misterhiro",
-#     email: "jer@gd.com",
-#     about: "Phish is an American rock band that formed in Burlington, Vermont, in 1983. The band is known for musical improvisation, extended jams, blending of genres, and a dedicated fan base. The band consists of guitarist Trey Anastasio, bassist Mike Gordon, drummer Jon Fishman, and keyboardist Page McConnell, all of whom perform vocals, with Anastasio being the primary lead vocalist.",
-#     location: "San Francisco, CA",
-#     personal_url: "www.dead.net"
-# )
+gd = User.create!(
+    artist_name: "The Grateful Dead",
+    username: "gratefuldead",
+    password: "misterhiro",
+    email: "jer@gd.com",
+    about: "Phish is an American rock band that formed in Burlington, Vermont, in 1983. The band is known for musical improvisation, extended jams, blending of genres, and a dedicated fan base. The band consists of guitarist Trey Anastasio, bassist Mike Gordon, drummer Jon Fishman, and keyboardist Page McConnell, all of whom perform vocals, with Anastasio being the primary lead vocalist.",
+    location: "San Francisco, CA",
+    personal_url: "www.dead.net"
+)
+
+gd.banner.attach(io: File.open("app/assets/images/artists/gd/banner.jpeg"), filename: "gdbanner.jpeg")
+gd.thumbnail.attach(io: File.open("app/assets/images/artists/gd/thumbnail.jpeg"), filename: "gdthumbnail.jpeg")
+
 
 # goose = User.create!(
 #     artist_name: "Goose",
@@ -101,3 +105,114 @@ mann15 = Album.create!(
 )
 
 mann15.photo.attach(io: File.open("app/assets/images/albums/mann15.jpeg"), filename: "bd13.jpeg")
+
+msg81 = Album.create!(
+    title: '1981.03.09 - New York, NY',
+    artist_id: gd.id,
+    year: 1981,
+    description: "Legendary AUD",
+    credits: "Guitar: Jer"
+)
+
+msg81.photo.attach(io: File.open("app/assets/images/albums/msg81.jpeg"), filename: "msg81.jpeg")
+
+p_bd_1 = Track.create!(
+    track_name: 'Dogs Stole Things',
+    track_num: '1',
+    album_id: bd13.id
+)
+p_bd_2 = Track.create!(
+    track_name: 'Rift',
+    track_num: '2',
+    album_id: bd13.id
+)
+p_bd_3 = Track.create!(
+    track_name: 'Ha Ha Ha',
+    track_num: '3',
+    album_id: bd13.id
+)
+p_bd_4 = Track.create!(
+    track_name: 'Camel Walk',
+    track_num: '4',
+    album_id: bd13.id
+)
+p_bd_5 = Track.create!(
+    track_name: 'Crazy Sometimes',
+    track_num: '5',
+    album_id: bd13.id
+)
+p_bd_6 = Track.create!(
+    track_name: 'Saw it Again',
+    track_num: '6',
+    album_id: bd13.id
+)
+p_bd_7 = Track.create!(
+    track_name: 'Sanity',
+    track_num: '7',
+    album_id: bd13.id
+)
+p_bd_8 = Track.create!(
+    track_name: 'Bouncing Around the Room',
+    track_num: '8',
+    album_id: bd13.id
+)
+p_bd_9 = Track.create!(
+    track_name: "Most Events Aren't Planned",
+    track_num: '9',
+    album_id: bd13.id
+)
+p_bd_10 = Track.create!(
+    track_name: 'Bug',
+    track_num: '10',
+    album_id: bd13.id
+)
+p_bd_11 = Track.create!(
+    track_name: 'I Been Around',
+    track_num: '11',
+    album_id: bd13.id
+)
+p_bd_12 = Track.create!(
+    track_name: 'Izabella',
+    track_num: '12',
+    album_id: bd13.id
+)
+p_bd_13 = Track.create!(
+    track_name: 'Simple',
+    track_num: '13',
+    album_id: bd13.id
+)
+p_bd_14 = Track.create!(
+    track_name: 'Rise/Come Together',
+    track_num: '14',
+    album_id: bd13.id
+)
+p_bd_15 = Track.create!(
+    track_name: 'Starman',
+    track_num: '15',
+    album_id: bd13.id
+)
+p_bd_16 = Track.create!(
+    track_name: 'You Enjoy Myself',
+    track_num: '16',
+    album_id: bd13.id
+)
+p_bd_17 = Track.create!(
+    track_name: 'Loving Cup',
+    track_num: '2',
+    album_id: bd13.id
+)
+p_bd_18 = Track.create!(
+    track_name: 'On the Road Again',
+    track_num: '18',
+    album_id: bd13.id
+)
+p_bd_19 = Track.create!(
+    track_name: 'Lawn Boy Reprise',
+    track_num: '19',
+    album_id: bd13.id
+)
+p_bd_20 = Track.create!(
+    track_name: 'Tweezer Reprise',
+    track_num: '20',
+    album_id: bd13.id
+)

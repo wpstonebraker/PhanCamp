@@ -1,8 +1,6 @@
 import React from "react";
 
 const ArtistSidebar = ({ artist }) => {
-  debugger;
-
   if (!artist) return null;
   return (
     <div className="artist-sidebar-box">

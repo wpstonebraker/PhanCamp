@@ -2,7 +2,6 @@ import React from "react";
 import Discog from "./discog";
 import ArtistBanner from "./artist_banner";
 import ArtistSidebar from "./artist_sidebar";
-import { getAlbum } from "../../util/album_api_util";
 
 class ArtistShow extends React.Component {
   constructor(props) {
@@ -14,11 +13,17 @@ class ArtistShow extends React.Component {
   }
 
   render() {
-    debugger;
     const albums = this.props.albums;
     const artist = this.props.artist;
     const items = albums.map((album) => {
-      return <Discog album={album} key={`${album.id}`} />;
+      return (
+        <Discog
+          album={album}
+          key={`${album.id}`}
+          getAlbum={this.props.getAlbum}
+          history={this.props.history}
+        />
+      );
     });
     return (
       <div className="artist-show-page-box">

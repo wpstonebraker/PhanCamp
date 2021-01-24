@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const FeatureIndex = (props) => {
-  const handleClick = () => {
-    // const benchId = this.props.bench.id;
-    // props.history.push(`/artists/${benchId}`);
-    props.history.push(`/artists/45`);
-  };
+  // const handleClick = () => {
+  //   // const benchId = this.props.bench.id;
+  //   // props.history.push(`/artists/${benchId}`);
+  //   props.history.push(`/artists/45`);
+  // };
 
   return (
     <div className="fi-container">
@@ -14,21 +14,25 @@ const FeatureIndex = (props) => {
         <div className="fi-main">
           <img src={window.featurePhish} alt="Main feature Phish" />
           <div className="fi-main-box">
-            <span onClick={handleClick}>Phishasdkljfg</span>
+            {/* <span onClick={handleClick}>Phishasdkljfg</span> */}
+            <span onClick={() => props.history.push(`/artists/56`)}>
+              Phishasdkljfg
+            </span>
             {/* <Link to="/artist/26">PHISH</Link> */}
             Relive Night 13 of Phish's Legendary Madison Square Garden Run
           </div>
         </div>
         <div className="fi-side">
           <img
-            src={window.featureGD}
-            alt="GD feature"
-            className="fi-side-item"
-          />
-          <img
             src={window.featureWeen}
             alt="Ween feature"
             className="fi-side-item"
+          />
+          <img
+            src={window.featureGD}
+            alt="GD feature"
+            className="fi-side-item"
+            onClick={() => props.history.push(`/artists/57`)}
           />
           <img
             src={window.featureGoose}

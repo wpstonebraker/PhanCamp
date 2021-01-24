@@ -2,7 +2,7 @@
   margin: auto;
   width: 975px;
   height: 100vh;
-  background-color: lightgrey;
+  border: 0.5px solid lightgrey;
 }
 
 .artist-banner-box {
@@ -10,7 +10,6 @@
   display: block;
   width: 975px;
   height: 220px;
-  background-color: darksalmon;
 }
 
 .artist-banner {
@@ -33,12 +32,11 @@
 }
 
 .artist-discog-box {
-  padding: 40px;
-  width: 975px;
+  padding: 20px;
+  width: 970px;
   height: 100%;
   display: flex;
   background: #ffffff;
-  border: 0.5px solid grey;
 }
 
 .discog-box {
@@ -49,10 +47,13 @@
 }
 
 .discog-tile {
-  margin: 5px;
+  margin: 10px;
   height: 275px;
   width: 230px;
-  outline: 1px solid red;
+  // outline: 1px solid red;
+  font-size: 13px;
+  color: #0687f5;
+  font-weight: bold;
   img {
     width: 230px;
     height: 230px;
@@ -69,21 +70,24 @@
   width: 120px;
 
   li {
-    padding: 5px 0 5px;
+    margin: 5px 0 5px;
   }
 }
 
 .artist-thumbnail-box {
   height: 120px;
   width: 120px;
+  margin-bottom: 10px;
 
   img {
     height: 120px;
     width: 120px;
+    margin: 5px 0 5px;
   }
 }
 
 .artist-sidebar-name {
+  padding-top: 10px;
   font-size: 16px;
   font-weight: bold;
 }

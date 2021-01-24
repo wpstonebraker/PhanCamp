@@ -24,6 +24,7 @@
 }
 
 .sif {
+  box-sizing: content-box;
   //   display: block;
   //   margin: auto;
   display: flex;
@@ -36,6 +37,7 @@
   //   }
 
   div {
+    box-sizing: content-box;
     padding: 5px;
     // text-align: center;
     // margin: auto;
@@ -49,6 +51,7 @@
     justify-content: space-between;
 
     label {
+      box-sizing: content-box;
       margin: auto;
       //   vertical-align: middle;
       margin-inline-start: auto;
@@ -61,6 +64,7 @@
     }
 
     input {
+      box-sizing: content-box;
       font-size: 14px;
       padding-left: 10px;
       height: 31px;
@@ -78,21 +82,23 @@
     }
 
     .sif-submit {
+      box-sizing: content-box;
       font-size: 16px;
       font-weight: bold;
       color: white;
       background-color: #00a1c6;
       margin: auto;
-      width: 300px;
+      width: 282px;
       height: 36px;
     }
     .sif-guest-login {
+      box-sizing: content-box;
       font-size: 14px;
       font-weight: bold;
       color: white;
       background-color: #00a1c6;
       margin: auto;
-      width: 300px;
+      width: 282px;
       height: 36px;
       border: 0.5px solid lightgrey;
     }

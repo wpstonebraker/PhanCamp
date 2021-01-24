@@ -9,9 +9,9 @@ const ArtistBanner = ({ artist }) => {
         <img src={artist.bannerUrl} className="artist-banner-img" />
       </div>
       <ul className="artist-banner-nav">
-        <li>music</li>
-        <li>community</li>
-        <li>merch</li>
+        <li className="selected-tab">music</li>
+        {/* <li>community</li>
+        <li>merch</li> */}
       </ul>
     </div>
   );
