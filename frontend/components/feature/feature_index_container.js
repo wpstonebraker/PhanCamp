@@ -6,6 +6,8 @@ const mSTP = ({ entities: { artists } }, ownProps) => {
   return {
     phish: artists.phish,
     theGD: artists["the Grateful Dead"],
+    ween: artists.ween,
+    goose: artists.goose,
   };
 };
 

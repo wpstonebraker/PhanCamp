@@ -317,15 +317,19 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
         className: "album-audio-player-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "audio-player-title"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "by ", artist.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "album-player-album-title"
+      }, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "album-player-artist-name"
+      }, "by ", artist.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "audio-player"
-      }, "AUDIO PLAYER PLACEHOLDER"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "album-track-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      }, "AUDIO PLAYER PLACEHOLDER"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         src: album.photoUrl,
         alt: "",
         className: "album-track-cover"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, trackItems)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, album.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, album.credits)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "album-track-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, trackItems)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, album.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, album.credits)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "album-sidebar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_artist_artist_sidebar__WEBPACK_IMPORTED_MODULE_2__.default, {
         artist: artist
@@ -492,7 +496,6 @@ __webpack_require__.r(__webpack_exports__);
 var ArtistBanner = function ArtistBanner(_ref) {
   var artist = _ref.artist;
   if (!artist) return null;
-  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "artist-banner-box"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -998,8 +1001,9 @@ var FeatureIndex = /*#__PURE__*/function (_React$Component) {
 
       var _this$props = this.props,
           phish = _this$props.phish,
-          theGD = _this$props.theGD;
-      debugger;
+          theGD = _this$props.theGD,
+          goose = _this$props.goose,
+          ween = _this$props.ween;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "fi-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1008,19 +1012,21 @@ var FeatureIndex = /*#__PURE__*/function (_React$Component) {
         className: "fi-main"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         src: window.featurePhish,
-        alt: "Main feature Phish"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "fi-main-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        alt: "Main feature Phish",
         onClick: function onClick() {
           return _this.props.history.push("/artists/".concat(phish.id));
         }
-      }, "Relive Night 13 of Phish's Legendary Madison Square Garden Run"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "fi-main-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Relive Night 13 of Phish's Legendary Madison Square Garden Run"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "fi-side"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         src: window.featureWeen,
         alt: "Ween feature",
-        className: "fi-side-item"
+        className: "fi-side-item",
+        onClick: function onClick() {
+          return _this.props.history.push("/artists/".concat(ween.id));
+        }
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         src: window.featureGD,
         alt: "GD feature",
@@ -1031,7 +1037,10 @@ var FeatureIndex = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         src: window.featureGoose,
         alt: "Goose feature",
-        className: "fi-side-item"
+        className: "fi-side-item",
+        onClick: function onClick() {
+          return _this.props.history.push("/artists/".concat(goose.id));
+        }
       }))));
     }
   }]);
@@ -1065,7 +1074,9 @@ var mSTP = function mSTP(_ref, ownProps) {
   var artists = _ref.entities.artists;
   return {
     phish: artists.phish,
-    theGD: artists["the Grateful Dead"]
+    theGD: artists["the Grateful Dead"],
+    ween: artists.ween,
+    goose: artists.goose
   };
 };
 

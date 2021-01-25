@@ -313,7 +313,7 @@ gd = User.create!(
     username: "gratefuldead",
     password: "misterhiro",
     email: "jer@gd.com",
-    about: "Phish is an American rock band that formed in Burlington, Vermont, in 1983. The band is known for musical improvisation, extended jams, blending of genres, and a dedicated fan base. The band consists of guitarist Trey Anastasio, bassist Mike Gordon, drummer Jon Fishman, and keyboardist Page McConnell, all of whom perform vocals, with Anastasio being the primary lead vocalist.",
+    about: "The Grateful Dead was an American rock band formed in 1965 in Palo Alto, California.[1][2] The band is known for its eclectic style, which fused elements of rock, folk, country, jazz, bluegrass, blues, gospel, and psychedelic rock; for live performances of lengthy instrumental jams; and for its devoted fan base, known as 'Deadheads'.",
     location: "San Francisco, CA",
     personal_url: "www.dead.net"
 )
@@ -363,98 +363,110 @@ GD_MSG81_SETLIST.each_with_index do |track, i|
     )
 end
 
-# goose = User.create!(
-#     artist_name: "Goose",
-#     username: "Goose",
-#     password: "misterhiro",
-#     email: "rick@goosetheband.com",
-#     about: "The next jam band",
-#     location: "CT",
-#     personal_url: "www.goosetheband.com"
-# )
+goose = User.create!(
+    artist_name: "Goose",
+    username: "Goose",
+    password: "misterhiro",
+    email: "rick@goosetheband.com",
+    about: "Goose’s music is the culmination of a rich history between friends of differing ages and experiences from the same small town in Connecticut, drawn together through a deep love of music and storytelling.",
+    location: "CT",
+    personal_url: "www.goosetheband.com"
+)
 
-# md2020 = Album.create!(
-#     title: '2020.10.19 - Frederick, MD',
-#     artist_id: goose.id,
-#     year: 2020,
-#     description: "IW@TS",
-#     credits: "Rick on the Guitar"
-# )
+goose.banner.attach(io: File.open("app/assets/images/artists/goose/goosebanner.jpeg"), filename: "goosebanner.jpeg")
+goose.thumbnail.attach(io: File.open("app/assets/images/artists/goose/goosethumbnail.jpeg"), filename: "goosethumbnail.jpeg")
 
-# GOOSE_MD2020_SETLIST = [
-#     "Drive",
-#     "Doc Brown",
-#     "So Ready",
-#     "AUATC",
-#     "Jive1",
-#     "Jive Lee",
-#     "Indian River/Flee Reprise",
-#     "Fish in the Sea",
-#     "Drive Reprise",
-#     "Rosewood Heart",
-#     "Travelers",
-#     "Turned Clouds",
-#     "Hot Tea"
-# ]
+goose_20201019 = Album.create!(
+    title: '2020.10.19 - Frederick, MD',
+    artist_id: goose.id,
+    year: 2020,
+    description: "IW@TS",
+    credits: "Rick on the Guitar"
+)
 
-# GOOSE_MD2020_SETLIST.each_with_index do |track, i|
-#     Track.create!(
-#         track_name: track,
-#         track_num: (i + 1),
-#         album_id: md2020.id
-#     )
-# end
+goose_20201019.photo.attach(io: File.open("app/assets/images/artists/goose/goose_20201019.jpeg"), filename: "goose_20201019.jpeg")
 
-# ween = User.create!(
-#     artist_name: "Ween",
-#     username: "Ween",
-#     password: "misterhiro",
-#     email: "dean@ween.com",
-#     about: "A rock band",
-#     location: "PA",
-#     personal_url: "www.ween.com"
-# )
 
-# ween_20170604 = Album.create!(
-#     title: '2017.06.04 - Baltimore, MD',
-#     artist_id: ween.id,
-#     year: 2017,
-#     description: "IW@TS",
-#     credits: "Deaner"
-# )
+GOOSE_20201019_SETLIST = [
+    "Drive",
+    "Doc Brown",
+    "So Ready",
+    "AUATC",
+    "Jive1",
+    "Jive Lee",
+    "Indian River/Flee Reprise",
+    "Fish in the Sea",
+    "Drive Reprise",
+    "Rosewood Heart",
+    "Travelers",
+    "Turned Clouds",
+    "Hot Tea"
+]
 
-# WEEN_20170604_SETLIST = [
-#     "She Wanted to Leave",
-#     "Buckingham Green",
-#     "My Own Bare Hands",
-#     "Let's Dance",
-#     "Your Party",
-#     "Voodoo Lady",
-#     "Freedom of '76",
-#     "Gabrielle",
-#     "Boys Club",
-#     "The Grobe",
-#     "Japanese Cowboy",
-#     "Puerto Rican Power",
-#     "Frank",
-#     "The Mollusk",
-#     "Bananas and Blow",
-#     "Tried & True",
-#     "Joppa Road",
-#     "Ocean Man",
-#     "Object",
-#     "Zoloft",
-#     "Learnin' to Love",
-#     "Transdermal Celebration",
-#     "Mutilated Lips",
-#     "I’ll Be Your Jonny on the Spot",
-#     "Buenas Tardes Amigo",
-# ]
+GOOSE_20201019_SETLIST.each_with_index do |track, i|
+    Track.create!(
+        track_name: track,
+        track_num: (i + 1),
+        album_id: goose_20201019.id
+    )
+end
 
-# WEEN_20170604_SETLIST.each_with_index do |track, i|
-#     Track.create!(
-#         track_name: track,
-#         track_num: (i + 1),
-#         album_id: ween_20170604.id
-#     )
-# end
+ween = User.create!(
+    artist_name: "Ween",
+    username: "Ween",
+    password: "misterhiro",
+    email: "dean@ween.com",
+    about: "Ween is an American rock band from New Hope, Pennsylvania, formed in 1984 by childhood friends Aaron Freeman and Mickey Melchiondo, better known by their respective stage names, Gene and Dean Ween. After meeting in a middle-school typing class, the two began playing music and immediately chose the name Ween as well as their Ramones-inspired pseudonyms. While they are generally categorized as an alternative rock band, the band are known for their highly eclectic catalog of songs inspired by funk, soul, country, gospel, prog, psychedelia, R&B, heavy metal, punk rock, and more.",
+    location: "New Hope, Pennsylvania",
+    personal_url: "www.ween.com"
+)
+
+ween.banner.attach(io: File.open("app/assets/images/artists/ween/weenbanner.jpeg"), filename: "weenbanner.jpeg")
+ween.thumbnail.attach(io: File.open("app/assets/images/artists/ween/weenthumbnail.jpeg"), filename: "weenthumbnail.jpeg")
+
+ween_20170604 = Album.create!(
+    title: '2017.06.04 - Baltimore, MD',
+    artist_id: ween.id,
+    year: 2017,
+    description: "IW@TS",
+    credits: "Deaner"
+)
+
+ween_20170604.photo.attach(io: File.open("app/assets/images/artists/ween/ween_20170604.jpeg"), filename: "ween_20170604.jpeg")
+
+
+WEEN_20170604_SETLIST = [
+    "She Wanted to Leave",
+    "Buckingham Green",
+    "My Own Bare Hands",
+    "Let's Dance",
+    "Your Party",
+    "Voodoo Lady",
+    "Freedom of '76",
+    "Gabrielle",
+    "Boys Club",
+    "The Grobe",
+    "Japanese Cowboy",
+    "Puerto Rican Power",
+    "Frank",
+    "The Mollusk",
+    "Bananas and Blow",
+    "Tried & True",
+    "Joppa Road",
+    "Ocean Man",
+    "Object",
+    "Zoloft",
+    "Learnin' to Love",
+    "Transdermal Celebration",
+    "Mutilated Lips",
+    "I’ll Be Your Jonny on the Spot",
+    "Buenas Tardes Amigo",
+]
+
+WEEN_20170604_SETLIST.each_with_index do |track, i|
+    Track.create!(
+        track_name: track,
+        track_num: (i + 1),
+        album_id: ween_20170604.id
+    )
+end

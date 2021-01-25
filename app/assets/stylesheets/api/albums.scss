@@ -6,21 +6,35 @@
   padding: 20px;
   width: 970px;
   height: 100%;
-  display: grid;
   background: #ffffff;
-  grid-template-columns: 40% 40% 20%;
 }
 
 .album-detail-box {
-  border: 1px solid black;
-  width: 950px;
-  //   height: 220px;
+  width: 932.5px;
   display: grid;
+  grid-template-columns: 45% 40% 15%;
+  grid-template-rows: 20% 80%;
+  //   height: 220px;
   //   grid-template-columns: 50% 50%;
+  margin-top: 10px;
 }
 
 .album-audio-player-box {
+  margin-top: 10px;
   grid-column: 1;
+  height: 150px;
+  .album-player-album-title {
+    font-size: 28px;
+    color: #363636;
+  }
+  .album-player-artist-name {
+    font-size: 14px;
+  }
+}
+
+.audio-player {
+  border: 1px solid red;
+  height: 100px;
 }
 
 .album-track-box {
@@ -28,10 +42,14 @@
 }
 
 .album-track-cover {
+  margin-top: 10px;
   grid-column: 2;
   height: 350px;
   width: 350px;
 }
 .album-sidebar {
+  margin-top: 0px;
+  width: 120px;
   grid-column: 3;
+  grid-row: 1;
 }

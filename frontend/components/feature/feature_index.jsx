@@ -15,18 +15,20 @@ class FeatureIndex extends React.Component {
   }
 
   render() {
-    const { phish, theGD } = this.props;
-    debugger;
+    const { phish, theGD, goose, ween } = this.props;
+
     return (
       <div className="fi-container">
         <div className="fi-box">
           <div className="fi-main">
-            <img src={window.featurePhish} alt="Main feature Phish" />
+            <img
+              src={window.featurePhish}
+              alt="Main feature Phish"
+              onClick={() => this.props.history.push(`/artists/${phish.id}`)}
+            />
             <div className="fi-main-box">
               {/* <span onClick={handleClick}>Phishasdkljfg</span> */}
-              <span
-                onClick={() => this.props.history.push(`/artists/${phish.id}`)}
-              >
+              <span>
                 Relive Night 13 of Phish's Legendary Madison Square Garden Run
               </span>
             </div>
@@ -36,6 +38,7 @@ class FeatureIndex extends React.Component {
               src={window.featureWeen}
               alt="Ween feature"
               className="fi-side-item"
+              onClick={() => this.props.history.push(`/artists/${ween.id}`)}
             />
             <img
               src={window.featureGD}
@@ -47,6 +50,7 @@ class FeatureIndex extends React.Component {
               src={window.featureGoose}
               alt="Goose feature"
               className="fi-side-item"
+              onClick={() => this.props.history.push(`/artists/${goose.id}`)}
             />
           </div>
         </div>

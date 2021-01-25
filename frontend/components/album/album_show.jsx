@@ -27,19 +27,17 @@ class AlbumShow extends React.Component {
           <div className="album-detail-box">
             <div className="album-audio-player-box">
               <div className="audio-player-title">
-                <div>{album.title}</div>
-                <div>by {artist.artistName}</div>
+                <div className="album-player-album-title">{album.title}</div>
+                <div className="album-player-artist-name">
+                  by {artist.artistName}
+                </div>
                 <div className="audio-player">AUDIO PLAYER PLACEHOLDER</div>
               </div>
             </div>
+            <div>
+              <img src={album.photoUrl} alt="" className="album-track-cover" />
+            </div>
             <div className="album-track-box">
-              <div>
-                <img
-                  src={album.photoUrl}
-                  alt=""
-                  className="album-track-cover"
-                />
-              </div>
               <table>
                 <tbody>{trackItems}</tbody>
               </table>
