@@ -8,6 +8,7 @@ class Api::AlbumsController < ApplicationController
 
     def show
         @album = Album.find(params[:id])
+        @artist = @album.artist
         @tracks = Track.where(album_id: @album.id)
     end
 

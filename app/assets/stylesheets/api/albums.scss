@@ -1,3 +1,37 @@
 // Place all the styles related to the api/albums controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.album-discog-box {
+  padding: 20px;
+  width: 970px;
+  height: 100%;
+  display: grid;
+  background: #ffffff;
+  grid-template-columns: 40% 40% 20%;
+}
+
+.album-detail-box {
+  border: 1px solid black;
+  width: 950px;
+  //   height: 220px;
+  display: grid;
+  //   grid-template-columns: 50% 50%;
+}
+
+.album-audio-player-box {
+  grid-column: 1;
+}
+
+.album-track-box {
+  grid-column: 1;
+}
+
+.album-track-cover {
+  grid-column: 2;
+  height: 350px;
+  width: 350px;
+}
+.album-sidebar {
+  grid-column: 3;
+}

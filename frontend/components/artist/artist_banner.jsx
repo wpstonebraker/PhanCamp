@@ -2,6 +2,7 @@ import React from "react";
 
 const ArtistBanner = ({ artist }) => {
   if (!artist) return null;
+  debugger;
 
   return (
     <div className="artist-banner-box">

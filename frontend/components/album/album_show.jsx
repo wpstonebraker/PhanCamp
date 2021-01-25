@@ -1,4 +1,7 @@
 import React from "react";
+import ArtistBanner from "../artist/artist_banner";
+import ArtistSidebar from "../artist/artist_sidebar";
+import TrackItem from "./track_item";
 
 class AlbumShow extends React.Component {
   constructor(props) {
@@ -10,18 +13,44 @@ class AlbumShow extends React.Component {
   }
 
   render() {
-    debugger;
     if (!this.props.album) return null;
     debugger;
 
     const { tracks, album, artist } = this.props;
-    debugger;
     const trackItems = tracks.map((track) => {
-      return <li>{track.trackName}</li>;
+      return <TrackItem track={track} />;
     });
     return (
-      <div>
-        <ol>{trackItems}</ol>
+      <div className="show-page-box">
+        <ArtistBanner artist={artist} />
+        <div className="album-discog-box">
+          <div className="album-detail-box">
+            <div className="album-audio-player-box">
+              <div className="audio-player-title">
+                <div>{album.title}</div>
+                <div>by {artist.artistName}</div>
+                <div className="audio-player">AUDIO PLAYER PLACEHOLDER</div>
+              </div>
+            </div>
+            <div className="album-track-box">
+              <div>
+                <img
+                  src={album.photoUrl}
+                  alt=""
+                  className="album-track-cover"
+                />
+              </div>
+              <table>
+                <tbody>{trackItems}</tbody>
+              </table>
+              <div>{album.description}</div>
+              <div>{album.credits}</div>
+            </div>
+            <div className="album-sidebar">
+              <ArtistSidebar artist={artist} />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

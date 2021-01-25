@@ -2,6 +2,8 @@ import React from "react";
 import Discog from "./discog";
 import ArtistBanner from "./artist_banner";
 import ArtistSidebar from "./artist_sidebar";
+import { Route } from "react-router-dom";
+import AlbumShowContainer from "../album/album_show_container";
 
 class ArtistShow extends React.Component {
   constructor(props) {
@@ -22,12 +24,19 @@ class ArtistShow extends React.Component {
           key={`${album.id}`}
           getAlbum={this.props.getAlbum}
           history={this.props.history}
+          artistId={this.props.artistId}
         />
       );
     });
     return (
-      <div className="artist-show-page-box">
+      <div className="show-page-box">
         <ArtistBanner artist={artist} />
+        {/* <Route
+          exact
+          path="/artists/:id/albums/:id"
+          component={AlbumShowContainer}
+        /> */}
+
         <div className="artist-discog-box">
           <div className="discog-box">{items}</div>
           <ArtistSidebar artist={artist} />

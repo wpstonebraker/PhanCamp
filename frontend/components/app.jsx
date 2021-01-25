@@ -19,7 +19,12 @@ const App = () => {
       </Switch>
 
       <Route exact path="/artists/:id" component={ArtistShowContainer} />
-      <Route exact path="/albums/:id" component={AlbumShowContainer} />
+      <Route
+        exact
+        path="/artists/:id/albums/:id"
+        component={AlbumShowContainer}
+      />
+      {/* <Route exact path="/albums/:id" component={AlbumShowContainer} /> */}
       <Route exact path="/" component={FeatureIndexContainer} />
     </div>
   );
