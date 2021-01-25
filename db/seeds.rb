@@ -373,6 +373,38 @@ end
 #     personal_url: "www.goosetheband.com"
 # )
 
+# md2020 = Album.create!(
+#     title: '2020.10.19 - Frederick, MD',
+#     artist_id: goose.id,
+#     year: 2020,
+#     description: "IW@TS",
+#     credits: "Rick on the Guitar"
+# )
+
+# GOOSE_MD2020_SETLIST = [
+#     "Drive",
+#     "Doc Brown",
+#     "So Ready",
+#     "AUATC",
+#     "Jive1",
+#     "Jive Lee",
+#     "Indian River/Flee Reprise",
+#     "Fish in the Sea",
+#     "Drive Reprise",
+#     "Rosewood Heart",
+#     "Travelers",
+#     "Turned Clouds",
+#     "Hot Tea"
+# ]
+
+# GOOSE_MD2020_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: md2020.id
+#     )
+# end
+
 # ween = User.create!(
 #     artist_name: "Ween",
 #     username: "Ween",
@@ -383,4 +415,46 @@ end
 #     personal_url: "www.ween.com"
 # )
 
+# ween_20170604 = Album.create!(
+#     title: '2017.06.04 - Baltimore, MD',
+#     artist_id: ween.id,
+#     year: 2017,
+#     description: "IW@TS",
+#     credits: "Deaner"
+# )
 
+# WEEN_20170604_SETLIST = [
+#     "She Wanted to Leave",
+#     "Buckingham Green",
+#     "My Own Bare Hands",
+#     "Let's Dance",
+#     "Your Party",
+#     "Voodoo Lady",
+#     "Freedom of '76",
+#     "Gabrielle",
+#     "Boys Club",
+#     "The Grobe",
+#     "Japanese Cowboy",
+#     "Puerto Rican Power",
+#     "Frank",
+#     "The Mollusk",
+#     "Bananas and Blow",
+#     "Tried & True",
+#     "Joppa Road",
+#     "Ocean Man",
+#     "Object",
+#     "Zoloft",
+#     "Learnin' to Love",
+#     "Transdermal Celebration",
+#     "Mutilated Lips",
+#     "I’ll Be Your Jonny on the Spot",
+#     "Buenas Tardes Amigo",
+# ]
+
+# WEEN_20170604_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: ween_20170604.id
+#     )
+# end

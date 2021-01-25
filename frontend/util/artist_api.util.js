@@ -3,3 +3,9 @@
 //       url: `/api/artists/${artistId}/albums`,
 //     });
 //   };
+
+export const getFeatureArtists = () => {
+  return $.ajax({
+    url: "/api/features",
+  });
+};
