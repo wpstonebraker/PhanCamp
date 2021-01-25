@@ -14,11 +14,10 @@ class AlbumShow extends React.Component {
 
   render() {
     if (!this.props.album) return null;
-    debugger;
 
     const { tracks, album, artist } = this.props;
     const trackItems = tracks.map((track) => {
-      return <TrackItem track={track} />;
+      return <TrackItem track={track} key={track.trackNum} />;
     });
     return (
       <div className="show-page-box">

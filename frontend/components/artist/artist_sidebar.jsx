@@ -1,4 +1,5 @@
 import React from "react";
+import GenresIndex from "../genres/genres_index";
 
 const ArtistSidebar = ({ artist }) => {
   if (!artist) return null;
@@ -13,6 +14,7 @@ const ArtistSidebar = ({ artist }) => {
         <li className="artist-sidebar-about">{artist.about}</li>
         <li className="artist-sidebar-website">{artist.personalUrl}</li>
         <li className="artist-sidebar-contact">{artist.email}</li>
+        <GenresIndex />
       </ul>
     </div>
   );

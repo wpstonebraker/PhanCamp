@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    include Genreable
     validates :username, :password_digest, :session_token, :artist_name, :email, presence: true
     validates :username, :email, uniqueness: true
     validates :password, length: {minimum: 6}, allow_nil: true

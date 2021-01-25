@@ -3,6 +3,7 @@ class Api::AlbumsController < ApplicationController
     def index
         @artist = User.find(params[:artist_id])
         @albums = Album.where(artist_id: @artist.id)
+        @genres = Genre.all
         render :index
     end
 

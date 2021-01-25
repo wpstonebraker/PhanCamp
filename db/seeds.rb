@@ -9,6 +9,32 @@
 User.destroy_all
 Album.destroy_all
 Track.destroy_all
+Genre.destroy_all
+GenreJoin.destroy_all
+
+# GENRES_TAGS = %w(electronic rock metal alternative hip-hop experimental punk folk pop ambient soundtrack jazz acoustic funk soul classical reggae country blues latin kids)
+
+# GENRES_TAGS.each_with_index do |genre, i|
+#     genre = Genre.create!(
+#         genre: genre
+#     )
+#     GENRES.push(genre)
+# end
+
+rock = Genre.create!(
+    genre: "rock"
+)
+jazz = Genre.create!(
+    genre: "jazz"
+)
+jam = Genre.create!(
+    genre: "jam"
+)
+folk = Genre.create!(
+    genre: "folk"
+)
+
+
 
 u1 = User.create!(
     artist_name: "Mister Hiro",
@@ -279,7 +305,7 @@ mann15 = Album.create!(
     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
 )
 
-mann15.photo.attach(io: File.open("app/assets/images/albums/mann15.jpeg"), filename: "bd13.jpeg")
+mann15.photo.attach(io: File.open("app/assets/images/albums/mann15.jpeg"), filename: "mann15.jpeg")
 
 P_MANN15_SETLIST = [
     "AC/DC Bag",
@@ -307,6 +333,28 @@ P_MANN15_SETLIST.each_with_index do |track, i|
         album_id: mann15.id
     )
 end
+
+PHISH_20131229 = Album.create!(
+    title: '2013.12.29 - New York, NY',
+    artist_id: phish.id,
+    year: 2013,
+    description: "DWD > Carini",
+    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+)
+
+PHISH_20131229.photo.attach(io: File.open("app/assets/images/artists/phish/phish_20131229.jpeg"), filename: "PHISH_20131229.jpeg")
+
+PHISH_20131229_SETLIST = %w(The\ Moma\ Dance Rift Roggae Sparkle The\ Line Stash 555 It's\ Ice Gumbo Walls\ of\ the\ Cave Down\ with\ Disease Carini Waves Twist Golgi\ Apparatus David\ Bowie Possum)
+
+PHISH_20131229_SETLIST.each_with_index do |track, i|
+    Track.create!(
+        track_name: track,
+        track_num: (i + 1),
+        album_id: PHISH_20131229.id
+    )
+end
+
+
 
 gd = User.create!(
     artist_name: "The Grateful Dead",
@@ -470,3 +518,56 @@ WEEN_20170604_SETLIST.each_with_index do |track, i|
         album_id: ween_20170604.id
     )
 end
+
+GENRES = [rock, jazz, jam, folk]
+
+GenreJoin.create!(
+    genre_id: rock.id,
+    genreable_id: phish.id,
+    genreable_type: "User"
+)
+GenreJoin.create!(
+    genre_id: jazz.id,
+    genreable_id: phish.id,
+    genreable_type: "User"
+)
+GenreJoin.create!(
+    genre_id: folk.id,
+    genreable_id: gd.id,
+    genreable_type: "User"
+)
+GenreJoin.create!(
+    genre_id: jam.id,
+    genreable_id: goose.id,
+    genreable_type: "User"
+)
+GenreJoin.create!(
+    genre_id: folk.id,
+    genreable_id: ween.id,
+    genreable_type: "User"
+)
+GenreJoin.create!(
+    genre_id: rock.id,
+    genreable_id: bd13.id,
+    genreable_type: "Album"
+)
+GenreJoin.create!(
+    genre_id: jazz.id,
+    genreable_id: jp2000.id,
+    genreable_type: "Album"
+)
+GenreJoin.create!(
+    genre_id: rock.id,
+    genreable_id: co97.id,
+    genreable_type: "Album"
+)
+GenreJoin.create!(
+    genre_id: rock.id,
+    genreable_id: mann15.id,
+    genreable_type: "Album"
+)
+GenreJoin.create!(
+    genre_id: rock.id,
+    genreable_id: PHISH_20131229.id,
+    genreable_type: "Album"
+)
