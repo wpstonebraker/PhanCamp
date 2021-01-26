@@ -1,6 +1,14 @@
 import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { getArtistAlbums } from "../../actions/album_actions";
 
-const ArtistBanner = ({ artist }) => {
+const ArtistBanner = ({ artist, getArtistAlbums }) => {
+  debugger;
+  const handleClick = () => {
+    getArtistAlbums(artist.id);
+  };
+
   if (!artist) return null;
 
   return (
@@ -9,7 +17,9 @@ const ArtistBanner = ({ artist }) => {
         <img src={artist.bannerUrl} className="artist-banner-img" />
       </div>
       <ul className="artist-banner-nav">
-        <li className="selected-tab">music</li>
+        <Link to={`/artists/${artist.id}`} onClick={handleClick}>
+          <li className="selected-tab">music</li>
+        </Link>
         {/* <li>community</li>
         <li>merch</li> */}
       </ul>
@@ -17,4 +27,10 @@ const ArtistBanner = ({ artist }) => {
   );
 };
 
-export default ArtistBanner;
+const mDTP = (dispatch) => {
+  return {
+    getArtistAlbums: (artistId) => dispatch(getArtistAlbums(artistId)),
+  };
+};
+
+export default connect(null, mDTP)(ArtistBanner);

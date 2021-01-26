@@ -8,9 +8,12 @@ class User < ApplicationRecord
 
     attr_reader :password
 
-    has_many :albums
+    has_many :albums,
+        foreign_key: :artist_id
 
     has_many :genres, through: :genre_joins
+
+    has_many :tracks, through: :albums, source: :tracks
 
     # has_many :genres,
     #     through: :genre_joins,

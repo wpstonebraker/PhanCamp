@@ -14,7 +14,7 @@ json.tracks do
 end
 
 json.artist do
-    json.extract! @artist, :artist_name, :location, :about, :personal_url, :email
+    json.extract! @artist, :artist_name, :location, :about, :personal_url, :email, :id
     json.bannerUrl url_for(@artist.banner)
     json.thumbnailUrl url_for(@artist.thumbnail)
 end

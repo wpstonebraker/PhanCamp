@@ -491,10 +491,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/album_actions */ "./frontend/actions/album_actions.js");
+
+
+
 
 
 var ArtistBanner = function ArtistBanner(_ref) {
-  var artist = _ref.artist;
+  var artist = _ref.artist,
+      getArtistAlbums = _ref.getArtistAlbums;
+  debugger;
+
+  var handleClick = function handleClick() {
+    getArtistAlbums(artist.id);
+  };
+
   if (!artist) return null;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "artist-banner-box"
@@ -505,12 +518,23 @@ var ArtistBanner = function ArtistBanner(_ref) {
     className: "artist-banner-img"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
     className: "artist-banner-nav"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/artists/".concat(artist.id),
+    onClick: handleClick
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     className: "selected-tab"
-  }, "music")));
+  }, "music"))));
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ArtistBanner);
+var mDTP = function mDTP(dispatch) {
+  return {
+    getArtistAlbums: function getArtistAlbums(artistId) {
+      return dispatch((0,_actions_album_actions__WEBPACK_IMPORTED_MODULE_2__.getArtistAlbums)(artistId));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(null, mDTP)(ArtistBanner));
 
 /***/ }),
 
@@ -594,7 +618,8 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "show-page-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_artist_banner__WEBPACK_IMPORTED_MODULE_2__.default, {
-        artist: artist
+        artist: artist,
+        getArtistAlbums: this.props.getArtistAlbums
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "artist-discog-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

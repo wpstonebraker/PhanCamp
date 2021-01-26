@@ -30,7 +30,10 @@ class ArtistShow extends React.Component {
     });
     return (
       <div className="show-page-box">
-        <ArtistBanner artist={artist} />
+        <ArtistBanner
+          artist={artist}
+          getArtistAlbums={this.props.getArtistAlbums}
+        />
         {/* <Route
           exact
           path="/artists/:id/albums/:id"

@@ -55,7 +55,7 @@ phish = User.create!(
 phish.banner.attach(io: File.open("app/assets/images/artists/phish/banner.png"), filename: "phishbanner.png")
 phish.thumbnail.attach(io: File.open("app/assets/images/artists/phish/thumbnail.png"), filename: "phishthumbnail.png")
 
-bd13 = Album.create!(
+PHISH_20170806 = Album.create!(
     title: '2017.08.06 - Madison Square Garden',
     artist_id: phish.id,
     year: 2017,
@@ -63,111 +63,121 @@ bd13 = Album.create!(
     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
 )
 
-bd13.photo.attach(io: File.open("app/assets/images/albums/bd13.jpeg"), filename: "bd13.jpeg")
+PHISH_20170806.photo.attach(io: File.open("app/assets/images/albums/bd13.jpeg"), filename: "bd13.jpeg")
 
-p_bd_1 = Track.create!(
-    track_name: 'Dogs Stole Things',
-    track_num: '1',
-    album_id: bd13.id
-)
-p_bd_2 = Track.create!(
-    track_name: 'Rift',
-    track_num: '2',
-    album_id: bd13.id
-)
-p_bd_3 = Track.create!(
-    track_name: 'Ha Ha Ha',
-    track_num: '3',
-    album_id: bd13.id
-)
-p_bd_4 = Track.create!(
-    track_name: 'Camel Walk',
-    track_num: '4',
-    album_id: bd13.id
-)
-p_bd_5 = Track.create!(
-    track_name: 'Crazy Sometimes',
-    track_num: '5',
-    album_id: bd13.id
-)
-p_bd_6 = Track.create!(
-    track_name: 'Saw it Again',
-    track_num: '6',
-    album_id: bd13.id
-)
-p_bd_7 = Track.create!(
-    track_name: 'Sanity',
-    track_num: '7',
-    album_id: bd13.id
-)
-p_bd_8 = Track.create!(
-    track_name: 'Bouncing Around the Room',
-    track_num: '8',
-    album_id: bd13.id
-)
-p_bd_9 = Track.create!(
-    track_name: "Most Events Aren't Planned",
-    track_num: '9',
-    album_id: bd13.id
-)
-p_bd_10 = Track.create!(
-    track_name: 'Bug',
-    track_num: '10',
-    album_id: bd13.id
-)
-p_bd_11 = Track.create!(
-    track_name: 'I Been Around',
-    track_num: '11',
-    album_id: bd13.id
-)
-p_bd_12 = Track.create!(
-    track_name: 'Izabella',
-    track_num: '12',
-    album_id: bd13.id
-)
-p_bd_13 = Track.create!(
-    track_name: 'Simple',
-    track_num: '13',
-    album_id: bd13.id
-)
-p_bd_14 = Track.create!(
-    track_name: 'Rise/Come Together',
-    track_num: '14',
-    album_id: bd13.id
-)
-p_bd_15 = Track.create!(
-    track_name: 'Starman',
-    track_num: '15',
-    album_id: bd13.id
-)
-p_bd_16 = Track.create!(
-    track_name: 'You Enjoy Myself',
-    track_num: '16',
-    album_id: bd13.id
-)
-p_bd_17 = Track.create!(
-    track_name: 'Loving Cup',
-    track_num: '17',
-    album_id: bd13.id
-)
-p_bd_18 = Track.create!(
-    track_name: 'On the Road Again',
-    track_num: '18',
-    album_id: bd13.id
-)
-p_bd_19 = Track.create!(
-    track_name: 'Lawn Boy Reprise',
-    track_num: '19',
-    album_id: bd13.id
-)
-p_bd_20 = Track.create!(
-    track_name: 'Tweezer Reprise',
-    track_num: '20',
-    album_id: bd13.id
-)
+PHISH_20170806_SETLIST = %w(Dogs\ Stole\ Things Rift Ha\ Ha\ Ha\ Camel\ Walk Crazy\ Sometimes\ > Saw\ it\ Again\ > Sanity\ > Bouncing\ Around\ the\ Room Most\ Events\ Aren't\ Planned Bug I\ Been\ Around Izabella Simple\ > Rise/Come\ Together\ > Starman You\ Enjoy\ Myself Loving\ Cup On\ the\ Road\ Again\ > Lawn\ Boy\ Reprise\ > Tweezer\ Reprise)
+
+PHISH_20170806_SETLIST.each_with_index do |track, i|
+    Track.create!(
+        track_name: track,
+        track_num: (i + 1),
+        album_id: PHISH_20170806.id
+    )
+end
+
+# p_bd_1 = Track.create!(
+#     track_name: 'Dogs Stole Things',
+#     track_num: '1',
+#     album_id: bd13.id
+# )
+# p_bd_2 = Track.create!(
+#     track_name: 'Rift',
+#     track_num: '2',
+#     album_id: bd13.id
+# )
+# p_bd_3 = Track.create!(
+#     track_name: 'Ha Ha Ha',
+#     track_num: '3',
+#     album_id: bd13.id
+# )
+# p_bd_4 = Track.create!(
+#     track_name: 'Camel Walk',
+#     track_num: '4',
+#     album_id: bd13.id
+# )
+# p_bd_5 = Track.create!(
+#     track_name: 'Crazy Sometimes',
+#     track_num: '5',
+#     album_id: bd13.id
+# )
+# p_bd_6 = Track.create!(
+#     track_name: 'Saw it Again',
+#     track_num: '6',
+#     album_id: bd13.id
+# )
+# p_bd_7 = Track.create!(
+#     track_name: 'Sanity',
+#     track_num: '7',
+#     album_id: bd13.id
+# )
+# p_bd_8 = Track.create!(
+#     track_name: 'Bouncing Around the Room',
+#     track_num: '8',
+#     album_id: bd13.id
+# )
+# p_bd_9 = Track.create!(
+#     track_name: "Most Events Aren't Planned",
+#     track_num: '9',
+#     album_id: bd13.id
+# )
+# p_bd_10 = Track.create!(
+#     track_name: 'Bug',
+#     track_num: '10',
+#     album_id: bd13.id
+# )
+# p_bd_11 = Track.create!(
+#     track_name: 'I Been Around',
+#     track_num: '11',
+#     album_id: bd13.id
+# )
+# p_bd_12 = Track.create!(
+#     track_name: 'Izabella',
+#     track_num: '12',
+#     album_id: bd13.id
+# )
+# p_bd_13 = Track.create!(
+#     track_name: 'Simple',
+#     track_num: '13',
+#     album_id: bd13.id
+# )
+# p_bd_14 = Track.create!(
+#     track_name: 'Rise/Come Together',
+#     track_num: '14',
+#     album_id: bd13.id
+# )
+# p_bd_15 = Track.create!(
+#     track_name: 'Starman',
+#     track_num: '15',
+#     album_id: bd13.id
+# )
+# p_bd_16 = Track.create!(
+#     track_name: 'You Enjoy Myself',
+#     track_num: '16',
+#     album_id: bd13.id
+# )
+# p_bd_17 = Track.create!(
+#     track_name: 'Loving Cup',
+#     track_num: '17',
+#     album_id: bd13.id
+# )
+# p_bd_18 = Track.create!(
+#     track_name: 'On the Road Again',
+#     track_num: '18',
+#     album_id: bd13.id
+# )
+# p_bd_19 = Track.create!(
+#     track_name: 'Lawn Boy Reprise',
+#     track_num: '19',
+#     album_id: bd13.id
+# )
+# p_bd_20 = Track.create!(
+#     track_name: 'Tweezer Reprise',
+#     track_num: '20',
+#     album_id: bd13.id
+# )
 
 
-jp2000 = Album.create!(
+PHISH_20000614 = Album.create!(
     title: '2000.06.14 - Fukuoka, Japan',
     artist_id: phish.id,
     year: 2000,
@@ -175,93 +185,103 @@ jp2000 = Album.create!(
     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
 )
 
-jp2000.photo.attach(io: File.open("app/assets/images/albums/jp2000.jpeg"), filename: "bd13.jpeg")
+PHISH_20000614.photo.attach(io: File.open("app/assets/images/albums/jp2000.jpeg"), filename: "bd13.jpeg")
 
-p_jp_1 = Track.create!(
-    track_name: 'Carini',
-    track_num: '1',
-    album_id: jp2000.id
-)
-p_jp_2 = Track.create!(
-    track_name: 'The Curtain',
-    track_num: '2',
-    album_id: jp2000.id
-)
-p_jp_3 = Track.create!(
-    track_name: 'Cities',
-    track_num: '3',
-    album_id: jp2000.id
-)
-p_jp_4 = Track.create!(
-    track_name: 'Gumbo',
-    track_num: '4',
-    album_id: jp2000.id
-)
-p_jp_5 = Track.create!(
-    track_name: 'Jam',
-    track_num: '5',
-    album_id: jp2000.id
-)
-p_jp_6 = Track.create!(
-    track_name: 'Llama',
-    track_num: '6',
-    album_id: jp2000.id
-)
-p_jp_7 = Track.create!(
-    track_name: 'Fee',
-    track_num: '7',
-    album_id: jp2000.id
-)
-p_jp_8 = Track.create!(
-    track_name: 'Heavy Things',
-    track_num: '8',
-    album_id: jp2000.id
-)
-p_jp_9 = Track.create!(
-    track_name: 'Split Open and Melt',
-    track_num: '9',
-    album_id: jp2000.id
-)
-p_jp_10 = Track.create!(
-    track_name: 'Back on the Train',
-    track_num: '10',
-    album_id: jp2000.id
-)
-p_jp_11 = Track.create!(
-    track_name: 'Twist',
-    track_num: '11',
-    album_id: jp2000.id
-)
-p_jp_12 = Track.create!(
-    track_name: 'Jam',
-    track_num: '12',
-    album_id: jp2000.id
-)
-p_jp_13 = Track.create!(
-    track_name: 'Walk Away',
-    track_num: '13',
-    album_id: jp2000.id
-)
-p_jp_14 = Track.create!(
-    track_name: 'Jam',
-    track_num: '14',
-    album_id: jp2000.id
-)
-p_jp_15 = Track.create!(
-    track_name: '2001',
-    track_num: '15',
-    album_id: jp2000.id
-)
-p_jp_16 = Track.create!(
-    track_name: 'Sleep',
-    track_num: '16',
-    album_id: jp2000.id
-)
-p_jp_17 = Track.create!(
-    track_name: 'The Squirming Coil',
-    track_num: '17',
-    album_id: jp2000.id
-)
+PHISH_20000614_SETLIST = %w(Carini The\ Curtain\ > Cities Gumbo\ -> Llama, Fee, Heavy\ Things Split\ Open\ and\ Melt Back\ on\ the\ Train Twist\ > Jam\ -> Walk\ Away\ -> 2001 Sleep\ The\ Squirming\ Coil)
+
+PHISH_20000614_SETLIST.each_with_index do |track, i|
+    Track.create!(
+        track_name: track,
+        track_num: (i + 1),
+        album_id: PHISH_20000614.id
+    )
+end
+
+# p_jp_1 = Track.create!(
+#     track_name: 'Carini',
+#     track_num: '1',
+#     album_id: jp2000.id
+# )
+# p_jp_2 = Track.create!(
+#     track_name: 'The Curtain',
+#     track_num: '2',
+#     album_id: jp2000.id
+# )
+# p_jp_3 = Track.create!(
+#     track_name: 'Cities',
+#     track_num: '3',
+#     album_id: jp2000.id
+# )
+# p_jp_4 = Track.create!(
+#     track_name: 'Gumbo',
+#     track_num: '4',
+#     album_id: jp2000.id
+# )
+# p_jp_5 = Track.create!(
+#     track_name: 'Jam',
+#     track_num: '5',
+#     album_id: jp2000.id
+# )
+# p_jp_6 = Track.create!(
+#     track_name: 'Llama',
+#     track_num: '6',
+#     album_id: jp2000.id
+# )
+# p_jp_7 = Track.create!(
+#     track_name: 'Fee',
+#     track_num: '7',
+#     album_id: jp2000.id
+# )
+# p_jp_8 = Track.create!(
+#     track_name: 'Heavy Things',
+#     track_num: '8',
+#     album_id: jp2000.id
+# )
+# p_jp_9 = Track.create!(
+#     track_name: 'Split Open and Melt',
+#     track_num: '9',
+#     album_id: jp2000.id
+# )
+# p_jp_10 = Track.create!(
+#     track_name: 'Back on the Train',
+#     track_num: '10',
+#     album_id: jp2000.id
+# )
+# p_jp_11 = Track.create!(
+#     track_name: 'Twist',
+#     track_num: '11',
+#     album_id: jp2000.id
+# )
+# p_jp_12 = Track.create!(
+#     track_name: 'Jam',
+#     track_num: '12',
+#     album_id: jp2000.id
+# )
+# p_jp_13 = Track.create!(
+#     track_name: 'Walk Away',
+#     track_num: '13',
+#     album_id: jp2000.id
+# )
+# p_jp_14 = Track.create!(
+#     track_name: 'Jam',
+#     track_num: '14',
+#     album_id: jp2000.id
+# )
+# p_jp_15 = Track.create!(
+#     track_name: '2001',
+#     track_num: '15',
+#     album_id: jp2000.id
+# )
+# p_jp_16 = Track.create!(
+#     track_name: 'Sleep',
+#     track_num: '16',
+#     album_id: jp2000.id
+# )
+# p_jp_17 = Track.create!(
+#     track_name: 'The Squirming Coil',
+#     track_num: '17',
+#     album_id: jp2000.id
+# )
 
 co97 = Album.create!(
     title: '1997.11.17 - Denver, CO',
