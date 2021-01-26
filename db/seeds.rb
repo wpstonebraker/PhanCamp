@@ -12,27 +12,26 @@ Track.destroy_all
 Genre.destroy_all
 GenreJoin.destroy_all
 
-# GENRES_TAGS = %w(electronic rock metal alternative hip-hop experimental punk folk pop ambient soundtrack jazz acoustic funk soul classical reggae country blues latin kids)
+GENRES_TAGS = %w(electronic rock metal alternative hip-hop experimental punk folk pop ambient soundtrack jazz acoustic funk soul classical reggae country blues latin kids)
 
-# GENRES_TAGS.each_with_index do |genre, i|
-#     genre = Genre.create!(
-#         genre: genre
-#     )
-#     GENRES.push(genre)
-# end
+GENRES_TAGS.each do |genre|
+    Genre.create!(
+        genre: genre
+    )
+end
 
-rock = Genre.create!(
-    genre: "rock"
-)
-jazz = Genre.create!(
-    genre: "jazz"
-)
-jam = Genre.create!(
-    genre: "jam"
-)
-folk = Genre.create!(
-    genre: "folk"
-)
+# rock = Genre.create!(
+#     genre: "rock"
+# )
+# jazz = Genre.create!(
+#     genre: "jazz"
+# )
+# jam = Genre.create!(
+#     genre: "jam"
+# )
+# folk = Genre.create!(
+#     genre: "folk"
+# )
 
 
 
@@ -519,55 +518,91 @@ WEEN_20170604_SETLIST.each_with_index do |track, i|
     )
 end
 
-GENRES = [rock, jazz, jam, folk]
+# GENRES = [rock, jazz, jam, folk]
+GENRES = Genre.all
 
-GenreJoin.create!(
-    genre_id: rock.id,
-    genreable_id: phish.id,
-    genreable_type: "User"
-)
-GenreJoin.create!(
-    genre_id: jazz.id,
-    genreable_id: phish.id,
-    genreable_type: "User"
-)
-GenreJoin.create!(
-    genre_id: folk.id,
-    genreable_id: gd.id,
-    genreable_type: "User"
-)
-GenreJoin.create!(
-    genre_id: jam.id,
-    genreable_id: goose.id,
-    genreable_type: "User"
-)
-GenreJoin.create!(
-    genre_id: folk.id,
-    genreable_id: ween.id,
-    genreable_type: "User"
-)
-GenreJoin.create!(
-    genre_id: rock.id,
-    genreable_id: bd13.id,
-    genreable_type: "Album"
-)
-GenreJoin.create!(
-    genre_id: jazz.id,
-    genreable_id: jp2000.id,
-    genreable_type: "Album"
-)
-GenreJoin.create!(
-    genre_id: rock.id,
-    genreable_id: co97.id,
-    genreable_type: "Album"
-)
-GenreJoin.create!(
-    genre_id: rock.id,
-    genreable_id: mann15.id,
-    genreable_type: "Album"
-)
-GenreJoin.create!(
-    genre_id: rock.id,
-    genreable_id: PHISH_20131229.id,
-    genreable_type: "Album"
-)
+User.all.ids.each do |id|
+    numGenres = rand(3..6)
+
+    numGenres.times {
+        GenreJoin.create!(
+            genre_id: GENRES.sample.id,
+            genreable_id: id,
+            genreable_type: "User"
+        )
+    }
+end
+Album.all.ids.each do |id|
+    numGenres = rand(3..6)
+
+    numGenres.times {
+        GenreJoin.create!(
+            genre_id: GENRES.sample.id,
+            genreable_id: id,
+            genreable_type: "Album"
+        )
+    }
+end
+
+Track.all.ids.each do |id|
+    numGenres = rand(3..6)
+
+    numGenres.times {
+        GenreJoin.create!(
+            genre_id: GENRES.sample.id,
+            genreable_id: id,
+            genreable_type: "Track"
+        )
+    }
+end
+
+# GenreJoin.create!(
+#     genre_id: rock.id,
+#     genreable_id: phish.id,
+#     genreable_type: "User"
+# )
+# GenreJoin.create!(
+#     genre_id: jazz.id,
+#     genreable_id: phish.id,
+#     genreable_type: "User"
+# )
+# GenreJoin.create!(
+#     genre_id: folk.id,
+#     genreable_id: gd.id,
+#     genreable_type: "User"
+# )
+# GenreJoin.create!(
+#     genre_id: jam.id,
+#     genreable_id: goose.id,
+#     genreable_type: "User"
+# )
+# GenreJoin.create!(
+#     genre_id: folk.id,
+#     genreable_id: ween.id,
+#     genreable_type: "User"
+# )
+# GenreJoin.create!(
+#     genre_id: rock.id,
+#     genreable_id: bd13.id,
+#     genreable_type: "Album"
+# )
+# GenreJoin.create!(
+#     genre_id: jazz.id,
+#     genreable_id: jp2000.id,
+#     genreable_type: "Album"
+# )
+# GenreJoin.create!(
+#     genre_id: rock.id,
+#     genreable_id: co97.id,
+#     genreable_type: "Album"
+# )
+# GenreJoin.create!(
+#     genre_id: rock.id,
+#     genreable_id: mann15.id,
+#     genreable_type: "Album"
+# )
+# GenreJoin.create!(
+#     genre_id: rock.id,
+#     genreable_id: PHISH_20131229.id,
+#     genreable_type: "Album"
+# )

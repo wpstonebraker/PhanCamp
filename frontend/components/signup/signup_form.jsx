@@ -16,6 +16,8 @@ class SignupForm extends React.Component {
 
   update(field) {
     return (e) => {
+      document.getElementById(`suf-${field}`).classList.remove("error-outline");
+      // document.getElementById(`error-${field}`).classList.add("hide-error");
       return this.setState({ [field]: e.currentTarget.value });
     };
   }
@@ -44,8 +46,10 @@ class SignupForm extends React.Component {
   // }
 
   render() {
+    debugger;
     const { artist_name, username, password, email } = this.state;
     const errors = {};
+    (username) => "";
     this.props.errors.forEach((error) => {
       errors[error.split(" ")[0].toLowerCase()] = error;
     });
@@ -72,9 +76,12 @@ class SignupForm extends React.Component {
                 type="text"
                 value={artist_name}
                 onChange={this.update("artist_name")}
+                id="suf-artist_name"
               />
             </div>
-            <span className="errormsg">{errors.artist}</span>
+            <span className="errormsg" id="error-artist_name">
+              {errors.artist}
+            </span>
 
             <br />
             <div>
@@ -86,9 +93,12 @@ class SignupForm extends React.Component {
                 type="text"
                 value={username}
                 onChange={this.update("username")}
+                id="suf-username"
               />
             </div>
-            <span className="errormsg">{errors.username}</span>
+            <span className="errormsg" id="error-username">
+              {errors.username}
+            </span>
             <br />
             <div>
               <label htmlFor="suf-password">Password</label>
@@ -99,9 +109,12 @@ class SignupForm extends React.Component {
                 type="password"
                 value={password}
                 onChange={this.update("password")}
+                id="suf-password"
               />
             </div>
-            <span className="errormsg">{errors.password}</span>
+            <span className="errormsg" id="error-password">
+              {errors.password}
+            </span>
             <br />
             <div>
               <label htmlFor="suf-email">Email</label>
@@ -110,9 +123,12 @@ class SignupForm extends React.Component {
                 type="text"
                 value={email}
                 onChange={this.update("email")}
+                id="suf-email"
               />
             </div>
-            <span className="errormsg">{errors.email}</span>
+            <span className="errormsg" id="error-email">
+              {errors.email}
+            </span>
             <br />
             <div>
               <input type="submit" className="suf-submit" value="Sign up" />

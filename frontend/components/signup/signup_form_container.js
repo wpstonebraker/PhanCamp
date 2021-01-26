@@ -16,6 +16,7 @@ const mDTP = (dispatch) => {
   return {
     signup: (user) => dispatch(createNewUser(user)),
     clearErrors: (errors) => dispatch(receiveSessionErrors(errors)),
+    sendErrors: (errors) => dispatch(receiveSessionErrors(errors)),
   };
 };
 

@@ -11,6 +11,9 @@ class Album < ApplicationRecord
 
     has_many :tracks
 
+    has_many :genres, through: :genre_joins
+
+
     has_one_attached :photo
 
 end

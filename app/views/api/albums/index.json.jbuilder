@@ -12,16 +12,31 @@ end
 
 json.artist do
     json.set! @artist.id do
-        json.extract! @artist, :artist_name, :location, :about, :personal_url, :email, :genre_join_ids
+        json.extract! @artist, :artist_name, :location, :about, :personal_url, :email #, :genre_ids
         json.bannerUrl url_for(@artist.banner)
         json.thumbnailUrl url_for(@artist.thumbnail)
     end
 end
 
 json.genres do
-    @artist.genre_join_ids.each do |genre_id|
-        json.set! genre_id do
-            json.extract! @genres[genre_id], :genre, :id
+    @genres.each do |genre|
+        json.set! genre.id do
+            json.extract! genre, :id, :genre
         end
     end
 end
+
+
+
+# json.genres do
+#     @artist.genre_ids.each do |genre_id|
+#         debugger
+#         json.set! genre_id do
+#             @genre_joins.each do |genre_join|
+#                 debugger
+#                 json.extract! genre_join, :genre_id
+#             end
+#             # json.extract! @genre_joins., :genre_id
+#         end
+#     end
+# end

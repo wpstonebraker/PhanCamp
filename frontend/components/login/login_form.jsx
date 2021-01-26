@@ -15,6 +15,8 @@ class LoginForm extends React.Component {
 
   update(field) {
     return (e) => {
+      document.getElementById(`sif-${field}`).classList.remove("error-outline");
+      // document.getElementById(`error-${field}`).classList.add("hide-error");
       return this.setState({ [field]: e.currentTarget.value });
     };
   }
@@ -93,9 +95,12 @@ class LoginForm extends React.Component {
                 type="text"
                 value={username}
                 onChange={this.update("username")}
+                id="sif-username"
               />
             </div>
-            <span className="errormsg">{errors.username}</span>
+            <span className="errormsg" id="error-username">
+              {errors.username}
+            </span>
             <br />
             <div>
               <label htmlFor="sif-password">Password</label>
@@ -106,9 +111,12 @@ class LoginForm extends React.Component {
                 type="password"
                 value={password}
                 onChange={this.update("password")}
+                id="sif-password"
               />
             </div>
-            <span className="errormsg">{errors.password}</span>
+            <span className="errormsg" id="error-password">
+              {errors.password}
+            </span>
             <span className="errormsg">{errors.invalid}</span>
 
             <br />

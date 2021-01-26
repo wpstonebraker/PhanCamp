@@ -1310,6 +1310,8 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
+        document.getElementById("sif-".concat(field)).classList.remove("error-outline"); // document.getElementById(`error-${field}`).classList.add("hide-error");
+
         return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
@@ -1397,18 +1399,22 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         className: "sif-username ".concat(errors.username ? "error-outline" : ""),
         type: "text",
         value: username,
-        onChange: this.update("username")
+        onChange: this.update("username"),
+        id: "sif-username"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-        className: "errormsg"
+        className: "errormsg",
+        id: "error-username"
       }, errors.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "sif-password"
       }, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         className: "sif-password ".concat(errors.password ? "error-outline" : ""),
         type: "password",
         value: password,
-        onChange: this.update("password")
+        onChange: this.update("password"),
+        id: "sif-password"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-        className: "errormsg"
+        className: "errormsg",
+        id: "error-password"
       }, errors.password), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         className: "errormsg"
       }, errors.invalid), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
@@ -1587,6 +1593,8 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
+        document.getElementById("suf-".concat(field)).classList.remove("error-outline"); // document.getElementById(`error-${field}`).classList.add("hide-error");
+
         return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
@@ -1617,12 +1625,18 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      debugger;
       var _this$state = this.state,
           artist_name = _this$state.artist_name,
           username = _this$state.username,
           password = _this$state.password,
           email = _this$state.email;
       var errors = {};
+
+      (function (username) {
+        return "";
+      });
+
       this.props.errors.forEach(function (error) {
         errors[error.split(" ")[0].toLowerCase()] = error;
       });
@@ -1653,36 +1667,44 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
         className: "suf-artist-name ".concat(errors.artist ? "error-outline" : ""),
         type: "text",
         value: artist_name,
-        onChange: this.update("artist_name")
+        onChange: this.update("artist_name"),
+        id: "suf-artist_name"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-        className: "errormsg"
+        className: "errormsg",
+        id: "error-artist_name"
       }, errors.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "suf-username"
       }, "Username"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         className: "suf-username ".concat(errors.username ? "error-outline" : ""),
         type: "text",
         value: username,
-        onChange: this.update("username")
+        onChange: this.update("username"),
+        id: "suf-username"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-        className: "errormsg"
+        className: "errormsg",
+        id: "error-username"
       }, errors.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "suf-password"
       }, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         className: "suf-password ".concat(errors.password ? "error-outline" : ""),
         type: "password",
         value: password,
-        onChange: this.update("password")
+        onChange: this.update("password"),
+        id: "suf-password"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-        className: "errormsg"
+        className: "errormsg",
+        id: "error-password"
       }, errors.password), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "suf-email"
       }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         className: "suf-email ".concat(errors.email ? "error-outline" : ""),
         type: "text",
         value: email,
-        onChange: this.update("email")
+        onChange: this.update("email"),
+        id: "suf-email"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-        className: "errormsg"
+        className: "errormsg",
+        id: "error-email"
       }, errors.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "submit",
         className: "suf-submit",
@@ -1735,6 +1757,9 @@ var mDTP = function mDTP(dispatch) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.createNewUser)(user));
     },
     clearErrors: function clearErrors(errors) {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.receiveSessionErrors)(errors));
+    },
+    sendErrors: function sendErrors(errors) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.receiveSessionErrors)(errors));
     }
   };

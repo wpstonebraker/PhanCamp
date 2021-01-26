@@ -10,6 +10,12 @@ class User < ApplicationRecord
 
     has_many :albums
 
+    has_many :genres, through: :genre_joins
+
+    # has_many :genres,
+    #     through: :genre_joins,
+    #     source: :genreable
+
     has_one_attached :thumbnail
     has_one_attached :banner
     has_one_attached :profile_pic
