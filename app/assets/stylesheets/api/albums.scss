@@ -23,6 +23,7 @@
   margin-top: 10px;
   grid-column: 1;
   height: 150px;
+  display: block;
   .album-player-album-title {
     font-size: 28px;
     color: #363636;
@@ -34,10 +35,11 @@
 
 .audio-player {
   border: 1px solid red;
-  height: 100px;
+  height: 50px;
 }
 
 .album-track-box {
+  display: inline-block;
   grid-column: 1;
 }
 

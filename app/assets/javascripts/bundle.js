@@ -1036,39 +1036,51 @@ var FeatureIndex = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "fi-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "fi-main"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: window.featurePhish,
-        alt: "Main feature Phish",
+        className: "fi-main",
         onClick: function onClick() {
           return _this.props.history.push("/artists/".concat(phish.id));
         }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: window.featurePhish,
+        alt: "Main feature Phish"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "fi-main-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Relive Night 13 of Phish's Legendary Madison Square Garden Run"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "fi-side"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: window.featureWeen,
-        alt: "Ween feature",
-        className: "fi-side-item",
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        "class": "fis-item-container",
         onClick: function onClick() {
           return _this.props.history.push("/artists/".concat(ween.id));
         }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: window.featureGD,
-        alt: "GD feature",
-        className: "fi-side-item",
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: window.featureWeen,
+        alt: "Ween feature",
+        className: "fi-side-item"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        className: "fis-side-item-label"
+      }, "Ween")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        "class": "fis-item-container",
         onClick: function onClick() {
           return _this.props.history.push("/artists/".concat(theGD.id));
         }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: window.featureGoose,
-        alt: "Goose feature",
-        className: "fi-side-item",
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: window.featureGD,
+        alt: "GD feature",
+        className: "fi-side-item"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        className: "fis-side-item-label"
+      }, "The Grateful Dead")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        "class": "fis-item-container",
         onClick: function onClick() {
           return _this.props.history.push("/artists/".concat(goose.id));
         }
-      }))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: window.featureGoose,
+        alt: "Goose feature",
+        className: "fi-side-item"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        className: "fis-side-item-label"
+      }, "Goose")))));
     }
   }]);
 
