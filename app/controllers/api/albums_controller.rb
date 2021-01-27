@@ -13,6 +13,23 @@ class Api::AlbumsController < ApplicationController
         @tracks = Track.where(album_id: @album.id)
     end
 
+    def create
+        @album = Album.new(album_params)
+        @artist = @album.artist
+
+        if @album.save
+            render :show
+        else
+            render json: @album.errors.full_messages, status: 422
+        end
+    end
+
+    private
+
+    def album_params
+        params.require(:album).permit(:title, :artist_id, :year, :price, :description, :credits)
+    end
+
 end
 # class Api::AlbumsController < ApplicationController
 

@@ -48,3 +48,11 @@ export const getSellingAlbums = () => {
     });
   };
 };
+
+export const postAlbum = (album) => {
+  return (dispatch) => {
+    return APIUtil.postAlbum(album).then((album) => {
+      return dispatch(receiveAlbum(album));
+    });
+  };
+};

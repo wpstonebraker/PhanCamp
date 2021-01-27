@@ -96,7 +96,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "receiveSellingAlbums": () => /* binding */ receiveSellingAlbums,
 /* harmony export */   "getAlbum": () => /* binding */ getAlbum,
 /* harmony export */   "getArtistAlbums": () => /* binding */ getArtistAlbums,
-/* harmony export */   "getSellingAlbums": () => /* binding */ getSellingAlbums
+/* harmony export */   "getSellingAlbums": () => /* binding */ getSellingAlbums,
+/* harmony export */   "postAlbum": () => /* binding */ postAlbum
 /* harmony export */ });
 /* harmony import */ var _util_album_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/album_api_util */ "./frontend/util/album_api_util.js");
 
@@ -139,6 +140,13 @@ var getSellingAlbums = function getSellingAlbums() {
   return function (dispatch) {
     return _util_album_api_util__WEBPACK_IMPORTED_MODULE_0__.getSellingAlbums().then(function (albums) {
       return dispatch(receiveSellingAlbums(albums));
+    });
+  };
+};
+var postAlbum = function postAlbum(album) {
+  return function (dispatch) {
+    return _util_album_api_util__WEBPACK_IMPORTED_MODULE_0__.postAlbum(album).then(function (album) {
+      return dispatch(receiveAlbum(album));
     });
   };
 };
@@ -2873,7 +2881,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getAlbum": () => /* binding */ getAlbum,
 /* harmony export */   "getArtistAlbums": () => /* binding */ getArtistAlbums,
-/* harmony export */   "getSellingAlbums": () => /* binding */ getSellingAlbums
+/* harmony export */   "getSellingAlbums": () => /* binding */ getSellingAlbums,
+/* harmony export */   "postAlbum": () => /* binding */ postAlbum
 /* harmony export */ });
 var getAlbum = function getAlbum(albumId) {
   return $.ajax({
@@ -2888,6 +2897,13 @@ var getArtistAlbums = function getArtistAlbums(artistId) {
 var getSellingAlbums = function getSellingAlbums() {
   return $.ajax({
     url: "/api/selling"
+  });
+};
+var postAlbum = function postAlbum(album) {
+  return $.ajax({
+    url: "/api/albums",
+    method: "POST",
+    data: album
   });
 };
 
