@@ -1,27 +1,62 @@
-// Place all the styles related to the api/artists controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// // Place all the styles related to the api/artists controller here.
+// // They will automatically be included in application.css.
+// // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.show-page-outer {
+  width: 100%;
+  display: flex;
+}
+
+.show-page-inner {
+  width: 55%;
+  display: flex;
+  margin: auto;
+  border: 0.5px solid lightgrey;
+}
 
 .show-page-box {
+  width: 100%;
+  // display: flex;
   margin: auto;
-  width: 975px;
-  height: 100%;
-  border: 0.5px solid lightgrey;
 }
 
 .artist-banner-box {
   margin: auto;
-  display: block;
-  width: 975px;
+  display: flex;
+  width: 100%;
   height: 220px;
 }
 
 .artist-banner {
-  width: 975px;
+  width: 100%;
   height: 180px;
 
   img {
-    width: 975px;
+    width: 100%;
+    height: 180px;
+  }
+}
+
+// .show-page-box {
+//   margin: auto;
+//   width: 975px;
+//   height: 100%;
+//   border: 0.5px solid lightgrey;
+// }
+
+.artist-banner-box {
+  margin: auto;
+  display: block;
+  width: 100%;
+  height: 220px;
+}
+
+.artist-banner {
+  width: 100%;
+  height: 180px;
+
+  img {
+    width: 100%;
     height: 180px;
   }
 }
@@ -36,25 +71,29 @@
 }
 
 .artist-discog-box {
+  margin: auto;
   padding: 20px;
-  width: 970px;
+  width: 100%;
   height: 100%;
   display: flex;
   background: #ffffff;
+  padding: 0;
+  padding-top: 10px;
 }
 
 .discog-box {
-  width: 795px;
-  height: 220px;
+  width: 85%;
+  height: auto;
   display: flex;
+  // justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
 .discog-tile {
-  margin: 10px;
+  // padding: 10px;
+  margin: 10px 20px;
   height: 275px;
   width: 230px;
-  // outline: 1px solid red;
   font-size: 13px;
   color: #0687f5;
   font-weight: bold;
@@ -69,26 +108,36 @@
   }
 }
 
+.artist-sidebar-inner {
+  display: flex;
+  width: 15%;
+}
+
 .artist-sidebar-box {
   display: flex;
-  width: 120px;
+  // justify-self: end;
+  padding: 0 5px;
+  width: 90%;
 
   li {
-    margin: 5px 0 5px;
+    margin: auto;
+    margin-bottom: 10px;
+    // margin: 5px 0 5px;
     font-size: 12px;
     color: #363636;
   }
 }
 
 .artist-thumbnail-box {
-  height: 120px;
-  width: 120px;
+  height: auto;
+  width: 100%;
   margin-bottom: 10px;
+  padding-top: 10px;
 
   img {
-    height: 120px;
-    width: 120px;
-    margin: 5px 0 5px;
+    height: auto;
+    width: 100%;
+    // margin: 5px 0 5px;
   }
 }
 
@@ -98,20 +147,20 @@
   font-weight: bold;
 }
 
-// .artist-sidebar-location {
-//   font-size: 12px;
-//   color: #888888;
-// }
+.artist-sidebar-location {
+  font-size: 12px;
+  color: #888888;
+}
 
-// .artist-sidebar-about {
-//   font-size: 12px;
-//   color: #363636;
-// }
-// .artist-sidebar-about {
-//   font-size: 12px;
-//   color: #363636;
-// }
-// .artist-sidebar-about {
-//   font-size: 12px;
-//   color: #363636;
-// }
+.artist-sidebar-about {
+  font-size: 12px;
+  color: #363636;
+}
+.artist-sidebar-about {
+  font-size: 12px;
+  color: #363636;
+}
+.artist-sidebar-about {
+  font-size: 12px;
+  color: #363636;
+}

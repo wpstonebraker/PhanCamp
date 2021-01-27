@@ -635,6 +635,10 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
         });
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "show-page-outer"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "show-page-inner"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "show-page-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_artist_banner__WEBPACK_IMPORTED_MODULE_2__.default, {
         artist: artist,
@@ -645,7 +649,7 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
         className: "discog-box"
       }, items), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_artist_sidebar__WEBPACK_IMPORTED_MODULE_3__.default, {
         artist: artist
-      })));
+      })))));
     }
   }]);
 
@@ -720,6 +724,8 @@ var ArtistSidebar = function ArtistSidebar(_ref) {
   var artist = _ref.artist;
   if (!artist) return null;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "artist-sidebar-inner"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "artist-sidebar-box"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     className: "artist-thumbnail-box"
@@ -736,7 +742,7 @@ var ArtistSidebar = function ArtistSidebar(_ref) {
     className: "artist-sidebar-website"
   }, artist.personalUrl), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     className: "artist-sidebar-contact"
-  }, artist.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_genres_genres_index__WEBPACK_IMPORTED_MODULE_1__.default, null)));
+  }, artist.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_genres_genres_index__WEBPACK_IMPORTED_MODULE_1__.default, null))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ArtistSidebar);

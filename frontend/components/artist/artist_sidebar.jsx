@@ -4,18 +4,20 @@ import GenresIndex from "../genres/genres_index";
 const ArtistSidebar = ({ artist }) => {
   if (!artist) return null;
   return (
-    <div className="artist-sidebar-box">
-      <ul>
-        <li className="artist-thumbnail-box">
-          <img src={artist.thumbnailUrl} className="artist-thumbnail-pic" />
-        </li>
-        <li className="artist-sidebar-name">{artist.artistName}</li>
-        <li className="artist-sidebar-location">{artist.location}</li>
-        <li className="artist-sidebar-about">{artist.about}</li>
-        <li className="artist-sidebar-website">{artist.personalUrl}</li>
-        <li className="artist-sidebar-contact">{artist.email}</li>
-        <GenresIndex />
-      </ul>
+    <div className="artist-sidebar-inner">
+      <div className="artist-sidebar-box">
+        <ul>
+          <li className="artist-thumbnail-box">
+            <img src={artist.thumbnailUrl} className="artist-thumbnail-pic" />
+          </li>
+          <li className="artist-sidebar-name">{artist.artistName}</li>
+          <li className="artist-sidebar-location">{artist.location}</li>
+          <li className="artist-sidebar-about">{artist.about}</li>
+          <li className="artist-sidebar-website">{artist.personalUrl}</li>
+          <li className="artist-sidebar-contact">{artist.email}</li>
+          <GenresIndex />
+        </ul>
+      </div>
     </div>
   );
 };
