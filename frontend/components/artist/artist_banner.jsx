@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { getArtistAlbums } from "../../actions/album_actions";
 
 const ArtistBanner = ({ artist, getArtistAlbums }) => {
-  debugger;
   const handleClick = () => {
     getArtistAlbums(artist.id);
   };

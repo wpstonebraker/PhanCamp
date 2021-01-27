@@ -19,12 +19,12 @@ const App = () => {
         <BannerBarContainer />
       </Switch>
 
-      <Route exact path="/artists/:id" component={ArtistShowContainer} />
-      <Route
+      <Route path="/artists/:id" component={ArtistShowContainer} />
+      {/* <Route
         exact
         path="/artists/:id/albums/:id"
         component={AlbumShowContainer}
-      />
+      /> */}
       {/* <Route exact path="/albums/:id" component={AlbumShowContainer} /> */}
       <Route exact path="/" component={Splash} />
     </div>

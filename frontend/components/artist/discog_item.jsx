@@ -1,7 +1,9 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
-const Discog = ({ history, album, getAlbum, artistId }) => {
+// const DiscogItem = ({ history, album, getAlbum, artistId }) => {
+const DiscogItem = ({ album, history, artistId }) => {
+  debugger;
   const handleClick = () => {
     getAlbum(album.id);
     history.push(`/artists/${artistId}/albums/${album.id}`);
@@ -22,4 +24,4 @@ const Discog = ({ history, album, getAlbum, artistId }) => {
   );
 };
 
-export default Discog;
+export default DiscogItem;

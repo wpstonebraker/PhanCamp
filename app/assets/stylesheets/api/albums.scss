@@ -2,57 +2,91 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.album-discog-box {
-  padding: 20px;
-  width: 970px;
-  height: 100%;
-  background: #ffffff;
+.album-show-page-box {
+  // margin-top: 10px;
+  // padding: 10px;
+  height: auto;
+  width: 100%;
+  display: flex;
 }
 
-.album-detail-box {
-  width: 932.5px;
-  display: grid;
-  grid-template-columns: 45% 40% 15%;
-  grid-template-rows: 20% 80%;
-  //   height: 220px;
-  //   grid-template-columns: 50% 50%;
-  margin-top: 10px;
+.album-show-page-left {
+  padding: 10px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
 }
-
-.album-audio-player-box {
-  margin-top: 10px;
-  grid-column: 1;
-  height: 150px;
-  display: block;
-  .album-player-album-title {
-    font-size: 28px;
-    color: #363636;
-  }
-  .album-player-artist-name {
-    font-size: 14px;
-  }
+.album-show-page-right {
+  padding: 10px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  // align-content: center;
 }
 
 .audio-player {
   border: 1px solid red;
   height: 50px;
+  width: 100%;
 }
 
-.album-track-box {
-  display: inline-block;
-  grid-column: 1;
-  height: 500px;
-}
-
-.album-track-cover {
-  margin-top: 10px;
-  grid-column: 2;
+.album-show-cover-box {
+  margin: auto;
   height: 350px;
   width: 350px;
 }
-.album-sidebar {
-  margin-top: 0px;
-  width: 120px;
-  grid-column: 3;
-  grid-row: 1;
+
+.album-show-album-cover {
+  height: 350px;
+  width: 350px;
 }
+
+// .album-discog-box {
+//   padding: 20px;
+//   width: 970px;
+//   height: 100%;
+//   background: #ffffff;
+// }
+
+// .album-detail-box {
+//   width: 932.5px;
+//   display: grid;
+//   grid-template-columns: 45% 40% 15%;
+//   grid-template-rows: 20% 80%;
+//   //   height: 220px;
+//   //   grid-template-columns: 50% 50%;
+//   margin-top: 10px;
+// }
+
+// .album-audio-player-box {
+//   margin-top: 10px;
+//   grid-column: 1;
+//   height: 150px;
+//   display: block;
+//   .album-player-album-title {
+//     font-size: 28px;
+//     color: #363636;
+//   }
+//   .album-player-artist-name {
+//     font-size: 14px;
+//   }
+// }
+
+// .album-track-box {
+//   display: inline-block;
+//   grid-column: 1;
+//   height: 500px;
+// }
+
+// .album-track-cover {
+//   margin-top: 10px;
+//   grid-column: 2;
+//   height: 350px;
+//   width: 350px;
+// }
+// .album-sidebar {
+//   margin-top: 0px;
+//   width: 120px;
+//   grid-column: 3;
+//   grid-row: 1;
+// }

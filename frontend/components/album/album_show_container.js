@@ -1,11 +1,14 @@
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { getAlbum } from "../../actions/album_actions";
 import AlbumShow from "./album_show";
 
-const mSTP = ({ entities: { albums, tracks, artists } }, ownProps) => {
+const mSTP = (state, ownProps) => {
+  debugger;
   return {
-    tracks: Object.values(tracks),
-    album: albums[ownProps.match.params.id],
-    artist: artists,
+    album: state.entities.albums[ownProps.albumId],
+    artist: state.entities.artists[ownProps.artistId],
+    tracks: state.entities.tracks,
   };
 };
 
@@ -15,4 +18,4 @@ const mDTP = (dispatch) => {
   };
 };
 
-export default connect(mSTP, mDTP)(AlbumShow);
+export default connect(mSTP, mDTP)(withRouter(AlbumShow));

@@ -5,9 +5,13 @@ import {
 } from "../actions/album_actions";
 
 const albumsReducer = (state = {}, action) => {
+  // debugger;
   Object.freeze(state);
   let newState;
   switch (action.type) {
+    // case Object.keys(state).length === 1:
+    //   return Object.assign({}, state, action.albums.albums);
+    //   break;
     case RECEIVE_ALBUM:
       // newState = Object.assign({}, state, {
       //   [action.album.id]: action.album,
@@ -15,6 +19,7 @@ const albumsReducer = (state = {}, action) => {
       // return newState;
       return action.album.albums;
     case RECEIVE_ARTIST_ALBUMS:
+      // return Object.assign({}, action.albums.albums, state);
       return action.albums.albums;
     case RECEIVE_SELLING_ALBUMS:
       return action.payload.albums;

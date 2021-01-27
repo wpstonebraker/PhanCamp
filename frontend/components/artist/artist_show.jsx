@@ -1,9 +1,11 @@
 import React from "react";
-import Discog from "./discog";
+import Discog from "./discog_item";
 import ArtistBanner from "./artist_banner";
 import ArtistSidebar from "./artist_sidebar";
 import { Route, Switch } from "react-router-dom";
 import AlbumShowContainer from "../album/album_show_container";
+import DiscogIndex from "./discog_index";
+import AlbumShow from "../album/album_show";
 
 class ArtistShow extends React.Component {
   constructor(props) {
@@ -17,17 +19,10 @@ class ArtistShow extends React.Component {
   render() {
     const albums = this.props.albums;
     const artist = this.props.artist;
-    const items = albums.map((album) => {
-      return (
-        <Discog
-          album={album}
-          key={`${album.id}`}
-          getAlbum={this.props.getAlbum}
-          history={this.props.history}
-          artistId={this.props.artistId}
-        />
-      );
-    });
+
+    // if (!artist) return null;
+    debugger;
+
     return (
       <div className="show-page-outer">
         <div className="show-page-inner">
@@ -43,7 +38,33 @@ class ArtistShow extends React.Component {
         /> */}
 
             <div className="artist-discog-box">
-              <div className="discog-box">{items}</div>
+              <div className="discog-box">
+                <Switch>
+                  <Route
+                    path="/artists/:id/albums/:id"
+                    render={(props) => {
+                      return (
+                        <AlbumShowContainer
+                          albumId={this.props.location.pathname.split("/")[4]}
+                          artistId={this.props.artistId}
+                        />
+                      );
+                    }}
+                  />
+                  <Route
+                    path="/artists/:id"
+                    render={(props) => {
+                      return (
+                        <DiscogIndex
+                          albums={albums}
+                          history={this.props.history}
+                          artistId={this.props.artistId}
+                        />
+                      );
+                    }}
+                  />
+                </Switch>
+              </div>
               <ArtistSidebar artist={artist} />
             </div>
           </div>
