@@ -373,7 +373,149 @@ PHISH_20131229_SETLIST.each_with_index do |track, i|
     )
 end
 
+PHISH_PAUL_2019_JAMS = Album.create!(
+    title: "Paul's Picks 2019",
+    artist_id: phish.id,
+    year: 2019,
+    description: "Paul's favorite jams from the shows attended in 2019. Ruby Waves from MPP2, Mercury from Camden1, Twenty Years Later from Camden3, Everything's Right from Pittsburgh, Wolfman's Brother from NYE at MSG.",
+    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+)
 
+PHISH_PAUL_2019_JAMS.photo.attach(io: File.open("app/assets/images/artists/phish/paul2019.jpeg"), filename: "paul2019.jpeg")
+
+PHISH_PAUL_2019_JAMS_SETLIST = %w(Ruby\ Waves Mercury Twenty\ Years\ Later Everything's\ Right Wolfman's Brother)
+
+PHISH_PAUL_2019_JAMS_SETLIST.each_with_index do |track, i|
+    Track.create!(
+        track_name: track,
+        track_num: (i + 1),
+        album_id: PHISH_PAUL_2019_JAMS.id
+    )
+end
+
+PHISH_PAUL_2018_JAMS = Album.create!(
+    title: "Paul's Picks 2018",
+    artist_id: phish.id,
+    year: 2018,
+    description: "Paul's favorite jams from the shows attended in 2018. Down with Disease from Camden1, Simple from Hampton3, Mercury from Vegas3, Seven Below from NYE at MSG.",
+    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+)
+
+PHISH_PAUL_2018_JAMS.photo.attach(io: File.open("app/assets/images/artists/phish/paul2018.jpeg"), filename: "paul2018.jpeg")
+
+PHISH_PAUL_2018_JAMS_SETLIST = %w(Down\ With\ Disease Simple Mercury Seven\ Below)
+
+PHISH_PAUL_2018_JAMS_SETLIST.each_with_index do |track, i|
+    Track.create!(
+        track_name: track,
+        track_num: (i + 1),
+        album_id: PHISH_PAUL_2018_JAMS.id
+    )
+end
+
+PHISH_PAUL_2017_JAMS = Album.create!(
+    title: "Paul's Picks 2017",
+    artist_id: phish.id,
+    year: 2017,
+    description: "Paul's favorite jams from the shows attended in 2017. Caspian from Pittsburgh, Lawn Boy from BD4, Simple from BD13, Jibboo from NYE at MSG.",
+    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+)
+
+PHISH_PAUL_2017_JAMS.photo.attach(io: File.open("app/assets/images/artists/phish/paul2017.jpeg"), filename: "paul2017.jpeg")
+
+
+PHISH_PAUL_2017_JAMS_SETLIST = %w(Prince\ Caspian Lawn\ Boy Simple Gotta Jibboo)
+
+PHISH_PAUL_2017_JAMS_SETLIST.each_with_index do |track, i|
+    Track.create!(
+        track_name: track,
+        track_num: (i + 1),
+        album_id: PHISH_PAUL_2017_JAMS.id
+    )
+end
+
+PHISH_PAUL_2016_JAMS = Album.create!(
+    title: "Paul's Picks 2016",
+    artist_id: phish.id,
+    year: 2016,
+    description: "Paul's favorite jams from the shows attended in 2016. Light from Mansfield, Crosseyed from Dicks3, Golden Age from Vegas1, 2001 from Vegas4.",
+    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+)
+
+PHISH_PAUL_2016_JAMS.photo.attach(io: File.open("app/assets/images/artists/phish/paul2016.jpeg"), filename: "paul2016.jpeg")
+
+
+PHISH_PAUL_2016_JAMS_SETLIST = %w(Light Crosseyed\ and\ Painless Golden\ Age 2001)
+
+PHISH_PAUL_2016_JAMS_SETLIST.each_with_index do |track, i|
+    Track.create!(
+        track_name: track,
+        track_num: (i + 1),
+        album_id: PHISH_PAUL_2016_JAMS.id
+    )
+end
+
+PHISH_PAUL_2015_JAMS = Album.create!(
+    title: "Paul's Picks 2015",
+    artist_id: phish.id,
+    year: 2015,
+    description: "Paul's favorite jams from the shows attended in 2015. Tweezer > Caspian from Magnaball2, DWD from Magnaball3, NMINML from NYE at MSG",
+    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+)
+
+PHISH_PAUL_2015_JAMS.photo.attach(io: File.open("app/assets/images/artists/phish/paul2015.jpeg"), filename: "paul2015.jpeg")
+
+
+PHISH_PAUL_2015_JAMS_SETLIST = %w(Tweezer\ > Caspian Down\ With\ Disease No\ Men\ in\  No\ Men's\ Land)
+
+PHISH_PAUL_2015_JAMS_SETLIST.each_with_index do |track, i|
+    Track.create!(
+        track_name: track,
+        track_num: (i + 1),
+        album_id: PHISH_PAUL_2015_JAMS.id
+    )
+end
+
+PHISH_PAUL_2014_JAMS = Album.create!(
+    title: "Paul's Picks 2014",
+    artist_id: phish.id,
+    year: 2014,
+    description: "Paul's favorite jams from the shows attended in 2014. Fuego from Mann1, Fuego from Portsmouth2, Meatstick from Portsmouth2, Ghost from NYE in Miami.",
+    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+)
+
+PHISH_PAUL_2014_JAMS.photo.attach(io: File.open("app/assets/images/artists/phish/paul2014.jpeg"), filename: "paul2014.jpeg")
+
+
+PHISH_PAUL_2014_JAMS_SETLIST = %w(Fuego Fuego Meatstick Ghost)
+
+PHISH_PAUL_2014_JAMS_SETLIST.each_with_index do |track, i|
+    Track.create!(
+        track_name: track,
+        track_num: (i + 1),
+        album_id: PHISH_PAUL_2014_JAMS.id
+    )
+end
+
+PHISH_PAUL_2013_JAMS = Album.create!(
+    title: "Paul's Picks 2013",
+    artist_id: phish.id,
+    year: 2013,
+    description: "Paul's favorite jams from the shows attended in 2013. Carini from Hampton1, Tweezer from Hampton3, DWD from Reading, DWD from MSG2, and Light from NYE at MSG.",
+    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+)
+
+PHISH_PAUL_2013_JAMS.photo.attach(io: File.open("app/assets/images/artists/phish/paul2013.jpeg"), filename: "paul2013.jpeg")
+
+PHISH_PAUL_2013_JAMS_SETLIST = %w(Carini Tweezer Down\ with\ Disease Down\ with\ Disease Light)
+
+PHISH_PAUL_2013_JAMS_SETLIST.each_with_index do |track, i|
+    Track.create!(
+        track_name: track,
+        track_num: (i + 1),
+        album_id: PHISH_PAUL_2013_JAMS.id
+    )
+end
 
 gd = User.create!(
     artist_name: "The Grateful Dead",
@@ -429,6 +571,87 @@ GD_MSG81_SETLIST.each_with_index do |track, i|
         album_id: msg81.id
     )
 end
+
+Z1 = Album.create!(
+    title: "Dr. Zack's Picks Vol. 1",
+    artist_id: gd.id,
+    year: 2020,
+    description: "First in a Series.",
+    credits: "Guitar: Jer"
+)
+
+Z1.photo.attach(io: File.open("app/assets/images/artists/gd/Z1.webp"), filename: "Z1.webp")
+
+Z1_SETLIST = %w(Dark\ Star\ -> Wharf\ Rat\ -> Dark\ Star Eyes\ of\ the\ World Playing\ in\ the\ Band\ -> The\ Wheel\ -> Playing\ in\ the\ Band)
+
+Z1_SETLIST.each_with_index do |track, i|
+    Track.create!(
+        track_name: track,
+        track_num: (i + 1),
+        album_id: Z1.id
+    )
+end
+
+Z2 = Album.create!(
+    title: "Dr. Zack's Picks Vol. 2",
+    artist_id: gd.id,
+    year: 2020,
+    description: "Second in a Series.",
+    credits: "Guitar: Jer"
+)
+
+Z2.photo.attach(io: File.open("app/assets/images/artists/gd/Z2.webp"), filename: "Z2.webp")
+
+Z2_SETLIST = %w(China\ Cat\ -> I\ Know\ You\ Rider Dancing\ in\ the\ Streets Dark\ Star Scarlet\ -> Fire)
+
+Z2_SETLIST.each_with_index do |track, i|
+    Track.create!(
+        track_name: track,
+        track_num: (i + 1),
+        album_id: Z2.id
+    )
+end
+
+Z3 = Album.create!(
+    title: "Dr. Zack's Picks Vol. 3",
+    artist_id: gd.id,
+    year: 2020,
+    description: "Third in a Series.",
+    credits: "Guitar: Jer"
+)
+
+Z3.photo.attach(io: File.open("app/assets/images/artists/gd/Z3.webp"), filename: "Z3.webp")
+
+Z3_SETLIST = %w(Bird\ Song Here\ Comes\ Sunshine Shakedown\ Street Help\ on\ the\ Way\ -> Slipknot\ -> Franklin's\ Tower)
+
+Z3_SETLIST.each_with_index do |track, i|
+    Track.create!(
+        track_name: track,
+        track_num: (i + 1),
+        album_id: Z3.id
+    )
+end
+
+Z4 = Album.create!(
+    title: "Dr. Zack's Picks Vol. 4",
+    artist_id: gd.id,
+    year: 2020,
+    description: "Fourth in a Series.",
+    credits: "Guitar: Jer"
+)
+
+Z4.photo.attach(io: File.open("app/assets/images/artists/gd/Z4.webp"), filename: "Z4.webp")
+
+Z4_SETLIST = %w(He's\ Gone The\ Other\ One Dark\ Star Mississippi\ Half\ Step Scarlet\ -> Fire)
+
+Z4_SETLIST.each_with_index do |track, i|
+    Track.create!(
+        track_name: track,
+        track_num: (i + 1),
+        album_id: Z4.id
+    )
+end
+
 
 goose = User.create!(
     artist_name: "Goose",

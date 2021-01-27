@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :albums, only: [:show]
     resources :features, only: [:index]
+    resources :selling, only: [:index]
   end
 
 

@@ -4,7 +4,11 @@ import { deleteSession, postSession, postUser } from "./util/session_api_util";
 import configureStore from "./store/store";
 import { login } from "./actions/session_actions";
 import Root from "./components/root";
-import { getAlbum, getArtistAlbums } from "./actions/album_actions";
+import {
+  getAlbum,
+  getArtistAlbums,
+  getSellingAlbums,
+} from "./actions/album_actions";
 import { getFeatureArtists } from "./actions/artist_actions";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -31,6 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.getState = store.getState;
   window.dispatch = store.dispatch;
+
+  window.getSellingAlbums = getSellingAlbums;
 
   window.getAlbum = getAlbum;
   window.getArtistAlbums = getArtistAlbums;

@@ -8,6 +8,7 @@ import BannerBarContainer from "./banner_bar/banner_bar_container";
 import FeatureIndexContainer from "./feature/feature_index_container";
 import ArtistShowContainer from "./artist/artist_show_container";
 import AlbumShowContainer from "./album/album_show_container";
+import Splash from "./splash/splash";
 
 const App = () => {
   return (
@@ -25,7 +26,7 @@ const App = () => {
         component={AlbumShowContainer}
       />
       {/* <Route exact path="/albums/:id" component={AlbumShowContainer} /> */}
-      <Route exact path="/" component={FeatureIndexContainer} />
+      <Route exact path="/" component={Splash} />
     </div>
   );
 };

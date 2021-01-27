@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { getFeatureArtists } from "../../actions/artist_actions";
 import FeatureIndex from "./feature_index";
 
@@ -17,4 +18,4 @@ const mDTP = (dispatch) => {
   };
 };
 
-export default connect(mSTP, mDTP)(FeatureIndex);
+export default connect(mSTP, mDTP)(withRouter(FeatureIndex));

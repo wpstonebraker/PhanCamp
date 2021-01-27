@@ -33,7 +33,7 @@ class FeatureIndex extends React.Component {
           </div>
           <div className="fi-side">
             <div
-              class="fis-item-container"
+              className="fis-item-container"
               onClick={() => this.props.history.push(`/artists/${ween.id}`)}
             >
               <img
@@ -44,7 +44,7 @@ class FeatureIndex extends React.Component {
               <span className="fis-side-item-label">Ween</span>
             </div>
             <div
-              class="fis-item-container"
+              className="fis-item-container"
               onClick={() => this.props.history.push(`/artists/${theGD.id}`)}
             >
               <img
@@ -55,7 +55,7 @@ class FeatureIndex extends React.Component {
               <span className="fis-side-item-label">The Grateful Dead</span>
             </div>
             <div
-              class="fis-item-container"
+              className="fis-item-container"
               onClick={() => this.props.history.push(`/artists/${goose.id}`)}
             >
               <img
