@@ -55,30 +55,48 @@
   background-color: #ffffff;
   width: 645px;
   height: 300px;
-  grid-area: main;
+  //   grid-area: main;
   //   border: 1px solid blue;
   margin: 5px 0;
   img {
     width: 295px;
     height: 295px;
   }
-
-  //   .di-item-box {
-  //     // display: flex;
-  //   }
-  .di-item-tile {
-    display: flex;
-    div {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-
-  .sni-tile-title {
-    display: inline;
-    width: 200px;
-    flex-wrap: wrap;
-    position: relative;
-    bottom: 100px;
-  }
 }
+
+.di-main-tile {
+  display: flex;
+}
+
+.di-main-details {
+  margin: 30px 12px;
+}
+
+.di-main-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.di-main-artist {
+  font-size: 20px;
+}
+
+.di-main-deets {
+  font-size: 14px;
+}
+
+// .di-item-tile {
+//   display: flex;
+//   div {
+//     display: flex;
+//     flex-direction: column;
+//   }
+// }
+
+// .sni-tile-title {
+//   display: inline;
+//   width: 200px;
+//   flex-wrap: wrap;
+//   position: relative;
+//   bottom: 100px;
+// }

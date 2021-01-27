@@ -995,6 +995,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _daily_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./daily_item */ "./frontend/components/daily/daily_item.jsx");
+/* harmony import */ var _daily_main_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./daily_main_item */ "./frontend/components/daily/daily_main_item.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1020,6 +1021,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var DailyIndex = /*#__PURE__*/function (_React$Component) {
   _inherits(DailyIndex, _React$Component);
 
@@ -1039,7 +1041,13 @@ var DailyIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      if (!this.props.albums) return null;
+      if (this.props.albums.length === 0) return null;
+      debugger;
+      var mainItem = this.props.albums.pop();
+      var main = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_daily_main_item__WEBPACK_IMPORTED_MODULE_2__.default, {
+        album: mainItem,
+        key: mainItem.id
+      });
       var items = this.props.albums.map(function (album) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_daily_item__WEBPACK_IMPORTED_MODULE_1__.default, {
           album: album,
@@ -1047,7 +1055,6 @@ var DailyIndex = /*#__PURE__*/function (_React$Component) {
         });
       }); // debugger;
 
-      var mainItem = items.pop();
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "di-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
@@ -1058,7 +1065,7 @@ var DailyIndex = /*#__PURE__*/function (_React$Component) {
         className: "di-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         id: "di-main-item"
-      }, mainItem), items)));
+      }, main), items)));
     }
   }]);
 
@@ -1153,6 +1160,44 @@ var DailyItem = function DailyItem(_ref) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DailyItem);
+
+/***/ }),
+
+/***/ "./frontend/components/daily/daily_main_item.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/daily/daily_main_item.jsx ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var DailyMainItem = function DailyMainItem(_ref) {
+  var album = _ref.album;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "di-main-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "di-main-tile"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: album.photoUrl,
+    alt: ""
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "di-main-details"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "di-main-title"
+  }, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "di-main-artist"
+  }, "by ", album.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "di-main-deets"
+  }, album.description))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DailyMainItem);
 
 /***/ }),
 
@@ -1921,7 +1966,6 @@ __webpack_require__.r(__webpack_exports__);
 var SellingNowItem = function SellingNowItem(_ref) {
   var album = _ref.album,
       seconds = _ref.seconds;
-  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "sni-tile-box"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

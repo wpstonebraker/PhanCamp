@@ -1,7 +1,6 @@
 import React from "react";
 
 const SellingNowItem = ({ album, seconds }) => {
-  debugger;
   return (
     <div className="sni-tile-box">
       <div className="sni-tile">
