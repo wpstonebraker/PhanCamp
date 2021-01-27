@@ -5,8 +5,9 @@ import { logout } from "../../actions/session_actions";
 const DropdownContent = (props) => {
   return (
     <div className="dropdown-content">
-      <ul>
-        <li>{window.currentUser}</li>
+      <ul className="dropdown-content-list">
+        <li>{props.currentUser.username}</li>
+        <hr className="dropdown-content-list-divider" />
         <li onClick={props.logout}>log out</li>
       </ul>
     </div>

@@ -54,7 +54,8 @@
 }
 
 .sni-tile:hover {
-  background-color: whitesmoke;
+  transition: 0.2s;
+  background-color: #eef2f3;
 }
 
 .sni-tile-box {

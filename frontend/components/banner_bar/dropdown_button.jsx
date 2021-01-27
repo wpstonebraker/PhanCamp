@@ -17,7 +17,9 @@ class DropdownButton extends React.Component {
     return (
       <div>
         <button onFocus={this.onOff} onBlur={this.onOff} className="dropdown">
-          {this.state.active ? <DropdownContent /> : null}
+          {this.state.active ? (
+            <DropdownContent currentUser={this.props.currentUser} />
+          ) : null}
         </button>
       </div>
     );

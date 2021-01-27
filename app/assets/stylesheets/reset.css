@@ -150,3 +150,8 @@ input:focus {
 * {
   box-sizing: border-box;
 }
+
+a:-webkit-any-link {
+  color: inherit;
+  cursor: pointer;
+}

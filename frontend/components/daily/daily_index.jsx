@@ -13,9 +13,6 @@ class DailyIndex extends React.Component {
 
   render() {
     if (this.props.albums.length === 0) return null;
-
-    debugger;
-
     const mainItem = this.props.albums.pop();
     const main = <DailyMainItem album={mainItem} key={mainItem.id} />;
     const items = this.props.albums.map((album) => {
@@ -23,7 +20,6 @@ class DailyIndex extends React.Component {
         <DailyItem album={album} key={album.id} history={this.props.history} />
       );
     });
-    debugger;
     return (
       <div className="di-outer">
         <span className="di-label">PHANCAMP DAILY</span>
