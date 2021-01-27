@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import DailyIndex from "./daily_index";
 
 const mSTP = (state, ownProps) => {
@@ -13,4 +14,4 @@ const mDTP = (dispatch) => {
   };
 };
 
-export default connect(mSTP, mDTP)(DailyIndex);
+export default connect(mSTP, mDTP)(withRouter(DailyIndex));

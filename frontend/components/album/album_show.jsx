@@ -33,7 +33,7 @@ class AlbumShow extends React.Component {
         <div className="album-show-page-left">
           <div className="album-show-title-artist">
             <span>{album.title}</span>
-            <span>{artist.artistName}</span>
+            <span>{album.artistName}</span>
             <div className="audio-player">AUDIO PLAYER</div>
           </div>
           <div className="album-track-table-box">

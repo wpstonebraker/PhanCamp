@@ -334,7 +334,7 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
         className: "album-show-page-left"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "album-show-title-artist"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, artist.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, album.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "audio-player"
       }, "AUDIO PLAYER")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "album-track-table-box"
@@ -1079,6 +1079,8 @@ var DailyIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       if (this.props.albums.length === 0) return null;
       debugger;
       var mainItem = this.props.albums.pop();
@@ -1089,10 +1091,11 @@ var DailyIndex = /*#__PURE__*/function (_React$Component) {
       var items = this.props.albums.map(function (album) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_daily_item__WEBPACK_IMPORTED_MODULE_1__.default, {
           album: album,
-          key: album.id
+          key: album.id,
+          history: _this.props.history
         });
-      }); // debugger;
-
+      });
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "di-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
@@ -1126,7 +1129,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _daily_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./daily_index */ "./frontend/components/daily/daily_index.jsx");
+
 
 
 
@@ -1154,7 +1159,7 @@ var mDTP = function mDTP(dispatch) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_daily_index__WEBPACK_IMPORTED_MODULE_1__.default));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)((0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.withRouter)(_daily_index__WEBPACK_IMPORTED_MODULE_1__.default)));
 
 /***/ }),
 
@@ -1174,7 +1179,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var DailyItem = function DailyItem(_ref) {
-  var album = _ref.album;
+  var album = _ref.album,
+      history = _ref.history;
 
   var handleClick = function handleClick() {
     getAlbum(album.id);
@@ -1182,7 +1188,10 @@ var DailyItem = function DailyItem(_ref) {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "di-item-box"
+    className: "di-item-box",
+    onClick: function onClick() {
+      return handleClick();
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "di-item-tile"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
@@ -1194,19 +1203,15 @@ var DailyItem = function DailyItem(_ref) {
     className: "sni-tile-deets"
   }, "by ", album.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "sni-tile-deets"
-  }, album.description))) // </Link>
-  //   </div>
-  // </div>
-  ;
+  }, album.description)));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DailyItem); // <div className="di-item-outer">
 //   <div className="di-item-inner">
 // <Link to={`/artists/${album.artistId}/albums/${album.id}`}>
+// </Link>
 
-{
-  /* <div className="di-item-box" onClick={() => handleClick()}> */
-}
+{}
 
 /***/ }),
 
