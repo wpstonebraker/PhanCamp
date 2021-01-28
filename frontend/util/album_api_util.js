@@ -20,6 +20,6 @@ export const postAlbum = (album) => {
   return $.ajax({
     url: "/api/albums",
     method: "POST",
-    data: album,
+    data: { album },
   });
 };

@@ -4,17 +4,7 @@ class AlbumCreateForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      title: "",
-      artist_name: "",
-      year: "",
-      price: "",
-      description: "",
-      credit: "",
-      genres: "",
-      photoFile: null,
-      photoUrl: null,
-    };
+    this.state = this.props.state;
 
     this.handlePhoto = this.handlePhoto.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,9 +31,11 @@ class AlbumCreateForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.props.createAlbum(this.state);
   }
 
   render() {
+    debugger;
     const {
       title,
       artist_name,
@@ -69,13 +61,13 @@ class AlbumCreateForm extends React.Component {
                 <div className="top-spacer-left"></div>
                 <div className="caf-album-preview-container">
                   <div className="caf-album-preview-box">
-                    <div className="caf-preview-img-box"></div>
+                    <div className="caf-preview-img-box">{photoPreview}</div>
                     <div className="caf-preview-details">
-                      <p>album name</p>
+                      <p>{title}</p>
                       <li>
-                        by <span className="bold">artist name</span>
+                        by <span className="bold" value={artist_name}></span>
                       </li>
-                      <li className="grey-label">price</li>
+                      <li className="grey-label">{price}</li>
                     </div>
                   </div>
                 </div>
@@ -139,7 +131,14 @@ class AlbumCreateForm extends React.Component {
                   </span>
                 </div>
                 <div className="caf-upload-box">
-                  <div className="caf-upload"></div>
+                  <div className="caf-upload">
+                    {uploadPreview}
+                    <input
+                      type="file"
+                      className="caf-add-photo-button"
+                      onChange={this.handlePhoto.bind(this)}
+                    />
+                  </div>
                 </div>
                 <div className="caf-artist-name-box flex-col caf-input">
                   <label htmlFor="caf-artist-name">artist:</label>
