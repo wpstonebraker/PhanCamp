@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const SellingNowItem = ({ album, seconds }) => {
   return (
     <Link to={`/artists/${album.artistId}/albums/${album.id}`}>
+      {/* // <Link to="/albums"> */}
       <div className="sni-tile-box">
         <div className="sni-tile">
           <img src={album.photoUrl} alt="" className="sni-tile-photo" />

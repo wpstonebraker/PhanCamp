@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link, withRouter } from "react-router-dom";
 import { logout } from "../../actions/session_actions";
 
 const DropdownContent = (props) => {
@@ -7,6 +8,13 @@ const DropdownContent = (props) => {
     <div className="dropdown-content">
       <ul className="dropdown-content-list">
         <li>{props.currentUser.username}</li>
+        {/* <Link to={`/album/create`}> */}
+        {/* <li> */}
+        <li onClick={() => props.history.push(`/albums/create`)}>
+          + add album
+        </li>
+        {/* </li> */}
+        {/* </Link> */}
         <hr className="dropdown-content-list-divider" />
         <li onClick={props.logout}>log out</li>
       </ul>
@@ -20,4 +28,6 @@ const mDTP = (dispatch) => {
   };
 };
 
-export default connect(null, mDTP)(DropdownContent);
+export default connect(null, mDTP)(withRouter(DropdownContent));
+
+// export default DropdownContent;

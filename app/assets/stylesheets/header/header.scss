@@ -4,6 +4,7 @@
 }
 
 .main-header-inner {
+  // width: 1200px;
   width: 65%;
   margin: auto;
 }
@@ -63,12 +64,15 @@
 }
 
 .lin-outer {
-  height: 53px;
+  height: 55px;
   width: 100%;
+  border-bottom: 1px solid lightgrey;
 }
 
 .lin-inner {
-  width: 70%;
+  min-width: 1240px;
+  max-width: 1400px;
+  // width: 70%;
   margin: auto;
 }
 

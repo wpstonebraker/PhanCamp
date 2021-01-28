@@ -9,6 +9,7 @@ import FeatureIndexContainer from "./feature/feature_index_container";
 import ArtistShowContainer from "./artist/artist_show_container";
 import AlbumShowContainer from "./album/album_show_container";
 import Splash from "./splash/splash";
+import AlbumCreateFormContainer from "./album/album_create_form_container";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <BannerBarContainer />
       </Switch>
 
+      <Route path="/albums/create" component={AlbumCreateFormContainer} />
       <Route path="/artists/:id" component={ArtistShowContainer} />
       {/* <Route
         exact
