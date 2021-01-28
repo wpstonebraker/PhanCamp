@@ -20,18 +20,27 @@ class AlbumCreateForm extends React.Component {
     const reader = new FileReader();
     const file = e.currentTarget.files[0];
     reader.onloadend = () =>
-      this.setState({ imageUrl: reader.result, imageFile: file });
+      this.setState({ photoUrl: reader.result, photoFile: file });
 
     if (file) {
       reader.readAsDataURL(file);
     } else {
-      this.setState({ imageUrl: "", imageFile: null });
+      this.setState({ photoUrl: "", imageFile: null });
     }
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.createAlbum(this.state);
+    const formData = new FormData();
+    formData.append("album[title]", this.state.title);
+    formData.append("album[artist_name]", this.state.artist_name);
+    formData.append("album[year]", this.state.year);
+    formData.append("album[price]", this.state.price);
+    formData.append("album[description]", this.state.description);
+    formData.append("album[credits]", this.state.credits);
+    // formData.append("album[genres]", this.state.genres);
+    formData.append("album[photo]", this.state.photoFile);
+    this.props.createAlbum(formData);
   }
 
   render() {

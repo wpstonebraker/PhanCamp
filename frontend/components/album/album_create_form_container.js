@@ -8,10 +8,10 @@ const mSTP = (state, ownProps) => {
     state: {
       title: "",
       artist_name: state.entities.users[state.session.id].artistName,
-      year: "2021",
+      year: 2021,
       price: "",
       description: "",
-      credit: "",
+      credits: "",
       genres: "",
       photoFile: null,
       photoUrl: null,

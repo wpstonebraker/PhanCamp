@@ -14,9 +14,12 @@ class Api::AlbumsController < ApplicationController
     end
 
     def create
-        @album = Album.new(album_params)
-        @artist = @album.artist
-
+        newParams = album_params.clone
+        @artist = User.where(artist_name: params[:album][:artist_name])
+        newParams[:artist_id] = @artist.ids[0]
+        newParams.delete(:artist_name)
+        @album = Album.new(newParams)
+        debugger
         if @album.save
             render :show
         else
@@ -27,7 +30,7 @@ class Api::AlbumsController < ApplicationController
     private
 
     def album_params
-        params.require(:album).permit(:title, :artist_id, :year, :price, :description, :credits)
+        params.require(:album).permit(:title, :artist_name, :year, :price, :description, :credits, :genres, :photo)
     end
 
 end

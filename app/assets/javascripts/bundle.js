@@ -332,8 +332,8 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
 
       reader.onloadend = function () {
         return _this3.setState({
-          imageUrl: reader.result,
-          imageFile: file
+          photoUrl: reader.result,
+          photoFile: file
         });
       };
 
@@ -341,7 +341,7 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         reader.readAsDataURL(file);
       } else {
         this.setState({
-          imageUrl: "",
+          photoUrl: "",
           imageFile: null
         });
       }
@@ -350,7 +350,16 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.createAlbum(this.state);
+      var formData = new FormData();
+      formData.append("album[title]", this.state.title);
+      formData.append("album[artist_name]", this.state.artist_name);
+      formData.append("album[year]", this.state.year);
+      formData.append("album[price]", this.state.price);
+      formData.append("album[description]", this.state.description);
+      formData.append("album[credits]", this.state.credits); // formData.append("album[genres]", this.state.genres);
+
+      formData.append("album[photo]", this.state.photoFile);
+      this.props.createAlbum(formData);
     }
   }, {
     key: "render",
@@ -528,10 +537,10 @@ var mSTP = function mSTP(state, ownProps) {
     state: {
       title: "",
       artist_name: state.entities.users[state.session.id].artistName,
-      year: "2021",
+      year: 2021,
       price: "",
       description: "",
-      credit: "",
+      credits: "",
       genres: "",
       photoFile: null,
       photoUrl: null
@@ -3208,9 +3217,9 @@ var postAlbum = function postAlbum(album) {
   return $.ajax({
     url: "/api/albums",
     method: "POST",
-    data: {
-      album: album
-    }
+    data: album,
+    contentType: false,
+    processData: false
   });
 };
 
