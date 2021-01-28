@@ -42,7 +42,10 @@ const BannerBar = (props) => {
                 <img src={window.logo} alt="" className="main-header-logo" />
               </Link>
               <div className="search-box">
-                <input className="search-placeholder"></input>
+                <input
+                  className="search-placeholder"
+                  placeholder="Search and discover music"
+                ></input>
                 <img src={window.searchMag} className="search-icon" />
               </div>
             </div>

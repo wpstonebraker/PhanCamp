@@ -272,6 +272,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -307,19 +309,79 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       title: "",
-      artist: "",
+      artist_name: "",
       year: "",
       price: "",
       description: "",
       credit: "",
+      genres: "",
+      photoFile: null,
       photoUrl: null
     };
+    _this.handlePhoto = _this.handlePhoto.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(AlbumCreateForm, [{
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (e) {
+        _this2.setState(_defineProperty({}, field, e.target.value));
+      };
+    }
+  }, {
+    key: "handlePhoto",
+    value: function handlePhoto(e) {
+      var _this3 = this;
+
+      var reader = new FileReader();
+      var file = e.currentTarget.files[0];
+
+      reader.onloadend = function () {
+        return _this3.setState({
+          imageUrl: reader.result,
+          imageFile: file
+        });
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        this.setState({
+          imageUrl: "",
+          imageFile: null
+        });
+      }
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this$props = this.props,
+          title = _this$props.title,
+          artist_name = _this$props.artist_name,
+          year = _this$props.year,
+          price = _this$props.price,
+          description = _this$props.description,
+          credits = _this$props.credits,
+          genres = _this$props.genres;
+      var photoPreview = this.state.photoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        height: "72px",
+        width: "72px",
+        src: this.state.photoUrl
+      }) : null;
+      var uploadPreview = this.state.photoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        height: "212px",
+        width: "212px",
+        src: this.state.photoUrl
+      }) : null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -327,7 +389,8 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-        className: "caf"
+        className: "caf",
+        onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-left"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -355,7 +418,9 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
         className: "caf-title",
-        placeholder: "album name"
+        placeholder: "album name",
+        value: title,
+        onChange: this.update("title")
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-year-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
@@ -363,7 +428,9 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       }, "release year:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
         className: "caf-year",
-        placeholder: "optional"
+        placeholder: "optional",
+        value: year,
+        onChange: this.update("year")
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         className: "grey-label"
       }, "yyyy"), "\xA0 \xA0 \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
@@ -374,7 +441,9 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         htmlFor: "caf-price"
       }, "pricing:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
-        className: "caf-price"
+        className: "caf-price",
+        value: price,
+        onChange: this.update("price")
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
         className: "grey-label"
       }, "enter zero or more"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
@@ -396,21 +465,27 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       }, "artist:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
         className: "caf-artist-name",
-        placeholder: "leave blank to use artist name"
+        placeholder: "leave blank to use artist name",
+        value: artist_name,
+        onChange: this.update("artist_name")
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-description-box flex-col caf-input"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "caf-description"
       }, "about this album:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
         className: "caf-description",
-        placeholder: "(optional)"
+        placeholder: "(optional)",
+        value: description,
+        onChange: this.update("description")
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-credits-box flex-col caf-input"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "caf-credits"
       }, "album credits:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
         className: "caf-credits",
-        placeholder: "(optional)"
+        placeholder: "(optional)",
+        value: credits,
+        onChange: this.update("credits")
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-genres-box flex-col caf-input"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
@@ -418,7 +493,9 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       }, "tags:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
         className: "caf-genres",
-        placeholder: "comma-separated list of tags"
+        placeholder: "comma-separated list of tags",
+        value: genres,
+        onChange: this.update("genres")
       })))))));
     }
   }]);
@@ -1111,7 +1188,8 @@ var BannerBar = function BannerBar(props) {
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "search-box"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-      className: "search-placeholder"
+      className: "search-placeholder",
+      placeholder: "Search and discover music"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
       src: window.searchMag,
       className: "search-icon"
