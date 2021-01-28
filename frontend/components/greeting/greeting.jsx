@@ -9,7 +9,7 @@ const Greeting = ({ currentUser, logout }) => {
   //   }
 
   //   render() {
-  //     debugger;
+  //     ;
   //     const loggedIn = (
   //       <div className="greeting-div">
   //         <button className="greeting-logout" onClick={() => this.props.logout}>

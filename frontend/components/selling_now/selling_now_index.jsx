@@ -15,12 +15,12 @@ class SellingNowIndex extends React.Component {
 
     // const items = [];
     // while (items.length < 7) {
-    //   debugger;
+    //   ;
     //   items.push(
     //     this.props.albums[~~(Math.random() * this.props.albums.length)]
     //   );
     // }
-    // debugger;
+    // ;
 
     // const newItems = items.map((album, i) => {
     //   return <SellingNowItem album={album} key={album.id + i} seconds={i} />;

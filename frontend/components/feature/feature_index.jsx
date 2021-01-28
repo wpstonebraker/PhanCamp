@@ -16,7 +16,8 @@ class FeatureIndex extends React.Component {
 
   render() {
     const { phish, theGD, goose, ween } = this.props;
-
+    debugger;
+    if (this.props.phish === undefined) return null;
     return (
       <div className="fi-container">
         <div className="fi-box">

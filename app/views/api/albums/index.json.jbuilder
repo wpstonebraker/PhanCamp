@@ -52,10 +52,10 @@ end
 
 # json.genres do
 #     @artist.genre_ids.each do |genre_id|
-#         debugger
+#         
 #         json.set! genre_id do
 #             @genre_joins.each do |genre_join|
-#                 debugger
+#                 
 #                 json.extract! genre_join, :genre_id
 #             end
 #             # json.extract! @genre_joins., :genre_id

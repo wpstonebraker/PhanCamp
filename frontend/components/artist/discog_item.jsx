@@ -3,7 +3,6 @@ import { Redirect } from "react-router-dom";
 
 // const DiscogItem = ({ history, album, getAlbum, artistId }) => {
 const DiscogItem = ({ album, history, artistId }) => {
-  debugger;
   const handleClick = () => {
     getAlbum(album.id);
     history.push(`/artists/${artistId}/albums/${album.id}`);

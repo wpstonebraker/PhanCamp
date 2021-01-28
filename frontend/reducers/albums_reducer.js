@@ -5,7 +5,7 @@ import {
 } from "../actions/album_actions";
 
 const albumsReducer = (state = {}, action) => {
-  // debugger;
+  // ;
   Object.freeze(state);
   let newState;
   switch (action.type) {
@@ -13,11 +13,11 @@ const albumsReducer = (state = {}, action) => {
     //   return Object.assign({}, state, action.albums.albums);
     //   break;
     case RECEIVE_ALBUM:
-      // newState = Object.assign({}, state, {
-      //   [action.album.id]: action.album,
-      // });
-      // return newState;
-      return action.album.albums;
+      newState = Object.assign({}, state, {
+        [action.album.id]: action.album,
+      });
+      return newState;
+    // return action.album.albums;
     case RECEIVE_ARTIST_ALBUMS:
       // return Object.assign({}, action.albums.albums, state);
       return action.albums.albums;

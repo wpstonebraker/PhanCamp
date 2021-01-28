@@ -14,10 +14,7 @@ class AlbumShow extends React.Component {
   }
 
   render() {
-    debugger;
     if (!this.props.album) return null;
-    debugger;
-
     const { album, tracks, artist } = this.props;
 
     const trackItems = Object.values(tracks).map((track) => {

@@ -11,6 +11,9 @@ class Api::AlbumsController < ApplicationController
         @album = Album.find(params[:id])
         @artist = @album.artist
         @tracks = Track.where(album_id: @album.id)
+
+        #@albums = Album.where(artist_id: @artist.id)
+        #albumsArr = @albums.pluck(:id)
     end
 
     def create
@@ -19,7 +22,6 @@ class Api::AlbumsController < ApplicationController
         newParams[:artist_id] = @artist.ids[0]
         newParams.delete(:artist_name)
         @album = Album.new(newParams)
-        debugger
         if @album.save
             render :show
         else

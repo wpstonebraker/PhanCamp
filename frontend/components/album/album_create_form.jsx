@@ -44,7 +44,6 @@ class AlbumCreateForm extends React.Component {
   }
 
   render() {
-    debugger;
     const {
       title,
       artist_name,

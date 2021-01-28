@@ -3,7 +3,7 @@ import GreetingContainer from "./greeting/greeting_container";
 import SignupFormContainer from "./signup/signup_form_container";
 import LoginFormContainer from "./login/login_form_container";
 import { Route, Switch } from "react-router-dom";
-import { AuthRoute } from "../util/route_util";
+import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import BannerBarContainer from "./banner_bar/banner_bar_container";
 import FeatureIndexContainer from "./feature/feature_index_container";
 import ArtistShowContainer from "./artist/artist_show_container";
@@ -19,16 +19,16 @@ const App = () => {
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <BannerBarContainer />
       </Switch>
+      <Switch>
+        <ProtectedRoute
+          exact
+          path="/albums/create"
+          component={AlbumCreateFormContainer}
+        />
+        <Route path="/artists/:id" component={ArtistShowContainer} />
 
-      <Route path="/albums/create" component={AlbumCreateFormContainer} />
-      <Route path="/artists/:id" component={ArtistShowContainer} />
-      {/* <Route
-        exact
-        path="/artists/:id/albums/:id"
-        component={AlbumShowContainer}
-      /> */}
-      {/* <Route exact path="/albums/:id" component={AlbumShowContainer} /> */}
-      <Route exact path="/" component={Splash} />
+        <Route exact path="/" component={Splash} />
+      </Switch>
     </div>
   );
 };

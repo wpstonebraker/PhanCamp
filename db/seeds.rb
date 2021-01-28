@@ -576,7 +576,7 @@ Z1 = Album.create!(
     title: "Dr. Zack's Picks Vol. 1",
     artist_id: gd.id,
     year: 2020,
-    description: "First in a Series.",
+    description: "Songs from 2/18/71, 3/29/90, and 2/26/77",
     credits: "Guitar: Jer"
 )
 
@@ -596,7 +596,7 @@ Z2 = Album.create!(
     title: "Dr. Zack's Picks Vol. 2",
     artist_id: gd.id,
     year: 2020,
-    description: "Second in a Series.",
+    description: "Songs from 6/24/74, 5/2/70, 10/31/70, and 3/22/90",
     credits: "Guitar: Jer"
 )
 
@@ -616,7 +616,7 @@ Z3 = Album.create!(
     title: "Dr. Zack's Picks Vol. 3",
     artist_id: gd.id,
     year: 2020,
-    description: "Third in a Series.",
+    description: "Songs from 6/22/73, 12/6/73, 6/30/85, and 5/22/77.",
     credits: "Guitar: Jer"
 )
 
@@ -636,7 +636,7 @@ Z4 = Album.create!(
     title: "Dr. Zack's Picks Vol. 4",
     artist_id: gd.id,
     year: 2020,
-    description: "Fourth in a Series.",
+    description: "Songs from 8/27/72, 2/27/69, 11/11/73, 9/3/77, and 2/3/78.",
     credits: "Guitar: Jer"
 )
 
@@ -670,7 +670,7 @@ goose_20201019 = Album.create!(
     title: '2020.10.19 - Frederick, MD',
     artist_id: goose.id,
     year: 2020,
-    description: "IW@TS",
+    description: "Drive in show in Frederick, MD. Final show of their Drive-in tour along the East Coast.",
     credits: "Rick on the Guitar"
 )
 
@@ -718,7 +718,7 @@ ween_20170604 = Album.create!(
     title: '2017.06.04 - Baltimore, MD',
     artist_id: ween.id,
     year: 2017,
-    description: "IW@TS",
+    description: "From Baltimore, MD at Pier Six Pavilion. The show saw the band bust out a David Bowie cover they last played live on New Year’s Eve 2011.",
     credits: "Deaner"
 )
 

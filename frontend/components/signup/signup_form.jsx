@@ -33,7 +33,7 @@ class SignupForm extends React.Component {
   }
 
   // showErrors() {
-  //   debugger;
+  //   ;
   //   return (
   //     <ul>
   //       {this.props.errors.map((error, i) => (
@@ -46,7 +46,6 @@ class SignupForm extends React.Component {
   // }
 
   render() {
-    debugger;
     const { artist_name, username, password, email } = this.state;
     const errors = {};
     (username) => "";

@@ -13,6 +13,7 @@ const DropdownContent = (props) => {
         <li onClick={() => props.history.push(`/albums/create`)}>
           + add album
         </li>
+        <li>edit profile</li>
         {/* </li> */}
         {/* </Link> */}
         <hr className="dropdown-content-list-divider" />

@@ -364,7 +364,6 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       var _this$props = this.props,
           title = _this$props.title,
           artist_name = _this$props.artist_name,
@@ -622,9 +621,7 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       if (!this.props.album) return null;
-      debugger;
       var _this$props = this.props,
           album = _this$props.album,
           tracks = _this$props.tracks,
@@ -690,7 +687,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     album: state.entities.albums[ownProps.albumId],
     artist: state.entities.artists[ownProps.artistId],
@@ -780,7 +776,8 @@ var App = function App() {
     exact: true,
     path: "/login",
     component: _login_login_form_container__WEBPACK_IMPORTED_MODULE_3__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_banner_bar_banner_bar_container__WEBPACK_IMPORTED_MODULE_5__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_banner_bar_banner_bar_container__WEBPACK_IMPORTED_MODULE_5__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__.ProtectedRoute, {
+    exact: true,
     path: "/albums/create",
     component: _album_album_create_form_container__WEBPACK_IMPORTED_MODULE_10__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
@@ -790,7 +787,7 @@ var App = function App() {
     exact: true,
     path: "/",
     component: _splash_splash__WEBPACK_IMPORTED_MODULE_9__.default
-  }));
+  })));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
@@ -929,7 +926,6 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
       var albums = this.props.albums;
       var artist = this.props.artist; // if (!artist) return null;
 
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "show-page-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1082,7 +1078,6 @@ var DiscogIndex = function DiscogIndex(_ref) {
   var albums = _ref.albums,
       history = _ref.history,
       artistId = _ref.artistId;
-  debugger;
   return albums.map(function (album) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_discog_item__WEBPACK_IMPORTED_MODULE_1__.default, {
       album: album,
@@ -1115,7 +1110,6 @@ var DiscogItem = function DiscogItem(_ref) {
   var album = _ref.album,
       history = _ref.history,
       artistId = _ref.artistId;
-  debugger;
 
   var handleClick = function handleClick() {
     getAlbum(album.id);
@@ -1395,7 +1389,7 @@ var DropdownContent = function DropdownContent(props) {
     onClick: function onClick() {
       return props.history.push("/albums/create");
     }
-  }, "+ add album"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
+  }, "+ add album"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "edit profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
     className: "dropdown-content-list-divider"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     onClick: props.logout
@@ -1488,6 +1482,7 @@ var DailyIndex = /*#__PURE__*/function (_React$Component) {
           history: _this.props.history
         });
       });
+      var topRow = items.splice(0, 2);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "di-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
@@ -1496,9 +1491,13 @@ var DailyIndex = /*#__PURE__*/function (_React$Component) {
         className: "di-inner"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "di-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "di-box-top-row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         id: "di-main-item"
-      }, main), items)));
+      }, main), topRow), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "di-box-bottom-row"
+      }, items))));
     }
   }]);
 
@@ -1622,11 +1621,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 var DailyMainItem = function DailyMainItem(_ref) {
-  var album = _ref.album;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  var album = _ref.album,
+      history = _ref.history;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: "/artists/".concat(album.artistId, "/albums/").concat(album.id)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "di-main-box"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "di-main-tile"
@@ -1641,7 +1645,7 @@ var DailyMainItem = function DailyMainItem(_ref) {
     className: "di-main-artist"
   }, "by ", album.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "di-main-deets"
-  }, album.description))));
+  }, album.description)))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DailyMainItem);
@@ -1716,6 +1720,8 @@ var FeatureIndex = /*#__PURE__*/function (_React$Component) {
           theGD = _this$props.theGD,
           goose = _this$props.goose,
           ween = _this$props.ween;
+      debugger;
+      if (this.props.phish === undefined) return null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "fi-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1882,7 +1888,7 @@ var Greeting = function Greeting(_ref) {
   //     super(props);
   //   }
   //   render() {
-  //     debugger;
+  //     ;
   //     const loggedIn = (
   //       <div className="greeting-div">
   //         <button className="greeting-logout" onClick={() => this.props.logout}>
@@ -2308,12 +2314,12 @@ var SellingNowIndex = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       if (this.props.albums.length === 0) return null; // const items = [];
       // while (items.length < 7) {
-      //   debugger;
+      //   ;
       //   items.push(
       //     this.props.albums[~~(Math.random() * this.props.albums.length)]
       //   );
       // }
-      // debugger;
+      // ;
       // const newItems = items.map((album, i) => {
       //   return <SellingNowItem album={album} key={album.id + i} seconds={i} />;
       // });
@@ -2525,7 +2531,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       var errors = [];
       this.props.clearErrors(errors);
     } // showErrors() {
-    //   debugger;
+    //   ;
     //   return (
     //     <ul>
     //       {this.props.errors.map((error, i) => (
@@ -2540,7 +2546,6 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       var _this$state = this.state,
           artist_name = _this$state.artist_name,
           username = _this$state.username,
@@ -2817,12 +2822,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/album_actions */ "./frontend/actions/album_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 var albumsReducer = function albumsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  // debugger;
+  // ;
   Object.freeze(state);
   var newState;
 
@@ -2831,11 +2838,9 @@ var albumsReducer = function albumsReducer() {
     //   return Object.assign({}, state, action.albums.albums);
     //   break;
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALBUM:
-      // newState = Object.assign({}, state, {
-      //   [action.album.id]: action.album,
-      // });
-      // return newState;
-      return action.album.albums;
+      newState = Object.assign({}, state, _defineProperty({}, action.album.id, action.album));
+      return newState;
+    // return action.album.albums;
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ARTIST_ALBUMS:
       // return Object.assign({}, action.albums.albums, state);
@@ -3293,7 +3298,7 @@ var Protected = function Protected(_ref2) {
     path: path,
     exact: exact,
     render: function render(props) {
-      loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Component, props) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Redirect, {
+      return loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Component, props) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Redirect, {
         to: "/login"
       });
     }
