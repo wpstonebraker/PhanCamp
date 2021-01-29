@@ -8,6 +8,11 @@ class AlbumCreateForm extends React.Component {
 
     this.handlePhoto = this.handlePhoto.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.redirectHome = this.redirectHome.bind(this);
+  }
+
+  redirectHome() {
+    this.props.history.push("/");
   }
 
   update(field) {
@@ -29,6 +34,10 @@ class AlbumCreateForm extends React.Component {
     }
   }
 
+  uploadImage() {
+    document.getElementById("caf-add-photo-button").click();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
@@ -40,7 +49,8 @@ class AlbumCreateForm extends React.Component {
     formData.append("album[credits]", this.state.credits);
     // formData.append("album[genres]", this.state.genres);
     formData.append("album[photo]", this.state.photoFile);
-    this.props.createAlbum(formData);
+    this.props.createAlbum(formData).then(this.redirectHome());
+    // this.redirectHome();
   }
 
   render() {
@@ -71,11 +81,12 @@ class AlbumCreateForm extends React.Component {
                   <div className="caf-album-preview-box">
                     <div className="caf-preview-img-box">{photoPreview}</div>
                     <div className="caf-preview-details">
-                      <p>{title}</p>
+                      <p>{this.state.title}&nbsp;</p>
                       <li>
-                        by <span className="bold" value={artist_name}></span>
+                        by{" "}
+                        <span className="bold">{this.state.artist_name}</span>
                       </li>
-                      <li className="grey-label">{price}</li>
+                      <li className="grey-label">${this.state.price}</li>
                     </div>
                   </div>
                 </div>
@@ -135,15 +146,19 @@ class AlbumCreateForm extends React.Component {
                     </span>
                   </div>
                   <span className="caf-payments-email">
-                    Payments will go to <b>EMAIL</b> via PayPal
+                    Payments will go to{" "}
+                    <b className="bold">{this.props.currentUser.email}</b> via
+                    PayPal
                   </span>
                 </div>
                 <div className="caf-upload-box">
-                  <div className="caf-upload">
+                  <div className="caf-upload" onClick={this.uploadImage}>
                     {uploadPreview}
                     <input
+                      id="caf-add-photo-button"
                       type="file"
                       className="caf-add-photo-button"
+                      hidden
                       onChange={this.handlePhoto.bind(this)}
                     />
                   </div>

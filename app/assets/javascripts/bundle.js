@@ -310,10 +310,16 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
     _this.state = _this.props.state;
     _this.handlePhoto = _this.handlePhoto.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.redirectHome = _this.redirectHome.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(AlbumCreateForm, [{
+    key: "redirectHome",
+    value: function redirectHome() {
+      this.props.history.push("/");
+    }
+  }, {
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -347,6 +353,11 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "uploadImage",
+    value: function uploadImage() {
+      document.getElementById("caf-add-photo-button").click();
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
@@ -359,7 +370,7 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       formData.append("album[credits]", this.state.credits); // formData.append("album[genres]", this.state.genres);
 
       formData.append("album[photo]", this.state.photoFile);
-      this.props.createAlbum(formData);
+      this.props.createAlbum(formData).then(this.redirectHome()); // this.redirectHome();
     }
   }, {
     key: "render",
@@ -403,12 +414,11 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         className: "caf-preview-img-box"
       }, photoPreview), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-preview-details"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-        className: "bold",
-        value: artist_name
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.state.title, "\xA0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "by", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        className: "bold"
+      }, this.state.artist_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
         className: "grey-label"
-      }, price)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, "$", this.state.price)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-add-track-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "tracks placeholder")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Create Album"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-right"
@@ -455,13 +465,18 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         className: "caf-price-check-label"
       }, "let fans pay more if they want")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         className: "caf-payments-email"
-      }, "Payments will go to ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "EMAIL"), " via PayPal")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, "Payments will go to", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", {
+        className: "bold"
+      }, this.props.currentUser.email), " via PayPal")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-upload-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "caf-upload"
+        className: "caf-upload",
+        onClick: this.uploadImage
       }, uploadPreview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        id: "caf-add-photo-button",
         type: "file",
         className: "caf-add-photo-button",
+        hidden: true,
         onChange: this.handlePhoto.bind(this)
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-artist-name-box flex-col caf-input"
@@ -1389,7 +1404,7 @@ var DropdownContent = function DropdownContent(props) {
     onClick: function onClick() {
       return props.history.push("/albums/create");
     }
-  }, "+ add album"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "edit profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
+  }, "+ add album"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "view albums"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "edit profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
     className: "dropdown-content-list-divider"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     onClick: props.logout
