@@ -44,7 +44,7 @@ u1 = User.create!(
 )
 
 u1.banner.attach(io: File.open("app/assets/images/thumb.png"), filename: "guestthumb.png")
-u1.thumb.attach(io: File.open("app/assets/images/hiro.jpeg"), filename: "hiro.jpeg")
+u1.thumbnail.attach(io: File.open("app/assets/images/hiro.jpeg"), filename: "hiro.jpeg")
 
 
 phish = User.create!(
