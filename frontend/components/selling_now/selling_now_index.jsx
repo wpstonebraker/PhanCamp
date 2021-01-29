@@ -6,12 +6,12 @@ class SellingNowIndex extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.getSellingAlbums();
-  }
+  // componentDidMount() {
+  //   this.props.getAllAlbums();
+  // }
 
   render() {
-    if (this.props.albums.length === 0) return null;
+    if (!this.props.selling) return null;
 
     // const items = [];
     // while (items.length < 7) {
@@ -26,8 +26,14 @@ class SellingNowIndex extends React.Component {
     //   return <SellingNowItem album={album} key={album.id + i} seconds={i} />;
     // });
 
-    const items = this.props.albums.map((album, i) => {
-      return <SellingNowItem album={album} key={album.id} seconds={i} />;
+    const items = this.props.selling.map((key, i) => {
+      return (
+        <SellingNowItem
+          album={this.props.albums[key]}
+          // key={this.props.albums[key].id}
+          seconds={i}
+        />
+      );
     });
     // const newItems = [];
     // while (newItems.length < 8) {

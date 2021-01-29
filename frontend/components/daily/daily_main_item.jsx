@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const DailyMainItem = ({ album, history }) => {
+  debugger;
   return (
     <Link to={`/artists/${album.artistId}/albums/${album.id}`}>
       <div className="di-main-box">

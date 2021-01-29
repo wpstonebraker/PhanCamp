@@ -3,6 +3,14 @@ import * as APIUtil from "../util/album_api_util";
 export const RECEIVE_ALBUM = "RECEIVE_ALBUM";
 export const RECEIVE_ARTIST_ALBUMS = "RECEIVE_ARTIST_ALBUMS";
 export const RECEIVE_SELLING_ALBUMS = "RECEIVE_SELLING_ALBUMS";
+export const RECEIVE_ALL_ALBUMS = "GET_ALL_ALBUMS";
+
+export const receiveAllAlbums = (payload) => {
+  return {
+    type: RECEIVE_ALL_ALBUMS,
+    payload,
+  };
+};
 
 export const receiveAlbum = (album) => {
   return {
@@ -22,6 +30,14 @@ export const receiveSellingAlbums = (payload) => {
   return {
     type: RECEIVE_SELLING_ALBUMS,
     payload,
+  };
+};
+
+export const getAllAlbums = () => {
+  return (dispatch) => {
+    return APIUtil.getAllAlbums().then((albums) => {
+      return dispatch(receiveAllAlbums(albums));
+    });
   };
 };
 

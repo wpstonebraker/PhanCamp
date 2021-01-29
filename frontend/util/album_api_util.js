@@ -4,6 +4,14 @@ export const getAlbum = (albumId) => {
   });
 };
 
+// hit feature controller for get all albums, along with featured artists, and util nested arrays
+// refactor at some point.
+export const getAllAlbums = () => {
+  return $.ajax({
+    url: `/api/features`,
+  });
+};
+
 export const getArtistAlbums = (artistId) => {
   return $.ajax({
     url: `/api/artists/${artistId}/albums`,

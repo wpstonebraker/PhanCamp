@@ -7,17 +7,21 @@ class DailyIndex extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.getSellingAlbums();
-  }
+  // componentDidMount() {
+  //   this.props.getSellingAlbums();
+  // }
 
   render() {
-    if (this.props.albums.length === 0) return null;
-    const mainItem = this.props.albums.pop();
+    if (!this.props.daily) return null;
+    const mainItem = this.props.albums[this.props.daily.shift()];
     const main = <DailyMainItem album={mainItem} key={mainItem.id} />;
-    const items = this.props.albums.map((album) => {
+    const items = this.props.daily.map((key, i) => {
       return (
-        <DailyItem album={album} key={album.id} history={this.props.history} />
+        <DailyItem
+          album={this.props.albums[key]}
+          // key={album.id}
+          history={this.props.history}
+        />
       );
     });
     const topRow = items.splice(0, 2);

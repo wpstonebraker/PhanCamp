@@ -13,14 +13,23 @@ class ArtistShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getArtistAlbums(this.props.artistId);
+    debugger;
+    this.props.getArtistAlbums(this.props.match.params.id);
   }
 
   render() {
-    const albums = this.props.albums;
+    if (this.props.artistId !== this.props.match.params.id) return null;
+    const artistId = this.props.artistId;
+    const albums = [];
+    this.props.albums.forEach((album) => {
+      if (album.artistId == artistId) {
+        albums.push(album);
+      }
+    });
+    debugger;
     const artist = this.props.artist;
 
-    // if (!artist) return null;
+    if (!artist) return null;
     return (
       <div className="show-page-outer">
         <div className="show-page-inner">

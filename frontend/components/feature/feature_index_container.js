@@ -1,20 +1,32 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getFeatureArtists } from "../../actions/artist_actions";
+import { getAllAlbums } from "../../actions/album_actions";
 import FeatureIndex from "./feature_index";
 
-const mSTP = ({ entities: { artists } }, ownProps) => {
-  return {
-    phish: artists.phish,
-    theGD: artists["the Grateful Dead"],
-    ween: artists.ween,
-    goose: artists.goose,
-  };
+const mSTP = (
+  {
+    entities: {
+      util: { features },
+      artists,
+    },
+  },
+  ownProps
+) => {
+  if (features) {
+    return {
+      phish: artists[features[0]],
+      theGD: artists[features[1]],
+      ween: artists[features[2]],
+      goose: artists[features[3]],
+    };
+  } else {
+    return {};
+  }
 };
 
 const mDTP = (dispatch) => {
   return {
-    getFeatures: () => dispatch(getFeatureArtists()),
+    getAllAlbums: () => dispatch(getAllAlbums()),
   };
 };
 

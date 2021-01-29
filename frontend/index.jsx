@@ -6,6 +6,7 @@ import { login } from "./actions/session_actions";
 import Root from "./components/root";
 import {
   getAlbum,
+  getAllAlbums,
   getArtistAlbums,
   getSellingAlbums,
 } from "./actions/album_actions";
@@ -41,6 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
   window.getAlbum = getAlbum;
   window.getArtistAlbums = getArtistAlbums;
   window.getFeatureArtists = getFeatureArtists;
+
+  window.getAllAlbums = getAllAlbums;
 
   // testing end
 

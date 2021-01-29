@@ -1,16 +1,17 @@
 import { connect } from "react-redux";
-import { getSellingAlbums } from "../../actions/album_actions";
+import { getAllAlbums } from "../../actions/album_actions";
 import SellingNowIndex from "./selling_now_index";
 
 const mSTP = (state, ownProps) => {
   return {
-    albums: Object.values(state.entities.albums),
+    albums: state.entities.albums,
+    selling: state.entities.util.selling,
   };
 };
 
 const mDTP = (dispatch) => {
   return {
-    getSellingAlbums: () => dispatch(getSellingAlbums()),
+    getAllAlbums: () => dispatch(getAllAlbums()),
   };
 };
 
