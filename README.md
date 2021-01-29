@@ -6,7 +6,7 @@ phancamp, a bampcamp clone, is a music service that lets artists upload their mu
 
 ### A dynamic splash page
 
-![dynamic splash content](https://github.com/wpstonebraker/PhanCamp/blob/main/app/assets/images/readme/selling_now/logo.png "splash content")
+![dynamic splash content](https://github.com/wpstonebraker/PhanCamp/blob/main/app/assets/images/readme/selling_now.png "splash content")
 
 Splash page has featured bands on landing, a dynamic list of "selling now" content that pulls from our database, and a "phancamp daily" section that shows the most recent uploads.
 
@@ -28,7 +28,7 @@ On click, the above album tile sends you to the albums page, where you view the 
 
 ### Album creation
 
-![album create](https://github.com/wpstonebraker/PhanCamp/blob/main/app/assets/images/album_create.png "album create")
+![album create](https://github.com/wpstonebraker/PhanCamp/blob/main/app/assets/images/readme/album_create.png "album create")
 
 A logged in artist can create an album, and upload an image for their album. Album creation page dynamically renders title, price and album art as it is inputted in a preview area. Upon creation, users are redirected to the splash page where they will eventually see their album under phancamp daily.
 
