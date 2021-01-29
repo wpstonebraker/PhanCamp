@@ -1,4 +1,4 @@
-![Our Logo](https://github.com/wpstonebraker/PhanCamp/blob/main/app/assets/images/logo.png "phancamp logo")
+![Our Logo](https://github.com/wpstonebraker/PhanCamp/blob/main/app/assets/images/readme/logo.png "phancamp logo")
 
 phancamp, a bampcamp clone, is a music service that lets artists upload their music, and allows fans to discover new music, stream music, and download music if they choose.
 
@@ -6,19 +6,19 @@ phancamp, a bampcamp clone, is a music service that lets artists upload their mu
 
 ### A dynamic splash page
 
-![dynamic splash content](https://github.com/wpstonebraker/PhanCamp/blob/main/app/assets/selling_now/logo.png "splash content")
+![dynamic splash content](https://github.com/wpstonebraker/PhanCamp/blob/main/app/assets/images/readme/selling_now/logo.png "splash content")
 
 Splash page has featured bands on landing, a dynamic list of "selling now" content that pulls from our database, and a "phancamp daily" section that shows the most recent uploads.
 
 ### User authentication
 
-![login](https://github.com/wpstonebraker/PhanCamp/blob/main/app/assets/images/login.png "login shot")
+![login](https://github.com/wpstonebraker/PhanCamp/blob/main/app/assets/images/readme/login.png "login shot")
 
 Allows for account creation as an artist, with the ability to sign in and sign out. A link for to login as a pre seeded demo user is available as well.
 
 ### Artist show page
 
-![artist show](https://github.com/wpstonebraker/PhanCamp/blob/main/app/assets/images/artist_show.png "artist show shot")
+![artist show](https://github.com/wpstonebraker/PhanCamp/blob/main/app/assets/images/readme/artist_show.png "artist show shot")
 
 Displays a list of an artist's albums as "tiles" that feature their cover art, as well as the artist's banner photo, thumbnail, and a brief description of the band.
 
