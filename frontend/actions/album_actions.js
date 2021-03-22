@@ -4,6 +4,8 @@ export const RECEIVE_ALBUM = "RECEIVE_ALBUM";
 export const RECEIVE_ARTIST_ALBUMS = "RECEIVE_ARTIST_ALBUMS";
 export const RECEIVE_SELLING_ALBUMS = "RECEIVE_SELLING_ALBUMS";
 export const RECEIVE_ALL_ALBUMS = "GET_ALL_ALBUMS";
+export const RECEIVE_PHISH_ALBUM = "RECEIVE_PHISH_ALBUM";
+export const RECEIVE_ALBUM_ERRORS = "RECEIVE_ALBUM_ERRORS";
 
 export const receiveAllAlbums = (payload) => {
   return {
@@ -26,10 +28,24 @@ export const receiveArtistAlbums = (albums) => {
   };
 };
 
+export const receivePhishAlbum = (payload) => {
+  return {
+    type: RECEIVE_PHISH_ALBUM,
+    payload,
+  };
+};
+
 export const receiveSellingAlbums = (payload) => {
   return {
     type: RECEIVE_SELLING_ALBUMS,
     payload,
+  };
+};
+
+export const receiveAlbumErrors = (errors) => {
+  return {
+    type: RECEIVE_ALBUM_ERRORS,
+    errors,
   };
 };
 
@@ -57,6 +73,15 @@ export const getArtistAlbums = (artistId) => {
   };
 };
 
+export const getPhishAlbum = (date) => {
+  return (dispatch) => {
+    return APIUtil.getPhishAlbum(date).then((payload) => {
+      console.log(payload);
+      return dispatch(receivePhishAlbum(payload));
+    });
+  };
+};
+
 export const getSellingAlbums = () => {
   return (dispatch) => {
     return APIUtil.getSellingAlbums().then((albums) => {
@@ -67,8 +92,14 @@ export const getSellingAlbums = () => {
 
 export const postAlbum = (album) => {
   return (dispatch) => {
-    return APIUtil.postAlbum(album).then((album) => {
-      return dispatch(receiveAlbum(album));
-    });
+    return APIUtil.postAlbum(album).then(
+      (album) => {
+        return dispatch(receiveAlbum(album));
+      },
+      (errors) => {
+        debugger;
+        return dispatch(receiveAlbumErrors(errors));
+      }
+    );
   };
 };

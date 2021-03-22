@@ -4,9 +4,14 @@ class User < ApplicationRecord
     validates :username, :email, uniqueness: true
     validates :password, length: {minimum: 6}, allow_nil: true
     
-    after_initialize :ensure_session_token
+    after_initialize :ensure_session_token #, :set_defaults
 
     attr_reader :password
+
+    # def set_defaults
+    #     self.banner ||= self.banner.attach(io: File.open("app/assets/images/thumb.png"), filename: "guestthumb.png")
+    #     self.thumbnail ||= self.thumbnail.attach(io: File.open("app/assets/images/hiro.jpeg"), filename: "hiro.jpeg")
+    # end
 
     has_many :albums,
         foreign_key: :artist_id
@@ -14,10 +19,6 @@ class User < ApplicationRecord
     has_many :genres, through: :genre_joins
 
     has_many :tracks, through: :albums, source: :tracks
-
-    # has_many :genres,
-    #     through: :genre_joins,
-    #     source: :genreable
 
     has_one_attached :thumbnail
     has_one_attached :banner

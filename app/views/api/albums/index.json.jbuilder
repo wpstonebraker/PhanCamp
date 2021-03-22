@@ -2,6 +2,9 @@ json.albums do
     @albums.each do |album|
         json.set! album.id do
             json.extract! album, :id, :title, :year, :description, :credits, :artist_id
+            if album.show_date
+                json.extract! album, :show_date
+            end
             json.artistName @artist.artist_name
             json.photoUrl url_for(album.photo)
         end

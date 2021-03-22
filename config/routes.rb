@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :albums, only: [:show, :create]
     resources :features, only: [:index]
     resources :selling, only: [:index]
+    resources :tracks, only: [:create]
   end
 
 

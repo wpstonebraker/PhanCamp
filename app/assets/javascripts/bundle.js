@@ -92,13 +92,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_ARTIST_ALBUMS": () => /* binding */ RECEIVE_ARTIST_ALBUMS,
 /* harmony export */   "RECEIVE_SELLING_ALBUMS": () => /* binding */ RECEIVE_SELLING_ALBUMS,
 /* harmony export */   "RECEIVE_ALL_ALBUMS": () => /* binding */ RECEIVE_ALL_ALBUMS,
+/* harmony export */   "RECEIVE_PHISH_ALBUM": () => /* binding */ RECEIVE_PHISH_ALBUM,
+/* harmony export */   "RECEIVE_ALBUM_ERRORS": () => /* binding */ RECEIVE_ALBUM_ERRORS,
 /* harmony export */   "receiveAllAlbums": () => /* binding */ receiveAllAlbums,
 /* harmony export */   "receiveAlbum": () => /* binding */ receiveAlbum,
 /* harmony export */   "receiveArtistAlbums": () => /* binding */ receiveArtistAlbums,
+/* harmony export */   "receivePhishAlbum": () => /* binding */ receivePhishAlbum,
 /* harmony export */   "receiveSellingAlbums": () => /* binding */ receiveSellingAlbums,
+/* harmony export */   "receiveAlbumErrors": () => /* binding */ receiveAlbumErrors,
 /* harmony export */   "getAllAlbums": () => /* binding */ getAllAlbums,
 /* harmony export */   "getAlbum": () => /* binding */ getAlbum,
 /* harmony export */   "getArtistAlbums": () => /* binding */ getArtistAlbums,
+/* harmony export */   "getPhishAlbum": () => /* binding */ getPhishAlbum,
 /* harmony export */   "getSellingAlbums": () => /* binding */ getSellingAlbums,
 /* harmony export */   "postAlbum": () => /* binding */ postAlbum
 /* harmony export */ });
@@ -108,6 +113,8 @@ var RECEIVE_ALBUM = "RECEIVE_ALBUM";
 var RECEIVE_ARTIST_ALBUMS = "RECEIVE_ARTIST_ALBUMS";
 var RECEIVE_SELLING_ALBUMS = "RECEIVE_SELLING_ALBUMS";
 var RECEIVE_ALL_ALBUMS = "GET_ALL_ALBUMS";
+var RECEIVE_PHISH_ALBUM = "RECEIVE_PHISH_ALBUM";
+var RECEIVE_ALBUM_ERRORS = "RECEIVE_ALBUM_ERRORS";
 var receiveAllAlbums = function receiveAllAlbums(payload) {
   return {
     type: RECEIVE_ALL_ALBUMS,
@@ -126,10 +133,22 @@ var receiveArtistAlbums = function receiveArtistAlbums(albums) {
     albums: albums
   };
 };
+var receivePhishAlbum = function receivePhishAlbum(payload) {
+  return {
+    type: RECEIVE_PHISH_ALBUM,
+    payload: payload
+  };
+};
 var receiveSellingAlbums = function receiveSellingAlbums(payload) {
   return {
     type: RECEIVE_SELLING_ALBUMS,
     payload: payload
+  };
+};
+var receiveAlbumErrors = function receiveAlbumErrors(errors) {
+  return {
+    type: RECEIVE_ALBUM_ERRORS,
+    errors: errors
   };
 };
 var getAllAlbums = function getAllAlbums() {
@@ -153,6 +172,14 @@ var getArtistAlbums = function getArtistAlbums(artistId) {
     });
   };
 };
+var getPhishAlbum = function getPhishAlbum(date) {
+  return function (dispatch) {
+    return _util_album_api_util__WEBPACK_IMPORTED_MODULE_0__.getPhishAlbum(date).then(function (payload) {
+      console.log(payload);
+      return dispatch(receivePhishAlbum(payload));
+    });
+  };
+};
 var getSellingAlbums = function getSellingAlbums() {
   return function (dispatch) {
     return _util_album_api_util__WEBPACK_IMPORTED_MODULE_0__.getSellingAlbums().then(function (albums) {
@@ -164,6 +191,9 @@ var postAlbum = function postAlbum(album) {
   return function (dispatch) {
     return _util_album_api_util__WEBPACK_IMPORTED_MODULE_0__.postAlbum(album).then(function (album) {
       return dispatch(receiveAlbum(album));
+    }, function (errors) {
+      debugger;
+      return dispatch(receiveAlbumErrors(errors));
     });
   };
 };
@@ -370,31 +400,113 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "handleTrack",
+    value: function handleTrack(e) {
+      var _this4 = this;
+
+      var tracksArr = this.state.tracksArray;
+      var reader = new FileReader();
+      var file = e.currentTarget.files[0];
+      tracksArr.push(file);
+
+      reader.onloadend = function () {
+        return _this4.setState({
+          tracksArray: tracksArr
+        });
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      } // } else {
+      //   this.setState({ photoUrl: "", imageFile: null });
+      // }
+
+    }
+  }, {
     key: "uploadImage",
     value: function uploadImage() {
       document.getElementById("caf-add-photo-button").click();
     }
   }, {
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
-      var formData = new FormData();
-      formData.append("album[title]", this.state.title);
-      formData.append("album[artist_name]", this.state.artist_name);
-      formData.append("album[year]", this.state.year);
-      formData.append("album[price]", this.state.price);
-      formData.append("album[description]", this.state.description);
-      formData.append("album[credits]", this.state.credits); // formData.append("album[genres]", this.state.genres);
+    key: "uploadTrack",
+    value: function uploadTrack() {
+      document.getElementById("caf-add-track-input").click();
+    } // handleAlbumArtError() {
+    //   if (this.state.photoUrl === null) {
+    //     return "Please upload an Album Cover";
+    //   }
+    // }
+    // handleTitleError() {
+    //   if (this.state.title === "") {
+    //     return "Please enter an Album Title";
+    //   }
+    // }
+    // handleErrors(e) {
+    //   e.preventDefault();
+    //   if (this.state.photoUrl === null)
+    //     this.setState({
+    //       errors: [...this.state.errors, "Please upload an album cover"],
+    //     });
+    //   if (this.state.title === "")
+    //     this.setState({
+    //       errors: [...this.state.errors, "Please enter a title"],
+    //     });
+    //   this.handleSubmit();
+    // }
 
-      formData.append("album[photo]", this.state.photoFile);
-      this.props.createAlbum(formData).then(this.redirectHome()); // this.redirectHome();
+  }, {
+    key: "renderLocalErrors",
+    value: function renderLocalErrors(errors) {
+      debugger;
+      return;
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit() {
+      var _this5 = this;
+
+      var errors = {};
+      debugger;
+      if (this.state.photoUrl === null) Object.assign(errors, {
+        art: "Please upload an album cover"
+      });
+      if (this.state.title === "") Object.assign(errors, {
+        title: "Please enter an album title"
+      });
+      if (this.state.credits === "") Object.assign(errors, {
+        credits: "Please enter credits for album"
+      });
+      if (this.state.tracksArray.length === 0) Object.assign(errors, {
+        tracks: "Please upload at least one track"
+      });
+
+      if (Object.keys(errors).length === 0) {
+        var formData = new FormData();
+        formData.append("album[title]", this.state.title);
+        formData.append("album[artist_id]", this.state.artist_id);
+        formData.append("album[year]", this.state.year);
+        formData.append("album[price]", this.state.price);
+        formData.append("album[description]", this.state.description);
+        formData.append("album[credits]", this.state.credits); // formData.append("album[genres]", this.state.genres);
+
+        formData.append("album[photo]", this.state.photoFile);
+        formData.append("tracks", this.state.tracksArray[0]);
+        this.props.createAlbum(formData).then(function () {
+          return _this5.redirectHome();
+        }, function (errors) {
+          return console.log(errors);
+        });
+      } else {
+        this.renderLocalErrors(errors);
+      } // this.redirectHome();
+
     }
   }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
           title = _this$props.title,
-          artist_name = _this$props.artist_name,
+          artist_id = _this$props.artist_id,
           year = _this$props.year,
           price = _this$props.price,
           description = _this$props.description,
@@ -410,6 +522,10 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         width: "212px",
         src: this.state.photoUrl
       }) : null;
+      var trackList = this.state.tracksArray.map(function (track, i) {
+        debugger;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "".concat(i + 1), " ", track.name);
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -437,7 +553,15 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         className: "grey-label"
       }, "$", this.state.price)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-add-track-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "tracks placeholder")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Create Album"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "TRACKS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "caf-add-track-input-div",
+        onClick: this.uploadTrack
+      }, "add track", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "file",
+        id: "caf-add-track-input",
+        hidden: true,
+        onChange: this.handleTrack.bind(this)
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, trackList)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Create Album"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "top-spacer-right"
@@ -489,7 +613,10 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-upload",
         onClick: this.uploadImage
-      }, uploadPreview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }, uploadPreview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        id: "caf-upload-span",
+        className: uploadPreview === null ? "" : "hidden"
+      }, "Upload Album Art"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "caf-add-photo-button",
         type: "file",
         className: "caf-add-photo-button",
@@ -497,15 +624,7 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.handlePhoto.bind(this)
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-artist-name-box flex-col caf-input"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-        htmlFor: "caf-artist-name"
-      }, "artist:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        type: "text",
-        className: "caf-artist-name",
-        placeholder: "leave blank to use artist name",
-        value: artist_name,
-        onChange: this.update("artist_name")
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "artist: ", this.props.currentUser.artistName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-description-box flex-col caf-input"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "caf-description"
@@ -563,19 +682,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
+  debugger;
   return {
     currentUser: state.entities.users[state.session.id],
     state: {
       title: "",
-      artist_name: state.entities.users[state.session.id].artistName,
+      artist_id: state.entities.users[state.session.id].id,
       year: 2021,
       price: "",
       description: "",
       credits: "",
       genres: "",
       photoFile: null,
-      photoUrl: null
-    }
+      photoUrl: null,
+      tracksArray: []
+    },
+    errors: state.errors.album
   };
 };
 
@@ -583,6 +705,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     createAlbum: function createAlbum(album) {
       return dispatch((0,_actions_album_actions__WEBPACK_IMPORTED_MODULE_1__.postAlbum)(album));
+    },
+    sendErrors: function sendErrors(errors) {
+      return dispatch((0,_actions_album_actions__WEBPACK_IMPORTED_MODULE_1__.receiveAlbumErrors)(errors));
     }
   };
 };
@@ -605,7 +730,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _artist_artist_banner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../artist/artist_banner */ "./frontend/components/artist/artist_banner.jsx");
 /* harmony import */ var _artist_artist_sidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../artist/artist_sidebar */ "./frontend/components/artist/artist_sidebar.jsx");
-/* harmony import */ var _track_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./track_item */ "./frontend/components/album/track_item.jsx");
+/* harmony import */ var _phish_track_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./phish_track_item */ "./frontend/components/album/phish_track_item.jsx");
+/* harmony import */ var _track_item__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./track_item */ "./frontend/components/album/track_item.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -634,6 +760,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var AlbumShow = /*#__PURE__*/function (_React$Component) {
   _inherits(AlbumShow, _React$Component);
 
@@ -648,21 +775,51 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
   _createClass(AlbumShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.getAlbum(this.props.match.params.id);
+      debugger;
+
+      if (this.props.artist.artistName === "Phish" && this.props.album.showDate !== undefined) {
+        this.props.getPhishAlbum(this.props.album.showDate);
+      } else {
+        this.props.getAlbum(this.props.match.params.id);
+      }
     }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {}
   }, {
     key: "render",
     value: function render() {
       if (!this.props.album) return null;
+      debugger;
       var _this$props = this.props,
           album = _this$props.album,
           tracks = _this$props.tracks,
           artist = _this$props.artist;
-      var trackItems = Object.values(tracks).map(function (track) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_track_item__WEBPACK_IMPORTED_MODULE_3__.default, {
-          track: track
+      var trackItems; // if (artist.artistName === "Phish" && album.showDate !== undefined) {
+      //   trackItems = [];
+      //   this.getPhishAlbum(album.showDate).then((res) => {
+      //     res.data.tracks.forEach((track) => {
+      //       trackItems.push(<TrackItem track={track} />);
+      //     });
+      //   });
+      // } else {
+
+      if (album.showDate !== undefined) {
+        trackItems = Object.values(tracks).map(function (track) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_phish_track_item__WEBPACK_IMPORTED_MODULE_3__.default, {
+            track: track
+          });
         });
-      }); // const { tracks, album, artist } = this.props;
+      } else {
+        trackItems = Object.values(tracks).map(function (track) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_track_item__WEBPACK_IMPORTED_MODULE_4__.default, {
+            track: track
+          });
+        });
+      } // }
+
+
+      debugger; // const { tracks, album, artist } = this.props;
       // const trackItems = tracks.map((track) => {
       //   return <TrackItem track={track} key={track.trackNum} />;
       // });
@@ -673,9 +830,14 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
         className: "album-show-page-left"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "album-show-title-artist"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, album.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "audio-player"
-      }, "AUDIO PLAYER")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, album.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("audio", {
+        controls: true,
+        id: "audio-player"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("source", {
+        id: "audio-player-source",
+        src: "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb1lCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--186d9de110146fa7c63638c22e6eb50ccc7de6cd/1997-11-17Tweezer.mp3",
+        type: "audio/mpeg"
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "album-track-table-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", {
         className: "album-track-table"
@@ -719,6 +881,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
+  debugger;
   return {
     album: state.entities.albums[ownProps.albumId],
     artist: state.entities.artists[ownProps.artistId],
@@ -730,11 +893,60 @@ var mDTP = function mDTP(dispatch) {
   return {
     getAlbum: function getAlbum(albumId) {
       return dispatch((0,_actions_album_actions__WEBPACK_IMPORTED_MODULE_1__.getAlbum)(albumId));
+    },
+    getPhishAlbum: function getPhishAlbum(date) {
+      return dispatch((0,_actions_album_actions__WEBPACK_IMPORTED_MODULE_1__.getPhishAlbum)(date));
     }
   };
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)((0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.withRouter)(_album_show__WEBPACK_IMPORTED_MODULE_2__.default)));
+
+/***/ }),
+
+/***/ "./frontend/components/album/phish_track_item.jsx":
+/*!********************************************************!*\
+  !*** ./frontend/components/album/phish_track_item.jsx ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var PhishTrackItem = function PhishTrackItem(_ref) {
+  var track = _ref.track;
+  debugger;
+
+  var playSong = function playSong() {
+    document.getElementById("audio-player").src = track.mp3;
+    var audioPlayer = document.getElementById("audio-player");
+    audioPlayer.play();
+  }; // const downloadSong = () => {
+  //   const url = window.URL.createObjectURL(new Blob([track.mp3]));
+  //   const link = document.createElement("a");
+  //   link.href = url;
+  //   const trackName = track.show_date + track.title + ".mp3";
+  //   link.setAttribute("download", url);
+  //   document.body.appendChild(link);
+  //   link.click();
+  // };
+
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
+    key: track.id
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, track.position), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
+    onClick: function onClick() {
+      return playSong();
+    }
+  }, track.title));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PhishTrackItem);
 
 /***/ }),
 
@@ -754,9 +966,25 @@ __webpack_require__.r(__webpack_exports__);
 
 var TrackItem = function TrackItem(_ref) {
   var track = _ref.track;
+  debugger;
+
+  var playSong = function playSong() {
+    debugger;
+    document.getElementById("audio-player").src = track.songUrl;
+    var audioPlayer = document.getElementById("audio-player");
+    audioPlayer.play();
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
     key: track.id
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, track.trackNum), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, track.trackName));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, track.trackNum), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
+    onClick: function onClick() {
+      return playSong();
+    }
+  }, track.trackName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: track.songUrl,
+    download: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, "Download")));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TrackItem);
@@ -1838,6 +2066,7 @@ var mSTP = function mSTP(_ref, ownProps) {
   var _ref$entities = _ref.entities,
       features = _ref$entities.util.features,
       artists = _ref$entities.artists;
+  debugger;
 
   if (features) {
     return {
@@ -2784,6 +3013,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 document.addEventListener("DOMContentLoaded", function () {
+  debugger;
   var root = document.getElementById("root");
   var store;
 
@@ -2848,6 +3078,38 @@ var thunk = function thunk(_ref) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (thunk);
+
+/***/ }),
+
+/***/ "./frontend/reducers/album_errors_reducer.js":
+/*!***************************************************!*\
+  !*** ./frontend/reducers/album_errors_reducer.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/album_actions */ "./frontend/actions/album_actions.js");
+
+
+var albumErrorsReducer = function albumErrorsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALBUM_ERRORS:
+      return action.errors;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (albumErrorsReducer);
 
 /***/ }),
 
@@ -2994,12 +3256,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _session_errors_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./session_errors_reducer */ "./frontend/reducers/session_errors_reducer.js");
+/* harmony import */ var _album_errors_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./album_errors_reducer */ "./frontend/reducers/album_errors_reducer.js");
 
 
-var errorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
-  session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_0__.default
+
+var errorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+  session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
+  album: _album_errors_reducer__WEBPACK_IMPORTED_MODULE_1__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (errorsReducer);
 
@@ -3164,6 +3429,18 @@ var tracksReducer = function tracksReducer() {
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALBUM:
       return action.album.tracks;
 
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_PHISH_ALBUM:
+      // newState = Object.assign({}, state);
+      // Object.values(newState).forEach((track, i) => {
+      //   track["songUrl"] = Object.values(action.payload.data.tracks)[i].mp3;
+      // });
+      // return newState;
+      newState = {};
+      action.payload.data.tracks.forEach(function (track) {
+        newState[track.position] = track;
+      });
+      return newState;
+
     default:
       return state;
   }
@@ -3284,6 +3561,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getAlbum": () => /* binding */ getAlbum,
 /* harmony export */   "getAllAlbums": () => /* binding */ getAllAlbums,
 /* harmony export */   "getArtistAlbums": () => /* binding */ getArtistAlbums,
+/* harmony export */   "getPhishAlbum": () => /* binding */ getPhishAlbum,
 /* harmony export */   "getSellingAlbums": () => /* binding */ getSellingAlbums,
 /* harmony export */   "postAlbum": () => /* binding */ postAlbum
 /* harmony export */ });
@@ -3302,6 +3580,15 @@ var getAllAlbums = function getAllAlbums() {
 var getArtistAlbums = function getArtistAlbums(artistId) {
   return $.ajax({
     url: "/api/artists/".concat(artistId, "/albums")
+  });
+};
+var getPhishAlbum = function getPhishAlbum(date) {
+  return $.ajax({
+    url: "http://phish.in/api/v1/shows/".concat(date),
+    headers: {
+      Accept: "application/json",
+      Authorization: "Bearer ".concat(window.phishAPIKey)
+    }
   });
 };
 var getSellingAlbums = function getSellingAlbums() {

@@ -12,6 +12,7 @@ const mSTP = (
   },
   ownProps
 ) => {
+  debugger;
   if (features) {
     return {
       phish: artists[features[0]],

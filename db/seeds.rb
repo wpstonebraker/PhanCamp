@@ -6,11 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'open-uri'
+
 User.destroy_all
 Album.destroy_all
 Track.destroy_all
 Genre.destroy_all
 GenreJoin.destroy_all
+
+def get_tracks
+    
+end
 
 GENRES_TAGS = %w(electronic rock metal alternative hip-hop experimental punk folk pop ambient soundtrack jazz acoustic funk soul classical reggae country blues latin kids)
 
@@ -57,20 +63,42 @@ phish = User.create!(
     personal_url: "www.phish.com"
 )
 
-phish.banner.attach(io: File.open("app/assets/images/artists/phish/banner.png"), filename: "phishbanner.png")
-phish.thumbnail.attach(io: File.open("app/assets/images/artists/phish/thumbnail.png"), filename: "phishthumbnail.png")
+phish.banner.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_banner.png"), filename: "phishbanner.png")
+phish.thumbnail.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_thumbnail.png"), filename: "phishthumbnail.png")
+
+PHISH_20100619 = Album.create!(
+    title: '2010-06-19 - SPAC Night 1',
+    artist_id: phish.id,
+    year: 2017,
+    description: "First of two shows at the Saratoga Performing Arts Center",
+    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman",
+    show_date: "2010-06-19"
+)
+
+PHISH_20100619.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_2010-06-19.png"), filename: "ph_2010-06-19.png")
+
+PHISH_20100619_SETLIST = %w(Tweezer\ Reprise Chalk\ Dust\ Torture Funky\ Bitch\ > Runaway\ Jim\ > Ya\ Mar Sample\ in\ a\ Jar Axilla\ > Fluffhead Bathtub\Gin Suzy\ Greenberg Rock\ and\ Roll\ > Free Backwards\ Down\ the\ Number\ Line Halfway\ to\ the\ Moon\ > Prince\ Caspian\ > Joy David\ Bowie Show\ of\ Life The\ Squirming\ Coil Character\ Zero Tweezer\ Reprise)
+
+PHISH_20100619_SETLIST.each_with_index do |track, i|
+    Track.create!(
+        track_name: track,
+        track_num: (i + 1),
+        album_id: PHISH_20100619.id
+    )
+end
 
 PHISH_20170806 = Album.create!(
     title: '2017.08.06 - Madison Square Garden',
     artist_id: phish.id,
     year: 2017,
     description: "The final night of Phish's legendary 13 concerts in 17 nights at the world's greatest arena.",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman",
+    show_date: "2017-08-06"
 )
 
-PHISH_20170806.photo.attach(io: File.open("app/assets/images/albums/bd13.jpeg"), filename: "bd13.jpeg")
+PHISH_20170806.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_20170806.jpeg"), filename: "bd13.jpeg")
 
-PHISH_20170806_SETLIST = %w(Dogs\ Stole\ Things Rift Ha\ Ha\ Ha\ Camel\ Walk Crazy\ Sometimes\ > Saw\ it\ Again\ > Sanity\ > Bouncing\ Around\ the\ Room Most\ Events\ Aren't\ Planned Bug I\ Been\ Around Izabella Simple\ > Rise/Come\ Together\ > Starman You\ Enjoy\ Myself Loving\ Cup On\ the\ Road\ Again\ > Lawn\ Boy\ Reprise\ > Tweezer\ Reprise)
+PHISH_20170806_SETLIST = %w(Dogs\ Stole\ Things Rift Ha\ Ha\ Ha Camel\ Walk Crazy\ Sometimes\ > Saw\ it\ Again\ > Sanity\ > Bouncing\ Around\ the\ Room Most\ Events\ Aren't\ Planned Bug I\ Been\ Around Izabella Simple\ > Rise/Come\ Together\ > Starman You\ Enjoy\ Myself Loving\ Cup On\ the\ Road\ Again\ > Lawn\ Boy\ Reprise\ > Tweezer\ Reprise)
 
 PHISH_20170806_SETLIST.each_with_index do |track, i|
     Track.create!(
@@ -80,117 +108,17 @@ PHISH_20170806_SETLIST.each_with_index do |track, i|
     )
 end
 
-# p_bd_1 = Track.create!(
-#     track_name: 'Dogs Stole Things',
-#     track_num: '1',
-#     album_id: bd13.id
-# )
-# p_bd_2 = Track.create!(
-#     track_name: 'Rift',
-#     track_num: '2',
-#     album_id: bd13.id
-# )
-# p_bd_3 = Track.create!(
-#     track_name: 'Ha Ha Ha',
-#     track_num: '3',
-#     album_id: bd13.id
-# )
-# p_bd_4 = Track.create!(
-#     track_name: 'Camel Walk',
-#     track_num: '4',
-#     album_id: bd13.id
-# )
-# p_bd_5 = Track.create!(
-#     track_name: 'Crazy Sometimes',
-#     track_num: '5',
-#     album_id: bd13.id
-# )
-# p_bd_6 = Track.create!(
-#     track_name: 'Saw it Again',
-#     track_num: '6',
-#     album_id: bd13.id
-# )
-# p_bd_7 = Track.create!(
-#     track_name: 'Sanity',
-#     track_num: '7',
-#     album_id: bd13.id
-# )
-# p_bd_8 = Track.create!(
-#     track_name: 'Bouncing Around the Room',
-#     track_num: '8',
-#     album_id: bd13.id
-# )
-# p_bd_9 = Track.create!(
-#     track_name: "Most Events Aren't Planned",
-#     track_num: '9',
-#     album_id: bd13.id
-# )
-# p_bd_10 = Track.create!(
-#     track_name: 'Bug',
-#     track_num: '10',
-#     album_id: bd13.id
-# )
-# p_bd_11 = Track.create!(
-#     track_name: 'I Been Around',
-#     track_num: '11',
-#     album_id: bd13.id
-# )
-# p_bd_12 = Track.create!(
-#     track_name: 'Izabella',
-#     track_num: '12',
-#     album_id: bd13.id
-# )
-# p_bd_13 = Track.create!(
-#     track_name: 'Simple',
-#     track_num: '13',
-#     album_id: bd13.id
-# )
-# p_bd_14 = Track.create!(
-#     track_name: 'Rise/Come Together',
-#     track_num: '14',
-#     album_id: bd13.id
-# )
-# p_bd_15 = Track.create!(
-#     track_name: 'Starman',
-#     track_num: '15',
-#     album_id: bd13.id
-# )
-# p_bd_16 = Track.create!(
-#     track_name: 'You Enjoy Myself',
-#     track_num: '16',
-#     album_id: bd13.id
-# )
-# p_bd_17 = Track.create!(
-#     track_name: 'Loving Cup',
-#     track_num: '17',
-#     album_id: bd13.id
-# )
-# p_bd_18 = Track.create!(
-#     track_name: 'On the Road Again',
-#     track_num: '18',
-#     album_id: bd13.id
-# )
-# p_bd_19 = Track.create!(
-#     track_name: 'Lawn Boy Reprise',
-#     track_num: '19',
-#     album_id: bd13.id
-# )
-# p_bd_20 = Track.create!(
-#     track_name: 'Tweezer Reprise',
-#     track_num: '20',
-#     album_id: bd13.id
-# )
-
 
 PHISH_20000614 = Album.create!(
     title: '2000.06.14 - Fukuoka, Japan',
     artist_id: phish.id,
     year: 2000,
     description: "trippy sounds",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman",
+    show_date: "2000-06-14"
 )
 
-PHISH_20000614.photo.attach(io: File.open("app/assets/images/albums/jp2000.jpeg"), filename: "bd13.jpeg")
+PHISH_20000614.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_2000_06_14.jpeg"), filename: "ph_2000_06_14.jpeg")
 
 PHISH_20000614_SETLIST = %w(Carini The\ Curtain\ > Cities Gumbo\ -> Llama, Fee, Heavy\ Things Split\ Open\ and\ Melt Back\ on\ the\ Train Twist\ > Jam\ -> Walk\ Away\ -> 2001 Sleep\ The\ Squirming\ Coil)
 
@@ -202,101 +130,17 @@ PHISH_20000614_SETLIST.each_with_index do |track, i|
     )
 end
 
-# p_jp_1 = Track.create!(
-#     track_name: 'Carini',
-#     track_num: '1',
-#     album_id: jp2000.id
-# )
-# p_jp_2 = Track.create!(
-#     track_name: 'The Curtain',
-#     track_num: '2',
-#     album_id: jp2000.id
-# )
-# p_jp_3 = Track.create!(
-#     track_name: 'Cities',
-#     track_num: '3',
-#     album_id: jp2000.id
-# )
-# p_jp_4 = Track.create!(
-#     track_name: 'Gumbo',
-#     track_num: '4',
-#     album_id: jp2000.id
-# )
-# p_jp_5 = Track.create!(
-#     track_name: 'Jam',
-#     track_num: '5',
-#     album_id: jp2000.id
-# )
-# p_jp_6 = Track.create!(
-#     track_name: 'Llama',
-#     track_num: '6',
-#     album_id: jp2000.id
-# )
-# p_jp_7 = Track.create!(
-#     track_name: 'Fee',
-#     track_num: '7',
-#     album_id: jp2000.id
-# )
-# p_jp_8 = Track.create!(
-#     track_name: 'Heavy Things',
-#     track_num: '8',
-#     album_id: jp2000.id
-# )
-# p_jp_9 = Track.create!(
-#     track_name: 'Split Open and Melt',
-#     track_num: '9',
-#     album_id: jp2000.id
-# )
-# p_jp_10 = Track.create!(
-#     track_name: 'Back on the Train',
-#     track_num: '10',
-#     album_id: jp2000.id
-# )
-# p_jp_11 = Track.create!(
-#     track_name: 'Twist',
-#     track_num: '11',
-#     album_id: jp2000.id
-# )
-# p_jp_12 = Track.create!(
-#     track_name: 'Jam',
-#     track_num: '12',
-#     album_id: jp2000.id
-# )
-# p_jp_13 = Track.create!(
-#     track_name: 'Walk Away',
-#     track_num: '13',
-#     album_id: jp2000.id
-# )
-# p_jp_14 = Track.create!(
-#     track_name: 'Jam',
-#     track_num: '14',
-#     album_id: jp2000.id
-# )
-# p_jp_15 = Track.create!(
-#     track_name: '2001',
-#     track_num: '15',
-#     album_id: jp2000.id
-# )
-# p_jp_16 = Track.create!(
-#     track_name: 'Sleep',
-#     track_num: '16',
-#     album_id: jp2000.id
-# )
-# p_jp_17 = Track.create!(
-#     track_name: 'The Squirming Coil',
-#     track_num: '17',
-#     album_id: jp2000.id
-# )
 
 co97 = Album.create!(
     title: '1997.11.17 - Denver, CO',
     artist_id: phish.id,
     year: 1997,
     description: "epic tweezer and DWD",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman",
+    show_date: "1997-11-17"
 )
 
-co97.photo.attach(io: File.open("app/assets/images/albums/co97.jpeg"), filename: "bd13.jpeg")
+co97.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_1997_11_17.jpeg"), filename: "ph_1997_11_17.jpeg")
 
 P_CO_SETLIST = [
     "Tweezer",
@@ -326,10 +170,11 @@ mann15 = Album.create!(
     artist_id: phish.id,
     year: 2015,
     description: "Second row show",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman",
+    show_date: "2015-08-12"
 )
 
-mann15.photo.attach(io: File.open("app/assets/images/albums/mann15.jpeg"), filename: "mann15.jpeg")
+mann15.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_2015_08_12.jpeg"), filename: "ph_2015_08_12.jpeg")
 
 P_MANN15_SETLIST = [
     "AC/DC Bag",
@@ -364,9 +209,10 @@ PHISH_20131229 = Album.create!(
     year: 2013,
     description: "DWD > Carini",
     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+    show_date: "2013-12-29"
 )
 
-PHISH_20131229.photo.attach(io: File.open("app/assets/images/artists/phish/phish_20131229.jpeg"), filename: "PHISH_20131229.jpeg")
+PHISH_20131229.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_20131229.jpeg"), filename: "ph_20131229.jpeg")
 
 PHISH_20131229_SETLIST = %w(The\ Moma\ Dance Rift Roggae Sparkle The\ Line Stash 555 It's\ Ice Gumbo Walls\ of\ the\ Cave Down\ with\ Disease Carini Waves Twist Golgi\ Apparatus David\ Bowie Possum)
 
@@ -386,7 +232,7 @@ PHISH_PAUL_2019_JAMS = Album.create!(
     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
 )
 
-PHISH_PAUL_2019_JAMS.photo.attach(io: File.open("app/assets/images/artists/phish/paul2019.jpeg"), filename: "paul2019.jpeg")
+PHISH_PAUL_2019_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2019.jpeg"), filename: "paul2019.jpeg")
 
 PHISH_PAUL_2019_JAMS_SETLIST = %w(Ruby\ Waves Mercury Twenty\ Years\ Later Everything's\ Right Wolfman's Brother)
 
@@ -406,7 +252,7 @@ PHISH_PAUL_2018_JAMS = Album.create!(
     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
 )
 
-PHISH_PAUL_2018_JAMS.photo.attach(io: File.open("app/assets/images/artists/phish/paul2018.jpeg"), filename: "paul2018.jpeg")
+PHISH_PAUL_2018_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2018.jpeg"), filename: "paul2018.jpeg")
 
 PHISH_PAUL_2018_JAMS_SETLIST = %w(Down\ With\ Disease Simple Mercury Seven\ Below)
 
@@ -426,7 +272,7 @@ PHISH_PAUL_2017_JAMS = Album.create!(
     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
 )
 
-PHISH_PAUL_2017_JAMS.photo.attach(io: File.open("app/assets/images/artists/phish/paul2017.jpeg"), filename: "paul2017.jpeg")
+PHISH_PAUL_2017_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2017.jpeg"), filename: "paul2017.jpeg")
 
 
 PHISH_PAUL_2017_JAMS_SETLIST = %w(Prince\ Caspian Lawn\ Boy Simple Gotta Jibboo)
@@ -447,7 +293,7 @@ PHISH_PAUL_2016_JAMS = Album.create!(
     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
 )
 
-PHISH_PAUL_2016_JAMS.photo.attach(io: File.open("app/assets/images/artists/phish/paul2016.jpeg"), filename: "paul2016.jpeg")
+PHISH_PAUL_2016_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2016.jpeg"), filename: "paul2016.jpeg")
 
 
 PHISH_PAUL_2016_JAMS_SETLIST = %w(Light Crosseyed\ and\ Painless Golden\ Age 2001)
@@ -468,7 +314,7 @@ PHISH_PAUL_2015_JAMS = Album.create!(
     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
 )
 
-PHISH_PAUL_2015_JAMS.photo.attach(io: File.open("app/assets/images/artists/phish/paul2015.jpeg"), filename: "paul2015.jpeg")
+PHISH_PAUL_2015_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2015.jpeg"), filename: "paul2015.jpeg")
 
 
 PHISH_PAUL_2015_JAMS_SETLIST = %w(Tweezer\ > Caspian Down\ With\ Disease No\ Men\ in\  No\ Men's\ Land)
@@ -489,7 +335,7 @@ PHISH_PAUL_2014_JAMS = Album.create!(
     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
 )
 
-PHISH_PAUL_2014_JAMS.photo.attach(io: File.open("app/assets/images/artists/phish/paul2014.jpeg"), filename: "paul2014.jpeg")
+PHISH_PAUL_2014_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2014.jpeg"), filename: "paul2014.jpeg")
 
 
 PHISH_PAUL_2014_JAMS_SETLIST = %w(Fuego Fuego Meatstick Ghost)
@@ -510,7 +356,7 @@ PHISH_PAUL_2013_JAMS = Album.create!(
     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
 )
 
-PHISH_PAUL_2013_JAMS.photo.attach(io: File.open("app/assets/images/artists/phish/paul2013.jpeg"), filename: "paul2013.jpeg")
+PHISH_PAUL_2013_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2013.jpeg"), filename: "paul2013.jpeg")
 
 PHISH_PAUL_2013_JAMS_SETLIST = %w(Carini Tweezer Down\ with\ Disease Down\ with\ Disease Light)
 
@@ -532,8 +378,8 @@ gd = User.create!(
     personal_url: "www.dead.net"
 )
 
-gd.banner.attach(io: File.open("app/assets/images/artists/gd/banner.jpeg"), filename: "gdbanner.jpeg")
-gd.thumbnail.attach(io: File.open("app/assets/images/artists/gd/thumbnail.jpeg"), filename: "gdthumbnail.jpeg")
+gd.banner.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_banner.jpeg"), filename: "gdbanner.jpeg")
+gd.thumbnail.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_thumbnail.jpeg"), filename: "gdthumbnail.jpeg")
 
 msg81 = Album.create!(
     title: '1981.03.09 - New York, NY',
@@ -543,7 +389,7 @@ msg81 = Album.create!(
     credits: "Guitar: Jer"
 )
 
-msg81.photo.attach(io: File.open("app/assets/images/albums/msg81.jpeg"), filename: "msg81.jpeg")
+msg81.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_19810309.jpeg"), filename: "gd_19810309.jpeg")
 
 GD_MSG81_SETLIST = [
     "Feel like a Stranger",
@@ -585,7 +431,7 @@ Z1 = Album.create!(
     credits: "Guitar: Jer"
 )
 
-Z1.photo.attach(io: File.open("app/assets/images/artists/gd/Z1.webp"), filename: "Z1.webp")
+Z1.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z1.webp"), filename: "gd_z1.webp")
 
 Z1_SETLIST = %w(Dark\ Star\ -> Wharf\ Rat\ -> Dark\ Star Eyes\ of\ the\ World Playing\ in\ the\ Band\ -> The\ Wheel\ -> Playing\ in\ the\ Band)
 
@@ -605,7 +451,7 @@ Z2 = Album.create!(
     credits: "Guitar: Jer"
 )
 
-Z2.photo.attach(io: File.open("app/assets/images/artists/gd/Z2.webp"), filename: "Z2.webp")
+Z2.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z2.webp"), filename: "gd_z2.webp")
 
 Z2_SETLIST = %w(China\ Cat\ -> I\ Know\ You\ Rider Dancing\ in\ the\ Streets Dark\ Star Scarlet\ -> Fire)
 
@@ -625,7 +471,7 @@ Z3 = Album.create!(
     credits: "Guitar: Jer"
 )
 
-Z3.photo.attach(io: File.open("app/assets/images/artists/gd/Z3.webp"), filename: "Z3.webp")
+Z3.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z3.webp"), filename: "gd_z3.webp")
 
 Z3_SETLIST = %w(Bird\ Song Here\ Comes\ Sunshine Shakedown\ Street Help\ on\ the\ Way\ -> Slipknot\ -> Franklin's\ Tower)
 
@@ -645,7 +491,7 @@ Z4 = Album.create!(
     credits: "Guitar: Jer"
 )
 
-Z4.photo.attach(io: File.open("app/assets/images/artists/gd/Z4.webp"), filename: "Z4.webp")
+Z4.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z4.webp"), filename: "gd_z4.webp")
 
 Z4_SETLIST = %w(He's\ Gone The\ Other\ One Dark\ Star Mississippi\ Half\ Step Scarlet\ -> Fire)
 
@@ -668,8 +514,8 @@ goose = User.create!(
     personal_url: "www.goosetheband.com"
 )
 
-goose.banner.attach(io: File.open("app/assets/images/artists/goose/goosebanner.jpeg"), filename: "goosebanner.jpeg")
-goose.thumbnail.attach(io: File.open("app/assets/images/artists/goose/goosethumbnail.jpeg"), filename: "goosethumbnail.jpeg")
+goose.banner.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/goose/goose_banner.jpeg"), filename: "goosebanner.jpeg")
+goose.thumbnail.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/goose/goose_thumbnail.jpeg"), filename: "goosethumbnail.jpeg")
 
 goose_20201019 = Album.create!(
     title: '2020.10.19 - Frederick, MD',
@@ -679,7 +525,7 @@ goose_20201019 = Album.create!(
     credits: "Rick on the Guitar"
 )
 
-goose_20201019.photo.attach(io: File.open("app/assets/images/artists/goose/goose_20201019.jpeg"), filename: "goose_20201019.jpeg")
+goose_20201019.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/goose/goose_2020_10_19.jpeg"), filename: "goose_20201019.jpeg")
 
 
 GOOSE_20201019_SETLIST = [
@@ -716,8 +562,8 @@ ween = User.create!(
     personal_url: "www.ween.com"
 )
 
-ween.banner.attach(io: File.open("app/assets/images/artists/ween/weenbanner.jpeg"), filename: "weenbanner.jpeg")
-ween.thumbnail.attach(io: File.open("app/assets/images/artists/ween/weenthumbnail.jpeg"), filename: "weenthumbnail.jpeg")
+ween.banner.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/ween/ween_banner.jpeg"), filename: "weenbanner.jpeg")
+ween.thumbnail.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/ween/ween_thumbnail.jpeg"), filename: "weenthumbnail.jpeg")
 
 ween_20170604 = Album.create!(
     title: '2017.06.04 - Baltimore, MD',
@@ -727,7 +573,7 @@ ween_20170604 = Album.create!(
     credits: "Deaner"
 )
 
-ween_20170604.photo.attach(io: File.open("app/assets/images/artists/ween/ween_20170604.jpeg"), filename: "ween_20170604.jpeg")
+ween_20170604.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/ween/ween_2017_06_04.jpeg"), filename: "ween_20170604.jpeg")
 
 
 WEEN_20170604_SETLIST = [

@@ -18,6 +18,16 @@ export const getArtistAlbums = (artistId) => {
   });
 };
 
+export const getPhishAlbum = (date) => {
+  return $.ajax({
+    url: `http://phish.in/api/v1/shows/${date}`,
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${window.phishAPIKey}`,
+    },
+  });
+};
+
 export const getSellingAlbums = () => {
   return $.ajax({
     url: "/api/selling",

@@ -34,29 +34,96 @@ class AlbumCreateForm extends React.Component {
     }
   }
 
+  handleTrack(e) {
+    const tracksArr = this.state.tracksArray;
+    const reader = new FileReader();
+    const file = e.currentTarget.files[0];
+    tracksArr.push(file);
+    reader.onloadend = () => this.setState({ tracksArray: tracksArr });
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+    // } else {
+    //   this.setState({ photoUrl: "", imageFile: null });
+    // }
+  }
+
   uploadImage() {
     document.getElementById("caf-add-photo-button").click();
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("album[title]", this.state.title);
-    formData.append("album[artist_name]", this.state.artist_name);
-    formData.append("album[year]", this.state.year);
-    formData.append("album[price]", this.state.price);
-    formData.append("album[description]", this.state.description);
-    formData.append("album[credits]", this.state.credits);
-    // formData.append("album[genres]", this.state.genres);
-    formData.append("album[photo]", this.state.photoFile);
-    this.props.createAlbum(formData).then(this.redirectHome());
+  uploadTrack() {
+    document.getElementById("caf-add-track-input").click();
+  }
+
+  // handleAlbumArtError() {
+  //   if (this.state.photoUrl === null) {
+  //     return "Please upload an Album Cover";
+  //   }
+  // }
+
+  // handleTitleError() {
+  //   if (this.state.title === "") {
+  //     return "Please enter an Album Title";
+  //   }
+  // }
+
+  // handleErrors(e) {
+  //   e.preventDefault();
+  //   if (this.state.photoUrl === null)
+  //     this.setState({
+  //       errors: [...this.state.errors, "Please upload an album cover"],
+  //     });
+  //   if (this.state.title === "")
+  //     this.setState({
+  //       errors: [...this.state.errors, "Please enter a title"],
+  //     });
+  //   this.handleSubmit();
+  // }
+
+  renderLocalErrors(errors) {
+    debugger;
+    return;
+  }
+
+  handleSubmit() {
+    const errors = {};
+    debugger;
+    if (this.state.photoUrl === null)
+      Object.assign(errors, { art: "Please upload an album cover" });
+    if (this.state.title === "")
+      Object.assign(errors, { title: "Please enter an album title" });
+    if (this.state.credits === "")
+      Object.assign(errors, { credits: "Please enter credits for album" });
+    if (this.state.tracksArray.length === 0)
+      Object.assign(errors, { tracks: "Please upload at least one track" });
+    if (Object.keys(errors).length === 0) {
+      const formData = new FormData();
+      formData.append("album[title]", this.state.title);
+      formData.append("album[artist_id]", this.state.artist_id);
+      formData.append("album[year]", this.state.year);
+      formData.append("album[price]", this.state.price);
+      formData.append("album[description]", this.state.description);
+      formData.append("album[credits]", this.state.credits);
+      // formData.append("album[genres]", this.state.genres);
+      formData.append("album[photo]", this.state.photoFile);
+      formData.append("tracks", this.state.tracksArray[0]);
+      this.props.createAlbum(formData).then(
+        () => this.redirectHome(),
+        (errors) => console.log(errors)
+      );
+    } else {
+      this.renderLocalErrors(errors);
+    }
+
     // this.redirectHome();
   }
 
   render() {
     const {
       title,
-      artist_name,
+      artist_id,
       year,
       price,
       description,
@@ -69,6 +136,14 @@ class AlbumCreateForm extends React.Component {
     const uploadPreview = this.state.photoUrl ? (
       <img height="212px" width="212px" src={this.state.photoUrl} />
     ) : null;
+    const trackList = this.state.tracksArray.map((track, i) => {
+      debugger;
+      return (
+        <li>
+          {`${i + 1}`} {track.name}
+        </li>
+      );
+    });
 
     return (
       <div className="caf-outer">
@@ -92,8 +167,19 @@ class AlbumCreateForm extends React.Component {
                 </div>
 
                 <div className="caf-add-track-box">
-                  <div>tracks placeholder</div>
+                  <div>TRACKS</div>
+                  <div id="caf-add-track-input-div" onClick={this.uploadTrack}>
+                    add track
+                    <input
+                      type="file"
+                      id="caf-add-track-input"
+                      hidden
+                      onChange={this.handleTrack.bind(this)}
+                    />
+                  </div>
+                  <ul>{trackList}</ul>
                 </div>
+
                 <div>
                   <button>Create Album</button>
                 </div>
@@ -154,6 +240,12 @@ class AlbumCreateForm extends React.Component {
                 <div className="caf-upload-box">
                   <div className="caf-upload" onClick={this.uploadImage}>
                     {uploadPreview}
+                    <span
+                      id="caf-upload-span"
+                      className={uploadPreview === null ? "" : "hidden"}
+                    >
+                      Upload Album Art
+                    </span>
                     <input
                       id="caf-add-photo-button"
                       type="file"
@@ -163,7 +255,7 @@ class AlbumCreateForm extends React.Component {
                     />
                   </div>
                 </div>
-                <div className="caf-artist-name-box flex-col caf-input">
+                {/* <div className="caf-artist-name-box flex-col caf-input">
                   <label htmlFor="caf-artist-name">artist:</label>
                   <input
                     type="text"
@@ -172,6 +264,9 @@ class AlbumCreateForm extends React.Component {
                     value={artist_name}
                     onChange={this.update("artist_name")}
                   />
+                </div> */}
+                <div className="caf-artist-name-box flex-col caf-input">
+                  <span>artist: {this.props.currentUser.artistName}</span>
                 </div>
                 <div className="caf-description-box flex-col caf-input">
                   <label htmlFor="caf-description">about this album:</label>

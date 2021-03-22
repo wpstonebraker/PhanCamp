@@ -212,6 +212,19 @@
   opacity: 0;
 }
 
+#caf-upload-span {
+  font-size: 19px;
+  position: relative;
+  color: #0687f5;
+  top: 90px;
+  left: 30px;
+}
+
+#caf-upload-span:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .caf-input {
   margin: 15px 0;
   font-size: 12px;

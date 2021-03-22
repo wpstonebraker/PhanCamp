@@ -92,8 +92,12 @@
 .discog-tile {
   // padding: 10px;
   margin: 10px 20px;
-  height: 275px;
+  height: 230px;
   width: 230px;
+  max-width: 230px;
+  min-width: 230px;
+  max-height: 230px;
+  min-height: 230px;
   font-size: 13px;
   color: #0687f5;
   font-weight: bold;
@@ -105,6 +109,9 @@
     // display: block;
     // object-fit: scale-down;
     // outline: 1px solid lime;
+  }
+  img:hover {
+    opacity: 0.4;
   }
 }
 

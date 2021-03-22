@@ -13,6 +13,7 @@ import {
 import { getFeatureArtists } from "./actions/artist_actions";
 
 document.addEventListener("DOMContentLoaded", () => {
+  debugger;
   const root = document.getElementById("root");
   let store;
   if (window.currentUser) {
