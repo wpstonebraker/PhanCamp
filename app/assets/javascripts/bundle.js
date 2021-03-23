@@ -521,7 +521,10 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         formData.append("album[credits]", this.state.credits); // formData.append("album[genres]", this.state.genres);
 
         formData.append("album[photo]", this.state.photoFile);
-        formData.append("tracks", this.state.tracksArray[0]);
+        formData.append("tracks[count]", this.state.tracksArray.length);
+        this.state.tracksArray.forEach(function (track, i) {
+          formData.append("tracks[".concat(i + 1, "]"), track);
+        });
         debugger;
         this.props.createAlbum(formData).then(function () {
           return _this5.redirectHome();
