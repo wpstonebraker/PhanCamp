@@ -11,7 +11,7 @@ class Album < ApplicationRecord
         primary_key: :id,
         class_name: :User
 
-    has_many :tracks
+    has_many :tracks, :dependent => :destroy
 
     has_many :genres, through: :genre_joins
 

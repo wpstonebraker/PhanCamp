@@ -76,9 +76,14 @@ export const getArtistAlbums = (artistId) => {
 export const getPhishAlbum = (date) => {
   return (dispatch) => {
     return APIUtil.getPhishAlbum(date).then((payload) => {
-      console.log(payload);
       return dispatch(receivePhishAlbum(payload));
     });
+  };
+};
+
+export const getPhishShow = (date) => {
+  return (dispatch) => {
+    return APIUtil.getPhishAlbum(date);
   };
 };
 
@@ -101,5 +106,13 @@ export const postAlbum = (album) => {
         return dispatch(receiveAlbumErrors(errors));
       }
     );
+  };
+};
+
+export const postPhishAlbum = (album) => {
+  return (dispatch) => {
+    return APIUtil.postPhishAlbum(album).then((album) => {
+      return dispatch(receivePhishAlbum(album));
+    });
   };
 };

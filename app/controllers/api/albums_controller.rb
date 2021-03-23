@@ -62,6 +62,7 @@ class Api::AlbumsController < ApplicationController
     private
 
     def album_params
+        debugger
         params.require(:album).permit(:title, :artist_id, :year, :price, :description, :credits, :genres, :photo)
         # params.require(:album).permit(:title, :artist_id, :year, :price, :description, :credits, :genres, :photo, tracksArray: [])
     end

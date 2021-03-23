@@ -43,3 +43,13 @@ export const postAlbum = (album) => {
     processData: false,
   });
 };
+
+export const postPhishAlbum = (album) => {
+  return $.ajax({
+    url: "/api/phish_albums",
+    method: "POST",
+    data: album,
+    contentType: false,
+    processData: false,
+  });
+};

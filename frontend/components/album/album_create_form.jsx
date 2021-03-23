@@ -82,23 +82,39 @@ class AlbumCreateForm extends React.Component {
   //   this.handleSubmit();
   // }
 
-  renderLocalErrors(errors) {
+  renderLocalErrors() {
     debugger;
+    switch (this.errors) {
+      case this.errors.art:
+        console.log(hello);
+      default:
+        break;
+    }
+    this.render();
     return;
   }
 
   handleSubmit() {
-    const errors = {};
+    let errorsCount = 0;
+    let errorsArray = [];
     debugger;
-    if (this.state.photoUrl === null)
-      Object.assign(errors, { art: "Please upload an album cover" });
-    if (this.state.title === "")
-      Object.assign(errors, { title: "Please enter an album title" });
-    if (this.state.credits === "")
-      Object.assign(errors, { credits: "Please enter credits for album" });
-    if (this.state.tracksArray.length === 0)
-      Object.assign(errors, { tracks: "Please upload at least one track" });
-    if (Object.keys(errors).length === 0) {
+    if (this.state.photoUrl === null) {
+      errorsArray.push("Please upload an album cover");
+      errorsCount++;
+    }
+    if (this.state.title === "") {
+      errorsArray.push("Please enter an album title");
+      errorsCount++;
+    }
+    if (this.state.tracksArray.length === 0) {
+      errorsArray.push("Please upload at least one track");
+      errorsCount++;
+    }
+    // if (this.state.credits === "")
+    //   Object.assign(this.errors, { credits: "Please enter credits for album" });
+    if (errorsCount !== 0) {
+      this.props.sendErrors(errorsArray);
+    } else {
       const formData = new FormData();
       formData.append("album[title]", this.state.title);
       formData.append("album[artist_id]", this.state.artist_id);
@@ -109,12 +125,11 @@ class AlbumCreateForm extends React.Component {
       // formData.append("album[genres]", this.state.genres);
       formData.append("album[photo]", this.state.photoFile);
       formData.append("tracks", this.state.tracksArray[0]);
+      debugger;
       this.props.createAlbum(formData).then(
         () => this.redirectHome(),
-        (errors) => console.log(errors)
+        (err) => console.log(err)
       );
-    } else {
-      this.renderLocalErrors(errors);
     }
 
     // this.redirectHome();
@@ -144,7 +159,12 @@ class AlbumCreateForm extends React.Component {
         </li>
       );
     });
+    const errors = {};
+    this.props.errors.forEach((error) => {
+      errors[error.split(" ")[4].toLowerCase()] = error;
+    });
 
+    debugger;
     return (
       <div className="caf-outer">
         <div className="caf-inner">
@@ -178,6 +198,9 @@ class AlbumCreateForm extends React.Component {
                     />
                   </div>
                   <ul>{trackList}</ul>
+                  <span className="caf-errormsg" id="error-username">
+                    {errors.one}
+                  </span>
                 </div>
 
                 <div>
@@ -196,6 +219,7 @@ class AlbumCreateForm extends React.Component {
                     onChange={this.update("title")}
                   />
                 </div>
+                <span className="caf-errormsg">{errors.title}</span>
                 <div className="caf-year-box">
                   <label htmlFor="caf-year">release year:</label>
                   <input
@@ -255,6 +279,8 @@ class AlbumCreateForm extends React.Component {
                     />
                   </div>
                 </div>
+
+                <span className="caf-errormsg">{errors.cover}</span>
                 {/* <div className="caf-artist-name-box flex-col caf-input">
                   <label htmlFor="caf-artist-name">artist:</label>
                   <input

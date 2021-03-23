@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :features, only: [:index]
     resources :selling, only: [:index]
     resources :tracks, only: [:create]
+    resource :phish_albums, only: [:create]
   end
 
 
