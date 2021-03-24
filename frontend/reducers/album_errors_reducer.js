@@ -1,7 +1,6 @@
 import { RECEIVE_ALBUM_ERRORS } from "../actions/album_actions";
 
 const albumErrorsReducer = (state = [], action) => {
-  debugger;
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_ALBUM_ERRORS:

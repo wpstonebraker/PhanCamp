@@ -2886,13 +2886,14 @@ var Profile = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Profile);
 
     _this = _super.call(this, props);
+    debugger;
     _this.state = {
       artistName: _this.props.user.artistName,
       email: _this.props.user.email,
       thumbnailFile: null,
-      thumbnailUrl: _this.props.thumbnailUrl || null,
+      thumbnailUrl: _this.props.user.thumbnailUrl || null,
       bannerFile: null,
-      bannerUrl: _this.props.bannerUrl || null
+      bannerUrl: _this.props.user.bannerUrl || null
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleThumbnail = _this.handleThumbnail.bind(_assertThisInitialized(_this));
@@ -3726,7 +3727,6 @@ __webpack_require__.r(__webpack_exports__);
 var albumErrorsReducer = function albumErrorsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  debugger;
   Object.freeze(state);
 
   switch (action.type) {

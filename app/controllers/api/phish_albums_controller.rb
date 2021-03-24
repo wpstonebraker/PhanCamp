@@ -3,7 +3,6 @@ class Api::PhishAlbumsController < ApplicationController
     def create
         new_params = phish_album_params.clone
         @artist = User.where(artist_name: "Phish")[0]
-        debugger
         new_params[:artist_id] = @artist.id
 
         @album = Album.new(new_params)

@@ -3,13 +3,14 @@ import React from "react";
 class Profile extends React.Component {
   constructor(props) {
     super(props);
+    debugger
     this.state = {
       artistName: this.props.user.artistName,
       email: this.props.user.email,
       thumbnailFile: null,
-      thumbnailUrl: this.props.thumbnailUrl || null,
+      thumbnailUrl: this.props.user.thumbnailUrl || null,
       bannerFile: null,
-      bannerUrl: this.props.bannerUrl || null,
+      bannerUrl: this.props.user.bannerUrl || null,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleThumbnail = this.handleThumbnail.bind(this);

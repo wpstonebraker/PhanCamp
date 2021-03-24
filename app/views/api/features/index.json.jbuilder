@@ -4,6 +4,17 @@ json.artists do
             json.extract! artist, :id, :artist_name
         end
     end
+    @artists.each do |artist|
+        json.set! artist.id do
+            json.extract! artist, :id, :artist_name, :about, :personal_url, :email
+            if artist.thumbnail.attached?
+                json.thumbnailUrl url_for(artist.thumbnail)
+            end
+            if artist.banner.attached?
+                json.bannerUrl url_for(artist.banner)
+            end
+        end
+    end
 end
 
 json.albums do

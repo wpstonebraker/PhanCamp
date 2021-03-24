@@ -18,7 +18,7 @@ class PhishAlbumCreateForm extends React.Component {
   }
 
   redirectHome() {
-    this.props.history.push("/");
+    this.props.history.push(`/`);
   }
 
   handlePhoto(e) {
