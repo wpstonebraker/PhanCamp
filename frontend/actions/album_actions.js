@@ -102,7 +102,6 @@ export const postAlbum = (album) => {
         return dispatch(receiveAlbum(album));
       },
       (errors) => {
-        debugger;
         return dispatch(receiveAlbumErrors(errors));
       }
     );
@@ -111,8 +110,8 @@ export const postAlbum = (album) => {
 
 export const postPhishAlbum = (album) => {
   return (dispatch) => {
-    return APIUtil.postPhishAlbum(album).then((album) => {
-      return dispatch(receivePhishAlbum(album));
-    });
+    // return APIUtil.postPhishAlbum(album).then((album) => {
+    //   return dispatch(receivePhishAlbum(album));
+    return APIUtil.postPhishAlbum(album);
   };
 };

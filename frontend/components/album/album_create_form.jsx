@@ -83,7 +83,6 @@ class AlbumCreateForm extends React.Component {
   // }
 
   renderLocalErrors() {
-    debugger;
     switch (this.errors) {
       case this.errors.art:
         console.log(hello);
@@ -97,7 +96,6 @@ class AlbumCreateForm extends React.Component {
   handleSubmit() {
     let errorsCount = 0;
     let errorsArray = [];
-    debugger;
     if (this.state.photoUrl === null) {
       errorsArray.push("Please upload an album cover");
       errorsCount++;
@@ -128,7 +126,6 @@ class AlbumCreateForm extends React.Component {
       this.state.tracksArray.forEach((track, i) => {
         formData.append(`tracks[${i + 1}]`, track);
       });
-      debugger;
       this.props.createAlbum(formData).then(
         () => this.redirectHome(),
         (err) => console.log(err)
@@ -155,7 +152,6 @@ class AlbumCreateForm extends React.Component {
       <img height="212px" width="212px" src={this.state.photoUrl} />
     ) : null;
     const trackList = this.state.tracksArray.map((track, i) => {
-      debugger;
       return (
         <li>
           {`${i + 1}`} {track.name}
@@ -167,7 +163,6 @@ class AlbumCreateForm extends React.Component {
       errors[error.split(" ")[4].toLowerCase()] = error;
     });
 
-    debugger;
     return (
       <div className="caf-outer">
         <div className="caf-inner">

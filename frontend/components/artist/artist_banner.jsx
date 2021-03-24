@@ -10,6 +10,7 @@ const ArtistBanner = ({ artist, getArtistAlbums }) => {
 
   if (!artist) return null;
 
+  debugger;
   return (
     <div className="artist-banner-box">
       <div className="artist-banner">
@@ -18,6 +19,12 @@ const ArtistBanner = ({ artist, getArtistAlbums }) => {
       <ul className="artist-banner-nav">
         <Link to={`/artists/${artist.id}`} onClick={handleClick}>
           <li className="selected-tab">music</li>
+        </Link>
+        <Link
+          to={`/albums/addPhish`}
+          className={artist.artistName === "Phish" ? "" : "hidden"}
+        >
+          <li className="selected-tab">add show</li>
         </Link>
         {/* <li>community</li>
         <li>merch</li> */}

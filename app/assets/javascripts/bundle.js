@@ -198,16 +198,15 @@ var postAlbum = function postAlbum(album) {
     return _util_album_api_util__WEBPACK_IMPORTED_MODULE_0__.postAlbum(album).then(function (album) {
       return dispatch(receiveAlbum(album));
     }, function (errors) {
-      debugger;
       return dispatch(receiveAlbumErrors(errors));
     });
   };
 };
 var postPhishAlbum = function postPhishAlbum(album) {
   return function (dispatch) {
-    return _util_album_api_util__WEBPACK_IMPORTED_MODULE_0__.postPhishAlbum(album).then(function (album) {
-      return dispatch(receivePhishAlbum(album));
-    });
+    // return APIUtil.postPhishAlbum(album).then((album) => {
+    //   return dispatch(receivePhishAlbum(album));
+    return _util_album_api_util__WEBPACK_IMPORTED_MODULE_0__.postPhishAlbum(album);
   };
 };
 
@@ -242,7 +241,11 @@ var getFeatureArtists = function getFeatureArtists() {
       return dispatch(receiveFeatureArtist(artists));
     });
   };
-};
+}; // export const updateProfile = (id, profile) => {
+//   return (dispatch) => {
+//     return APIUtil.updateProfile(id, profile);
+//   };
+// };
 
 /***/ }),
 
@@ -470,8 +473,6 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderLocalErrors",
     value: function renderLocalErrors() {
-      debugger;
-
       switch (this.errors) {
         case this.errors.art:
           console.log(hello);
@@ -490,7 +491,6 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
 
       var errorsCount = 0;
       var errorsArray = [];
-      debugger;
 
       if (this.state.photoUrl === null) {
         errorsArray.push("Please upload an album cover");
@@ -525,7 +525,6 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         this.state.tracksArray.forEach(function (track, i) {
           formData.append("tracks[".concat(i + 1, "]"), track);
         });
-        debugger;
         this.props.createAlbum(formData).then(function () {
           return _this5.redirectHome();
         }, function (err) {
@@ -556,14 +555,12 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         src: this.state.photoUrl
       }) : null;
       var trackList = this.state.tracksArray.map(function (track, i) {
-        debugger;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "".concat(i + 1), " ", track.name);
       });
       var errors = {};
       this.props.errors.forEach(function (error) {
         errors[error.split(" ")[4].toLowerCase()] = error;
       });
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -727,7 +724,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     currentUser: state.entities.users[state.session.id],
     state: {
@@ -820,8 +816,6 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
   _createClass(AlbumShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
-
       if (this.props.artist.artistName === "Phish" && this.props.album.showDate !== undefined) {
         this.props.getPhishAlbum(this.props.album.showDate);
       } else {
@@ -835,7 +829,6 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       if (!this.props.album) return null;
-      debugger;
       var _this$props = this.props,
           album = _this$props.album,
           tracks = _this$props.tracks,
@@ -862,12 +855,11 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
           });
         });
       } // }
-
-
-      debugger; // const { tracks, album, artist } = this.props;
+      // const { tracks, album, artist } = this.props;
       // const trackItems = tracks.map((track) => {
       //   return <TrackItem track={track} key={track.trackNum} />;
       // });
+
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "album-show-page-box"
@@ -926,7 +918,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     album: state.entities.albums[ownProps.albumId],
     artist: state.entities.artists[ownProps.artistId],
@@ -999,8 +990,10 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = _this.props.state;
+    _this.dateRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
     _this.handlePhoto = _this.handlePhoto.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.redirectHome = _this.redirectHome.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1013,6 +1006,11 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         _this2.setState(_defineProperty({}, field, e.target.value));
       };
+    }
+  }, {
+    key: "redirectHome",
+    value: function redirectHome() {
+      this.props.history.push("/");
     }
   }, {
     key: "handlePhoto",
@@ -1066,16 +1064,19 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       debugger;
       var date = document.querySelector('input[type="date"]');
       this.props.getPhishShow(date.value).then(function (payload) {
+        document.getElementById("phish-caf-date-error").classList.add("hidden");
         var show = payload.data;
         console.log(show);
 
         _this4.setState({
           title: show.date + " " + show.venue_name,
           year: show.date.split("-")[0],
-          description: "Phish's ".concat(_this4.ordinal_suffix_of(show.venue.shows_count), " show at ").concat(show.venue.name, " in ").concat(show.venue.location),
-          show_date: show.date,
+          description: "Phish's ".concat(_this4.ordinal_suffix_of(show.venue.shows_count), " appearance at ").concat(show.venue.name, " in ").concat(show.venue.location),
+          showDate: show.date,
           tracksArray: show.tracks
         });
+      }, function (err) {
+        return err.statusText === "error" ? document.getElementById("phish-caf-date-error").classList.remove("hidden") : null;
       }); // .then(this.handleSubmit());
 
       debugger;
@@ -1086,22 +1087,28 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       var _this5 = this;
 
       debugger;
-      var formData = new FormData();
-      formData.append("album[title]", this.state.title);
-      formData.append("album[artist_id]", this.state.artist_id);
-      formData.append("album[year]", this.state.year);
-      formData.append("album[price]", this.state.price);
-      formData.append("album[description]", this.state.description);
-      formData.append("album[credits]", this.state.credits); // formData.append("album[genres]", this.state.genres);
 
-      formData.append("album[photo]", this.state.photoFile);
-      formData.append("album[show_date]", this.state.show_date);
-      formData.append("tracks", JSON.stringify(this.state.tracksArray));
-      this.props.createPhishAlbum(formData).then(function () {
-        return _this5.redirectHome();
-      }, function (err) {
-        return console.log(err);
-      });
+      if (this.state.photoUrl === null) {
+        document.getElementById("phish-caf-art-error").classList.remove("hidden");
+      } else {
+        document.getElementById("phish-caf-art-error").classList.add("hidden");
+        var formData = new FormData();
+        formData.append("album[title]", this.state.title);
+        formData.append("album[artist_id]", this.state.artist_id);
+        formData.append("album[year]", this.state.year);
+        formData.append("album[price]", this.state.price);
+        formData.append("album[description]", this.state.description);
+        formData.append("album[credits]", this.state.credits); // formData.append("album[genres]", this.state.genres);
+
+        formData.append("album[photo]", this.state.photoFile);
+        formData.append("album[show_date]", this.state.showDate);
+        formData.append("tracks", JSON.stringify(this.state.tracksArray));
+        this.props.createPhishAlbum(formData).then(function () {
+          return _this5.redirectHome();
+        }, function (err) {
+          return console.log(err);
+        });
+      }
     }
   }, {
     key: "uploadImage",
@@ -1124,14 +1131,20 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-inner"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "caf-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        id: "phish-caf-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "phish-credits"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Add any Phish concert recording that is readily available, thanks to the fine folks at Phish.in!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Simple select a date, upload whatever album art you wish, and VOILA!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Don't know any Phish concerts? Visit phish.net and use their random setlist generator"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "date",
         max: "2019-12-31",
         onChange: function onChange() {
           return _this6.getShow();
         }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        id: "phish-caf-date-error",
+        className: "hidden",
+        ref: this.dateRef
+      }, "please select a date with a Phish concert"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-upload-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-upload",
@@ -1145,7 +1158,10 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         className: "caf-add-photo-button",
         hidden: true,
         onChange: this.handlePhoto.bind(this)
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        id: "phish-caf-art-error",
+        className: "hidden"
+      }, "please upload an album cover")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: function onClick() {
           return _this6.handleSubmit();
         }
@@ -1190,7 +1206,7 @@ var mSTP = function mSTP(state, ownProps) {
       genres: "",
       photoFile: null,
       photoUrl: null,
-      show_date: null,
+      showDate: null,
       tracksArray: []
     }
   };
@@ -1313,7 +1329,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _greeting_greeting_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./greeting/greeting_container */ "./frontend/components/greeting/greeting_container.js");
 /* harmony import */ var _signup_signup_form_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./signup/signup_form_container */ "./frontend/components/signup/signup_form_container.js");
 /* harmony import */ var _login_login_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./login/login_form_container */ "./frontend/components/login/login_form_container.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
 /* harmony import */ var _banner_bar_banner_bar_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./banner_bar/banner_bar_container */ "./frontend/components/banner_bar/banner_bar_container.js");
 /* harmony import */ var _feature_feature_index_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./feature/feature_index_container */ "./frontend/components/feature/feature_index_container.js");
@@ -1322,6 +1338,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _splash_splash__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./splash/splash */ "./frontend/components/splash/splash.jsx");
 /* harmony import */ var _album_album_create_form_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./album/album_create_form_container */ "./frontend/components/album/album_create_form_container.js");
 /* harmony import */ var _album_phish_album_create_form_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./album/phish_album_create_form_container */ "./frontend/components/album/phish_album_create_form_container.js");
+/* harmony import */ var _profile_profile_container__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./profile/profile_container */ "./frontend/components/profile/profile_container.js");
+
 
 
 
@@ -1337,7 +1355,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__.AuthRoute, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__.AuthRoute, {
     exact: true,
     path: "/signup",
     component: _signup_signup_form_container__WEBPACK_IMPORTED_MODULE_2__.default
@@ -1345,7 +1363,7 @@ var App = function App() {
     exact: true,
     path: "/login",
     component: _login_login_form_container__WEBPACK_IMPORTED_MODULE_3__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_banner_bar_banner_bar_container__WEBPACK_IMPORTED_MODULE_5__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__.ProtectedRoute, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_banner_bar_banner_bar_container__WEBPACK_IMPORTED_MODULE_5__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__.ProtectedRoute, {
     exact: true,
     path: "/albums/create",
     component: _album_album_create_form_container__WEBPACK_IMPORTED_MODULE_10__.default
@@ -1353,10 +1371,14 @@ var App = function App() {
     exact: true,
     path: "/albums/addPhish",
     component: _album_phish_album_create_form_container__WEBPACK_IMPORTED_MODULE_11__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__.ProtectedRoute, {
+    exact: true,
+    path: "/edit-profile",
+    component: _profile_profile_container__WEBPACK_IMPORTED_MODULE_12__.default
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
     path: "/artists/:id",
     component: _artist_artist_show_container__WEBPACK_IMPORTED_MODULE_7__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
     exact: true,
     path: "/",
     component: _splash_splash__WEBPACK_IMPORTED_MODULE_9__.default
@@ -1396,6 +1418,7 @@ var ArtistBanner = function ArtistBanner(_ref) {
   };
 
   if (!artist) return null;
+  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "artist-banner-box"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1410,7 +1433,12 @@ var ArtistBanner = function ArtistBanner(_ref) {
     onClick: handleClick
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     className: "selected-tab"
-  }, "music"))));
+  }, "music")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/albums/addPhish",
+    className: artist.artistName === "Phish" ? "" : "hidden"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    className: "selected-tab"
+  }, "add show"))));
 };
 
 var mDTP = function mDTP(dispatch) {
@@ -1971,7 +1999,11 @@ var DropdownContent = function DropdownContent(props) {
     onClick: function onClick() {
       return props.history.push("/albums/create");
     }
-  }, "+ add album"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "view albums"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "edit profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
+  }, "+ add album"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "view albums"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    onClick: function onClick() {
+      return props.history.push("/edit-profile");
+    }
+  }, "edit profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
     className: "dropdown-content-list-divider"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     onClick: props.logout
@@ -2309,7 +2341,7 @@ var FeatureIndex = /*#__PURE__*/function (_React$Component) {
         alt: "Main feature Phish"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "fi-main-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Phish"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Relive Night 13 of their Legendary 13 show run at Madison Square Garden"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Phish"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "1600+ shows"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "4000 hours of music"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "fi-side"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "fis-item-container",
@@ -2802,6 +2834,289 @@ var mDTP = function mDTP(dispatch) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mSTP, mDTP)(_login_form__WEBPACK_IMPORTED_MODULE_3__.default));
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profile.jsx":
+/*!*************************************************!*\
+  !*** ./frontend/components/profile/profile.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var Profile = /*#__PURE__*/function (_React$Component) {
+  _inherits(Profile, _React$Component);
+
+  var _super = _createSuper(Profile);
+
+  function Profile(props) {
+    var _this;
+
+    _classCallCheck(this, Profile);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      artistName: _this.props.user.artistName,
+      email: _this.props.user.email,
+      thumbnailFile: null,
+      thumbnailUrl: _this.props.thumbnailUrl || null,
+      bannerFile: null,
+      bannerUrl: _this.props.bannerUrl || null
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleThumbnail = _this.handleThumbnail.bind(_assertThisInitialized(_this));
+    _this.handleBanner = _this.handleBanner.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(Profile, [{
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (e) {
+        _this2.setState(_defineProperty({}, field, e.target.value));
+      };
+    }
+  }, {
+    key: "handleThumbnail",
+    value: function handleThumbnail(e) {
+      var _this3 = this;
+
+      var reader = new FileReader();
+      var file = e.currentTarget.files[0];
+
+      reader.onloadend = function () {
+        return _this3.setState({
+          thumbnailUrl: reader.result,
+          thumbnailFile: file
+        });
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        this.setState({
+          thumbnailUrl: "",
+          thumbnailFile: null
+        });
+      }
+    }
+  }, {
+    key: "handleBanner",
+    value: function handleBanner(e) {
+      var _this4 = this;
+
+      var reader = new FileReader();
+      var file = e.currentTarget.files[0];
+
+      reader.onloadend = function () {
+        return _this4.setState({
+          bannerUrl: reader.result,
+          bannerFile: file
+        });
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        this.setState({
+          bannerUrl: "",
+          bannerFile: null
+        });
+      }
+    }
+  }, {
+    key: "uploadThumbnail",
+    value: function uploadThumbnail() {
+      document.getElementById("profile-thumbnail-upload-button").click();
+    }
+  }, {
+    key: "uploadBanner",
+    value: function uploadBanner() {
+      document.getElementById("profile-banner-upload-button").click();
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit() {
+      // e.preventDefault();
+      var id = this.props.user.id;
+      var formData = new FormData();
+      formData.append("user[artist_name]", this.state.artistName);
+      formData.append("user[email]", this.state.email);
+      formData.append("user[thumbnail]", this.state.thumbnailFile);
+      formData.append("user[banner]", this.state.bannerFile);
+      $.ajax({
+        method: "PATCH",
+        url: "/api/users/".concat(id),
+        data: formData,
+        contentType: false,
+        processData: false
+      }); // export const updateProfile = (id, formData) => {
+      //       return $.ajax({
+      //         method: "PATCH",
+      //         url: `/api/users/${id}`,
+      //         data: formData,
+      //         contentType: false,
+      //         processData: false,
+      //       });
+      //     };
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      debugger;
+      var bannerPreview = this.state.bannerUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        height: "212px",
+        width: "212px",
+        src: this.state.bannerUrl
+      }) : null;
+      var thumbnailPreview = this.state.thumbnailUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        height: "212px",
+        width: "212px",
+        src: this.state.thumbnailUrl
+      }) : null;
+      var _this$state = this.state,
+          artistName = _this$state.artistName,
+          email = _this$state.email;
+      debugger;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "caf-outer"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "caf-inner"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "profile-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+        id: "profile-form"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-banner-upload-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "caf-upload",
+        onClick: this.uploadBanner
+      }, bannerPreview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        id: "caf-upload-span",
+        className: bannerPreview === null ? "" : "hidden"
+      }, "Upload Banner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        id: "profile-banner-upload-button",
+        type: "file",
+        className: "profile-Banner-upload-button",
+        hidden: true,
+        onChange: this.handleBanner.bind(this)
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "profile-label"
+      }, "Artist Profile for ", this.props.user.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "profile-email-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        htmlFor: "profile-email"
+      }, "Email: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "text",
+        value: email,
+        onChange: this.update("email"),
+        id: "profile-email"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "profile-artist-name-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        htmlFor: "profile-artist-name"
+      }, "Artist Name: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "text",
+        value: artistName,
+        onChange: this.update("artistName"),
+        id: "profile-artist-name"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-thumbnail-upload-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "caf-upload",
+        onClick: this.uploadThumbnail
+      }, thumbnailPreview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        id: "caf-upload-span",
+        className: thumbnailPreview === null ? "" : "hidden"
+      }, "Upload Thumbnail"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        id: "profile-thumbnail-upload-button",
+        type: "file",
+        className: "profile-thumbnail-upload-button",
+        hidden: true,
+        onChange: this.handleThumbnail.bind(this)
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "submit",
+        value: "Update Profile",
+        onClick: this.handleSubmit
+      }))))));
+    }
+  }]);
+
+  return Profile;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Profile);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profile_container.js":
+/*!**********************************************************!*\
+  !*** ./frontend/components/profile/profile_container.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_artist_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/artist_actions */ "./frontend/actions/artist_actions.js");
+/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
+
+
+
+
+var mSTP = function mSTP(state, ownProps) {
+  var user = state.entities.users[state.session.id];
+  debugger;
+  return {
+    user: user // state: {
+    //   artist_name: user.artistName,
+    //   email: user.email,
+    // },
+
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {};
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_profile__WEBPACK_IMPORTED_MODULE_2__.default));
 
 /***/ }),
 
@@ -3326,7 +3641,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  debugger;
   var root = document.getElementById("root");
   var store;
 
@@ -3952,7 +4266,15 @@ var getFeatureArtists = function getFeatureArtists() {
   return $.ajax({
     url: "/api/features"
   });
-};
+}; // export const updateProfile = (id, formData) => {
+//   return $.ajax({
+//     method: "PATCH",
+//     url: `/api/users/${id}`,
+//     data: formData,
+//     contentType: false,
+//     processData: false,
+//   });
+// };
 
 /***/ }),
 

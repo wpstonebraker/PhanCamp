@@ -3,7 +3,6 @@ import { postAlbum, receiveAlbumErrors } from "../../actions/album_actions";
 import AlbumCreateForm from "./album_create_form";
 
 const mSTP = (state, ownProps) => {
-  debugger;
   return {
     currentUser: state.entities.users[state.session.id],
     state: {

@@ -27,10 +27,8 @@ class FeatureIndex extends React.Component {
             <img src={window.featurePhish} alt="Main feature Phish" />
             <div className="fi-main-box">
               <span>Phish</span>
-              <p>
-                Relive Night 13 of their Legendary 13 show run at Madison Square
-                Garden
-              </p>
+              <p>1600+ shows</p>
+              <p>4000 hours of music</p>
             </div>
           </div>
           <div className="fi-side">

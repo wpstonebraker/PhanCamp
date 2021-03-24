@@ -11,6 +11,7 @@ import AlbumShowContainer from "./album/album_show_container";
 import Splash from "./splash/splash";
 import AlbumCreateFormContainer from "./album/album_create_form_container";
 import PhishAlbumCreateFormContainer from "./album/phish_album_create_form_container";
+import profile_container from "./profile/profile_container";
 
 const App = () => {
   return (
@@ -30,6 +31,11 @@ const App = () => {
           exact
           path="/albums/addPhish"
           component={PhishAlbumCreateFormContainer}
+        />
+        <ProtectedRoute
+          exact
+          path="/edit-profile"
+          component={profile_container}
         />
         <Route path="/artists/:id" component={ArtistShowContainer} />
 

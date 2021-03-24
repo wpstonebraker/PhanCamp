@@ -4,10 +4,14 @@ class User < ApplicationRecord
     validates :username, :email, uniqueness: true
     validates :password, length: {minimum: 6}, allow_nil: true
     
-    after_initialize :ensure_session_token #, :set_defaults
+    after_initialize :ensure_session_token, :set_defaults
 
     attr_reader :password
 
+    def set_defaults
+        self.about ||= ""
+        self.personal_url ||= ""
+    end
     # def set_defaults
     #     self.banner ||= self.banner.attach(io: File.open("app/assets/images/thumb.png"), filename: "guestthumb.png")
     #     self.thumbnail ||= self.thumbnail.attach(io: File.open("app/assets/images/hiro.jpeg"), filename: "hiro.jpeg")

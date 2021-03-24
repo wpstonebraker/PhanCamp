@@ -14,7 +14,7 @@ const mSTP = (state, ownProps) => {
       genres: "",
       photoFile: null,
       photoUrl: null,
-      show_date: null,
+      showDate: null,
       tracksArray: [],
     },
   };

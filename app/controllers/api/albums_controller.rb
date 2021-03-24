@@ -17,10 +17,9 @@ class Api::AlbumsController < ApplicationController
     end
 
     def create
-        debugger
         @album = Album.new(album_params)
         @artist = User.find(album_params[:artist_id])
-        debugger
+
         @tracks = []
         
         if @album.save

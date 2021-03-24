@@ -11,7 +11,6 @@ class AlbumShow extends React.Component {
   }
 
   componentDidMount() {
-    debugger;
     if (
       this.props.artist.artistName === "Phish" &&
       this.props.album.showDate !== undefined
@@ -26,7 +25,6 @@ class AlbumShow extends React.Component {
 
   render() {
     if (!this.props.album) return null;
-    debugger;
     const { album, tracks, artist } = this.props;
     let trackItems;
 
@@ -48,7 +46,6 @@ class AlbumShow extends React.Component {
       });
     }
     // }
-    debugger;
 
     // const { tracks, album, artist } = this.props;
     // const trackItems = tracks.map((track) => {

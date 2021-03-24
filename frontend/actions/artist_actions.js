@@ -16,3 +16,9 @@ export const getFeatureArtists = () => {
     });
   };
 };
+
+// export const updateProfile = (id, profile) => {
+//   return (dispatch) => {
+//     return APIUtil.updateProfile(id, profile);
+//   };
+// };

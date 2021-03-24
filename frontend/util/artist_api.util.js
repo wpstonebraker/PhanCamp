@@ -9,3 +9,13 @@ export const getFeatureArtists = () => {
     url: "/api/features",
   });
 };
+
+// export const updateProfile = (id, formData) => {
+//   return $.ajax({
+//     method: "PATCH",
+//     url: `/api/users/${id}`,
+//     data: formData,
+//     contentType: false,
+//     processData: false,
+//   });
+// };
