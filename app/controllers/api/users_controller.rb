@@ -7,7 +7,7 @@ class Api::UsersController < ApplicationController
         # show page will send info on user back (of my choosing)
         if @user.save
             login(@user)
-            render "api/users/show"
+            render :show
             
         else
             #if not, give them the unprocessable entity response
@@ -22,9 +22,9 @@ class Api::UsersController < ApplicationController
 
     def update
         @user = User.find(params[:id])
-
+        debugger
         if @user.update(profile_params)
-            render "api/users/show"
+            render :show
         else
             render json: @user.errors.full_messages, status: 422
         end

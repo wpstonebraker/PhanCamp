@@ -2977,6 +2977,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
       formData.append("user[email]", this.state.email);
       formData.append("user[thumbnail]", this.state.thumbnailFile);
       formData.append("user[banner]", this.state.bannerFile);
+      debugger;
       $.ajax({
         method: "PATCH",
         url: "/api/users/".concat(id),

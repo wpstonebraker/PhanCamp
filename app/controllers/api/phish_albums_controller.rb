@@ -2,23 +2,29 @@ class Api::PhishAlbumsController < ApplicationController
 
     def create
         new_params = phish_album_params.clone
-        @artist = User.where(artist_name: "Phish")
-        new_params[:artist_id] = @artist.ids[0]
+        @artist = User.where(artist_name: "Phish")[0]
+        debugger
+        new_params[:artist_id] = @artist.id
 
         @album = Album.new(new_params)
+        @tracks = []
 
         if @album.save
             str = params["tracks"]
             arr = JSON.parse(str)
 
             arr.each do |track|
-                Track.create!(
+                t = Track.create!(
                     track_name: track["title"],
                     track_num: track["position"],
                     album_id: @album.id,
-                ) 
+                )
+                @tracks << t
             end
 
+            render :show
+        else
+            render json: @album.errors.full_messages, status: 422
         end
 
 
