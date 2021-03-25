@@ -10,7 +10,6 @@ const ArtistBanner = ({ artist, getArtistAlbums }) => {
 
   if (!artist) return null;
 
-  debugger;
   return (
     <div className="artist-banner-box">
       <div className="artist-banner">

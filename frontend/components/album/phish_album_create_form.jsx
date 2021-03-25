@@ -11,7 +11,6 @@ class PhishAlbumCreateForm extends React.Component {
   }
 
   update(field) {
-    debugger;
     return (e) => {
       this.setState({ [field]: e.target.value });
     };
@@ -50,7 +49,6 @@ class PhishAlbumCreateForm extends React.Component {
   }
 
   getShow() {
-    debugger;
     const date = document.querySelector('input[type="date"]');
     this.props.getPhishShow(date.value).then(
       (payload) => {
@@ -75,11 +73,9 @@ class PhishAlbumCreateForm extends React.Component {
           : null
     );
     // .then(this.handleSubmit());
-    debugger;
   }
 
   handleSubmit() {
-    debugger;
     if (this.state.photoUrl === null) {
       document.getElementById("phish-caf-art-error").classList.remove("hidden");
     } else {
@@ -110,7 +106,6 @@ class PhishAlbumCreateForm extends React.Component {
     const uploadPreview = this.state.photoUrl ? (
       <img height="212px" width="212px" src={this.state.photoUrl} />
     ) : null;
-    debugger;
     return (
       <div className="caf-outer">
         <div className="caf-inner">

@@ -1002,7 +1002,6 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
     value: function update(field) {
       var _this2 = this;
 
-      debugger;
       return function (e) {
         _this2.setState(_defineProperty({}, field, e.target.value));
       };
@@ -1061,7 +1060,6 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
     value: function getShow() {
       var _this4 = this;
 
-      debugger;
       var date = document.querySelector('input[type="date"]');
       this.props.getPhishShow(date.value).then(function (payload) {
         document.getElementById("phish-caf-date-error").classList.add("hidden");
@@ -1078,15 +1076,11 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       }, function (err) {
         return err.statusText === "error" ? document.getElementById("phish-caf-date-error").classList.remove("hidden") : null;
       }); // .then(this.handleSubmit());
-
-      debugger;
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
       var _this5 = this;
-
-      debugger;
 
       if (this.state.photoUrl === null) {
         document.getElementById("phish-caf-art-error").classList.remove("hidden");
@@ -1125,7 +1119,6 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         width: "212px",
         src: this.state.photoUrl
       }) : null;
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1243,7 +1236,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var PhishTrackItem = function PhishTrackItem(_ref) {
   var track = _ref.track;
-  debugger;
 
   var playSong = function playSong() {
     document.getElementById("audio-player").src = track.mp3;
@@ -1289,10 +1281,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var TrackItem = function TrackItem(_ref) {
   var track = _ref.track;
-  debugger;
 
   var playSong = function playSong() {
-    debugger;
     document.getElementById("audio-player").src = track.songUrl;
     var audioPlayer = document.getElementById("audio-player");
     audioPlayer.play();
@@ -1418,7 +1408,6 @@ var ArtistBanner = function ArtistBanner(_ref) {
   };
 
   if (!artist) return null;
-  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "artist-banner-box"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1517,7 +1506,6 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
   _createClass(ArtistShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
       this.props.getArtistAlbums(this.props.match.params.id);
     }
   }, {
@@ -1533,7 +1521,6 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
           albums.push(album);
         }
       });
-      debugger;
       var artist = this.props.artist;
       if (!artist) return null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2233,7 +2220,6 @@ __webpack_require__.r(__webpack_exports__);
 var DailyMainItem = function DailyMainItem(_ref) {
   var album = _ref.album,
       history = _ref.history;
-  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
     to: "/artists/".concat(album.artistId, "/albums/").concat(album.id)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2411,7 +2397,6 @@ var mSTP = function mSTP(_ref, ownProps) {
   var _ref$entities = _ref.entities,
       features = _ref$entities.util.features,
       artists = _ref$entities.artists;
-  debugger;
 
   if (features) {
     return {
@@ -2886,7 +2871,6 @@ var Profile = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Profile);
 
     _this = _super.call(this, props);
-    debugger;
     _this.state = {
       artistName: _this.props.user.artistName,
       email: _this.props.user.email,
@@ -2978,7 +2962,6 @@ var Profile = /*#__PURE__*/function (_React$Component) {
       formData.append("user[email]", this.state.email);
       formData.append("user[thumbnail]", this.state.thumbnailFile);
       formData.append("user[banner]", this.state.bannerFile);
-      debugger;
       $.ajax({
         method: "PATCH",
         url: "/api/users/".concat(id),
@@ -2998,7 +2981,6 @@ var Profile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       var bannerPreview = this.state.bannerUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         height: "212px",
         width: "212px",
@@ -3012,7 +2994,6 @@ var Profile = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           artistName = _this$state.artistName,
           email = _this$state.email;
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3104,7 +3085,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state, ownProps) {
   var user = state.entities.users[state.session.id];
-  debugger;
   return {
     user: user // state: {
     //   artist_name: user.artistName,

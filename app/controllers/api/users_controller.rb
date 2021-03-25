@@ -22,7 +22,6 @@ class Api::UsersController < ApplicationController
 
     def update
         @user = User.find(params[:id])
-        debugger
         if @user.banner.attached? && params[:user][:banner]
             @user.banner.purge
         end

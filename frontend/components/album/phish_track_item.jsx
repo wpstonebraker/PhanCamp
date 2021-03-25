@@ -1,7 +1,6 @@
 import React from "react";
 
 const PhishTrackItem = ({ track }) => {
-  debugger;
   const playSong = () => {
     document.getElementById("audio-player").src = track.mp3;
     const audioPlayer = document.getElementById("audio-player");

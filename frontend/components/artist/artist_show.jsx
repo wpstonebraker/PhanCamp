@@ -13,7 +13,6 @@ class ArtistShow extends React.Component {
   }
 
   componentDidMount() {
-    debugger;
     this.props.getArtistAlbums(this.props.match.params.id);
   }
 
@@ -26,7 +25,6 @@ class ArtistShow extends React.Component {
         albums.push(album);
       }
     });
-    debugger;
     const artist = this.props.artist;
 
     if (!artist) return null;

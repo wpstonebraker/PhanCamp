@@ -40,7 +40,6 @@ class Api::AlbumsController < ApplicationController
 
         end
         # if @album.save
-        #     debugger
         #     i = 1
         #     count = params["tracks"]["count"]
         #     while i <= j

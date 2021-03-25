@@ -3,7 +3,6 @@ import React from "react";
 class Profile extends React.Component {
   constructor(props) {
     super(props);
-    debugger
     this.state = {
       artistName: this.props.user.artistName,
       email: this.props.user.email,
@@ -65,7 +64,6 @@ class Profile extends React.Component {
     formData.append("user[email]", this.state.email);
     formData.append("user[thumbnail]", this.state.thumbnailFile);
     formData.append("user[banner]", this.state.bannerFile);
-    debugger;
     $.ajax({
       method: "PATCH",
       url: `/api/users/${id}`,
@@ -85,7 +83,6 @@ class Profile extends React.Component {
   }
 
   render() {
-    debugger;
     const bannerPreview = this.state.bannerUrl ? (
       <img height="212px" width="212px" src={this.state.bannerUrl} />
     ) : null;
@@ -93,7 +90,6 @@ class Profile extends React.Component {
       <img height="212px" width="212px" src={this.state.thumbnailUrl} />
     ) : null;
     const { artistName, email } = this.state;
-    debugger;
     return (
       <div className="caf-outer">
         <div className="caf-inner">
