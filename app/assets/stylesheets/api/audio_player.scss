@@ -1,0 +1,23 @@
+#audio-player-box {
+  outline: 1px solid green;
+  display: flex;
+}
+
+#progress-bar-box {
+  outline: 1px solid red;
+  height: 30px;
+  width: 100%;
+  display: flex;
+}
+
+#progress-bar {
+  outline: 1px solid deepskyblue;
+  width: 100%;
+  display: flex;
+}
+
+#progress-bar-played {
+  background-color: darkviolet;
+  height: 20px;
+  flex-basis: 0%;
+}

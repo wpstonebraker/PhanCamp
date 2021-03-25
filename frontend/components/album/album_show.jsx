@@ -4,10 +4,12 @@ import ArtistBanner from "../artist/artist_banner";
 import ArtistSidebar from "../artist/artist_sidebar";
 import PhishTrackItem from "./phish_track_item";
 import TrackItem from "./track_item";
+import AudioPlayer from "../audio_player/audio_player_container";
 
 class AlbumShow extends React.Component {
   constructor(props) {
     super(props);
+    this.audio = React.createRef();
   }
 
   componentDidMount() {
@@ -58,13 +60,14 @@ class AlbumShow extends React.Component {
             <span>{album.title}</span>
             <span>{album.artistName}</span>
             <div>
-              <audio controls id="audio-player">
+              <AudioPlayer ref={this.audio} />
+              {/* <audio controls id="audio-player">
                 <source
                   id="audio-player-source"
                   src="/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb1lCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--186d9de110146fa7c63638c22e6eb50ccc7de6cd/1997-11-17Tweezer.mp3"
                   type="audio/mpeg"
                 ></source>
-              </audio>
+              </audio> */}
             </div>
           </div>
           <div className="album-track-table-box">

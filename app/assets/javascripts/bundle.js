@@ -773,6 +773,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _artist_artist_sidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../artist/artist_sidebar */ "./frontend/components/artist/artist_sidebar.jsx");
 /* harmony import */ var _phish_track_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./phish_track_item */ "./frontend/components/album/phish_track_item.jsx");
 /* harmony import */ var _track_item__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./track_item */ "./frontend/components/album/track_item.jsx");
+/* harmony import */ var _audio_player_audio_player_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../audio_player/audio_player_container */ "./frontend/components/audio_player/audio_player_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -802,15 +803,20 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var AlbumShow = /*#__PURE__*/function (_React$Component) {
   _inherits(AlbumShow, _React$Component);
 
   var _super = _createSuper(AlbumShow);
 
   function AlbumShow(props) {
+    var _this;
+
     _classCallCheck(this, AlbumShow);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.audio = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
+    return _this;
   }
 
   _createClass(AlbumShow, [{
@@ -867,14 +873,9 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
         className: "album-show-page-left"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "album-show-title-artist"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, album.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("audio", {
-        controls: true,
-        id: "audio-player"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("source", {
-        id: "audio-player-source",
-        src: "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb1lCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--186d9de110146fa7c63638c22e6eb50ccc7de6cd/1997-11-17Tweezer.mp3",
-        type: "audio/mpeg"
-      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, album.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_audio_player_audio_player_container__WEBPACK_IMPORTED_MODULE_5__.default, {
+        ref: this.audio
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "album-track-table-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", {
         className: "album-track-table"
@@ -1164,6 +1165,7 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         className: "phish-credits"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Add any Phish concert recording that is readily available, thanks to the fine folks at Phish.in!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Simple select a date, upload whatever album art you wish, and VOILA!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Don't know any Phish concerts? Visit phish.net to find a show OR use our random setlist button!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "date",
+        min: "1983-12-02",
         max: "2019-12-31",
         onChange: function onChange() {
           return _this7.getShow();
@@ -1771,6 +1773,182 @@ var DiscogItem = function DiscogItem(_ref) {
 
 /***/ }),
 
+/***/ "./frontend/components/audio_player/audio_player.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/audio_player/audio_player.jsx ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var AudioPlayer = /*#__PURE__*/function (_React$Component) {
+  _inherits(AudioPlayer, _React$Component);
+
+  var _super = _createSuper(AudioPlayer);
+
+  function AudioPlayer(props) {
+    var _this;
+
+    _classCallCheck(this, AudioPlayer);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      currentTime: "00:00",
+      duration: "00:00"
+    };
+    _this.audio = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
+    _this.progressBar = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
+    _this.togglePlay = _this.togglePlay.bind(_assertThisInitialized(_this));
+    _this.handleTime = _this.handleTime.bind(_assertThisInitialized(_this));
+    _this.handleProgress = _this.handleProgress.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(AudioPlayer, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
+    key: "togglePlay",
+    value: function togglePlay() {
+      var audio = this.audio.current;
+
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    }
+  }, {
+    key: "convertTime",
+    value: function convertTime(time) {
+      var minutes = Math.floor(time / 60);
+      var displayMinutes = minutes < 10 ? "0".concat(minutes) : minutes;
+      var seconds = Math.floor(time - minutes * 60);
+      var displaySeconds = seconds < 10 ? "0".concat(seconds) : seconds;
+      return "".concat(displayMinutes, ":").concat(displaySeconds);
+    }
+  }, {
+    key: "handleTime",
+    value: function handleTime() {
+      var audio = this.audio.current;
+      var time = this.convertTime(audio.currentTime);
+      var duration = this.convertTime(audio.duration);
+      this.setState({
+        currentTime: time,
+        duration: duration
+      });
+      this.handleProgress();
+    } //   handleTime() {
+    //     const audio = this.audio.current;
+    //     const time = audio.currentTime;
+    //     const minutes = Math.floor(time / 60);
+    //     const displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    //     const seconds = Math.floor(time - minutes * 60);
+    //     const displaySeconds = seconds < 10 ? `0${seconds}` : seconds;
+    //     this.setState({ currentTime: `${displayMinutes}:${displaySeconds}` });
+    //     this.handleProgress();
+    //   }
+
+  }, {
+    key: "handleProgress",
+    value: function handleProgress() {
+      debugger;
+      var audio = this.audio.current;
+      var progressBar = this.progressBar.current;
+      var percent = audio.currentTime / audio.duration * 100;
+      progressBar.style.flexBasis = "".concat(percent, "%");
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "audio-player-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        onClick: this.togglePlay
+      }, "play"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "progress-bar-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "progress-bar"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "progress-bar-played",
+        ref: this.progressBar
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "duration-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "duration-display"
+      }, this.state.currentTime, " / ", this.state.duration)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("audio", {
+        controls: true,
+        onTimeUpdate: this.handleTime,
+        id: "audio-player",
+        ref: this.audio,
+        src: "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb1lCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--186d9de110146fa7c63638c22e6eb50ccc7de6cd/1997-11-17Tweezer.mp3"
+      }));
+    }
+  }]);
+
+  return AudioPlayer;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AudioPlayer);
+
+/***/ }),
+
+/***/ "./frontend/components/audio_player/audio_player_container.js":
+/*!********************************************************************!*\
+  !*** ./frontend/components/audio_player/audio_player_container.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _audio_player__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./audio_player */ "./frontend/components/audio_player/audio_player.jsx");
+
+
+
+var mSTP = function mSTP(state, ownProps) {
+  return {};
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {};
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_audio_player__WEBPACK_IMPORTED_MODULE_1__.default));
+
+/***/ }),
+
 /***/ "./frontend/components/banner_bar/banner_bar.jsx":
 /*!*******************************************************!*\
   !*** ./frontend/components/banner_bar/banner_bar.jsx ***!
@@ -2027,7 +2205,11 @@ var DropdownContent = function DropdownContent(props) {
     onClick: function onClick() {
       return props.history.push("/albums/create");
     }
-  }, "+ add album"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "view albums"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+  }, "+ add album"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    onClick: function onClick() {
+      return props.history.push("/artists/".concat(props.currentUser.id));
+    }
+  }, "view albums"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     onClick: function onClick() {
       return props.history.push("/edit-profile");
     }

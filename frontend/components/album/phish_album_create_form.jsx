@@ -159,6 +159,7 @@ class PhishAlbumCreateForm extends React.Component {
             </div>
             <input
               type="date"
+              min="1983-12-02"
               max="2019-12-31"
               onChange={() => this.getShow()}
             />

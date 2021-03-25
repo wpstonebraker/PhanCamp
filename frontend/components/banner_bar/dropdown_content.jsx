@@ -13,7 +13,11 @@ const DropdownContent = (props) => {
         <li onClick={() => props.history.push(`/albums/create`)}>
           + add album
         </li>
-        <li>view albums</li>
+        <li
+          onClick={() => props.history.push(`/artists/${props.currentUser.id}`)}
+        >
+          view albums
+        </li>
         <li onClick={() => props.history.push(`/edit-profile`)}>
           edit profile
         </li>
