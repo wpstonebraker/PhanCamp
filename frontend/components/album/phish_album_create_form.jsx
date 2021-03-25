@@ -75,6 +75,29 @@ class PhishAlbumCreateForm extends React.Component {
     // .then(this.handleSubmit());
   }
 
+  getRandomShow() {
+    $.ajax({
+      url: `http://phish.in/api/v1/random-show`,
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${window.phishAPIKey}`,
+      },
+    }).then((payload) => {
+      document.getElementById("phish-caf-date-error").classList.add("hidden");
+      const show = payload.data;
+      console.log(show);
+      this.setState({
+        title: show.date + " " + show.venue_name,
+        year: show.date.split("-")[0],
+        description: `Phish's ${this.ordinal_suffix_of(
+          show.venue.shows_count
+        )} appearance at ${show.venue.name} in ${show.venue.location}`,
+        showDate: show.date,
+        tracksArray: show.tracks,
+      });
+    });
+  }
+
   handleSubmit() {
     if (this.state.photoUrl === null) {
       document.getElementById("phish-caf-art-error").classList.remove("hidden");
@@ -102,7 +125,15 @@ class PhishAlbumCreateForm extends React.Component {
     document.getElementById("caf-add-photo-button").click();
   }
 
+  renderTracks() {
+    return this.state.tracksArray.map((track) => {
+      return <li key={track.id}>{track.title}</li>;
+    });
+  }
+
   render() {
+    const tracksPreview =
+      this.state.tracksArray.length > 0 ? this.renderTracks() : null;
     const uploadPreview = this.state.photoUrl ? (
       <img height="212px" width="212px" src={this.state.photoUrl} />
     ) : null;
@@ -121,8 +152,8 @@ class PhishAlbumCreateForm extends React.Component {
                   VOILA!
                 </p>
                 <p>
-                  Don't know any Phish concerts? Visit phish.net and use their
-                  random setlist generator
+                  Don't know any Phish concerts? Visit phish.net to find a show
+                  OR use our random setlist button!
                 </p>
               </div>
             </div>
@@ -131,9 +162,11 @@ class PhishAlbumCreateForm extends React.Component {
               max="2019-12-31"
               onChange={() => this.getShow()}
             />
+            <p>{this.state.showDate}</p>
             <p id="phish-caf-date-error" className="hidden" ref={this.dateRef}>
               please select a date with a Phish concert
             </p>
+            <button onClick={() => this.getRandomShow()}>Random Show</button>
             <div className="caf-upload-box">
               <div className="caf-upload" onClick={this.uploadImage}>
                 {uploadPreview}
@@ -157,6 +190,14 @@ class PhishAlbumCreateForm extends React.Component {
             </div>
 
             <button onClick={() => this.handleSubmit()}>Add Phish Show</button>
+          </div>
+          <div id="phish-caf-display">
+            <div>
+              <p>{this.state.showDate}</p>
+            </div>
+            <div>
+              <ul>{tracksPreview}</ul>
+            </div>
           </div>
         </div>
       </div>
