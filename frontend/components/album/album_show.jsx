@@ -55,7 +55,6 @@ class AlbumShow extends React.Component {
     // const trackItems = tracks.map((track) => {
     //   return <TrackItem track={track} key={track.trackNum} />;
     // });
-    debugger;
     return (
       <div className="album-show-page-box">
         <div className="album-show-page-left">

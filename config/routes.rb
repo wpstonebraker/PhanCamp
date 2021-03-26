@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :selling, only: [:index]
     resources :tracks, only: [:create]
     resource :phish_albums, only: [:create]
+    get '/search', to: 'search#search'
   end
 
 

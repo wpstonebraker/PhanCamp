@@ -2,6 +2,7 @@ import React from "react";
 import GreetingContainer from "../greeting/greeting_container";
 import { Link } from "react-router-dom";
 import DropdownButton from "./dropdown_button";
+import Search from "../search/search_container";
 
 const BannerBar = (props) => {
   const loggedOut = () => {
@@ -13,10 +14,7 @@ const BannerBar = (props) => {
               <Link to="/">
                 <img src={window.logo} alt="" className="main-header-logo" />
               </Link>
-              <div className="search-box">
-                <input className="search-placeholder"></input>
-                <img src={window.searchMag} className="search-icon" />
-              </div>
+              <Search />
             </div>
             <div className="main-header-bottom-row">
               <p className="main-header-sub-head">
@@ -41,13 +39,7 @@ const BannerBar = (props) => {
               <Link to="/">
                 <img src={window.logo} alt="" className="main-header-logo" />
               </Link>
-              <div className="search-box">
-                <input
-                  className="search-placeholder"
-                  placeholder="Search and discover music"
-                ></input>
-                <img src={window.searchMag} className="search-icon" />
-              </div>
+              <Search />
             </div>
             <div className="lin-right">
               <div className="lin-icon"></div>

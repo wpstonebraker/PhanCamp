@@ -12,6 +12,7 @@ import Splash from "./splash/splash";
 import AlbumCreateFormContainer from "./album/album_create_form_container";
 import PhishAlbumCreateFormContainer from "./album/phish_album_create_form_container";
 import profile_container from "./profile/profile_container";
+import SearchDisplayContainer from "./search/search_display_container";
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
           path="/edit-profile"
           component={profile_container}
         />
+        <Route path="/search" component={SearchDisplayContainer} />
         <Route path="/artists/:id" component={ArtistShowContainer} />
 
         <Route exact path="/" component={Splash} />
