@@ -1,10 +1,15 @@
 import React from "react";
 
-const PhishTrackItem = ({ track }) => {
+const PhishTrackItem = React.forwardRef(({ track }, ref) => {
+  // const playSong = () => {
+  //   document.getElementById("audio-player").src = track.mp3;
+  //   const audioPlayer = document.getElementById("audio-player");
+  //   audioPlayer.play();
+  // };
   const playSong = () => {
-    document.getElementById("audio-player").src = track.mp3;
-    const audioPlayer = document.getElementById("audio-player");
-    audioPlayer.play();
+    debugger;
+    const audio = ref.current;
+    audio.handleTrack(track.mp3, track.title);
   };
 
   // const downloadSong = () => {
@@ -26,6 +31,6 @@ const PhishTrackItem = ({ track }) => {
       </a> */}
     </tr>
   );
-};
+});
 
 export default PhishTrackItem;

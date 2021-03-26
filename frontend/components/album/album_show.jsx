@@ -2,9 +2,10 @@ import React from "react";
 import artist_banner from "../artist/artist_banner";
 import ArtistBanner from "../artist/artist_banner";
 import ArtistSidebar from "../artist/artist_sidebar";
+import AudioPlayer from "../audio_player/audio_player";
 import PhishTrackItem from "./phish_track_item";
 import TrackItem from "./track_item";
-import AudioPlayer from "../audio_player/audio_player_container";
+// import AudioPlayer from "../audio_player/audio_player_container";
 
 class AlbumShow extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class AlbumShow extends React.Component {
 
   render() {
     if (!this.props.album) return null;
+    if (Object.values(this.props.tracks).length === 0) return null;
     const { album, tracks, artist } = this.props;
     let trackItems;
 
@@ -40,11 +42,11 @@ class AlbumShow extends React.Component {
     // } else {
     if (album.showDate !== undefined) {
       trackItems = Object.values(tracks).map((track) => {
-        return <PhishTrackItem track={track} />;
+        return <PhishTrackItem track={track} ref={this.audio} />;
       });
     } else {
       trackItems = Object.values(tracks).map((track) => {
-        return <TrackItem track={track} />;
+        return <TrackItem track={track} ref={this.audio} />;
       });
     }
     // }
@@ -53,6 +55,7 @@ class AlbumShow extends React.Component {
     // const trackItems = tracks.map((track) => {
     //   return <TrackItem track={track} key={track.trackNum} />;
     // });
+    debugger;
     return (
       <div className="album-show-page-box">
         <div className="album-show-page-left">
@@ -60,7 +63,14 @@ class AlbumShow extends React.Component {
             <span>{album.title}</span>
             <span>{album.artistName}</span>
             <div>
-              <AudioPlayer ref={this.audio} />
+              <AudioPlayer
+                ref={this.audio}
+                song={
+                  album.showDate !== undefined
+                    ? Object.values(tracks)[0].mp3
+                    : Object.values(tracks)[0].songUrl
+                }
+              />
               {/* <audio controls id="audio-player">
                 <source
                   id="audio-player-source"
