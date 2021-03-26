@@ -266,7 +266,6 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_SEARCH_RESULTS = "RECEIVE_SEARCH_RESULTS";
 
 var receiveSearchResults = function receiveSearchResults(payload) {
-  debugger;
   return {
     type: RECEIVE_SEARCH_RESULTS,
     payload: payload
@@ -274,11 +273,8 @@ var receiveSearchResults = function receiveSearchResults(payload) {
 };
 
 var getSearch = function getSearch(terms) {
-  debugger;
   return function (dispatch) {
-    debugger;
     return _util_search_api_util__WEBPACK_IMPORTED_MODULE_0__.getSearch(terms).then(function (results) {
-      debugger;
       return dispatch(receiveSearchResults(results));
     });
   };
@@ -1328,7 +1324,6 @@ var PhishTrackItem = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(
   //   audioPlayer.play();
   // };
   var playSong = function playSong() {
-    debugger;
     var audio = ref.current;
     audio.handleTrack(track.mp3, track.title);
   }; // const downloadSong = () => {
@@ -1911,7 +1906,6 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "togglePlay",
     value: function togglePlay() {
-      debugger;
       var audio = this.audio.current;
 
       if (audio.paused) {
@@ -1939,7 +1933,6 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleTrack",
     value: function handleTrack(track) {
-      debugger;
       this.setState({
         src: track
       }); // this.setState({ src: track.songUrl }, () => {
@@ -1951,7 +1944,6 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
     value: function playTrack() {
       var audio = this.audio.current;
       this.togglePlay();
-      debugger;
       var duration = this.convertTime(audio.duration);
       this.setState({
         duration: duration
@@ -3482,8 +3474,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
     value: function handleInput(e) {
       this.setState({
         terms: e.target.value
-      }); // debugger;
-      // this.setState(
+      }); // this.setState(
       //   {
       //     term: e.target.value,
       //   },
@@ -3620,7 +3611,6 @@ var SearchDisplay = /*#__PURE__*/function (_React$Component) {
       var resultItems = Object.keys(this.props.results).map(function (res) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, res);
       });
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, resultItems));
     }
   }]);
@@ -4901,7 +4891,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getSearch": () => /* binding */ getSearch
 /* harmony export */ });
 var getSearch = function getSearch(terms) {
-  debugger;
   return $.ajax({
     url: "/api/search?q=".concat(terms)
   });

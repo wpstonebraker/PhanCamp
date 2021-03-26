@@ -15,7 +15,6 @@ class Search extends React.Component {
     this.setState({
       terms: e.target.value,
     });
-    // debugger;
     // this.setState(
     //   {
     //     term: e.target.value,

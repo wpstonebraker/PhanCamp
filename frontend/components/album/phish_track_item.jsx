@@ -7,7 +7,6 @@ const PhishTrackItem = React.forwardRef(({ track }, ref) => {
   //   audioPlayer.play();
   // };
   const playSong = () => {
-    debugger;
     const audio = ref.current;
     audio.handleTrack(track.mp3, track.title);
   };

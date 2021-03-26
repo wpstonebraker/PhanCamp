@@ -23,7 +23,6 @@ class AudioPlayer extends React.Component {
   }
 
   togglePlay() {
-    debugger;
     const audio = this.audio.current;
     if (audio.paused) {
       audio.play();
@@ -44,7 +43,6 @@ class AudioPlayer extends React.Component {
   }
 
   handleTrack(track) {
-    debugger;
     this.setState({ src: track });
     // this.setState({ src: track.songUrl }, () => {
     this.playTrack();
@@ -54,7 +52,6 @@ class AudioPlayer extends React.Component {
   playTrack() {
     const audio = this.audio.current;
     this.togglePlay();
-    debugger;
     const duration = this.convertTime(audio.duration);
     this.setState({ duration });
   }

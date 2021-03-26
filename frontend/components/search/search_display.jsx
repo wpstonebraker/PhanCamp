@@ -9,7 +9,6 @@ class SearchDisplay extends React.Component {
     const resultItems = Object.keys(this.props.results).map((res) => {
       return <li>{res}</li>;
     });
-    debugger;
     return (
       <div>
         <ul>{resultItems}</ul>
