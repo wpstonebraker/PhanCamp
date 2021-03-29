@@ -3801,6 +3801,8 @@ var SearchDisplay = /*#__PURE__*/function (_React$Component) {
   _createClass(SearchDisplay, [{
     key: "render",
     value: function render() {
+      var _this = this;
+
       debugger; // let searchResults = [];
       // for (const [key, value] of Object.entries(this.props.artists)) {
       //   searchResults.push(<DisplayItem artist={key} details={value} />);
@@ -3810,12 +3812,14 @@ var SearchDisplay = /*#__PURE__*/function (_React$Component) {
       var artistItems = Object.keys(this.props.artists).length !== 0 ? Object.values(this.props.artists).map(function (res) {
         debugger;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_display_item__WEBPACK_IMPORTED_MODULE_1__.default, {
-          details: res
+          details: res,
+          history: _this.props.history
         });
       }) : "";
       var albumItems = Object.keys(this.props.albums).length !== 0 ? Object.values(this.props.albums).map(function (res) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_display_item__WEBPACK_IMPORTED_MODULE_1__.default, {
-          details: res
+          details: res,
+          history: _this.props.history
         });
       }) : ""; // const trackItems =
       //   Object.keys(this.props.tracks).length !== 0
@@ -3885,16 +3889,39 @@ __webpack_require__.r(__webpack_exports__);
 var DisplayItem = function DisplayItem(props) {
   debugger;
   var item = props.details;
+  var display;
 
   switch (item["class"]) {
     case "user":
       item.name = item.artistName;
       item.image = item.thumbnailUrl;
+      display = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+        className: "display-tile"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "dt-image",
+        onClick: function onClick() {
+          return props.history.push("/artists/".concat(item.id));
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: item.image
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "dt-details"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "ARTIST"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, item.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, item.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, item.personalUrl))));
       break;
 
     case "album":
       item.name = item.title;
       item.image = item.photoUrl;
+      display = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+        className: "display-tile"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "dt-image",
+        onClick: function onClick() {
+          return props.history.push("/albums/".concat(item.id));
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: item.image
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, item.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, item.name))));
       break;
 
     case "track":
@@ -3905,11 +3932,7 @@ var DisplayItem = function DisplayItem(props) {
   }
 
   debugger;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-    className: "display-tile"
-  }, item.name, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: item.image
-  }));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, display);
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DisplayItem);

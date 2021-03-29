@@ -17,13 +17,13 @@ class SearchDisplay extends React.Component {
       Object.keys(this.props.artists).length !== 0
         ? Object.values(this.props.artists).map((res) => {
             debugger;
-            return <DisplayItem details={res} />;
+            return <DisplayItem details={res} history={this.props.history} />;
           })
         : "";
     const albumItems =
       Object.keys(this.props.albums).length !== 0
         ? Object.values(this.props.albums).map((res) => {
-            return <DisplayItem details={res} />;
+            return <DisplayItem details={res} history={this.props.history} />;
           })
         : "";
     // const trackItems =
