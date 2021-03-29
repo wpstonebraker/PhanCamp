@@ -4,10 +4,12 @@ import { getAlbum, getPhishAlbum } from "../../actions/album_actions";
 import AlbumShow from "./album_show";
 
 const mSTP = (state, ownProps) => {
+  debugger;
   return {
     album: state.entities.albums[ownProps.albumId],
     artist: state.entities.artists[ownProps.artistId],
     tracks: state.entities.tracks,
+    track: Object.values(state.entities.tracks)[0],
   };
 };
 

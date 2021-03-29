@@ -15,6 +15,9 @@ class ArtistShow extends React.Component {
   componentDidMount() {
     this.props.getArtistAlbums(this.props.match.params.id);
   }
+  componentDidUpdate() {
+    // this.props.getArtistAlbums(this.props.match.params.id);
+  }
 
   render() {
     if (this.props.artistId !== this.props.match.params.id) return null;

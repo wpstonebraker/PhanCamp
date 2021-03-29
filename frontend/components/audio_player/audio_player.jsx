@@ -6,10 +6,11 @@ class AudioPlayer extends React.Component {
     this.state = {
       currentTime: "00:00",
       duration: "00:00",
-      src: "",
+      src: props.track,
       playButton: null,
       title: "",
     };
+    this.track = props.track;
     this.audio = React.createRef();
     this.progressBar = React.createRef();
     this.progressPlayed = React.createRef();
@@ -22,10 +23,16 @@ class AudioPlayer extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ src: this.props.song, playButton: window.playIcon });
+    debugger;
+    let song;
+    if (this.track) {
+      song = this.track ? this.track.mp3 : this.track.songUrl;
+    }
+    this.setState({ src: song, playButton: window.playIcon });
   }
 
   togglePlay() {
+    debugger;
     const audio = this.audio.current;
     if (audio.paused) {
       audio.play();
@@ -96,6 +103,8 @@ class AudioPlayer extends React.Component {
   }
 
   render() {
+    if (this.track === null) return null;
+    debugger;
     return (
       <div id="audio-player-box">
         <div onClick={this.togglePlay} id="play-button-box">

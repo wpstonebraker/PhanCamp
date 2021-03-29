@@ -1,14 +1,15 @@
 import React from "react";
 
-const PhishTrackItem = React.forwardRef(({ track }, ref) => {
+const PhishTrackItem = React.forwardRef(({ track, handleTrack }, ref) => {
   // const playSong = () => {
   //   document.getElementById("audio-player").src = track.mp3;
   //   const audioPlayer = document.getElementById("audio-player");
   //   audioPlayer.play();
   // };
   const playSong = () => {
-    const audio = ref.current;
-    audio.handleTrack(track.mp3, track.title);
+    // const audio = ref.current;
+    // audio.handleTrack(track.mp3, track.title);
+    handleTrack(track);
   };
 
   // const downloadSong = () => {

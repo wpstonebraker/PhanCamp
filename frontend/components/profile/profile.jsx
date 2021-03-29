@@ -213,6 +213,7 @@ class Profile extends React.Component {
               </div>
               <div>
                 <input
+                  id="profile-submit"
                   type="submit"
                   value="Update Profile"
                   onClick={this.handleSubmit}

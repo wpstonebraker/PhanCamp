@@ -10,7 +10,12 @@ import TrackItem from "./track_item";
 class AlbumShow extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      playing: false,
+      track: props.track,
+    };
     this.audio = React.createRef();
+    this.handleTrack = this.handleTrack.bind(this);
   }
 
   componentDidMount() {
@@ -19,16 +24,49 @@ class AlbumShow extends React.Component {
       this.props.album.showDate !== undefined
     ) {
       this.props.getPhishAlbum(this.props.album.showDate);
+      // this.props.getPhishAlbum(this.props.album.showDate).then(() => {
+      //   this.setState({ track: Object.values(this.props.tracks)[0] });
+      // });
     } else {
       this.props.getAlbum(this.props.match.params.id);
+      // this.props.getAlbum(this.props.match.params.id).then(() => {
+      //   this.setState({ track: Object.values(this.props.tracks)[0] });
+      // });
     }
   }
 
   componentDidUpdate() {}
 
+  handleTrack(track) {
+    debugger;
+    if (track.mp3) {
+      this.setState({ track });
+      this.audio.current.setState(
+        { src: track.mp3, title: track.title },
+        () => {
+          this.audio.current.togglePlay();
+        }
+      );
+    } else {
+      this.setState({ track });
+      this.audio.current.setState(
+        { src: track.songUrl, title: track.trackName },
+        () => {
+          this.audio.current.togglePlay();
+        }
+      );
+    }
+    // const trackPath = track.songURL ? track.songUrl : track.mp3;
+    // this.setState({ song: trackPath });
+  }
+
+  playTrack() {}
+
   render() {
     if (!this.props.album) return null;
-    if (Object.values(this.props.tracks).length === 0) return null;
+    if (Object.values(this.props.tracks).length === 0) {
+      return null;
+    }
     const { album, tracks, artist } = this.props;
     let trackItems;
 
@@ -42,11 +80,25 @@ class AlbumShow extends React.Component {
     // } else {
     if (album.showDate !== undefined) {
       trackItems = Object.values(tracks).map((track, i) => {
-        return <PhishTrackItem track={track} ref={this.audio} key={i} />;
+        return (
+          <PhishTrackItem
+            track={track}
+            ref={this.audio}
+            key={i}
+            handleTrack={this.handleTrack}
+          />
+        );
       });
     } else {
       trackItems = Object.values(tracks).map((track, i) => {
-        return <TrackItem track={track} ref={this.audio} key={i} />;
+        return (
+          <TrackItem
+            track={track}
+            ref={this.audio}
+            key={i}
+            handleTrack={this.handleTrack}
+          />
+        );
       });
     }
     // }
@@ -70,11 +122,12 @@ class AlbumShow extends React.Component {
               <AudioPlayer
                 id="album-audio-player"
                 ref={this.audio}
-                song={
-                  album.showDate !== undefined
-                    ? Object.values(tracks)[0].mp3
-                    : Object.values(tracks)[0].songUrl
-                }
+                track={this.state.track}
+                // song={
+                //   album.showDate !== undefined
+                //     ? Object.values(tracks)[0].mp3
+                //     : Object.values(tracks)[0].songUrl
+                // }
               />
               {/* <audio controls id="audio-player">
                 <source

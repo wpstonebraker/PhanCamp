@@ -1,11 +1,15 @@
 import React from "react";
 
-const TrackItem = React.forwardRef(({ track }, ref) => {
+const TrackItem = React.forwardRef(({ track, handleTrack }, ref) => {
+  debugger;
   const playSong = () => {
-    const audio = ref.current;
-    audio.handleTrack(track.songUrl, track.trackName);
+    debugger;
+    // const audio = ref.current;
+    // audio.handleTrack(track.songUrl, track.trackName);
+    handleTrack(track);
   };
 
+  if (track === null) return null;
   return (
     <tr key={track.id}>
       <td onClick={() => playSong()}>
