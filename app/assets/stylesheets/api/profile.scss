@@ -1,4 +1,36 @@
+#profile-label {
+  margin: 20px;
+  font-size: 30px;
+}
+
 #profile-box {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+#profile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  width: 100%;
+}
+
+.profile-banner-upload-box {
+  width: 100%;
+}
+
+.profile-banner-upload {
+  width: 100%;
+}
+
+#profile-bottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  div {
+    margin: 10px;
+  }
 }

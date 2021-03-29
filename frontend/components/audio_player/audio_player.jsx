@@ -8,14 +8,17 @@ class AudioPlayer extends React.Component {
       duration: "00:00",
       src: "",
       playButton: null,
+      title: "",
     };
     this.audio = React.createRef();
     this.progressBar = React.createRef();
+    this.progressPlayed = React.createRef();
     this.togglePlay = this.togglePlay.bind(this);
     this.handleTime = this.handleTime.bind(this);
     this.handleProgress = this.handleProgress.bind(this);
     this.handleTrack = this.handleTrack.bind(this);
     this.playTrack = this.playTrack.bind(this);
+    this.scrub = this.scrub.bind(this);
   }
 
   componentDidMount() {
@@ -42,8 +45,8 @@ class AudioPlayer extends React.Component {
     return `${displayMinutes}:${displaySeconds}`;
   }
 
-  handleTrack(track) {
-    this.setState({ src: track });
+  handleTrack(track, title) {
+    this.setState({ src: track, title });
     // this.setState({ src: track.songUrl }, () => {
     this.playTrack();
     // });
@@ -77,36 +80,54 @@ class AudioPlayer extends React.Component {
 
   handleProgress() {
     const audio = this.audio.current;
-    const progressBar = this.progressBar.current;
+    const progressPlayed = this.progressPlayed.current;
     const percent = (audio.currentTime / audio.duration) * 100;
-    progressBar.style.flexBasis = `${percent}%`;
+    progressPlayed.style.flexBasis = `${percent}%`;
+  }
+
+  scrub(e) {
+    debugger;
+    e.preventDefault();
+    console.log(e);
+    const scrubTime =
+      (e.nativeEvent.offsetX / this.progressBar.current.offsetWidth) *
+      this.audio.current.duration;
+    this.audio.current.currentTime = scrubTime;
   }
 
   render() {
     return (
       <div id="audio-player-box">
-        <button onClick={this.togglePlay}>
+        <div onClick={this.togglePlay} id="play-button-box">
           <img src={this.state.playButton} id="play-button" alt="" />
-        </button>
-        <div id="progress-bar-box">
-          <div id="progress-bar">
-            <div id="progress-bar-played" ref={this.progressBar}></div>
-          </div>
         </div>
-        <div id="duration-box">
-          <div id="duration-display">
-            {this.state.currentTime} /{" "}
-            {this.state.duration === `NaN:NaN` ? `00:00` : this.state.duration}
+        <div id="audio-player-right">
+          <div id="track-info-box">
+            <div id="track-info-display">
+              <span id="track-info-title">{this.state.title}</span>
+              <span id="track-info-time">
+                {this.state.currentTime} /{" "}
+                {this.state.duration === `NaN:NaN`
+                  ? `00:00`
+                  : this.state.duration}
+              </span>
+            </div>
           </div>
+          <div id="progress-bar-box">
+            <div id="progress-bar" onClick={this.scrub} ref={this.progressBar}>
+              <div id="progress-bar-played" ref={this.progressPlayed}></div>
+              <div id="progress-bar-block" />
+            </div>
+          </div>
+          <audio
+            controls
+            onTimeUpdate={this.handleTime}
+            //   onLoadStart={this.playTrack}
+            id="audio-player"
+            ref={this.audio}
+            src={this.state.src}
+          ></audio>
         </div>
-        <audio
-          controls
-          onTimeUpdate={this.handleTime}
-          //   onLoadStart={this.playTrack}
-          id="audio-player"
-          ref={this.audio}
-          src={this.state.src}
-        ></audio>
       </div>
     );
   }

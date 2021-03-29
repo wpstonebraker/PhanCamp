@@ -6,8 +6,7 @@ const searchReducer = (state = {}, action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_SEARCH_RESULTS:
-      newState = action.payload.search;
-      return newState;
+      return action.payload.search ? action.payload.search : {};
 
     default:
       return state;

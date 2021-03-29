@@ -1,3 +1,24 @@
 // Place all the styles related to the api/tracks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.track-play {
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  height: 14px;
+  width: 14px;
+
+  img {
+    height: 12px;
+    width: 12px;
+  }
+}
+
+.track-num {
+  text-align: right;
+  color: #888888;
+}
+
+.track-name {
+  color: #0687f5;
+}

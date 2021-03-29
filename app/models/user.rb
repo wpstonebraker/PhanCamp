@@ -11,6 +11,7 @@ class User < ApplicationRecord
     def set_defaults
         self.about ||= ""
         self.personal_url ||= ""
+        self.location ||= ""
     end
     # def set_defaults
     #     self.banner ||= self.banner.attach(io: File.open("app/assets/images/thumb.png"), filename: "guestthumb.png")

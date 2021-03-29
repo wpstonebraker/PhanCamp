@@ -22,8 +22,11 @@ const PhishTrackItem = React.forwardRef(({ track }, ref) => {
   // };
   return (
     <tr key={track.id}>
-      <td>{track.position}</td>
-      <td onClick={() => playSong()}>{track.title}</td>
+      <td onClick={() => playSong()}>
+        <img className="track-play" src={window.playIcon} alt="" />
+      </td>
+      <td className="track-num">{track.position}</td>
+      <td className="track-name">{track.title}</td>
       {/* <a href={track.mp3} download>
         <td onClick={() => downloadSong()}>Download</td>
         <td>Download</td>

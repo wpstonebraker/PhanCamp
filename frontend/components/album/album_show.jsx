@@ -41,12 +41,12 @@ class AlbumShow extends React.Component {
     //   });
     // } else {
     if (album.showDate !== undefined) {
-      trackItems = Object.values(tracks).map((track) => {
-        return <PhishTrackItem track={track} ref={this.audio} />;
+      trackItems = Object.values(tracks).map((track, i) => {
+        return <PhishTrackItem track={track} ref={this.audio} key={i} />;
       });
     } else {
-      trackItems = Object.values(tracks).map((track) => {
-        return <TrackItem track={track} ref={this.audio} />;
+      trackItems = Object.values(tracks).map((track, i) => {
+        return <TrackItem track={track} ref={this.audio} key={i} />;
       });
     }
     // }
@@ -59,10 +59,16 @@ class AlbumShow extends React.Component {
       <div className="album-show-page-box">
         <div className="album-show-page-left">
           <div className="album-show-title-artist">
-            <span>{album.title}</span>
-            <span>{album.artistName}</span>
+            <p id="album-show-title">{album.title}</p>
+            <p
+              id="album-show-artist"
+              onClick={() => this.props.history.push(`/artists/${artist.id}`)}
+            >
+              by: {album.artistName}
+            </p>
             <div>
               <AudioPlayer
+                id="album-audio-player"
                 ref={this.audio}
                 song={
                   album.showDate !== undefined
@@ -85,8 +91,13 @@ class AlbumShow extends React.Component {
             </table>
           </div>
           <div>
-            <span>{album.description}</span>
-            <span>{album.credits}</span>
+            <div className="album-show-description">
+              <span>{album.description}</span>
+            </div>
+            <br />
+            <div className="album-show-credits">
+              <span>{album.credits}</span>
+            </div>
           </div>
         </div>
         <div className="album-show-page-right">

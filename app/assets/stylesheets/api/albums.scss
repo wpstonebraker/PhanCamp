@@ -24,10 +24,23 @@
   // align-content: center;
 }
 
-.audio-player {
-  border: 1px solid red;
+#album-show-title {
+  font-size: 28px;
+  margin: 10px 0px 10px;
+}
+
+#audio-player {
   height: 50px;
   width: 100%;
+  display: none;
+}
+
+.album-show-description {
+  margin: 10px;
+}
+
+.album-show-credits {
+  margin-left: 10px;
 }
 
 .album-show-cover-box {
