@@ -9,6 +9,11 @@ class AlbumCreateForm extends React.Component {
     this.handlePhoto = this.handlePhoto.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.redirectHome = this.redirectHome.bind(this);
+    this.handleGenreClick = this.handleGenreClick.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getAllAlbums();
   }
 
   redirectHome() {
@@ -122,6 +127,7 @@ class AlbumCreateForm extends React.Component {
       formData.append("album[credits]", this.state.credits);
       // formData.append("album[genres]", this.state.genres);
       formData.append("album[photo]", this.state.photoFile);
+      formData.append("genres", this.state.genresArray);
       formData.append("tracks[count]", this.state.tracksArray.length);
       this.state.tracksArray.forEach((track, i) => {
         formData.append(`tracks[${i + 1}]`, track);
@@ -133,6 +139,13 @@ class AlbumCreateForm extends React.Component {
     }
 
     // this.redirectHome();
+  }
+
+  handleGenreClick(id) {
+    const genreTag = document.getElementById(`genre-${id}`);
+    genreTag.classList.toggle("selected-genre");
+    this.state.genresArray.push(id);
+    console.log(this.state.genresArray);
   }
 
   render() {
@@ -162,6 +175,18 @@ class AlbumCreateForm extends React.Component {
     this.props.errors.forEach((error) => {
       errors[error.split(" ")[4].toLowerCase()] = error;
     });
+    const genreTabs = Object.values(this.props.genres).map((genre) => {
+      return (
+        <li
+          className="caf-genre-tab"
+          key={genre.id}
+          id={`genre-${genre.id}`}
+          onClick={() => this.handleGenreClick(genre.id)}
+        >
+          {genre.genre}
+        </li>
+      );
+    });
 
     return (
       <div className="caf-outer">
@@ -185,9 +210,8 @@ class AlbumCreateForm extends React.Component {
                 </div>
 
                 <div className="caf-add-track-box">
-                  <div>TRACKS</div>
                   <div id="caf-add-track-input-div" onClick={this.uploadTrack}>
-                    add track
+                    <span id="caf-add-track-input-label">add track</span>
                     <input
                       type="file"
                       id="caf-add-track-input"
@@ -195,6 +219,7 @@ class AlbumCreateForm extends React.Component {
                       onChange={this.handleTrack.bind(this)}
                     />
                   </div>
+                  <div>TRACKS</div>
                   <ul>{trackList}</ul>
                   <span className="caf-errormsg" id="error-username">
                     {errors.one}
@@ -202,7 +227,7 @@ class AlbumCreateForm extends React.Component {
                 </div>
 
                 <div>
-                  <button>Create Album</button>
+                  <button id="caf-create-button">Create Album</button>
                 </div>
               </div>
               {/* <input type="text" /> */}
@@ -292,6 +317,10 @@ class AlbumCreateForm extends React.Component {
                 <div className="caf-artist-name-box flex-col caf-input">
                   <span>artist: {this.props.currentUser.artistName}</span>
                 </div>
+                <div className="flex-col caf-input">
+                  select one or more genres:
+                  <div className="caf-genre-tabs-box">{genreTabs}</div>
+                </div>
                 <div className="caf-description-box flex-col caf-input">
                   <label htmlFor="caf-description">about this album:</label>
                   <textarea
@@ -310,7 +339,7 @@ class AlbumCreateForm extends React.Component {
                     onChange={this.update("credits")}
                   />
                 </div>
-                <div className="caf-genres-box flex-col caf-input">
+                {/* <div className="caf-genres-box flex-col caf-input">
                   <label htmlFor="caf-genres">tags:</label>
                   <input
                     type="text"
@@ -319,7 +348,7 @@ class AlbumCreateForm extends React.Component {
                     value={genres}
                     onChange={this.update("genres")}
                   />
-                </div>
+                </div> */}
               </div>
             </form>
           </div>

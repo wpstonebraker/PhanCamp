@@ -1,18 +1,26 @@
 json.artists do
-    @features.each do |artist|
-        json.set! artist.id do
-            json.extract! artist, :id, :artist_name
-        end
-    end
+    # @features.each do |artist|
+    #     json.set! artist.id do
+    #         json.extract! artist, :id, :artist_name
+    #     end
+    # end
     @artists.each do |artist|
         json.set! artist.id do
-            json.extract! artist, :id, :artist_name, :about, :personal_url, :email
+            json.extract! artist, :id, :artist_name, :about, :personal_url, :email, :genre_ids
             if artist.thumbnail.attached?
                 json.thumbnailUrl url_for(artist.thumbnail)
             end
             if artist.banner.attached?
                 json.bannerUrl url_for(artist.banner)
             end
+        end
+    end
+end
+
+json.genres do
+    @genres.each do |genre|
+        json.set! genre.id do
+            json.extract! genre, :genre, :id
         end
     end
 end

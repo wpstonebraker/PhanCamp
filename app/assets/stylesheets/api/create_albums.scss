@@ -86,6 +86,12 @@
   border-bottom: 0.5px ridge lightgrey;
 }
 
+#caf-add-track-input-label {
+  color: #00a1c6;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .caf-right {
   padding-left: 25px;
   width: 500px;
@@ -254,6 +260,26 @@
   height: 22px;
   font-size: 13px;
 }
+
+.caf-genre-tabs-box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.caf-genre-tab {
+  margin: 10px;
+  list-style-type: none;
+  display: inline-block;
+  height: 18px;
+  width: auto;
+  border: 1px solid lightgrey;
+}
+
+.selected-genre {
+  background-color: #00a1c6;
+  color: whitesmoke;
+}
 // .caf-artist-name-box {
 //   width: 408px;
 //   height: 22px;
@@ -267,3 +293,15 @@
 //   width: 408px;
 //   height: 22px;
 // }
+
+#caf-create-button {
+  box-sizing: content-box;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #00a1c6;
+  margin: auto;
+  width: 182px;
+  height: 36px;
+  border: 0.5px solid lightgrey;
+}

@@ -1,5 +1,9 @@
 import { connect } from "react-redux";
-import { postAlbum, receiveAlbumErrors } from "../../actions/album_actions";
+import {
+  getAllAlbums,
+  postAlbum,
+  receiveAlbumErrors,
+} from "../../actions/album_actions";
 import AlbumCreateForm from "./album_create_form";
 
 const mSTP = (state, ownProps) => {
@@ -16,8 +20,10 @@ const mSTP = (state, ownProps) => {
       photoFile: null,
       photoUrl: null,
       tracksArray: [],
+      genresArray: [],
     },
     errors: state.errors.album,
+    genres: state.entities.genres,
   };
 };
 
@@ -25,6 +31,7 @@ const mDTP = (dispatch) => {
   return {
     createAlbum: (album) => dispatch(postAlbum(album)),
     sendErrors: (errors) => dispatch(receiveAlbumErrors(errors)),
+    getAllAlbums: () => dispatch(getAllAlbums()),
   };
 };
 

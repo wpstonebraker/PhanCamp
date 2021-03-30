@@ -95,7 +95,6 @@ class AudioPlayer extends React.Component {
   scrub(e) {
     debugger;
     e.preventDefault();
-    console.log(e);
     const scrubTime =
       (e.nativeEvent.offsetX / this.progressBar.current.offsetWidth) *
       this.audio.current.duration;

@@ -114,7 +114,7 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_ALBUM = "RECEIVE_ALBUM";
 var RECEIVE_ARTIST_ALBUMS = "RECEIVE_ARTIST_ALBUMS";
 var RECEIVE_SELLING_ALBUMS = "RECEIVE_SELLING_ALBUMS";
-var RECEIVE_ALL_ALBUMS = "GET_ALL_ALBUMS";
+var RECEIVE_ALL_ALBUMS = "RECEIVE_ALL_ALBUMS";
 var RECEIVE_PHISH_ALBUM = "RECEIVE_PHISH_ALBUM";
 var RECEIVE_ALBUM_ERRORS = "RECEIVE_ALBUM_ERRORS";
 var receiveAllAlbums = function receiveAllAlbums(payload) {
@@ -407,10 +407,16 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
     _this.handlePhoto = _this.handlePhoto.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.redirectHome = _this.redirectHome.bind(_assertThisInitialized(_this));
+    _this.handleGenreClick = _this.handleGenreClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(AlbumCreateForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.getAllAlbums();
+    }
+  }, {
     key: "redirectHome",
     value: function redirectHome() {
       this.props.history.push("/");
@@ -554,6 +560,7 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         formData.append("album[credits]", this.state.credits); // formData.append("album[genres]", this.state.genres);
 
         formData.append("album[photo]", this.state.photoFile);
+        formData.append("genres", this.state.genresArray);
         formData.append("tracks[count]", this.state.tracksArray.length);
         this.state.tracksArray.forEach(function (track, i) {
           formData.append("tracks[".concat(i + 1, "]"), track);
@@ -567,8 +574,18 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
 
     }
   }, {
+    key: "handleGenreClick",
+    value: function handleGenreClick(id) {
+      var genreTag = document.getElementById("genre-".concat(id));
+      genreTag.classList.toggle("selected-genre");
+      this.state.genresArray.push(id);
+      console.log(this.state.genresArray);
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this6 = this;
+
       var _this$props = this.props,
           title = _this$props.title,
           artist_id = _this$props.artist_id,
@@ -593,6 +610,16 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       var errors = {};
       this.props.errors.forEach(function (error) {
         errors[error.split(" ")[4].toLowerCase()] = error;
+      });
+      var genreTabs = Object.values(this.props.genres).map(function (genre) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+          className: "caf-genre-tab",
+          key: genre.id,
+          id: "genre-".concat(genre.id),
+          onClick: function onClick() {
+            return _this6.handleGenreClick(genre.id);
+          }
+        }, genre.genre);
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-outer"
@@ -621,18 +648,22 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         className: "grey-label"
       }, "$", this.state.price)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-add-track-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "TRACKS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "caf-add-track-input-div",
         onClick: this.uploadTrack
-      }, "add track", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        id: "caf-add-track-input-label"
+      }, "add track"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
         id: "caf-add-track-input",
         hidden: true,
         onChange: this.handleTrack.bind(this)
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, trackList), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "TRACKS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, trackList), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         className: "caf-errormsg",
         id: "error-username"
-      }, errors.one)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Create Album"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, errors.one)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        id: "caf-create-button"
+      }, "Create Album"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "top-spacer-right"
@@ -700,6 +731,10 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       }, errors.cover), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-artist-name-box flex-col caf-input"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "artist: ", this.props.currentUser.artistName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "flex-col caf-input"
+      }, "select one or more genres:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "caf-genre-tabs-box"
+      }, genreTabs)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-description-box flex-col caf-input"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "caf-description"
@@ -717,16 +752,6 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         placeholder: "(optional)",
         value: credits,
         onChange: this.update("credits")
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "caf-genres-box flex-col caf-input"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-        htmlFor: "caf-genres"
-      }, "tags:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        type: "text",
-        className: "caf-genres",
-        placeholder: "comma-separated list of tags",
-        value: genres,
-        onChange: this.update("genres")
       })))))));
     }
   }]);
@@ -769,9 +794,11 @@ var mSTP = function mSTP(state, ownProps) {
       genres: "",
       photoFile: null,
       photoUrl: null,
-      tracksArray: []
+      tracksArray: [],
+      genresArray: []
     },
-    errors: state.errors.album
+    errors: state.errors.album,
+    genres: state.entities.genres
   };
 };
 
@@ -782,6 +809,9 @@ var mDTP = function mDTP(dispatch) {
     },
     sendErrors: function sendErrors(errors) {
       return dispatch((0,_actions_album_actions__WEBPACK_IMPORTED_MODULE_1__.receiveAlbumErrors)(errors));
+    },
+    getAllAlbums: function getAllAlbums() {
+      return dispatch((0,_actions_album_actions__WEBPACK_IMPORTED_MODULE_1__.getAllAlbums)());
     }
   };
 };
@@ -2091,7 +2121,6 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
     value: function scrub(e) {
       debugger;
       e.preventDefault();
-      console.log(e);
       var scrubTime = e.nativeEvent.offsetX / this.progressBar.current.offsetWidth * this.audio.current.duration;
       this.audio.current.currentTime = scrubTime;
     }
@@ -4836,6 +4865,9 @@ var genresReducer = function genresReducer() {
   Object.freeze(state);
 
   switch (action.type) {
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALL_ALBUMS:
+      return Object.assign({}, state, action.payload.genres);
+
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ARTIST_ALBUMS:
       return action.albums.genres;
 

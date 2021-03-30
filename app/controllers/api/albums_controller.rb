@@ -19,13 +19,23 @@ class Api::AlbumsController < ApplicationController
     def create
         @album = Album.new(album_params)
         @artist = User.find(album_params[:artist_id])
-
+        @genresIds = params["genres"].split(',')
         @tracks = []
         
         if @album.save
+            debugger
+            @genresIds.each do |genreId|
+                GenreJoin.create!(
+                    genre_id: genreId,
+                    genreable_id: @album.id,
+                    genreable_type: "Album"
+                )
+            end
+            debugger
             i = 1
             count = params["tracks"]["count"].to_i
             while i <= count do
+                debugger
                 
                 t = Track.create!(
                     track_name: params["tracks"]["#{i}"].original_filename,
@@ -33,6 +43,15 @@ class Api::AlbumsController < ApplicationController
                     album_id: @album.id,
                     song: params["tracks"]["#{i}"]
                 )
+                debugger
+                @genresIds.each do |genreId|
+                    GenreJoin.create!(
+                        genre_id: genreId,
+                        genreable_id: t.id,
+                        genreable_type: "Track"
+                    )
+                end
+                debugger
                 @tracks.push(t)
                 i += 1
             end
