@@ -63,6 +63,7 @@ class DisplayItem extends React.Component {
         break;
 
       case "track":
+        debugger;
         item.name = item.title;
         let artist = this.props.artists[
           this.props.albums[item.albumId].artistId
@@ -72,7 +73,11 @@ class DisplayItem extends React.Component {
           <div className="display-tile">
             <div
               className="dt-image"
-              onClick={() => this.props.history.push(`/albums/${item.albumId}`)}
+              onClick={() =>
+                this.props.history.push(
+                  `/artists/${artist.id}/albums/${item.albumId}`
+                )
+              }
             >
               <img src={this.props.albums[item.albumId].photoUrl} />
             </div>

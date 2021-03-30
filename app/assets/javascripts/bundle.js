@@ -3992,6 +3992,7 @@ var DisplayItem = /*#__PURE__*/function (_React$Component) {
           break;
 
         case "track":
+          debugger;
           item.name = item.title;
           var artist = this.props.artists[this.props.albums[item.albumId].artistId];
           display = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3999,7 +4000,7 @@ var DisplayItem = /*#__PURE__*/function (_React$Component) {
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
             className: "dt-image",
             onClick: function onClick() {
-              return _this.props.history.push("/albums/".concat(item.albumId));
+              return _this.props.history.push("/artists/".concat(artist.id, "/albums/").concat(item.albumId));
             }
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
             src: this.props.albums[item.albumId].photoUrl
@@ -4726,13 +4727,13 @@ var artistsReducer = function artistsReducer() {
 
   switch (action.type) {
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALBUM:
-      return action.album.artist;
+      return Object.assign({}, state, action.album.artist);
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ARTIST_ALBUMS:
-      return action.albums.artist;
+      return Object.assign({}, state, action.albums.artist);
 
     case _actions_artist_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_FEATURE_ARTISTS:
-      return action.payload.artists;
+      return Object.assign({}, state, action.payload.artists);
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALL_ALBUMS:
       return Object.assign({}, state, action.payload.artists);
