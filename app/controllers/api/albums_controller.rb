@@ -23,7 +23,6 @@ class Api::AlbumsController < ApplicationController
         @tracks = []
         
         if @album.save
-            debugger
             @genresIds.each do |genreId|
                 GenreJoin.create!(
                     genre_id: genreId,
@@ -31,11 +30,9 @@ class Api::AlbumsController < ApplicationController
                     genreable_type: "Album"
                 )
             end
-            debugger
             i = 1
             count = params["tracks"]["count"].to_i
             while i <= count do
-                debugger
                 
                 t = Track.create!(
                     track_name: params["tracks"]["#{i}"].original_filename,
@@ -43,7 +40,6 @@ class Api::AlbumsController < ApplicationController
                     album_id: @album.id,
                     song: params["tracks"]["#{i}"]
                 )
-                debugger
                 @genresIds.each do |genreId|
                     GenreJoin.create!(
                         genre_id: genreId,
@@ -51,7 +47,6 @@ class Api::AlbumsController < ApplicationController
                         genreable_type: "Track"
                     )
                 end
-                debugger
                 @tracks.push(t)
                 i += 1
             end

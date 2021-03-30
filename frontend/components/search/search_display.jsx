@@ -12,7 +12,6 @@ class SearchDisplay extends React.Component {
   }
 
   render() {
-    debugger;
     // let searchResults = [];
     // for (const [key, value] of Object.entries(this.props.artists)) {
     //   searchResults.push(<DisplayItem artist={key} details={value} />);
@@ -21,7 +20,6 @@ class SearchDisplay extends React.Component {
     const artistItems =
       Object.keys(this.props.artists).length !== 0
         ? Object.values(this.props.artists).map((res) => {
-            debugger;
             return (
               <DisplayItem
                 details={res}
@@ -55,7 +53,6 @@ class SearchDisplay extends React.Component {
             );
           })
         : "";
-    debugger;
     return (
       <div className="sd-outer">
         <div className="sd-inner">

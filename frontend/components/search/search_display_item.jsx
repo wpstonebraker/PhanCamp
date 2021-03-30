@@ -8,7 +8,6 @@ class DisplayItem extends React.Component {
   render() {
     let item = this.props.details;
     let display;
-    debugger;
     switch (item.class) {
       case "user":
         item.name = item.artistName;
@@ -63,7 +62,6 @@ class DisplayItem extends React.Component {
         break;
 
       case "track":
-        debugger;
         item.name = item.title;
         let artist = this.props.artists[
           this.props.albums[item.albumId].artistId
@@ -95,7 +93,6 @@ class DisplayItem extends React.Component {
       default:
         break;
     }
-    debugger;
     return <div>{display}</div>;
   }
 }

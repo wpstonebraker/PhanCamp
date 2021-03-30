@@ -202,7 +202,9 @@ class AlbumCreateForm extends React.Component {
                       <p>{this.state.title}&nbsp;</p>
                       <li>
                         by{" "}
-                        <span className="bold">{this.state.artist_name}</span>
+                        <span className="bold">
+                          {this.props.currentUser.artistName}
+                        </span>
                       </li>
                       <li className="grey-label">${this.state.price}</li>
                     </div>

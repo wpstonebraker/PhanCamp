@@ -59,7 +59,6 @@ class Profile extends React.Component {
   }
 
   handleSubmit() {
-    debugger;
     // e.preventDefault();
 
     const id = this.props.user.id;

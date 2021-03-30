@@ -23,7 +23,6 @@ class AudioPlayer extends React.Component {
   }
 
   componentDidMount() {
-    debugger;
     let song;
     if (this.track) {
       song = this.track ? this.track.mp3 : this.track.songUrl;
@@ -32,7 +31,6 @@ class AudioPlayer extends React.Component {
   }
 
   togglePlay() {
-    debugger;
     const audio = this.audio.current;
     if (audio.paused) {
       audio.play();
@@ -93,7 +91,6 @@ class AudioPlayer extends React.Component {
   }
 
   scrub(e) {
-    debugger;
     e.preventDefault();
     const scrubTime =
       (e.nativeEvent.offsetX / this.progressBar.current.offsetWidth) *
@@ -103,7 +100,6 @@ class AudioPlayer extends React.Component {
 
   render() {
     if (this.track === null) return null;
-    debugger;
     return (
       <div id="audio-player-box">
         <div onClick={this.togglePlay} id="play-button-box">

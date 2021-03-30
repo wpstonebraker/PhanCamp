@@ -31,7 +31,6 @@ class ArtistShow extends React.Component {
     const artist = this.props.artist;
 
     if (!artist) return null;
-    debugger;
     return (
       <div className="show-page-outer">
         <div className="show-page-inner">
