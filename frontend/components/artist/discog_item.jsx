@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 // const DiscogItem = ({ history, album, getAlbum, artistId }) => {
 const DiscogItem = ({ album, history, artistId }) => {
   const handleClick = () => {
-    getAlbum(album.id);
+    // getAlbum(album.id);
     history.push(`/artists/${artistId}/albums/${album.id}`);
     // <Redirect to={`/album/${album.id}`} />;
   };

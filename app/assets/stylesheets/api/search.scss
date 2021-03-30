@@ -1,7 +1,24 @@
+.sd-outer {
+  height: auto;
+  width: 100%;
+  background-color: #f7f7f7;
+}
+
+.sd-inner {
+  width: 50%;
+  display: flex;
+  margin: auto;
+}
+
+.sd-box {
+  margin-top: 100px;
+  width: 100%;
+}
+
 .display-tile {
   border-bottom: 1px dotted grey;
-  height: 150px;
-  width: 400px;
+  height: 120px;
+  width: 700px;
   display: flex;
 
   img {
@@ -11,4 +28,31 @@
 }
 
 .dt-image {
+  cursor: pointer;
+}
+.dt-details {
+  margin-left: 10px;
+
+  li {
+    padding-top: 5px;
+  }
+}
+
+.dt-details-class {
+  font-size: 10px;
+  color: #999;
+}
+
+.dt-details-name {
+  color: #0687f5;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dt-details-location {
+  font-size: 13px;
+}
+
+.dt-details-website {
+  color: #84c67d;
 }

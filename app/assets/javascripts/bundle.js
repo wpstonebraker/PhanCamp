@@ -860,6 +860,8 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
   _createClass(AlbumShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      debugger;
+
       if (this.props.artist.artistName === "Phish" && this.props.album.showDate !== undefined) {
         this.props.getPhishAlbum(this.props.album.showDate); // this.props.getPhishAlbum(this.props.album.showDate).then(() => {
         //   this.setState({ track: Object.values(this.props.tracks)[0] });
@@ -956,6 +958,7 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
       // });
 
 
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "album-show-page-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1445,12 +1448,10 @@ __webpack_require__.r(__webpack_exports__);
 var TrackItem = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function (_ref, ref) {
   var track = _ref.track,
       handleTrack = _ref.handleTrack;
-  debugger;
 
   var playSong = function playSong() {
-    debugger; // const audio = ref.current;
+    // const audio = ref.current;
     // audio.handleTrack(track.songUrl, track.trackName);
-
     handleTrack(track);
   };
 
@@ -1722,6 +1723,7 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
       });
       var artist = this.props.artist;
       if (!artist) return null;
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "show-page-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1909,7 +1911,7 @@ var DiscogItem = function DiscogItem(_ref) {
       artistId = _ref.artistId;
 
   var handleClick = function handleClick() {
-    getAlbum(album.id);
+    // getAlbum(album.id);
     history.push("/artists/".concat(artistId, "/albums/").concat(album.id)); // <Redirect to={`/album/${album.id}`} />;
   };
 
@@ -3761,7 +3763,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _search_display_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search_display_item */ "./frontend/components/search/search_display_item.jsx");
+/* harmony import */ var _search_display_item_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search_display_item_container */ "./frontend/components/search/search_display_item_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3811,25 +3813,34 @@ var SearchDisplay = /*#__PURE__*/function (_React$Component) {
 
       var artistItems = Object.keys(this.props.artists).length !== 0 ? Object.values(this.props.artists).map(function (res) {
         debugger;
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_display_item__WEBPACK_IMPORTED_MODULE_1__.default, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_display_item_container__WEBPACK_IMPORTED_MODULE_1__.default, {
           details: res,
-          history: _this.props.history
+          history: _this.props.history,
+          key: res.id
         });
       }) : "";
       var albumItems = Object.keys(this.props.albums).length !== 0 ? Object.values(this.props.albums).map(function (res) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_display_item__WEBPACK_IMPORTED_MODULE_1__.default, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_display_item_container__WEBPACK_IMPORTED_MODULE_1__.default, {
           details: res,
-          history: _this.props.history
+          history: _this.props.history,
+          key: res.id
         });
-      }) : ""; // const trackItems =
-      //   Object.keys(this.props.tracks).length !== 0
-      //     ? Object.keys(this.props.tracks).map((res) => {
-      //         return <li>{res}</li>;
-      //       })
-      //     : "";
-
+      }) : "";
+      var trackItems = Object.keys(this.props.tracks).length !== 0 ? Object.values(this.props.tracks).map(function (res) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_display_item_container__WEBPACK_IMPORTED_MODULE_1__.default, {
+          details: res,
+          history: _this.props.history,
+          key: res.id
+        });
+      }) : "";
       debugger;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, artistItems, albumItems));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "sd-outer"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "sd-inner"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "sd-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, artistItems, albumItems, trackItems))));
     }
   }]);
 
@@ -3884,58 +3895,170 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
-var DisplayItem = function DisplayItem(props) {
-  debugger;
-  var item = props.details;
-  var display;
 
-  switch (item["class"]) {
-    case "user":
-      item.name = item.artistName;
-      item.image = item.thumbnailUrl;
-      display = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-        className: "display-tile"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "dt-image",
-        onClick: function onClick() {
-          return props.history.push("/artists/".concat(item.id));
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: item.image
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "dt-details"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "ARTIST"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, item.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, item.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, item.personalUrl))));
-      break;
+var DisplayItem = /*#__PURE__*/function (_React$Component) {
+  _inherits(DisplayItem, _React$Component);
 
-    case "album":
-      item.name = item.title;
-      item.image = item.photoUrl;
-      display = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-        className: "display-tile"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "dt-image",
-        onClick: function onClick() {
-          return props.history.push("/albums/".concat(item.id));
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: item.image
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, item.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, item.name))));
-      break;
+  var _super = _createSuper(DisplayItem);
 
-    case "track":
-      item.name = item.title;
+  function DisplayItem(props) {
+    _classCallCheck(this, DisplayItem);
 
-    default:
-      break;
+    return _super.call(this, props);
   }
 
-  debugger;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, display);
-};
+  _createClass(DisplayItem, [{
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      var item = this.props.details;
+      var display;
+      debugger;
+
+      switch (item["class"]) {
+        case "user":
+          item.name = item.artistName;
+          item.image = item.thumbnailUrl;
+          display = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            className: "display-tile"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            className: "dt-image",
+            onClick: function onClick() {
+              return _this.props.history.push("/artists/".concat(item.id));
+            }
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+            src: item.image
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            className: "dt-details"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+            className: "dt-details-class"
+          }, "ARTIST"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+            className: "dt-details-name",
+            onClick: function onClick() {
+              return _this.props.history.push("/artists/".concat(item.id));
+            }
+          }, item.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+            className: "dt-details-location"
+          }, item.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+            className: "dt-details-website"
+          }, item.personalUrl)));
+          break;
+
+        case "album":
+          item.name = item.title;
+          item.image = item.photoUrl;
+          display = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            className: "display-tile"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            className: "dt-image",
+            onClick: function onClick() {
+              return _this.props.history.push("/artists/".concat(item.artistId, "/albums/").concat(item.id));
+            }
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+            src: item.image
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            className: "dt-details"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+            className: "dt-details-class"
+          }, "ALBUM"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+            className: "dt-details-name"
+          }, item.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+            className: "dt-details-location"
+          }, "by: ", this.props.artists[item.artistId].artistName)));
+          break;
+
+        case "track":
+          item.name = item.title;
+          var artist = this.props.artists[this.props.albums[item.albumId].artistId];
+          display = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            className: "display-tile"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            className: "dt-image",
+            onClick: function onClick() {
+              return _this.props.history.push("/albums/".concat(item.albumId));
+            }
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+            src: this.props.albums[item.albumId].photoUrl
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            className: "dt-details"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+            className: "dt-details-class"
+          }, "TRACK"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+            className: "dt-details-name"
+          }, item.trackName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+            className: "dt-details-location"
+          }, "by: ", artist.artistName)));
+
+        default:
+          break;
+      }
+
+      debugger;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, display);
+    }
+  }]);
+
+  return DisplayItem;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DisplayItem);
+
+/***/ }),
+
+/***/ "./frontend/components/search/search_display_item_container.js":
+/*!*********************************************************************!*\
+  !*** ./frontend/components/search/search_display_item_container.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _search_display_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search_display_item */ "./frontend/components/search/search_display_item.jsx");
+
+
+
+var mSTP = function mSTP(state, ownProps) {
+  debugger;
+  return {
+    albums: state.entities.albums,
+    tracks: state.entities.tracks,
+    artists: state.entities.artists
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {};
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_search_display_item__WEBPACK_IMPORTED_MODULE_1__.default));
 
 /***/ }),
 

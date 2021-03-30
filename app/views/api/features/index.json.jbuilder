@@ -22,7 +22,11 @@ json.albums do
         json.set! album.id do
             json.extract! album, :title, :artist_id, :year, :price, :description, :credits, :id
             json.photoUrl url_for(album.photo)
+        if album.show_date
+            json.extract! album, :show_date
         end
+        end
+
     end 
 end
 

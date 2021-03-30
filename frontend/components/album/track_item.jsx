@@ -1,9 +1,7 @@
 import React from "react";
 
 const TrackItem = React.forwardRef(({ track, handleTrack }, ref) => {
-  debugger;
   const playSong = () => {
-    debugger;
     // const audio = ref.current;
     // audio.handleTrack(track.songUrl, track.trackName);
     handleTrack(track);
