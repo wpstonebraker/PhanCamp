@@ -54,7 +54,7 @@ class DisplayItem extends React.Component {
               <li className="dt-details-class">ALBUM</li>
               <li className="dt-details-name">{item.name}</li>
               <li className="dt-details-location">
-                by: {this.props.artists[item.artistId].artistName}
+                by {this.props.artists[item.artistId].artistName}
               </li>
               {/* <li className="dt-details-website">{item.personalUrl}</li> */}
             </div>
@@ -84,7 +84,10 @@ class DisplayItem extends React.Component {
             <div className="dt-details">
               <li className="dt-details-class">TRACK</li>
               <li className="dt-details-name">{item.trackName}</li>
-              <li className="dt-details-location">by: {artist.artistName}</li>
+              <li className="dt-details-location">
+                from {this.props.albums[item.albumId].title} by{" "}
+                {artist.artistName}
+              </li>
               {/* <li className="dt-details-website">{item.personalUrl}</li> */}
             </div>
           </div>

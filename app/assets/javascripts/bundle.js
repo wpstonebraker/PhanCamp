@@ -860,8 +860,6 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
   _createClass(AlbumShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
-
       if (this.props.artist.artistName === "Phish" && this.props.album.showDate !== undefined) {
         this.props.getPhishAlbum(this.props.album.showDate); // this.props.getPhishAlbum(this.props.album.showDate).then(() => {
         //   this.setState({ track: Object.values(this.props.tracks)[0] });
@@ -879,8 +877,6 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
     key: "handleTrack",
     value: function handleTrack(track) {
       var _this2 = this;
-
-      debugger;
 
       if (track.mp3) {
         this.setState({
@@ -958,7 +954,6 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
       // });
 
 
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "album-show-page-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1029,7 +1024,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     album: state.entities.albums[ownProps.albumId],
     artist: state.entities.artists[ownProps.artistId],
@@ -3795,15 +3789,25 @@ var SearchDisplay = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(SearchDisplay);
 
   function SearchDisplay(props) {
+    var _this;
+
     _classCallCheck(this, SearchDisplay);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+
+    if (window.performance) {
+      if (performance.navigation.type == 1) {
+        props.history.push("/");
+      }
+    }
+
+    return _this;
   }
 
   _createClass(SearchDisplay, [{
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
       debugger; // let searchResults = [];
       // for (const [key, value] of Object.entries(this.props.artists)) {
@@ -3815,21 +3819,21 @@ var SearchDisplay = /*#__PURE__*/function (_React$Component) {
         debugger;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_display_item_container__WEBPACK_IMPORTED_MODULE_1__.default, {
           details: res,
-          history: _this.props.history,
+          history: _this2.props.history,
           key: res.id
         });
       }) : "";
       var albumItems = Object.keys(this.props.albums).length !== 0 ? Object.values(this.props.albums).map(function (res) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_display_item_container__WEBPACK_IMPORTED_MODULE_1__.default, {
           details: res,
-          history: _this.props.history,
+          history: _this2.props.history,
           key: res.id
         });
       }) : "";
       var trackItems = Object.keys(this.props.tracks).length !== 0 ? Object.values(this.props.tracks).map(function (res) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_display_item_container__WEBPACK_IMPORTED_MODULE_1__.default, {
           details: res,
-          history: _this.props.history,
+          history: _this2.props.history,
           key: res.id
         });
       }) : "";
@@ -3988,7 +3992,7 @@ var DisplayItem = /*#__PURE__*/function (_React$Component) {
             className: "dt-details-name"
           }, item.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
             className: "dt-details-location"
-          }, "by: ", this.props.artists[item.artistId].artistName)));
+          }, "by ", this.props.artists[item.artistId].artistName)));
           break;
 
         case "track":
@@ -4012,7 +4016,7 @@ var DisplayItem = /*#__PURE__*/function (_React$Component) {
             className: "dt-details-name"
           }, item.trackName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
             className: "dt-details-location"
-          }, "by: ", artist.artistName)));
+          }, "from ", this.props.albums[item.albumId].title, " by", " ", artist.artistName)));
 
         default:
           break;

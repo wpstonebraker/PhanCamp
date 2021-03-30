@@ -4,6 +4,11 @@ import DisplayItem from "./search_display_item_container";
 class SearchDisplay extends React.Component {
   constructor(props) {
     super(props);
+    if (window.performance) {
+      if (performance.navigation.type == 1) {
+        props.history.push("/");
+      }
+    }
   }
 
   render() {
