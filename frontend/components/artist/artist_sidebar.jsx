@@ -15,7 +15,7 @@ const ArtistSidebar = ({ artist }) => {
           <li className="artist-sidebar-about">{artist.about}</li>
           <li className="artist-sidebar-website">{artist.personalUrl}</li>
           <li className="artist-sidebar-contact">{artist.email}</li>
-          <GenresIndex />
+          <GenresIndex artist={artist} />
         </ul>
       </div>
     </div>

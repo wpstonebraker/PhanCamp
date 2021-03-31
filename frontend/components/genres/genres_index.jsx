@@ -1,21 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
 
-const GenresIndex = ({ genres }) => {
+const GenresIndex = (props) => {
+  const genres = props.genres;
+  const artist = props.artist;
   if (!genres) return null;
   return (
     <ul>
       <span>genres</span>
-      {genres.map((genre) => {
-        return <li key={genre.id}>{genre.genre}</li>;
+      {artist.genreIds.map((genreId) => {
+        return <li key={genreId}>{genres.genreId}</li>;
       })}
     </ul>
   );
 };
 
-const mSTP = ({ entities: { genres } }, ownProps) => {
+const mSTP = (state, ownProps) => {
+  debugger;
   return {
-    genres: Object.values(genres),
+    genres: state.entities.genres,
   };
 };
 

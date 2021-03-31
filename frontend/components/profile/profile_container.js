@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { getAllAlbums } from "../../actions/album_actions";
 import { updateProfile } from "../../actions/artist_actions";
 import { receiveUserUpdate } from "../../actions/session_actions";
 import Profile from "./profile";
@@ -18,6 +19,8 @@ const mSTP = (state, ownProps) => {
 
 const mDTP = (dispatch) => {
   return {
+    getAllAlbums: () => dispatch(getAllAlbums()),
+
     receiveUserUpdate: (payload) => dispatch(receiveUserUpdate(payload)),
   };
 };

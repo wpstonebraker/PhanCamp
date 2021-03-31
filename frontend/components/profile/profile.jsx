@@ -21,6 +21,10 @@ class Profile extends React.Component {
     this.handleGenreClick = this.handleGenreClick.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getAllAlbums();
+  }
+
   update(field) {
     return (e) => {
       this.setState({ [field]: e.target.value });
@@ -96,13 +100,12 @@ class Profile extends React.Component {
         data: formData,
         contentType: false,
         processData: false,
-      })
-        .then((payload) => {
-          this.props.receiveUserUpdate(payload);
-        })
-        .then(() => {
-          this.props.history.push(`/artists/${this.props.user.id}`);
-        });
+      }).then((payload) => {
+        this.props.receiveUserUpdate(payload);
+      });
+      // .then(() => {
+      //   this.props.history.push(`/artists/${this.props.user.id}`);
+      // });
       // export const updateProfile = (id, formData) => {
       //       return $.ajax({
       //         method: "PATCH",

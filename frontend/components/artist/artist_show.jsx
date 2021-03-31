@@ -13,7 +13,10 @@ class ArtistShow extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.artist.bannerUrl !== undefined) {
+    if (
+      this.props.artist === undefined ||
+      this.props.artist.bannerUrl !== undefined
+    ) {
       this.props.getArtistAlbums(this.props.match.params.id);
     }
   }
@@ -23,6 +26,8 @@ class ArtistShow extends React.Component {
 
   render() {
     debugger;
+    if (this.props.artistId !== this.props.match.params.id) return null;
+    if (this.props.artist === undefined) return null;
     if (
       (this.props.artist.id === this.props.currentUserId &&
         this.props.artist.bannerUrl === undefined) ||
@@ -35,7 +40,6 @@ class ArtistShow extends React.Component {
       return <Redirect to="/albums/create" />;
     }
 
-    if (this.props.artistId !== this.props.match.params.id) return null;
     const artistId = this.props.artistId;
     const albums = [];
     this.props.albums.forEach((album) => {

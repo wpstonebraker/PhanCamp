@@ -1741,7 +1741,7 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
   _createClass(ArtistShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      if (this.props.artist.bannerUrl !== undefined) {
+      if (this.props.artist === undefined || this.props.artist.bannerUrl !== undefined) {
         this.props.getArtistAlbums(this.props.match.params.id);
       }
     }
@@ -1755,6 +1755,8 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
       var _this = this;
 
       debugger;
+      if (this.props.artistId !== this.props.match.params.id) return null;
+      if (this.props.artist === undefined) return null;
 
       if (this.props.artist.id === this.props.currentUserId && this.props.artist.bannerUrl === undefined || this.props.artist.thumbnailUrl === undefined) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Redirect, {
@@ -1768,7 +1770,6 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
         });
       }
 
-      if (this.props.artistId !== this.props.match.params.id) return null;
       var artistId = this.props.artistId;
       var albums = [];
       this.props.albums.forEach(function (album) {
@@ -1905,7 +1906,9 @@ var ArtistSidebar = function ArtistSidebar(_ref) {
     className: "artist-sidebar-website"
   }, artist.personalUrl), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     className: "artist-sidebar-contact"
-  }, artist.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_genres_genres_index__WEBPACK_IMPORTED_MODULE_1__.default, null))));
+  }, artist.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_genres_genres_index__WEBPACK_IMPORTED_MODULE_1__.default, {
+    artist: artist
+  }))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ArtistSidebar);
@@ -2970,20 +2973,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var GenresIndex = function GenresIndex(_ref) {
-  var genres = _ref.genres;
+var GenresIndex = function GenresIndex(props) {
+  var genres = props.genres;
+  var artist = props.artist;
   if (!genres) return null;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "genres"), genres.map(function (genre) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "genres"), artist.genreIds.map(function (genreId) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-      key: genre.id
-    }, genre.genre);
+      key: genreId
+    }, genres.genreId);
   }));
 };
 
-var mSTP = function mSTP(_ref2, ownProps) {
-  var genres = _ref2.entities.genres;
+var mSTP = function mSTP(state, ownProps) {
+  debugger;
   return {
-    genres: Object.values(genres)
+    genres: state.entities.genres
   };
 };
 
@@ -3423,6 +3427,11 @@ var Profile = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Profile, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.getAllAlbums();
+    }
+  }, {
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -3527,9 +3536,10 @@ var Profile = /*#__PURE__*/function (_React$Component) {
           processData: false
         }).then(function (payload) {
           _this5.props.receiveUserUpdate(payload);
-        }).then(function () {
-          _this5.props.history.push("/artists/".concat(_this5.props.user.id));
-        }); // export const updateProfile = (id, formData) => {
+        }); // .then(() => {
+        //   this.props.history.push(`/artists/${this.props.user.id}`);
+        // });
+        // export const updateProfile = (id, formData) => {
         //       return $.ajax({
         //         method: "PATCH",
         //         url: `/api/users/${id}`,
@@ -3720,9 +3730,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_artist_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/artist_actions */ "./frontend/actions/artist_actions.js");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
+/* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/album_actions */ "./frontend/actions/album_actions.js");
+/* harmony import */ var _actions_artist_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/artist_actions */ "./frontend/actions/artist_actions.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
+
 
 
 
@@ -3742,13 +3754,16 @@ var mSTP = function mSTP(state, ownProps) {
 
 var mDTP = function mDTP(dispatch) {
   return {
+    getAllAlbums: function getAllAlbums() {
+      return dispatch((0,_actions_album_actions__WEBPACK_IMPORTED_MODULE_1__.getAllAlbums)());
+    },
     receiveUserUpdate: function receiveUserUpdate(payload) {
-      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.receiveUserUpdate)(payload));
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.receiveUserUpdate)(payload));
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_profile__WEBPACK_IMPORTED_MODULE_3__.default));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_profile__WEBPACK_IMPORTED_MODULE_4__.default));
 
 /***/ }),
 
