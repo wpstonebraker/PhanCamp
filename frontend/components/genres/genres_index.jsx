@@ -9,7 +9,7 @@ const GenresIndex = (props) => {
     <ul>
       <span>genres</span>
       {artist.genreIds.map((genreId) => {
-        return <li key={genreId}>{genres.genreId}</li>;
+        return <li key={genreId}>{genres[genreId].genre}</li>;
       })}
     </ul>
   );

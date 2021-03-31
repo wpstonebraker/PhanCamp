@@ -36,6 +36,7 @@ class Api::UsersController < ApplicationController
             @user.thumbnail.purge
         end
 
+        debugger
         if @user.update(profile_params)
             @genresIds.each do |genreId|
                 GenreJoin.create!(

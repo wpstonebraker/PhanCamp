@@ -2979,7 +2979,7 @@ var GenresIndex = function GenresIndex(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "genres"), artist.genreIds.map(function (genreId) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
       key: genreId
-    }, genres.genreId);
+    }, genres[genreId].genre);
   }));
 };
 
