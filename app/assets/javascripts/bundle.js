@@ -1754,7 +1754,6 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      debugger;
       if (this.props.artistId !== this.props.match.params.id) return null;
       if (this.props.artist === undefined) return null;
 
@@ -2985,7 +2984,6 @@ var GenresIndex = function GenresIndex(props) {
 };
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     genres: state.entities.genres
   };

@@ -16,7 +16,6 @@ const GenresIndex = (props) => {
 };
 
 const mSTP = (state, ownProps) => {
-  debugger;
   return {
     genres: state.entities.genres,
   };

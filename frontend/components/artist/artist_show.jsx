@@ -25,7 +25,6 @@ class ArtistShow extends React.Component {
   }
 
   render() {
-    debugger;
     if (this.props.artistId !== this.props.match.params.id) return null;
     if (this.props.artist === undefined) return null;
     if (
