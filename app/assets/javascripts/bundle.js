@@ -294,6 +294,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "LOGIN_CURRENT_USER": () => /* binding */ LOGIN_CURRENT_USER,
 /* harmony export */   "LOGOUT_CURRENT_USER": () => /* binding */ LOGOUT_CURRENT_USER,
 /* harmony export */   "RECEIVE_SESSION_ERRORS": () => /* binding */ RECEIVE_SESSION_ERRORS,
+/* harmony export */   "RECEIVE_USER_UPDATE": () => /* binding */ RECEIVE_USER_UPDATE,
+/* harmony export */   "receiveUserUpdate": () => /* binding */ receiveUserUpdate,
 /* harmony export */   "receiveSessionErrors": () => /* binding */ receiveSessionErrors,
 /* harmony export */   "createNewUser": () => /* binding */ createNewUser,
 /* harmony export */   "login": () => /* binding */ login,
@@ -304,6 +306,7 @@ __webpack_require__.r(__webpack_exports__);
 var LOGIN_CURRENT_USER = "LOGIN_CURRENT_USER";
 var LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 var RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+var RECEIVE_USER_UPDATE = "RECEIVE_USER_UPDATE";
 
 var loginCurrentUser = function loginCurrentUser(user) {
   return {
@@ -320,6 +323,12 @@ var logoutCurrentUser = function logoutCurrentUser() {
   };
 };
 
+var receiveUserUpdate = function receiveUserUpdate(payload) {
+  return {
+    type: RECEIVE_USER_UPDATE,
+    payload: payload
+  };
+};
 var receiveSessionErrors = function receiveSessionErrors(errors) {
   return {
     type: RECEIVE_SESSION_ERRORS,
@@ -578,7 +587,13 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
     value: function handleGenreClick(id) {
       var genreTag = document.getElementById("genre-".concat(id));
       genreTag.classList.toggle("selected-genre");
-      this.state.genresArray.push(id);
+
+      if (this.state.genresArray.includes(id)) {
+        this.state.genresArray.splice(this.state.genresArray.indexOf(id), 1);
+      } else {
+        this.state.genresArray.push(id);
+      }
+
       console.log(this.state.genresArray);
     }
   }, {
@@ -1726,7 +1741,9 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
   _createClass(ArtistShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.getArtistAlbums(this.props.match.params.id);
+      if (this.props.artist.bannerUrl !== undefined) {
+        this.props.getArtistAlbums(this.props.match.params.id);
+      }
     }
   }, {
     key: "componentDidUpdate",
@@ -1736,6 +1753,20 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var _this = this;
+
+      debugger;
+
+      if (this.props.artist.id === this.props.currentUserId && this.props.artist.bannerUrl === undefined || this.props.artist.thumbnailUrl === undefined) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Redirect, {
+          to: "/edit-profile"
+        });
+      }
+
+      if (this.props.albums.length === 0) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Redirect, {
+          to: "/albums/create"
+        });
+      }
 
       if (this.props.artistId !== this.props.match.params.id) return null;
       var artistId = this.props.artistId;
@@ -1811,11 +1842,13 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(_ref, ownProps) {
   var _ref$entities = _ref.entities,
       albums = _ref$entities.albums,
-      artists = _ref$entities.artists;
+      artists = _ref$entities.artists,
+      session = _ref.session;
   return {
     albums: Object.values(albums),
     artistId: ownProps.match.params.id,
-    artist: artists[ownProps.match.params.id]
+    artist: artists[ownProps.match.params.id],
+    currentUserId: session.id
   };
 };
 
@@ -2905,11 +2938,13 @@ var Foots = function Foots(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "footer-right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://github.com/wpstonebraker"
+    href: "https://github.com/wpstonebraker",
+    target: "_blank"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     "class": "devicon-github-original-wordmark"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://www.linkedin.com/in/paul-stonebraker/"
+    href: "https://www.linkedin.com/in/paul-stonebraker/",
+    target: "_blank"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
     "class": "devicon-linkedin-plain"
   }))))));
@@ -3220,7 +3255,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         className: "sif"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "sif-username"
-      }, "Username / email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }, "Username"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         className: "sif-username ".concat(errors.username ? "error-outline" : ""),
         type: "text",
         value: username,
@@ -3377,11 +3412,13 @@ var Profile = /*#__PURE__*/function (_React$Component) {
       thumbnailFile: null,
       thumbnailUrl: _this.props.user.thumbnailUrl || null,
       bannerFile: null,
-      bannerUrl: _this.props.user.bannerUrl || null
+      bannerUrl: _this.props.user.bannerUrl || null,
+      genresArray: _this.props.user.genreIds || []
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleThumbnail = _this.handleThumbnail.bind(_assertThisInitialized(_this));
     _this.handleBanner = _this.handleBanner.bind(_assertThisInitialized(_this));
+    _this.handleGenreClick = _this.handleGenreClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3458,42 +3495,72 @@ var Profile = /*#__PURE__*/function (_React$Component) {
       var _this5 = this;
 
       // e.preventDefault();
-      var id = this.props.user.id;
-      var formData = new FormData();
-      formData.append("user[artist_name]", this.state.artistName);
-      formData.append("user[email]", this.state.email);
+      if (this.state.bannerUrl === null) {
+        document.getElementById("profile-banner-error").classList.remove("hidden");
+      } else if (this.state.thumbnailUrl === null) {
+        document.getElementById("profile-thumbnail-error").classList.remove("hidden");
+      } else if (this.state.genresArray.length === 0) {
+        document.getElementById("profile-genres-error").classList.remove("hidden");
+      } else {
+        var id = this.props.user.id;
+        var formData = new FormData();
+        formData.append("user[artist_name]", this.state.artistName);
+        formData.append("user[email]", this.state.email);
+        formData.append("user[location]", this.state.location);
+        formData.append("user[about]", this.state.about);
+        formData.append("user[personal_url]", this.state.personalUrl);
+        formData.append("genres", this.state.genresArray);
 
-      if (this.state.bannerFile !== null) {
-        formData.append("user[banner]", this.state.bannerFile);
+        if (this.state.bannerFile !== null) {
+          formData.append("user[banner]", this.state.bannerFile);
+        }
+
+        if (this.state.thumbnailFile !== null) {
+          formData.append("user[thumbnail]", this.state.thumbnailFile);
+        }
+
+        $.ajax({
+          method: "PATCH",
+          url: "/api/users/".concat(id),
+          data: formData,
+          contentType: false,
+          processData: false
+        }).then(function (payload) {
+          _this5.props.receiveUserUpdate(payload);
+        }).then(function () {
+          _this5.props.history.push("/artists/".concat(_this5.props.user.id));
+        }); // export const updateProfile = (id, formData) => {
+        //       return $.ajax({
+        //         method: "PATCH",
+        //         url: `/api/users/${id}`,
+        //         data: formData,
+        //         contentType: false,
+        //         processData: false,
+        //       });
+        //     };
+      }
+    }
+  }, {
+    key: "handleGenreClick",
+    value: function handleGenreClick(id) {
+      var genreTag = document.getElementById("genre-".concat(id));
+      genreTag.classList.toggle("selected-genre");
+
+      if (this.state.genresArray.includes(id)) {
+        this.state.genresArray.splice(this.state.genresArray.indexOf(id), 1);
+      } else {
+        this.state.genresArray.push(id);
       }
 
-      if (this.state.thumbnailFile !== null) {
-        formData.append("user[thumbnail]", this.state.thumbnailFile);
-      }
-
-      $.ajax({
-        method: "PATCH",
-        url: "/api/users/".concat(id),
-        data: formData,
-        contentType: false,
-        processData: false
-      }).then(function () {
-        _this5.props.history.push("/artists/".concat(_this5.props.user.id));
-      }); // export const updateProfile = (id, formData) => {
-      //       return $.ajax({
-      //         method: "PATCH",
-      //         url: `/api/users/${id}`,
-      //         data: formData,
-      //         contentType: false,
-      //         processData: false,
-      //       });
-      //     };
+      console.log(this.state.genresArray);
     }
   }, {
     key: "render",
     value: function render() {
+      var _this6 = this;
+
       var bannerPreview = this.state.bannerUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        height: "212px",
+        height: "100%",
         width: "100%",
         src: this.state.bannerUrl
       }) : null;
@@ -3508,6 +3575,16 @@ var Profile = /*#__PURE__*/function (_React$Component) {
           location = _this$state.location,
           about = _this$state.about,
           personalUrl = _this$state.personalUrl;
+      var genreTabs = Object.values(this.props.genres).map(function (genre) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+          className: "caf-genre-tab ".concat(_this6.props.user.genreIds.includes(genre.id) ? "selected-genre" : ""),
+          key: genre.id,
+          id: "genre-".concat(genre.id),
+          onClick: function onClick() {
+            return _this6.handleGenreClick(genre.id);
+          }
+        }, genre.genre);
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3535,7 +3612,10 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         className: "profile-Banner-upload-button",
         hidden: true,
         onChange: this.handleBanner.bind(this)
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        id: "profile-banner-error",
+        className: "hidden"
+      }, "please upload a banner image")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "profile-bottom"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "profile-bottom-left"
@@ -3602,7 +3682,17 @@ var Profile = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         id: "",
         className: thumbnailPreview === null ? "hidden" : ""
-      }, "Click Thumbnail to Upload New Image")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }, "Click Thumbnail to Upload New Image"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        id: "profile-thumbnail-error",
+        className: "hidden"
+      }, "Please upload a thumbnail image"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-genres flex-col caf-input"
+      }, "select one or more genres:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        id: "profile-genres-error",
+        className: "hidden"
+      }, "Please select at least one genre"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "caf-genre-tabs-box"
+      }, genreTabs))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "profile-submit",
         type: "submit",
         value: "Update Profile",
@@ -3631,7 +3721,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_artist_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/artist_actions */ "./frontend/actions/artist_actions.js");
-/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
+
 
 
 
@@ -3639,7 +3731,8 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state, ownProps) {
   var user = state.entities.users[state.session.id];
   return {
-    user: user // state: {
+    user: user,
+    genres: state.entities.genres // state: {
     //   artist_name: user.artistName,
     //   email: user.email,
     // },
@@ -3648,10 +3741,14 @@ var mSTP = function mSTP(state, ownProps) {
 };
 
 var mDTP = function mDTP(dispatch) {
-  return {};
+  return {
+    receiveUserUpdate: function receiveUserUpdate(payload) {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.receiveUserUpdate)(payload));
+    }
+  };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_profile__WEBPACK_IMPORTED_MODULE_2__.default));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_profile__WEBPACK_IMPORTED_MODULE_3__.default));
 
 /***/ }),
 
@@ -5140,6 +5237,10 @@ var usersReducer = function usersReducer() {
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.LOGIN_CURRENT_USER:
       newState = Object.assign({}, state, _defineProperty({}, action.user.id, action.user));
+      return newState;
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_USER_UPDATE:
+      newState = Object.assign({}, state, _defineProperty({}, action.payload.id, action.payload));
       return newState;
 
     default:

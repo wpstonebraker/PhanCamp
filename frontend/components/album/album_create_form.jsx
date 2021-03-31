@@ -144,7 +144,11 @@ class AlbumCreateForm extends React.Component {
   handleGenreClick(id) {
     const genreTag = document.getElementById(`genre-${id}`);
     genreTag.classList.toggle("selected-genre");
-    this.state.genresArray.push(id);
+    if (this.state.genresArray.includes(id)) {
+      this.state.genresArray.splice(this.state.genresArray.indexOf(id), 1);
+    } else {
+      this.state.genresArray.push(id);
+    }
     console.log(this.state.genresArray);
   }
 

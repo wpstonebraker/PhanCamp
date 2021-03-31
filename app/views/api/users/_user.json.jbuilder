@@ -1,4 +1,4 @@
-json.extract! user, :username, :id, :artist_name, :email, :location, :personal_url, :about
+json.extract! user, :username, :id, :artist_name, :email, :location, :personal_url, :about, :genre_ids
 if user.thumbnail.attached?
     json.thumbnailUrl url_for(user.thumbnail)
 end

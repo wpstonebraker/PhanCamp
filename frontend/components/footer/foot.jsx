@@ -22,10 +22,13 @@ const Foots = (props) => {
             <i class="devicon-ubuntu-plain-wordmark"></i>
           </div>
           <div id="footer-right">
-            <a href="https://github.com/wpstonebraker">
+            <a href="https://github.com/wpstonebraker" target="_blank">
               <i class="devicon-github-original-wordmark"></i>
             </a>
-            <a href="https://www.linkedin.com/in/paul-stonebraker/">
+            <a
+              href="https://www.linkedin.com/in/paul-stonebraker/"
+              target="_blank"
+            >
               <i class="devicon-linkedin-plain"></i>
             </a>
           </div>

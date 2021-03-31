@@ -19,14 +19,18 @@
 }
 
 .profile-banner-upload-box {
-  width: 100%;
+  width: 1000px;
+  height: 200px;
 }
 
 .profile-banner-upload {
   width: 100%;
+  height: 100%;
+  border: 1px dashed lightgrey;
 }
 
 #profile-bottom {
+  margin-top: 20px;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -45,4 +49,8 @@
   width: 282px;
   height: 36px;
   border: 0.5px solid lightgrey;
+}
+
+.profile-genres {
+  width: 300px;
 }

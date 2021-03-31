@@ -22,6 +22,13 @@ class Api::UsersController < ApplicationController
 
     def update
         @user = User.find(params[:id])
+        @genresIds = [] 
+        params["genres"].split(',').each do |id|
+            if !@user.genre_ids.include?(id)
+                @genresIds << id.to_i
+            end
+        end
+
         if @user.banner.attached? && params[:user][:banner]
             @user.banner.purge
         end
@@ -29,8 +36,14 @@ class Api::UsersController < ApplicationController
             @user.thumbnail.purge
         end
 
-
         if @user.update(profile_params)
+            @genresIds.each do |genreId|
+                GenreJoin.create!(
+                    genre_id: genreId,
+                    genreable_id: @user.id,
+                    genreable_type: "User"
+                )
+            end
             render :show
         else
             render json: @user.errors.full_messages, status: 422
@@ -44,7 +57,7 @@ class Api::UsersController < ApplicationController
     end
 
     def profile_params
-        params.require(:user).permit(:username, :password, :email, :artist_name, :thumbnail, :banner, :about, :personal_url)
+        params.require(:user).permit(:username, :password, :email, :artist_name, :thumbnail, :banner, :about, :personal_url, :location)
     end
     
 end

@@ -1,4 +1,7 @@
-import { LOGIN_CURRENT_USER } from "../actions/session_actions";
+import {
+  LOGIN_CURRENT_USER,
+  RECEIVE_USER_UPDATE,
+} from "../actions/session_actions";
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -7,6 +10,11 @@ const usersReducer = (state = {}, action) => {
     case LOGIN_CURRENT_USER:
       newState = Object.assign({}, state, {
         [action.user.id]: action.user,
+      });
+      return newState;
+    case RECEIVE_USER_UPDATE:
+      newState = Object.assign({}, state, {
+        [action.payload.id]: action.payload,
       });
       return newState;
     default:

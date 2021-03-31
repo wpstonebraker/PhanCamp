@@ -87,7 +87,7 @@ class LoginForm extends React.Component {
 
           <form className="sif">
             <div>
-              <label htmlFor="sif-username">Username / email</label>
+              <label htmlFor="sif-username">Username</label>
               <input
                 className={`sif-username ${
                   errors.username ? "error-outline" : ""

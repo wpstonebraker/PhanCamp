@@ -13,10 +13,12 @@ class Profile extends React.Component {
       thumbnailUrl: this.props.user.thumbnailUrl || null,
       bannerFile: null,
       bannerUrl: this.props.user.bannerUrl || null,
+      genresArray: this.props.user.genreIds || [],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleThumbnail = this.handleThumbnail.bind(this);
     this.handleBanner = this.handleBanner.bind(this);
+    this.handleGenreClick = this.handleGenreClick.bind(this);
   }
 
   update(field) {
@@ -60,45 +62,91 @@ class Profile extends React.Component {
 
   handleSubmit() {
     // e.preventDefault();
+    if (this.state.bannerUrl === null) {
+      document
+        .getElementById("profile-banner-error")
+        .classList.remove("hidden");
+    } else if (this.state.thumbnailUrl === null) {
+      document
+        .getElementById("profile-thumbnail-error")
+        .classList.remove("hidden");
+    } else if (this.state.genresArray.length === 0) {
+      document
+        .getElementById("profile-genres-error")
+        .classList.remove("hidden");
+    } else {
+      const id = this.props.user.id;
+      const formData = new FormData();
+      formData.append("user[artist_name]", this.state.artistName);
+      formData.append("user[email]", this.state.email);
+      formData.append("user[location]", this.state.location);
+      formData.append("user[about]", this.state.about);
+      formData.append("user[personal_url]", this.state.personalUrl);
 
-    const id = this.props.user.id;
-    const formData = new FormData();
-    formData.append("user[artist_name]", this.state.artistName);
-    formData.append("user[email]", this.state.email);
-    if (this.state.bannerFile !== null) {
-      formData.append("user[banner]", this.state.bannerFile);
+      formData.append("genres", this.state.genresArray);
+      if (this.state.bannerFile !== null) {
+        formData.append("user[banner]", this.state.bannerFile);
+      }
+      if (this.state.thumbnailFile !== null) {
+        formData.append("user[thumbnail]", this.state.thumbnailFile);
+      }
+      $.ajax({
+        method: "PATCH",
+        url: `/api/users/${id}`,
+        data: formData,
+        contentType: false,
+        processData: false,
+      })
+        .then((payload) => {
+          this.props.receiveUserUpdate(payload);
+        })
+        .then(() => {
+          this.props.history.push(`/artists/${this.props.user.id}`);
+        });
+      // export const updateProfile = (id, formData) => {
+      //       return $.ajax({
+      //         method: "PATCH",
+      //         url: `/api/users/${id}`,
+      //         data: formData,
+      //         contentType: false,
+      //         processData: false,
+      //       });
+      //     };
     }
-    if (this.state.thumbnailFile !== null) {
-      formData.append("user[thumbnail]", this.state.thumbnailFile);
+  }
+  handleGenreClick(id) {
+    const genreTag = document.getElementById(`genre-${id}`);
+    genreTag.classList.toggle("selected-genre");
+    if (this.state.genresArray.includes(id)) {
+      this.state.genresArray.splice(this.state.genresArray.indexOf(id), 1);
+    } else {
+      this.state.genresArray.push(id);
     }
-    $.ajax({
-      method: "PATCH",
-      url: `/api/users/${id}`,
-      data: formData,
-      contentType: false,
-      processData: false,
-    }).then(() => {
-      this.props.history.push(`/artists/${this.props.user.id}`);
-    });
-    // export const updateProfile = (id, formData) => {
-    //       return $.ajax({
-    //         method: "PATCH",
-    //         url: `/api/users/${id}`,
-    //         data: formData,
-    //         contentType: false,
-    //         processData: false,
-    //       });
-    //     };
+    console.log(this.state.genresArray);
   }
 
   render() {
     const bannerPreview = this.state.bannerUrl ? (
-      <img height="212px" width="100%" src={this.state.bannerUrl} />
+      <img height="100%" width="100%" src={this.state.bannerUrl} />
     ) : null;
     const thumbnailPreview = this.state.thumbnailUrl ? (
       <img height="212px" width="212px" src={this.state.thumbnailUrl} />
     ) : null;
     const { artistName, email, location, about, personalUrl } = this.state;
+    const genreTabs = Object.values(this.props.genres).map((genre) => {
+      return (
+        <li
+          className={`caf-genre-tab ${
+            this.props.user.genreIds.includes(genre.id) ? "selected-genre" : ""
+          }`}
+          key={genre.id}
+          id={`genre-${genre.id}`}
+          onClick={() => this.handleGenreClick(genre.id)}
+        >
+          {genre.genre}
+        </li>
+      );
+    });
     return (
       <div className="caf-outer">
         <div id="profile-box">
@@ -130,6 +178,9 @@ class Profile extends React.Component {
                     onChange={this.handleBanner.bind(this)}
                   />
                 </div>
+                <p id="profile-banner-error" className="hidden">
+                  please upload a banner image
+                </p>
               </div>
               <div id="profile-bottom">
                 <div id="profile-bottom-left">
@@ -207,7 +258,17 @@ class Profile extends React.Component {
                     >
                       Click Thumbnail to Upload New Image
                     </span>
+                    <p id="profile-thumbnail-error" className="hidden">
+                      Please upload a thumbnail image
+                    </p>
                   </div>
+                </div>
+                <div className="profile-genres flex-col caf-input">
+                  select one or more genres:
+                  <p id="profile-genres-error" className="hidden">
+                    Please select at least one genre
+                  </p>
+                  <div className="caf-genre-tabs-box">{genreTabs}</div>
                 </div>
               </div>
               <div>

@@ -2,7 +2,7 @@ import React from "react";
 import Discog from "./discog_item";
 import ArtistBanner from "./artist_banner";
 import ArtistSidebar from "./artist_sidebar";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import AlbumShowContainer from "../album/album_show_container";
 import DiscogIndex from "./discog_index";
 import AlbumShow from "../album/album_show";
@@ -13,13 +13,28 @@ class ArtistShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getArtistAlbums(this.props.match.params.id);
+    if (this.props.artist.bannerUrl !== undefined) {
+      this.props.getArtistAlbums(this.props.match.params.id);
+    }
   }
   componentDidUpdate() {
     // this.props.getArtistAlbums(this.props.match.params.id);
   }
 
   render() {
+    debugger;
+    if (
+      (this.props.artist.id === this.props.currentUserId &&
+        this.props.artist.bannerUrl === undefined) ||
+      this.props.artist.thumbnailUrl === undefined
+    ) {
+      return <Redirect to="/edit-profile" />;
+    }
+
+    if (this.props.albums.length === 0) {
+      return <Redirect to="/albums/create" />;
+    }
+
     if (this.props.artistId !== this.props.match.params.id) return null;
     const artistId = this.props.artistId;
     const albums = [];
