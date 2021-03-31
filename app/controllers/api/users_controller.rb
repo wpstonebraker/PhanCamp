@@ -35,8 +35,7 @@ class Api::UsersController < ApplicationController
         if @user.thumbnail.attached? && params[:user][:thumbnail]
             @user.thumbnail.purge
         end
-
-        debugger
+        
         if @user.update(profile_params)
             @genresIds.each do |genreId|
                 GenreJoin.create!(
