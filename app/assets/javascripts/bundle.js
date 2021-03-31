@@ -3550,6 +3550,8 @@ var Profile = /*#__PURE__*/function (_React$Component) {
           processData: false
         }).then(function (payload) {
           _this5.props.receiveUserUpdate(payload);
+        }).then(function () {
+          return _this5.props.history.push("/artists/".concat(_this5.props.user.id));
         }); // .then(() => {
         //   this.props.history.push(`/artists/${this.props.user.id}`);
         // });

@@ -100,9 +100,11 @@ class Profile extends React.Component {
         data: formData,
         contentType: false,
         processData: false,
-      }).then((payload) => {
-        this.props.receiveUserUpdate(payload);
-      });
+      })
+        .then((payload) => {
+          this.props.receiveUserUpdate(payload);
+        })
+        .then(() => this.props.history.push(`/artists/${this.props.user.id}`));
       // .then(() => {
       //   this.props.history.push(`/artists/${this.props.user.id}`);
       // });
