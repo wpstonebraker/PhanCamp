@@ -5,12 +5,14 @@ const GenresIndex = (props) => {
   const genres = props.genres;
   const artist = props.artist;
   if (!genres) return null;
+  const genreIds = [...new Set(artist.genreIds)];
+  const artistGenres = genreIds.map((genreId) => {
+    return <li key={genreId}>{genres[genreId].genre}</li>;
+  });
   return (
     <ul>
       <span>genres</span>
-      {artist.genreIds.map((genreId) => {
-        return <li key={genreId}>{genres[genreId].genre}</li>;
-      })}
+      {artistGenres}
     </ul>
   );
 };
