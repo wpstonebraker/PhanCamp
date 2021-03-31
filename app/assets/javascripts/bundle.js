@@ -4917,6 +4917,7 @@ __webpack_require__.r(__webpack_exports__);
 var artistsReducer = function artistsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  debugger;
   Object.freeze(state);
   var newState;
 

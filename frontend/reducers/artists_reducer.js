@@ -6,6 +6,7 @@ import {
 import { RECEIVE_FEATURE_ARTISTS } from "../actions/artist_actions";
 
 const artistsReducer = (state = {}, action) => {
+  debugger;
   Object.freeze(state);
   let newState;
   switch (action.type) {
