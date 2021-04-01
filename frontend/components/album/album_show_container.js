@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getAlbum, getPhishAlbum } from "../../actions/album_actions";
+import { playPhishTrack, playTrack } from "../../actions/audio_actions";
 import AlbumShow from "./album_show";
 
 const mSTP = (state, ownProps) => {
@@ -16,6 +17,8 @@ const mDTP = (dispatch) => {
   return {
     getAlbum: (albumId) => dispatch(getAlbum(albumId)),
     getPhishAlbum: (date) => dispatch(getPhishAlbum(date)),
+    playTrack: (track) => dispatch(playTrack(track)),
+    playPhishTrack: (track) => dispatch(playPhishTrack(track)),
   };
 };
 

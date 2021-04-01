@@ -7,11 +7,11 @@ class AudioPlayer extends React.Component {
       // track: props.track,
       currentTime: "00:00",
       duration: "00:00",
-      src: props.track,
+      src: props.track.songUrl,
       playButton: null,
-      title: props.track.trackName || props.track.title || "",
+      title: props.track.trackName,
     };
-    this.track = props.track;
+    // this.track = props.track;
     this.audio = React.createRef();
     this.progressBar = React.createRef();
     this.progressPlayed = React.createRef();
@@ -24,17 +24,27 @@ class AudioPlayer extends React.Component {
   }
 
   componentDidMount() {
-    let song;
-    let title;
-    if (this.track.mp3) {
-      song = this.track.mp3;
-      title = this.track.title;
-    }
-    if (this.track.songUrl) {
-      song = this.track.songUrl;
-      title = this.track.trackName;
-    }
-    this.setState({ src: song, playButton: window.playIcon, title });
+    // let song;
+    // let title;
+    // if (this.track.mp3) {
+    //   song = this.track.mp3;
+    //   title = this.track.title;
+    // }
+    // if (this.track.songUrl) {
+    //   song = this.track.songUrl;
+    //   title = this.track.trackName;
+    // }
+    // this.setState({ src: song, playButton: window.playIcon, title });
+    debugger;
+    // if (Object.values(this.props.track).length !== 0) {
+    this.props.playTrack(Object.values(this.props.tracks)[0]);
+    this.setState({
+      // src: this.props.track.songUrl,
+      playButton: window.playIcon,
+      // title: this.props.track.title,
+    });
+    // }
+    // this.audio.current.load();
   }
 
   componentWillUnmount() {
@@ -42,6 +52,18 @@ class AudioPlayer extends React.Component {
   }
 
   componentDidUpdate() {
+    if (
+      Object.values(this.props.track).length !== 0 &&
+      this.props.track.songUrl !== this.state.src
+    )
+      this.setState(
+        {
+          src: this.props.track.songUrl,
+          // playButton: window.playIcon,
+          title: this.props.track.trackName,
+        },
+        () => this.audio.current.play()
+      );
     // debugger;
     // let song;
     // let title;
@@ -75,7 +97,7 @@ class AudioPlayer extends React.Component {
   }
 
   togglePlay() {
-    // debugger;
+    debugger;
     const audio = this.audio.current;
     if (audio.paused) {
       audio.play();
@@ -144,11 +166,12 @@ class AudioPlayer extends React.Component {
   }
 
   render() {
-    // debugger;
+    debugger;
     let song;
     let title;
-    if (this.track === undefined) return null;
-    if (this.track === null) return null;
+    // if (Object.values(this.props.track).length === 0) return null;
+    // if (this.props.track === undefined) return null;
+    // if (this.props.track === null) return null;
     // if (this.props.track.mp3 && this.state.src === this.props.track.mp3) {
     //   song = this.props.track.mp3;
     //   title = this.props.track.title;

@@ -1,6 +1,6 @@
 import React from "react";
 
-const PhishTrackItem = React.forwardRef(({ track, handleTrack }, ref) => {
+const PhishTrackItem = React.forwardRef(({ track, playTrack }, ref) => {
   // const playSong = () => {
   //   document.getElementById("audio-player").src = track.mp3;
   //   const audioPlayer = document.getElementById("audio-player");
@@ -9,7 +9,8 @@ const PhishTrackItem = React.forwardRef(({ track, handleTrack }, ref) => {
   const playSong = () => {
     // const audio = ref.current;
     // audio.handleTrack(track.mp3, track.title);
-    handleTrack(track);
+    // handleTrack(track);
+    playTrack(track);
   };
 
   // const downloadSong = () => {
@@ -26,8 +27,8 @@ const PhishTrackItem = React.forwardRef(({ track, handleTrack }, ref) => {
       <td onClick={() => playSong()}>
         <img className="track-play" src={window.playIcon} alt="" />
       </td>
-      <td className="track-num">{track.position}</td>
-      <td className="track-name">{track.title}</td>
+      <td className="track-num">{track.trackNum}</td>
+      <td className="track-name">{track.trackName}</td>
       {/* <a href={track.mp3} download>
         <td onClick={() => downloadSong()}>Download</td>
         <td>Download</td>

@@ -2,7 +2,7 @@ import React from "react";
 import artist_banner from "../artist/artist_banner";
 import ArtistBanner from "../artist/artist_banner";
 import ArtistSidebar from "../artist/artist_sidebar";
-import AudioPlayer from "../audio_player/audio_player";
+import AudioPlayer from "../audio_player/audio_player_container";
 import PhishTrackItem from "./phish_track_item";
 import TrackItem from "./track_item";
 // import AudioPlayer from "../audio_player/audio_player_container";
@@ -14,7 +14,7 @@ class AlbumShow extends React.Component {
       playing: false,
       track: props.track,
     };
-    this.audio = React.createRef();
+    // this.audio = React.createRef();
     this.handleTrack = this.handleTrack.bind(this);
   }
 
@@ -36,8 +36,8 @@ class AlbumShow extends React.Component {
   }
 
   componentDidUpdate() {
-    // debugger;
     let tracks = Object.values(this.props.tracks);
+    if (tracks.length === 0) return;
     if (!tracks.includes(this.state.track)) {
       this.setState({ track: Object.values(this.props.tracks)[0] });
     }
@@ -52,23 +52,23 @@ class AlbumShow extends React.Component {
   }
 
   handleTrack(track) {
-    if (track.mp3) {
-      this.setState({ track });
-      this.audio.current.setState(
-        { src: track.mp3, title: track.title },
-        () => {
-          this.audio.current.togglePlay();
-        }
-      );
-    } else {
-      this.setState({ track });
-      this.audio.current.setState(
-        { src: track.songUrl, title: track.trackName },
-        () => {
-          this.audio.current.togglePlay();
-        }
-      );
-    }
+    // if (track.mp3) {
+    //   this.setState({ track });
+    //   this.audio.current.setState(
+    //     { src: track.mp3, title: track.title },
+    //     () => {
+    //       this.audio.current.togglePlay();
+    //     }
+    //   );
+    // } else {
+    //   this.setState({ track });
+    //   this.audio.current.setState(
+    //     { src: track.songUrl, title: track.trackName },
+    //     () => {
+    //       this.audio.current.togglePlay();
+    //     }
+    //   );
+    // }
     // const trackPath = track.songURL ? track.songUrl : track.mp3;
     // this.setState({ song: trackPath });
   }
@@ -98,9 +98,10 @@ class AlbumShow extends React.Component {
         return (
           <PhishTrackItem
             track={track}
-            ref={this.audio}
+            // ref={this.audio}
             key={i}
-            handleTrack={this.handleTrack}
+            playTrack={this.props.playTrack}
+            // handleTrack={this.handleTrack}
           />
         );
       });
@@ -109,9 +110,10 @@ class AlbumShow extends React.Component {
         return (
           <TrackItem
             track={track}
-            ref={this.audio}
+            // ref={this.audio}
             key={i}
-            handleTrack={this.handleTrack}
+            playTrack={this.props.playTrack}
+            // handleTrack={this.handleTrack}
           />
         );
       });
@@ -137,7 +139,7 @@ class AlbumShow extends React.Component {
             <div>
               <AudioPlayer
                 id="album-audio-player"
-                ref={this.audio}
+                // ref={this.audio}
                 track={track}
                 // song={
                 //   album.showDate !== undefined

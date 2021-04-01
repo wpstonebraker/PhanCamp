@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import albumsReducer from "./albums_reducer";
 import artistsReducer from "./artists_reducer";
+import AudioReducer from "./audio_reducer";
 import genresReducer from "./genres_reducer";
 import searchReducer from "./search_reducer";
 import tracksReducer from "./tracks_reducer";
@@ -15,6 +16,7 @@ const entitiesReducer = combineReducers({
   genres: genresReducer,
   util: utilReducer,
   search: searchReducer,
+  audio: AudioReducer,
 });
 
 export default entitiesReducer;

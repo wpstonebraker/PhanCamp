@@ -1,10 +1,11 @@
 import React from "react";
 
-const TrackItem = React.forwardRef(({ track, handleTrack }, ref) => {
+const TrackItem = React.forwardRef(({ track, playTrack }, ref) => {
   const playSong = () => {
     // const audio = ref.current;
     // audio.handleTrack(track.songUrl, track.trackName);
-    handleTrack(track);
+    // handleTrack(track);
+    playTrack(track);
   };
 
   if (track === null) return null;
