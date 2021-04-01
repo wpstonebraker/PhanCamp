@@ -1054,7 +1054,6 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
       // const trackItems = tracks.map((track) => {
       //   return <TrackItem track={track} key={track.trackNum} />;
       // });
-      // debugger;
 
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2140,8 +2139,7 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
       //   title = this.track.trackName;
       // }
       // this.setState({ src: song, playButton: window.playIcon, title });
-      debugger; // if (Object.values(this.props.track).length !== 0) {
-
+      // if (Object.values(this.props.track).length !== 0) {
       this.props.playTrack(Object.values(this.props.tracks)[0]);
       this.setState({
         // src: this.props.track.songUrl,
@@ -2152,8 +2150,7 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "componentWillUnmount",
-    value: function componentWillUnmount() {// debugger;
-    }
+    value: function componentWillUnmount() {}
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
@@ -2161,12 +2158,12 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
 
       if (Object.values(this.props.track).length !== 0 && this.props.track.songUrl !== this.state.src) this.setState({
         src: this.props.track.songUrl,
-        // playButton: window.playIcon,
+        playButton: window.playIcon,
         title: this.props.track.trackName
-      }, function () {
-        return _this2.audio.current.play();
-      }); // debugger;
-      // let song;
+      }, // () => this.audio.current.play()
+      function () {
+        return _this2.playTrack();
+      }); // let song;
       // let title;
       // if (this.props.track.mp3 && this.state.src !== this.props.track.mp3) {
       //   song = this.props.track.mp3;
@@ -2199,7 +2196,6 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "togglePlay",
     value: function togglePlay() {
-      debugger;
       var audio = this.audio.current;
 
       if (audio.paused) {
@@ -2238,11 +2234,10 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
     key: "playTrack",
     value: function playTrack() {
       var audio = this.audio.current;
-      this.togglePlay();
-      var duration = this.convertTime(audio.duration);
+      audio.play();
       this.setState({
-        duration: duration
-      });
+        playButton: window.pauseIcon
+      }); // const duration = this.convertTime(audio.duration);
     }
   }, {
     key: "handleTime",
@@ -2284,7 +2279,6 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       var song;
       var title; // if (Object.values(this.props.track).length === 0) return null;
       // if (this.props.track === undefined) return null;
@@ -2370,7 +2364,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     track: state.entities.audio,
     tracks: state.entities.tracks
