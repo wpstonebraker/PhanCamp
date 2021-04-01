@@ -907,8 +907,6 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      debugger;
-
       if (this.props.artist.artistName === "Phish" && this.props.album.showDate !== undefined) {
         // this.props.getPhishAlbum(this.props.album.showDate);
         this.props.getPhishAlbum(this.props.album.showDate).then(function () {
@@ -928,8 +926,6 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      debugger;
-
       if (this.state.track !== Object.values(this.props.tracks)[0]) {
         this.setState({
           track: Object.values(this.props.tracks)[0]
@@ -974,7 +970,6 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      debugger;
       if (!this.props.album) return null;
 
       if (Object.values(this.props.tracks).length === 0) {
@@ -2203,7 +2198,6 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       var song;
       var title;
       if (this.track === null) return null;
@@ -2216,7 +2210,6 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
           playButton: window.playIcon,
           title: title
         });
-        console.log("yo");
       }
 
       if (this.props.track.songUrl && this.state.src !== this.props.track.songUrl) {
@@ -2227,7 +2220,6 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
           playButton: window.playIcon,
           title: title
         });
-        console.log("yo");
       }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

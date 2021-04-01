@@ -122,7 +122,6 @@ class AudioPlayer extends React.Component {
   }
 
   render() {
-    debugger;
     let song;
     let title;
     if (this.track === null) return null;
@@ -130,7 +129,6 @@ class AudioPlayer extends React.Component {
       song = this.props.track.mp3;
       title = this.props.track.title;
       this.setState({ src: song, playButton: window.playIcon, title });
-      console.log("yo");
     }
     if (
       this.props.track.songUrl &&
@@ -139,7 +137,6 @@ class AudioPlayer extends React.Component {
       song = this.props.track.songUrl;
       title = this.props.track.trackName;
       this.setState({ src: song, playButton: window.playIcon, title });
-      console.log("yo");
     }
     return (
       <div id="audio-player-box">

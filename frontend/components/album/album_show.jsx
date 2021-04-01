@@ -19,7 +19,6 @@ class AlbumShow extends React.Component {
   }
 
   componentDidMount() {
-    debugger;
     if (
       this.props.artist.artistName === "Phish" &&
       this.props.album.showDate !== undefined
@@ -37,7 +36,6 @@ class AlbumShow extends React.Component {
   }
 
   componentDidUpdate() {
-    debugger;
     if (this.state.track !== Object.values(this.props.tracks)[0]) {
       this.setState({ track: Object.values(this.props.tracks)[0] });
       console.log(`${Object.values(this.props.tracks)[0]}`);
@@ -69,7 +67,6 @@ class AlbumShow extends React.Component {
   playTrack() {}
 
   render() {
-    debugger;
     if (!this.props.album) return null;
     if (Object.values(this.props.tracks).length === 0) {
       return null;
