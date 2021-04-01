@@ -926,7 +926,7 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      debugger;
+      // debugger;
       var tracks = Object.values(this.props.tracks);
 
       if (!tracks.includes(this.state.track)) {
@@ -1024,9 +1024,9 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
       // const trackItems = tracks.map((track) => {
       //   return <TrackItem track={track} key={track.trackNum} />;
       // });
+      // debugger;
 
 
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "album-show-page-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5320,6 +5320,9 @@ var tracksReducer = function tracksReducer() {
   var newState;
 
   switch (action.type) {
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ARTIST_ALBUMS:
+      return {};
+
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALBUM:
       return action.payload.tracks;
 

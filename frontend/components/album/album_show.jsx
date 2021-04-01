@@ -36,7 +36,7 @@ class AlbumShow extends React.Component {
   }
 
   componentDidUpdate() {
-    debugger;
+    // debugger;
     let tracks = Object.values(this.props.tracks);
     if (!tracks.includes(this.state.track)) {
       this.setState({ track: Object.values(this.props.tracks)[0] });
@@ -122,7 +122,7 @@ class AlbumShow extends React.Component {
     // const trackItems = tracks.map((track) => {
     //   return <TrackItem track={track} key={track.trackNum} />;
     // });
-    debugger;
+    // debugger;
     return (
       <div className="album-show-page-box">
         <div className="album-show-page-left">

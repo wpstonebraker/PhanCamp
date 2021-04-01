@@ -1,9 +1,15 @@
-import { RECEIVE_ALBUM, RECEIVE_PHISH_ALBUM } from "../actions/album_actions";
+import {
+  RECEIVE_ALBUM,
+  RECEIVE_ARTIST_ALBUMS,
+  RECEIVE_PHISH_ALBUM,
+} from "../actions/album_actions";
 
 const tracksReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState;
   switch (action.type) {
+    case RECEIVE_ARTIST_ALBUMS:
+      return {};
     case RECEIVE_ALBUM:
       return action.payload.tracks;
     case RECEIVE_PHISH_ALBUM:
