@@ -905,14 +905,22 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
   _createClass(AlbumShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       if (this.props.artist.artistName === "Phish" && this.props.album.showDate !== undefined) {
-        this.props.getPhishAlbum(this.props.album.showDate); // this.props.getPhishAlbum(this.props.album.showDate).then(() => {
-        //   this.setState({ track: Object.values(this.props.tracks)[0] });
-        // });
+        // this.props.getPhishAlbum(this.props.album.showDate);
+        this.props.getPhishAlbum(this.props.album.showDate).then(function () {
+          _this2.setState({
+            track: Object.values(_this2.props.tracks)[0]
+          });
+        });
       } else {
-        this.props.getAlbum(this.props.match.params.id); // this.props.getAlbum(this.props.match.params.id).then(() => {
-        //   this.setState({ track: Object.values(this.props.tracks)[0] });
-        // });
+        // this.props.getAlbum(this.props.match.params.id);
+        this.props.getAlbum(this.props.match.params.id).then(function () {
+          _this2.setState({
+            track: Object.values(_this2.props.tracks)[0]
+          });
+        });
       }
     }
   }, {
@@ -921,7 +929,7 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleTrack",
     value: function handleTrack(track) {
-      var _this2 = this;
+      var _this3 = this;
 
       if (track.mp3) {
         this.setState({
@@ -931,7 +939,7 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
           src: track.mp3,
           title: track.title
         }, function () {
-          _this2.audio.current.togglePlay();
+          _this3.audio.current.togglePlay();
         });
       } else {
         this.setState({
@@ -941,7 +949,7 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
           src: track.songUrl,
           title: track.trackName
         }, function () {
-          _this2.audio.current.togglePlay();
+          _this3.audio.current.togglePlay();
         });
       } // const trackPath = track.songURL ? track.songUrl : track.mp3;
       // this.setState({ song: trackPath });
@@ -953,8 +961,9 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
+      debugger;
       if (!this.props.album) return null;
 
       if (Object.values(this.props.tracks).length === 0) {
@@ -964,7 +973,8 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           album = _this$props.album,
           tracks = _this$props.tracks,
-          artist = _this$props.artist;
+          artist = _this$props.artist,
+          track = _this$props.track;
       var trackItems; // if (artist.artistName === "Phish" && album.showDate !== undefined) {
       //   trackItems = [];
       //   this.getPhishAlbum(album.showDate).then((res) => {
@@ -978,18 +988,18 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
         trackItems = Object.values(tracks).map(function (track, i) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_phish_track_item__WEBPACK_IMPORTED_MODULE_4__.default, {
             track: track,
-            ref: _this3.audio,
+            ref: _this4.audio,
             key: i,
-            handleTrack: _this3.handleTrack
+            handleTrack: _this4.handleTrack
           });
         });
       } else {
         trackItems = Object.values(tracks).map(function (track, i) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_track_item__WEBPACK_IMPORTED_MODULE_5__.default, {
             track: track,
-            ref: _this3.audio,
+            ref: _this4.audio,
             key: i,
-            handleTrack: _this3.handleTrack
+            handleTrack: _this4.handleTrack
           });
         });
       } // }
@@ -1010,12 +1020,12 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
       }, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
         id: "album-show-artist",
         onClick: function onClick() {
-          return _this3.props.history.push("/artists/".concat(artist.id));
+          return _this4.props.history.push("/artists/".concat(artist.id));
         }
       }, "by: ", album.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_audio_player_audio_player__WEBPACK_IMPORTED_MODULE_3__.default, {
         id: "album-audio-player",
         ref: this.audio,
-        track: this.state.track // song={
+        track: track // song={
         //   album.showDate !== undefined
         //     ? Object.values(tracks)[0].mp3
         //     : Object.values(tracks)[0].songUrl
@@ -1069,6 +1079,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
+  debugger;
   return {
     album: state.entities.albums[ownProps.albumId],
     artist: state.entities.artists[ownProps.artistId],
@@ -2060,15 +2071,24 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
   _createClass(AudioPlayer, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      debugger;
       var song;
+      var title;
 
-      if (this.track) {
-        song = this.track ? this.track.mp3 : this.track.songUrl;
+      if (this.track.mp3) {
+        song = this.track.mp3;
+        title = this.track.title;
+      }
+
+      if (this.track.songUrl) {
+        song = this.track.songUrl;
+        title = this.track.trackName;
       }
 
       this.setState({
         src: song,
-        playButton: window.playIcon
+        playButton: window.playIcon,
+        title: title
       });
     }
   }, {

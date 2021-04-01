@@ -23,15 +23,15 @@ class AlbumShow extends React.Component {
       this.props.artist.artistName === "Phish" &&
       this.props.album.showDate !== undefined
     ) {
-      this.props.getPhishAlbum(this.props.album.showDate);
-      // this.props.getPhishAlbum(this.props.album.showDate).then(() => {
-      //   this.setState({ track: Object.values(this.props.tracks)[0] });
-      // });
+      // this.props.getPhishAlbum(this.props.album.showDate);
+      this.props.getPhishAlbum(this.props.album.showDate).then(() => {
+        this.setState({ track: Object.values(this.props.tracks)[0] });
+      });
     } else {
-      this.props.getAlbum(this.props.match.params.id);
-      // this.props.getAlbum(this.props.match.params.id).then(() => {
-      //   this.setState({ track: Object.values(this.props.tracks)[0] });
-      // });
+      // this.props.getAlbum(this.props.match.params.id);
+      this.props.getAlbum(this.props.match.params.id).then(() => {
+        this.setState({ track: Object.values(this.props.tracks)[0] });
+      });
     }
   }
 
@@ -62,11 +62,12 @@ class AlbumShow extends React.Component {
   playTrack() {}
 
   render() {
+    debugger;
     if (!this.props.album) return null;
     if (Object.values(this.props.tracks).length === 0) {
       return null;
     }
-    const { album, tracks, artist } = this.props;
+    const { album, tracks, artist, track } = this.props;
     let trackItems;
 
     // if (artist.artistName === "Phish" && album.showDate !== undefined) {
@@ -121,7 +122,7 @@ class AlbumShow extends React.Component {
               <AudioPlayer
                 id="album-audio-player"
                 ref={this.audio}
-                track={this.state.track}
+                track={track}
                 // song={
                 //   album.showDate !== undefined
                 //     ? Object.values(tracks)[0].mp3

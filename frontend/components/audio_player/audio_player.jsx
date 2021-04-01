@@ -23,11 +23,18 @@ class AudioPlayer extends React.Component {
   }
 
   componentDidMount() {
+    debugger;
     let song;
-    if (this.track) {
-      song = this.track ? this.track.mp3 : this.track.songUrl;
+    let title;
+    if (this.track.mp3) {
+      song = this.track.mp3;
+      title = this.track.title;
     }
-    this.setState({ src: song, playButton: window.playIcon });
+    if (this.track.songUrl) {
+      song = this.track.songUrl;
+      title = this.track.trackName;
+    }
+    this.setState({ src: song, playButton: window.playIcon, title });
   }
 
   togglePlay() {
