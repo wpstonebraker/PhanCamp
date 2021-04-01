@@ -36,6 +36,23 @@ class AudioPlayer extends React.Component {
     this.setState({ src: song, playButton: window.playIcon, title });
   }
 
+  // componentDidUpdate() {
+  //   let song;
+  //   let title;
+  //   if (this.track.mp3 && this.state.src !== this.track.mp3) {
+  //     song = this.track.mp3;
+  //     title = this.track.title;
+  //     this.setState({ src: song, playButton: window.playIcon, title });
+  //     console.log("yo");
+  //   }
+  //   if (this.track.songUrl && this.state.src !== this.track.songUrl) {
+  //     song = this.track.songUrl;
+  //     title = this.track.trackName;
+  //     this.setState({ src: song, playButton: window.playIcon, title });
+  //     console.log("yo");
+  //   }
+  // }
+
   togglePlay() {
     const audio = this.audio.current;
     if (audio.paused) {
@@ -105,7 +122,25 @@ class AudioPlayer extends React.Component {
   }
 
   render() {
+    debugger;
+    let song;
+    let title;
     if (this.track === null) return null;
+    if (this.props.track.mp3 && this.state.src !== this.props.track.mp3) {
+      song = this.props.track.mp3;
+      title = this.props.track.title;
+      this.setState({ src: song, playButton: window.playIcon, title });
+      console.log("yo");
+    }
+    if (
+      this.props.track.songUrl &&
+      this.state.src !== this.props.track.songUrl
+    ) {
+      song = this.props.track.songUrl;
+      title = this.props.track.trackName;
+      this.setState({ src: song, playButton: window.playIcon, title });
+      console.log("yo");
+    }
     return (
       <div id="audio-player-box">
         <div onClick={this.togglePlay} id="play-button-box">
