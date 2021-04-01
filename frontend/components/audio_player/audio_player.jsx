@@ -23,7 +23,6 @@ class AudioPlayer extends React.Component {
   }
 
   componentDidMount() {
-    debugger;
     let song;
     let title;
     if (this.track.mp3) {

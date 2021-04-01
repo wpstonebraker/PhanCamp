@@ -963,7 +963,6 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      debugger;
       if (!this.props.album) return null;
 
       if (Object.values(this.props.tracks).length === 0) {
@@ -1079,7 +1078,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     album: state.entities.albums[ownProps.albumId],
     artist: state.entities.artists[ownProps.artistId],
@@ -2071,7 +2069,6 @@ var AudioPlayer = /*#__PURE__*/function (_React$Component) {
   _createClass(AudioPlayer, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
       var song;
       var title;
 

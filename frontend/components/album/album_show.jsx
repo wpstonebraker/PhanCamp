@@ -62,7 +62,6 @@ class AlbumShow extends React.Component {
   playTrack() {}
 
   render() {
-    debugger;
     if (!this.props.album) return null;
     if (Object.values(this.props.tracks).length === 0) {
       return null;
