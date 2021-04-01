@@ -11,7 +11,7 @@ const artistsReducer = (state = {}, action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_ALBUM:
-      return Object.assign({}, state, action.album.artist);
+      return Object.assign({}, state, action.payload.artist);
     case RECEIVE_ARTIST_ALBUMS:
       return Object.assign({}, state, action.albums.artist);
     case RECEIVE_FEATURE_ARTISTS:

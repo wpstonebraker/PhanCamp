@@ -123,10 +123,10 @@ var receiveAllAlbums = function receiveAllAlbums(payload) {
     payload: payload
   };
 };
-var receiveAlbum = function receiveAlbum(album) {
+var receiveAlbum = function receiveAlbum(payload) {
   return {
     type: RECEIVE_ALBUM,
-    album: album
+    payload: payload
   };
 };
 var receiveArtistAlbums = function receiveArtistAlbums(albums) {
@@ -4956,7 +4956,9 @@ var albumsReducer = function albumsReducer() {
     //   return Object.assign({}, state, action.albums.albums);
     //   break;
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALBUM:
-      newState = Object.assign({}, state, _defineProperty({}, action.album.id, action.album));
+      debugger;
+      var album = Object.values(action.payload.albums)[0];
+      newState = Object.assign({}, state, _defineProperty({}, album.id, album));
       return newState;
     // return action.album.albums;
 
@@ -5007,7 +5009,7 @@ var artistsReducer = function artistsReducer() {
 
   switch (action.type) {
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALBUM:
-      return Object.assign({}, state, action.album.artist);
+      return Object.assign({}, state, action.payload.artist);
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ARTIST_ALBUMS:
       return Object.assign({}, state, action.albums.artist);
@@ -5291,7 +5293,7 @@ var tracksReducer = function tracksReducer() {
 
   switch (action.type) {
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALBUM:
-      return action.album.tracks;
+      return action.payload.tracks;
 
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_PHISH_ALBUM:
       // newState = Object.assign({}, state);

@@ -5,7 +5,7 @@ const tracksReducer = (state = {}, action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_ALBUM:
-      return action.album.tracks;
+      return action.payload.tracks;
     case RECEIVE_PHISH_ALBUM:
       // newState = Object.assign({}, state);
       // Object.values(newState).forEach((track, i) => {
