@@ -14,7 +14,6 @@ const albumsReducer = (state = {}, action) => {
     //   return Object.assign({}, state, action.albums.albums);
     //   break;
     case RECEIVE_ALBUM:
-      debugger;
       const album = Object.values(action.payload.albums)[0];
       newState = Object.assign({}, state, {
         [album.id]: album,

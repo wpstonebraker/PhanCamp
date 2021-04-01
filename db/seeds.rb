@@ -42,11 +42,11 @@ end
 
 
 u1 = User.create!(
-    artist_name: "Mister Hiro",
+    artist_name: "DeMouser",
     username: "Guest",
     password: "misterhiro",
-    email: "hiro@bestdog.com",
-    about: "Mister Hiro was the most interesting dog in the world."
+    email: "demouser@gmail..com",
+    about: "A great and learned user!"
 )
 
 u1.banner.attach(io: File.open("app/assets/images/thumb.png"), filename: "guestthumb.png")
@@ -66,307 +66,311 @@ phish = User.create!(
 phish.banner.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_banner.png"), filename: "phishbanner.png")
 phish.thumbnail.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_thumbnail.png"), filename: "phishthumbnail.png")
 
-PHISH_20100619 = Album.create!(
-    title: '2010-06-19 - SPAC Night 1',
-    artist_id: phish.id,
-    year: 2017,
-    description: "First of two shows at the Saratoga Performing Arts Center",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman",
-    show_date: "2010-06-19"
-)
-
-PHISH_20100619.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_2010-06-19.png"), filename: "ph_2010-06-19.png")
-
-PHISH_20100619_SETLIST = %w(Tweezer\ Reprise Chalk\ Dust\ Torture Funky\ Bitch\ > Runaway\ Jim\ > Ya\ Mar Sample\ in\ a\ Jar Axilla\ > Fluffhead Bathtub\Gin Suzy\ Greenberg Rock\ and\ Roll\ > Free Backwards\ Down\ the\ Number\ Line Halfway\ to\ the\ Moon\ > Prince\ Caspian\ > Joy David\ Bowie Show\ of\ Life The\ Squirming\ Coil Character\ Zero Tweezer\ Reprise)
-
-PHISH_20100619_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: PHISH_20100619.id
-    )
-end
-
-PHISH_20170806 = Album.create!(
-    title: '2017.08.06 - Madison Square Garden',
-    artist_id: phish.id,
-    year: 2017,
-    description: "The final night of Phish's legendary 13 concerts in 17 nights at the world's greatest arena.",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman",
-    show_date: "2017-08-06"
-)
-
-PHISH_20170806.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_20170806.jpeg"), filename: "bd13.jpeg")
-
-PHISH_20170806_SETLIST = %w(Dogs\ Stole\ Things Rift Ha\ Ha\ Ha Camel\ Walk Crazy\ Sometimes\ > Saw\ it\ Again\ > Sanity\ > Bouncing\ Around\ the\ Room Most\ Events\ Aren't\ Planned Bug I\ Been\ Around Izabella Simple\ > Rise/Come\ Together\ > Starman You\ Enjoy\ Myself Loving\ Cup On\ the\ Road\ Again\ > Lawn\ Boy\ Reprise\ > Tweezer\ Reprise)
-
-PHISH_20170806_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: PHISH_20170806.id
-    )
-end
+# track.song.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/II+02+Simple+-.mp3"), filename: "bdSimple.mp3")
+# Track.create!(track_name: "test track", track_num: 4, album_id: a.id).song.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/drZ2/The+Wheel+-%3E.mp3"), filename: "drZ1.mp3")
 
 
-PHISH_20000614 = Album.create!(
-    title: '2000.06.14 - Fukuoka, Japan',
-    artist_id: phish.id,
-    year: 2000,
-    description: "trippy sounds",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman",
-    show_date: "2000-06-14"
-)
+# PHISH_20100619 = Album.create!(
+#     title: '2010-06-19 - SPAC Night 1',
+#     artist_id: phish.id,
+#     year: 2017,
+#     description: "First of two shows at the Saratoga Performing Arts Center",
+#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman",
+#     show_date: "2010-06-19"
+# )
 
-PHISH_20000614.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_2000_06_14.jpeg"), filename: "ph_2000_06_14.jpeg")
+# PHISH_20100619.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_2010-06-19.png"), filename: "ph_2010-06-19.png")
 
-PHISH_20000614_SETLIST = %w(Carini The\ Curtain\ > Cities Gumbo\ -> Llama, Fee, Heavy\ Things Split\ Open\ and\ Melt Back\ on\ the\ Train Twist\ > Jam\ -> Walk\ Away\ -> 2001 Sleep\ The\ Squirming\ Coil)
+# PHISH_20100619_SETLIST = %w(Tweezer\ Reprise Chalk\ Dust\ Torture Funky\ Bitch\ > Runaway\ Jim\ > Ya\ Mar Sample\ in\ a\ Jar Axilla\ > Fluffhead Bathtub\Gin Suzy\ Greenberg Rock\ and\ Roll\ > Free Backwards\ Down\ the\ Number\ Line Halfway\ to\ the\ Moon\ > Prince\ Caspian\ > Joy David\ Bowie Show\ of\ Life The\ Squirming\ Coil Character\ Zero Tweezer\ Reprise)
 
-PHISH_20000614_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: PHISH_20000614.id
-    )
-end
+# PHISH_20100619_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: PHISH_20100619.id
+#     )
+# end
 
+# PHISH_20170806 = Album.create!(
+#     title: '2017.08.06 - Madison Square Garden',
+#     artist_id: phish.id,
+#     year: 2017,
+#     description: "The final night of Phish's legendary 13 concerts in 17 nights at the world's greatest arena.",
+#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman",
+#     show_date: "2017-08-06"
+# )
 
-co97 = Album.create!(
-    title: '1997.11.17 - Denver, CO',
-    artist_id: phish.id,
-    year: 1997,
-    description: "epic tweezer and DWD",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman",
-    show_date: "1997-11-17"
-)
+# PHISH_20170806.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_20170806.jpeg"), filename: "bd13.jpeg")
 
-co97.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_1997_11_17.jpeg"), filename: "ph_1997_11_17.jpeg")
+# PHISH_20170806_SETLIST = %w(Dogs\ Stole\ Things Rift Ha\ Ha\ Ha Camel\ Walk Crazy\ Sometimes\ > Saw\ it\ Again\ > Sanity\ > Bouncing\ Around\ the\ Room Most\ Events\ Aren't\ Planned Bug I\ Been\ Around Izabella Simple\ > Rise/Come\ Together\ > Starman You\ Enjoy\ Myself Loving\ Cup On\ the\ Road\ Again\ > Lawn\ Boy\ Reprise\ > Tweezer\ Reprise)
 
-P_CO_SETLIST = [
-    "Tweezer",
-    "Reba",
-    "Train Song",
-    "Ghost",
-    "Fire",
-    "Down with Disease",
-    "Olivia's Pool",
-    "Johnny B. Goode",
-    "Jesus Just Left Chicago",
-    "When the Circus Comes",
-    "You Enjoy Myself",
-    "Character Zero"
-]
-
-P_CO_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: co97.id
-    )
-end
-
-mann15 = Album.create!(
-    title: '2015.08.12 - Philadelphia, PA',
-    artist_id: phish.id,
-    year: 2015,
-    description: "Second row show",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman",
-    show_date: "2015-08-12"
-)
-
-mann15.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_2015_08_12.jpeg"), filename: "ph_2015_08_12.jpeg")
-
-P_MANN15_SETLIST = [
-    "AC/DC Bag",
-    "Free",
-    "Ya Mar",
-    "Sample in a Jar",
-    "Cities",
-    "Stash",
-    "Birds of a Feather",
-    "The Line",
-    "It's Ice",
-    "Character Zero",
-    "Bathtub Gin",
-    "No Men in No Man's Land",
-    "Twist",
-    "Scents and Subtle Sounds",
-    "Harry Hood",
-    "Loving Cup"
-]
-
-P_MANN15_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: mann15.id
-    )
-end
-
-PHISH_20131229 = Album.create!(
-    title: '2013.12.29 - New York, NY',
-    artist_id: phish.id,
-    year: 2013,
-    description: "DWD > Carini",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
-    show_date: "2013-12-29"
-)
-
-PHISH_20131229.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_20131229.jpeg"), filename: "ph_20131229.jpeg")
-
-PHISH_20131229_SETLIST = %w(The\ Moma\ Dance Rift Roggae Sparkle The\ Line Stash 555 It's\ Ice Gumbo Walls\ of\ the\ Cave Down\ with\ Disease Carini Waves Twist Golgi\ Apparatus David\ Bowie Possum)
-
-PHISH_20131229_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: PHISH_20131229.id
-    )
-end
-
-PHISH_PAUL_2019_JAMS = Album.create!(
-    title: "Paul's Picks 2019",
-    artist_id: phish.id,
-    year: 2019,
-    description: "Paul's favorite jams from the shows attended in 2019. Ruby Waves from MPP2, Mercury from Camden1, Twenty Years Later from Camden3, Everything's Right from Pittsburgh, Wolfman's Brother from NYE at MSG.",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
-)
-
-PHISH_PAUL_2019_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2019.jpeg"), filename: "paul2019.jpeg")
-
-PHISH_PAUL_2019_JAMS_SETLIST = %w(Ruby\ Waves Mercury Twenty\ Years\ Later Everything's\ Right Wolfman's Brother)
-
-PHISH_PAUL_2019_JAMS_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: PHISH_PAUL_2019_JAMS.id
-    )
-end
-
-PHISH_PAUL_2018_JAMS = Album.create!(
-    title: "Paul's Picks 2018",
-    artist_id: phish.id,
-    year: 2018,
-    description: "Paul's favorite jams from the shows attended in 2018. Down with Disease from Camden1, Simple from Hampton3, Mercury from Vegas3, Seven Below from NYE at MSG.",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
-)
-
-PHISH_PAUL_2018_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2018.jpeg"), filename: "paul2018.jpeg")
-
-PHISH_PAUL_2018_JAMS_SETLIST = %w(Down\ With\ Disease Simple Mercury Seven\ Below)
-
-PHISH_PAUL_2018_JAMS_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: PHISH_PAUL_2018_JAMS.id
-    )
-end
-
-PHISH_PAUL_2017_JAMS = Album.create!(
-    title: "Paul's Picks 2017",
-    artist_id: phish.id,
-    year: 2017,
-    description: "Paul's favorite jams from the shows attended in 2017. Caspian from Pittsburgh, Lawn Boy from BD4, Simple from BD13, Jibboo from NYE at MSG.",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
-)
-
-PHISH_PAUL_2017_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2017.jpeg"), filename: "paul2017.jpeg")
+# PHISH_20170806_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: PHISH_20170806.id
+#     )
+# end
 
 
-PHISH_PAUL_2017_JAMS_SETLIST = %w(Prince\ Caspian Lawn\ Boy Simple Gotta Jibboo)
+# PHISH_20000614 = Album.create!(
+#     title: '2000.06.14 - Fukuoka, Japan',
+#     artist_id: phish.id,
+#     year: 2000,
+#     description: "trippy sounds",
+#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman",
+#     show_date: "2000-06-14"
+# )
 
-PHISH_PAUL_2017_JAMS_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: PHISH_PAUL_2017_JAMS.id
-    )
-end
+# PHISH_20000614.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_2000_06_14.jpeg"), filename: "ph_2000_06_14.jpeg")
 
-PHISH_PAUL_2016_JAMS = Album.create!(
-    title: "Paul's Picks 2016",
-    artist_id: phish.id,
-    year: 2016,
-    description: "Paul's favorite jams from the shows attended in 2016. Light from Mansfield, Crosseyed from Dicks3, Golden Age from Vegas1, 2001 from Vegas4.",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
-)
+# PHISH_20000614_SETLIST = %w(Carini The\ Curtain\ > Cities Gumbo\ -> Llama, Fee, Heavy\ Things Split\ Open\ and\ Melt Back\ on\ the\ Train Twist\ > Jam\ -> Walk\ Away\ -> 2001 Sleep\ The\ Squirming\ Coil)
 
-PHISH_PAUL_2016_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2016.jpeg"), filename: "paul2016.jpeg")
-
-
-PHISH_PAUL_2016_JAMS_SETLIST = %w(Light Crosseyed\ and\ Painless Golden\ Age 2001)
-
-PHISH_PAUL_2016_JAMS_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: PHISH_PAUL_2016_JAMS.id
-    )
-end
-
-PHISH_PAUL_2015_JAMS = Album.create!(
-    title: "Paul's Picks 2015",
-    artist_id: phish.id,
-    year: 2015,
-    description: "Paul's favorite jams from the shows attended in 2015. Tweezer > Caspian from Magnaball2, DWD from Magnaball3, NMINML from NYE at MSG",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
-)
-
-PHISH_PAUL_2015_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2015.jpeg"), filename: "paul2015.jpeg")
+# PHISH_20000614_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: PHISH_20000614.id
+#     )
+# end
 
 
-PHISH_PAUL_2015_JAMS_SETLIST = %w(Tweezer\ > Caspian Down\ With\ Disease No\ Men\ in\  No\ Men's\ Land)
+# co97 = Album.create!(
+#     title: '1997.11.17 - Denver, CO',
+#     artist_id: phish.id,
+#     year: 1997,
+#     description: "epic tweezer and DWD",
+#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman",
+#     show_date: "1997-11-17"
+# )
 
-PHISH_PAUL_2015_JAMS_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: PHISH_PAUL_2015_JAMS.id
-    )
-end
+# co97.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_1997_11_17.jpeg"), filename: "ph_1997_11_17.jpeg")
 
-PHISH_PAUL_2014_JAMS = Album.create!(
-    title: "Paul's Picks 2014",
-    artist_id: phish.id,
-    year: 2014,
-    description: "Paul's favorite jams from the shows attended in 2014. Fuego from Mann1, Fuego from Portsmouth2, Meatstick from Portsmouth2, Ghost from NYE in Miami.",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
-)
+# P_CO_SETLIST = [
+#     "Tweezer",
+#     "Reba",
+#     "Train Song",
+#     "Ghost",
+#     "Fire",
+#     "Down with Disease",
+#     "Olivia's Pool",
+#     "Johnny B. Goode",
+#     "Jesus Just Left Chicago",
+#     "When the Circus Comes",
+#     "You Enjoy Myself",
+#     "Character Zero"
+# ]
 
-PHISH_PAUL_2014_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2014.jpeg"), filename: "paul2014.jpeg")
+# P_CO_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: co97.id
+#     )
+# end
+
+# mann15 = Album.create!(
+#     title: '2015.08.12 - Philadelphia, PA',
+#     artist_id: phish.id,
+#     year: 2015,
+#     description: "Second row show",
+#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman",
+#     show_date: "2015-08-12"
+# )
+
+# mann15.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_2015_08_12.jpeg"), filename: "ph_2015_08_12.jpeg")
+
+# P_MANN15_SETLIST = [
+#     "AC/DC Bag",
+#     "Free",
+#     "Ya Mar",
+#     "Sample in a Jar",
+#     "Cities",
+#     "Stash",
+#     "Birds of a Feather",
+#     "The Line",
+#     "It's Ice",
+#     "Character Zero",
+#     "Bathtub Gin",
+#     "No Men in No Man's Land",
+#     "Twist",
+#     "Scents and Subtle Sounds",
+#     "Harry Hood",
+#     "Loving Cup"
+# ]
+
+# P_MANN15_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: mann15.id
+#     )
+# end
+
+# PHISH_20131229 = Album.create!(
+#     title: '2013.12.29 - New York, NY',
+#     artist_id: phish.id,
+#     year: 2013,
+#     description: "DWD > Carini",
+#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+#     show_date: "2013-12-29"
+# )
+
+# PHISH_20131229.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_20131229.jpeg"), filename: "ph_20131229.jpeg")
+
+# PHISH_20131229_SETLIST = %w(The\ Moma\ Dance Rift Roggae Sparkle The\ Line Stash 555 It's\ Ice Gumbo Walls\ of\ the\ Cave Down\ with\ Disease Carini Waves Twist Golgi\ Apparatus David\ Bowie Possum)
+
+# PHISH_20131229_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: PHISH_20131229.id
+#     )
+# end
+
+# PHISH_PAUL_2019_JAMS = Album.create!(
+#     title: "Paul's Picks 2019",
+#     artist_id: phish.id,
+#     year: 2019,
+#     description: "Paul's favorite jams from the shows attended in 2019. Ruby Waves from MPP2, Mercury from Camden1, Twenty Years Later from Camden3, Everything's Right from Pittsburgh, Wolfman's Brother from NYE at MSG.",
+#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+# )
+
+# PHISH_PAUL_2019_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2019.jpeg"), filename: "paul2019.jpeg")
+
+# PHISH_PAUL_2019_JAMS_SETLIST = %w(Ruby\ Waves Mercury Twenty\ Years\ Later Everything's\ Right Wolfman's Brother)
+
+# PHISH_PAUL_2019_JAMS_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: PHISH_PAUL_2019_JAMS.id
+#     )
+# end
+
+# PHISH_PAUL_2018_JAMS = Album.create!(
+#     title: "Paul's Picks 2018",
+#     artist_id: phish.id,
+#     year: 2018,
+#     description: "Paul's favorite jams from the shows attended in 2018. Down with Disease from Camden1, Simple from Hampton3, Mercury from Vegas3, Seven Below from NYE at MSG.",
+#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+# )
+
+# PHISH_PAUL_2018_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2018.jpeg"), filename: "paul2018.jpeg")
+
+# PHISH_PAUL_2018_JAMS_SETLIST = %w(Down\ With\ Disease Simple Mercury Seven\ Below)
+
+# PHISH_PAUL_2018_JAMS_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: PHISH_PAUL_2018_JAMS.id
+#     )
+# end
+
+# PHISH_PAUL_2017_JAMS = Album.create!(
+#     title: "Paul's Picks 2017",
+#     artist_id: phish.id,
+#     year: 2017,
+#     description: "Paul's favorite jams from the shows attended in 2017. Caspian from Pittsburgh, Lawn Boy from BD4, Simple from BD13, Jibboo from NYE at MSG.",
+#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+# )
+
+# PHISH_PAUL_2017_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2017.jpeg"), filename: "paul2017.jpeg")
 
 
-PHISH_PAUL_2014_JAMS_SETLIST = %w(Fuego Fuego Meatstick Ghost)
+# PHISH_PAUL_2017_JAMS_SETLIST = %w(Prince\ Caspian Lawn\ Boy Simple Gotta Jibboo)
 
-PHISH_PAUL_2014_JAMS_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: PHISH_PAUL_2014_JAMS.id
-    )
-end
+# PHISH_PAUL_2017_JAMS_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: PHISH_PAUL_2017_JAMS.id
+#     )
+# end
 
-PHISH_PAUL_2013_JAMS = Album.create!(
-    title: "Paul's Picks 2013",
-    artist_id: phish.id,
-    year: 2013,
-    description: "Paul's favorite jams from the shows attended in 2013. Carini from Hampton1, Tweezer from Hampton3, DWD from Reading, DWD from MSG2, and Light from NYE at MSG.",
-    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
-)
+# PHISH_PAUL_2016_JAMS = Album.create!(
+#     title: "Paul's Picks 2016",
+#     artist_id: phish.id,
+#     year: 2016,
+#     description: "Paul's favorite jams from the shows attended in 2016. Light from Mansfield, Crosseyed from Dicks3, Golden Age from Vegas1, 2001 from Vegas4.",
+#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+# )
 
-PHISH_PAUL_2013_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2013.jpeg"), filename: "paul2013.jpeg")
+# PHISH_PAUL_2016_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2016.jpeg"), filename: "paul2016.jpeg")
 
-PHISH_PAUL_2013_JAMS_SETLIST = %w(Carini Tweezer Down\ with\ Disease Down\ with\ Disease Light)
 
-PHISH_PAUL_2013_JAMS_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: PHISH_PAUL_2013_JAMS.id
-    )
-end
+# PHISH_PAUL_2016_JAMS_SETLIST = %w(Light Crosseyed\ and\ Painless Golden\ Age 2001)
+
+# PHISH_PAUL_2016_JAMS_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: PHISH_PAUL_2016_JAMS.id
+#     )
+# end
+
+# PHISH_PAUL_2015_JAMS = Album.create!(
+#     title: "Paul's Picks 2015",
+#     artist_id: phish.id,
+#     year: 2015,
+#     description: "Paul's favorite jams from the shows attended in 2015. Tweezer > Caspian from Magnaball2, DWD from Magnaball3, NMINML from NYE at MSG",
+#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+# )
+
+# PHISH_PAUL_2015_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2015.jpeg"), filename: "paul2015.jpeg")
+
+
+# PHISH_PAUL_2015_JAMS_SETLIST = %w(Tweezer\ > Caspian Down\ With\ Disease No\ Men\ in\  No\ Men's\ Land)
+
+# PHISH_PAUL_2015_JAMS_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: PHISH_PAUL_2015_JAMS.id
+#     )
+# end
+
+# PHISH_PAUL_2014_JAMS = Album.create!(
+#     title: "Paul's Picks 2014",
+#     artist_id: phish.id,
+#     year: 2014,
+#     description: "Paul's favorite jams from the shows attended in 2014. Fuego from Mann1, Fuego from Portsmouth2, Meatstick from Portsmouth2, Ghost from NYE in Miami.",
+#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+# )
+
+# PHISH_PAUL_2014_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2014.jpeg"), filename: "paul2014.jpeg")
+
+
+# PHISH_PAUL_2014_JAMS_SETLIST = %w(Fuego Fuego Meatstick Ghost)
+
+# PHISH_PAUL_2014_JAMS_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: PHISH_PAUL_2014_JAMS.id
+#     )
+# end
+
+# PHISH_PAUL_2013_JAMS = Album.create!(
+#     title: "Paul's Picks 2013",
+#     artist_id: phish.id,
+#     year: 2013,
+#     description: "Paul's favorite jams from the shows attended in 2013. Carini from Hampton1, Tweezer from Hampton3, DWD from Reading, DWD from MSG2, and Light from NYE at MSG.",
+#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman"
+# )
+
+# PHISH_PAUL_2013_JAMS.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_paul2013.jpeg"), filename: "paul2013.jpeg")
+
+# PHISH_PAUL_2013_JAMS_SETLIST = %w(Carini Tweezer Down\ with\ Disease Down\ with\ Disease Light)
+
+# PHISH_PAUL_2013_JAMS_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: PHISH_PAUL_2013_JAMS.id
+#     )
+# end
 
 gd = User.create!(
     artist_name: "The Grateful Dead",
@@ -381,47 +385,47 @@ gd = User.create!(
 gd.banner.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_banner.jpeg"), filename: "gdbanner.jpeg")
 gd.thumbnail.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_thumbnail.jpeg"), filename: "gdthumbnail.jpeg")
 
-msg81 = Album.create!(
-    title: '1981.03.09 - New York, NY',
-    artist_id: gd.id,
-    year: 1981,
-    description: "Legendary AUD",
-    credits: "Guitar: Jer"
-)
+# msg81 = Album.create!(
+#     title: '1981.03.09 - New York, NY',
+#     artist_id: gd.id,
+#     year: 1981,
+#     description: "Legendary AUD",
+#     credits: "Guitar: Jer"
+# )
 
-msg81.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_19810309.jpeg"), filename: "gd_19810309.jpeg")
+# msg81.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_19810309.jpeg"), filename: "gd_19810309.jpeg")
 
-GD_MSG81_SETLIST = [
-    "Feel like a Stranger",
-    "Althea",
-    "C.C. Rider",
-    "Ramble On Rose",
-    "El Paso",
-    "Deep Elementary Blues",
-    "Beat it on Down the Line",
-    "Bird Song",
-    "New Minglewood Blues",
-    "China Cat Sunflower",
-    "I Know You Rider",
-    "Samson and Delilah",
-    "Ship of Fools",
-    "Estimated Prophet",
-    "Uncle John's Band",
-    "Drums",
-    "Space",
-    "The Other One",
-    "Stella Blue",
-    "Good Lovin'",
-    "U.S. Blues"
-]
+# GD_MSG81_SETLIST = [
+#     "Feel like a Stranger",
+#     "Althea",
+#     "C.C. Rider",
+#     "Ramble On Rose",
+#     "El Paso",
+#     "Deep Elementary Blues",
+#     "Beat it on Down the Line",
+#     "Bird Song",
+#     "New Minglewood Blues",
+#     "China Cat Sunflower",
+#     "I Know You Rider",
+#     "Samson and Delilah",
+#     "Ship of Fools",
+#     "Estimated Prophet",
+#     "Uncle John's Band",
+#     "Drums",
+#     "Space",
+#     "The Other One",
+#     "Stella Blue",
+#     "Good Lovin'",
+#     "U.S. Blues"
+# ]
 
-GD_MSG81_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: msg81.id
-    )
-end
+# GD_MSG81_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: msg81.id
+#     )
+# end
 
 Z1 = Album.create!(
     title: "Dr. Zack's Picks Vol. 1",
@@ -434,6 +438,12 @@ Z1 = Album.create!(
 Z1.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z1.webp"), filename: "gd_z1.webp")
 
 Z1_SETLIST = %w(Dark\ Star\ -> Wharf\ Rat\ -> Dark\ Star Eyes\ of\ the\ World Playing\ in\ the\ Band\ -> The\ Wheel\ -> Playing\ in\ the\ Band)
+
+# Z1_1 = Track.create!(
+#     track_name: "Dark Star ->",
+#     track_num: 1,
+#     album_id: 
+# )
 
 Z1_SETLIST.each_with_index do |track, i|
     Track.create!(

@@ -36,10 +36,19 @@ class AlbumShow extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.state.track !== Object.values(this.props.tracks)[0]) {
+    debugger;
+    let tracks = Object.values(this.props.tracks);
+    if (!tracks.includes(this.state.track)) {
       this.setState({ track: Object.values(this.props.tracks)[0] });
-      console.log(`${Object.values(this.props.tracks)[0]}`);
     }
+    // } else if (tracks[0].mp3) {
+    //   this.audio.current.setState({ src: tracks[0].mp3 });
+    // } else if (tracks[0].songUrl) {
+    //   this.audio.current.setState({ src: tracks[0].songUrl });
+    // }
+    // if (this.state.track !== Object.values(this.props.tracks)[0]) {
+    //   this.setState({ track: Object.values(this.props.tracks)[0] });
+    // }
   }
 
   handleTrack(track) {
@@ -68,10 +77,12 @@ class AlbumShow extends React.Component {
 
   render() {
     if (!this.props.album) return null;
+    if (this.state.track === undefined) return null;
     if (Object.values(this.props.tracks).length === 0) {
       return null;
     }
-    const { album, tracks, artist, track } = this.props;
+    const { album, tracks, artist } = this.props;
+    const track = this.state.track;
     let trackItems;
 
     // if (artist.artistName === "Phish" && album.showDate !== undefined) {
@@ -111,6 +122,7 @@ class AlbumShow extends React.Component {
     // const trackItems = tracks.map((track) => {
     //   return <TrackItem track={track} key={track.trackNum} />;
     // });
+    debugger;
     return (
       <div className="album-show-page-box">
         <div className="album-show-page-left">

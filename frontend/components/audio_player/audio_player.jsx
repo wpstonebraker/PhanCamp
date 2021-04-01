@@ -4,11 +4,12 @@ class AudioPlayer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // track: props.track,
       currentTime: "00:00",
       duration: "00:00",
       src: props.track,
       playButton: null,
-      title: "",
+      title: props.track.trackName || props.track.title || "",
     };
     this.track = props.track;
     this.audio = React.createRef();
@@ -36,24 +37,45 @@ class AudioPlayer extends React.Component {
     this.setState({ src: song, playButton: window.playIcon, title });
   }
 
-  // componentDidUpdate() {
-  //   let song;
-  //   let title;
-  //   if (this.track.mp3 && this.state.src !== this.track.mp3) {
-  //     song = this.track.mp3;
-  //     title = this.track.title;
-  //     this.setState({ src: song, playButton: window.playIcon, title });
-  //     console.log("yo");
-  //   }
-  //   if (this.track.songUrl && this.state.src !== this.track.songUrl) {
-  //     song = this.track.songUrl;
-  //     title = this.track.trackName;
-  //     this.setState({ src: song, playButton: window.playIcon, title });
-  //     console.log("yo");
-  //   }
-  // }
+  componentWillUnmount() {
+    // debugger;
+  }
+
+  componentDidUpdate() {
+    // debugger;
+    // let song;
+    // let title;
+    // if (this.props.track.mp3 && this.state.src !== this.props.track.mp3) {
+    //   song = this.props.track.mp3;
+    //   title = this.props.track.title;
+    //   this.setState({ src: song, playButton: window.playIcon, title });
+    // }
+    // if (
+    //   this.props.track.songUrl &&
+    //   this.state.src !== this.props.track.songUrl
+    // ) {
+    //   song = this.props.track.songUrl;
+    //   title = this.props.track.trackName;
+    //   this.setState({ src: song, playButton: window.playIcon, title });
+    // }
+    // let song;
+    // let title;
+    // if (this.track.mp3 && this.state.src !== this.track.mp3) {
+    //   song = this.track.mp3;
+    //   title = this.track.title;
+    //   this.setState({ src: song, playButton: window.playIcon, title });
+    //   console.log("yo");
+    // }
+    // if (this.track.songUrl && this.state.src !== this.track.songUrl) {
+    //   song = this.track.songUrl;
+    //   title = this.track.trackName;
+    //   this.setState({ src: song, playButton: window.playIcon, title });
+    //   console.log("yo");
+    // }
+  }
 
   togglePlay() {
+    // debugger;
     const audio = this.audio.current;
     if (audio.paused) {
       audio.play();
@@ -122,22 +144,24 @@ class AudioPlayer extends React.Component {
   }
 
   render() {
+    // debugger;
     let song;
     let title;
+    if (this.track === undefined) return null;
     if (this.track === null) return null;
-    if (this.props.track.mp3 && this.state.src !== this.props.track.mp3) {
-      song = this.props.track.mp3;
-      title = this.props.track.title;
-      this.setState({ src: song, playButton: window.playIcon, title });
-    }
-    if (
-      this.props.track.songUrl &&
-      this.state.src !== this.props.track.songUrl
-    ) {
-      song = this.props.track.songUrl;
-      title = this.props.track.trackName;
-      this.setState({ src: song, playButton: window.playIcon, title });
-    }
+    // if (this.props.track.mp3 && this.state.src === this.props.track.mp3) {
+    //   song = this.props.track.mp3;
+    //   title = this.props.track.title;
+    //   this.setState({ src: song, playButton: window.playIcon, title });
+    // }
+    // if (
+    //   this.props.track.songUrl &&
+    //   this.state.src === this.props.track.songUrl
+    // ) {
+    //   song = this.props.track.songUrl;
+    //   title = this.props.track.trackName;
+    //   this.setState({ src: song, playButton: window.playIcon, title });
+    // }
     return (
       <div id="audio-player-box">
         <div onClick={this.togglePlay} id="play-button-box">
