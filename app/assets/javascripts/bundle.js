@@ -945,18 +945,16 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
       debugger;
 
       if (this.props.artist.artistName === "Phish" && this.props.album.showDate !== undefined) {
-        // this.props.getPhishAlbum(this.props.album.showDate);
+        debugger; // this.props.getPhishAlbum(this.props.album.showDate);
+
         this.props.getPhishAlbum(this.props.album.showDate).then(function () {
-          _this2.setState({
-            track: Object.values(_this2.props.tracks)[0]
-          });
+          debugger;
+          return _this2.props.playTrack(Object.values(_this2.props.tracks)[0]); // this.setState({ track: Object.values(this.props.tracks)[0] });
         });
       } else {
         // this.props.getAlbum(this.props.match.params.id);
         this.props.getAlbum(this.props.match.params.id).then(function () {
-          _this2.setState({
-            track: Object.values(_this2.props.tracks)[0]
-          });
+          return _this2.props.playTrack(Object.values(_this2.props.tracks)[0]); // this.setState({ track: Object.values(this.props.tracks)[0] });
         });
       }
     }
@@ -5469,12 +5467,10 @@ var tracksReducer = function tracksReducer() {
   var newState;
 
   switch (action.type) {
-    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ARTIST_ALBUMS:
-      return {};
-
-    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALL_ALBUMS:
-      return {};
-
+    // case RECEIVE_ARTIST_ALBUMS:
+    //   return {};
+    // case RECEIVE_ALL_ALBUMS:
+    //   return {};
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALBUM:
       return action.payload.tracks;
 

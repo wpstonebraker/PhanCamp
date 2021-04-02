@@ -24,14 +24,18 @@ class AlbumShow extends React.Component {
       this.props.artist.artistName === "Phish" &&
       this.props.album.showDate !== undefined
     ) {
+      debugger;
       // this.props.getPhishAlbum(this.props.album.showDate);
       this.props.getPhishAlbum(this.props.album.showDate).then(() => {
-        this.setState({ track: Object.values(this.props.tracks)[0] });
+        debugger;
+        return this.props.playTrack(Object.values(this.props.tracks)[0]);
+        // this.setState({ track: Object.values(this.props.tracks)[0] });
       });
     } else {
       // this.props.getAlbum(this.props.match.params.id);
       this.props.getAlbum(this.props.match.params.id).then(() => {
-        this.setState({ track: Object.values(this.props.tracks)[0] });
+        return this.props.playTrack(Object.values(this.props.tracks)[0]);
+        // this.setState({ track: Object.values(this.props.tracks)[0] });
       });
     }
   }

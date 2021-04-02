@@ -9,10 +9,10 @@ const tracksReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState;
   switch (action.type) {
-    case RECEIVE_ARTIST_ALBUMS:
-      return {};
-    case RECEIVE_ALL_ALBUMS:
-      return {};
+    // case RECEIVE_ARTIST_ALBUMS:
+    //   return {};
+    // case RECEIVE_ALL_ALBUMS:
+    //   return {};
     case RECEIVE_ALBUM:
       return action.payload.tracks;
     case RECEIVE_PHISH_ALBUM:
