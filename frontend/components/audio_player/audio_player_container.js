@@ -3,6 +3,7 @@ import { playTrack } from "../../actions/audio_actions";
 import AudioPlayer from "./audio_player";
 
 const mSTP = (state, ownProps) => {
+  debugger;
   return {
     track: state.entities.audio,
     tracks: state.entities.tracks,

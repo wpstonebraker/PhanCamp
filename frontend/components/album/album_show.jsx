@@ -19,6 +19,7 @@ class AlbumShow extends React.Component {
   }
 
   componentDidMount() {
+    debugger;
     if (
       this.props.artist.artistName === "Phish" &&
       this.props.album.showDate !== undefined
@@ -36,6 +37,7 @@ class AlbumShow extends React.Component {
   }
 
   componentDidUpdate() {
+    debugger;
     let tracks = Object.values(this.props.tracks);
     if (tracks.length === 0) return;
     if (!tracks.includes(this.state.track)) {
@@ -76,13 +78,14 @@ class AlbumShow extends React.Component {
   playTrack() {}
 
   render() {
+    debugger;
     if (!this.props.album) return null;
     if (this.state.track === undefined) return null;
     if (Object.values(this.props.tracks).length === 0) {
       return null;
     }
     const { album, tracks, artist } = this.props;
-    const track = this.state.track;
+    // const track = this.state.track;
     let trackItems;
 
     // if (artist.artistName === "Phish" && album.showDate !== undefined) {
@@ -139,7 +142,7 @@ class AlbumShow extends React.Component {
               <AudioPlayer
                 id="album-audio-player"
                 // ref={this.audio}
-                track={track}
+                // track={track}
                 // song={
                 //   album.showDate !== undefined
                 //     ? Object.values(tracks)[0].mp3

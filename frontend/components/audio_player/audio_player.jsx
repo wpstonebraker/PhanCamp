@@ -5,6 +5,7 @@ class AudioPlayer extends React.Component {
     super(props);
     this.state = {
       // track: props.track,
+      playing: false,
       currentTime: "00:00",
       duration: "00:00",
       src: props.track.songUrl,
@@ -38,10 +39,12 @@ class AudioPlayer extends React.Component {
     // if (Object.values(this.props.track).length !== 0) {
     this.props.playTrack(Object.values(this.props.tracks)[0]);
     this.setState({
-      // src: this.props.track.songUrl,
+      src: this.props.track.songUrl,
       playButton: window.playIcon,
-      // title: this.props.track.title,
+      title: this.props.track.trackName,
     });
+    this.props.playing ? this.togglePlay() : null;
+    this.props.playing ? this.togglePlay() : null;
     // }
     // this.audio.current.load();
   }
@@ -49,6 +52,7 @@ class AudioPlayer extends React.Component {
   componentWillUnmount() {}
 
   componentDidUpdate() {
+    // this.props.playing ? null : this.togglePlay();
     if (
       Object.values(this.props.track).length !== 0 &&
       this.props.track.songUrl !== this.state.src
@@ -58,9 +62,10 @@ class AudioPlayer extends React.Component {
           src: this.props.track.songUrl,
           playButton: window.playIcon,
           title: this.props.track.trackName,
+          playing: false,
         },
         // () => this.audio.current.play()
-        () => this.playTrack()
+        () => this.togglePlay()
       );
     // let song;
     // let title;
@@ -97,10 +102,10 @@ class AudioPlayer extends React.Component {
     const audio = this.audio.current;
     if (audio.paused) {
       audio.play();
-      this.setState({ playButton: window.pauseIcon });
+      this.setState({ playButton: window.pauseIcon, playing: true });
     } else {
       audio.pause();
-      this.setState({ playButton: window.playIcon });
+      this.setState({ playButton: window.playIcon, playing: false });
     }
   }
 
@@ -188,7 +193,7 @@ class AudioPlayer extends React.Component {
         <div id="audio-player-right">
           <div id="track-info-box">
             <div id="track-info-display">
-              <span id="track-info-title">{this.state.title}</span>
+              <span id="track-info-title">{this.props.track.trackName}</span>
               <span id="track-info-time">
                 {this.state.currentTime} /{" "}
                 {this.state.duration === `NaN:NaN`
@@ -209,7 +214,8 @@ class AudioPlayer extends React.Component {
             //   onLoadStart={this.playTrack}
             id="audio-player"
             ref={this.audio}
-            src={this.state.src}
+            src={this.props.track.songUrl}
+            // src={this.state.src}
           ></audio>
         </div>
       </div>
