@@ -27,6 +27,7 @@ json.artist do
     json.set! @artist.id do
 
         json.extract! @artist, :id, :artist_name, :location, :about, :personal_url, :email, :genre_ids
+        json.albumIds @artist.albums.ids
         json.bannerUrl url_for(@artist.banner)
         json.thumbnailUrl url_for(@artist.thumbnail)
 

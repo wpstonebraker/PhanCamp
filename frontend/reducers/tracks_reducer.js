@@ -4,15 +4,21 @@ import {
   RECEIVE_ARTIST_ALBUMS,
   RECEIVE_PHISH_ALBUM,
 } from "../actions/album_actions";
+import { RECEIVE_EDIT_TRACK } from "../actions/track_actions";
 
 const tracksReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState;
+  debugger;
   switch (action.type) {
     // case RECEIVE_ARTIST_ALBUMS:
     //   return {};
-    // case RECEIVE_ALL_ALBUMS:
-    //   return {};
+    case RECEIVE_EDIT_TRACK:
+      newState = {};
+      newState[action.payload.id] = action.payload;
+      return Object.assign({}, state, newState);
+    case RECEIVE_ALL_ALBUMS:
+      return action.payload.tracks;
     case RECEIVE_ALBUM:
       return action.payload.tracks;
     case RECEIVE_PHISH_ALBUM:

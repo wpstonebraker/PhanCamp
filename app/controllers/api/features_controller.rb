@@ -7,6 +7,7 @@ class Api::FeaturesController < ApplicationController
         @artists = User.all.includes(banner_attachment: :blob, thumbnail_attachment: :blob)
         @selling = Album.ids.sample(8)
         @genres = Genre.all
+        @tracks = Track.all
         @daily = Album.order(id: :desc).limit(8).ids
     end
 

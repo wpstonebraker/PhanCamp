@@ -1,4 +1,5 @@
 import React from "react";
+import EditAlbumContainer from "./edit_albums_container";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -286,6 +287,7 @@ class Profile extends React.Component {
               </div>
             </form>
           </div>
+          <EditAlbumContainer />
         </div>
       </div>
     );

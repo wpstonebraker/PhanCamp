@@ -1,4 +1,5 @@
 json.extract! @user, :username, :id, :artist_name, :email, :about, :personal_url, :location
+json.albumIds @user.albums.ids
 if @genresIds != nil
     json.genre_ids @genresIds
 else

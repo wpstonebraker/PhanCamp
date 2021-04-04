@@ -9,10 +9,10 @@ Rails.application.routes.draw do
       resources :albums, only: [:index]
     end
     resource :session, only: [:create, :destroy]
-    resources :albums, only: [:show, :create]
+    resources :albums, only: [:show, :create, :update]
     resources :features, only: [:index]
     resources :selling, only: [:index]
-    resources :tracks, only: [:create]
+    resources :tracks, only: [:update]
     resource :phish_albums, only: [:create]
     get '/search', to: 'search#search'
   end

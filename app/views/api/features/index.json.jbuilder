@@ -7,6 +7,7 @@ json.artists do
     @artists.each do |artist|
         json.set! artist.id do
             json.extract! artist, :id, :artist_name, :about, :personal_url, :email, :genre_ids
+            json.albumIds artist.albums.ids
             if artist.thumbnail.attached?
                 json.thumbnailUrl url_for(artist.thumbnail)
             end
@@ -28,7 +29,7 @@ end
 json.albums do
     @albums.each do |album|
         json.set! album.id do
-            json.extract! album, :title, :artist_id, :year, :price, :description, :credits, :id
+            json.extract! album, :title, :artist_id, :year, :price, :description, :credits, :id, :track_ids
             json.photoUrl url_for(album.photo)
         if album.show_date
             json.extract! album, :show_date
@@ -36,6 +37,19 @@ json.albums do
         end
 
     end 
+end
+
+json.tracks do
+    @tracks.each do |track|
+        json.set! track.id do
+            json.extract! track, :track_name, :track_num, :id
+            if track.song.attached?
+                json.songUrl url_for(track.song)
+            else
+                json.extract! track, :songUrl
+            end
+        end
+    end
 end
 
 json.util do

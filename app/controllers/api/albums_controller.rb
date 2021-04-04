@@ -72,6 +72,19 @@ class Api::AlbumsController < ApplicationController
         # #     render json: @album.errors.full_messages, status: 422
         # end
     end
+
+    def update
+        @album = Album.find(params[:id])
+        if @album.photo.attached? && params[:album][:photo]
+            @album.photo.purge
+        end
+
+        if @album.update(album_params)
+            render json: @album, status: 200
+        else
+            render json: @album.errors.full_messages, status: 422
+        end 
+    end
     
     private
     

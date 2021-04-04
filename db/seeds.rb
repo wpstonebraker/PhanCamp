@@ -431,86 +431,108 @@ Z1 = Album.create!(
     title: "Dr. Zack's Picks Vol. 1",
     artist_id: gd.id,
     year: 2020,
-    description: "Songs from 2/18/71, 3/29/90, and 2/26/77",
-    credits: "Guitar: Jer"
+    description: "Dark Star -> Wharf Rat -> Dark Star from 2/18/71 at the Capitol Theater in Port Chester, NY. Eyes of the World from 3/29/90 at Nassau Coliseum on Long Island.",
+    credits: "No credited taper for 2/18/71, though it was transferred by Dan Stephens and Scott Thompson. 3/29/90 taped and transferred by Roger Eichorn. Complete shows can be found on archive.org."
 )
 
 Z1.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z1.webp"), filename: "gd_z1.webp")
 
-Z1_SETLIST = %w(Dark\ Star\ -> Wharf\ Rat\ -> Dark\ Star Eyes\ of\ the\ World Playing\ in\ the\ Band\ -> The\ Wheel\ -> Playing\ in\ the\ Band)
+Z1_SETLIST = %w(Dark\ Star\ -> Wharf\ Rat\ -> Dark\ Star Eyes\ of\ the\ World)
 
-# Z1_1 = Track.create!(
-#     track_name: "Dark Star ->",
-#     track_num: 1,
-#     album_id: 
-# )
+Z1_TRACKS = [
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Dark+Star+-%3E.mp3",
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Wharf+Rat+-%3E.mp3",
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Dark+Star.mp3",
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Eyes+of+the+World.mp3"
+]
 
 Z1_SETLIST.each_with_index do |track, i|
     Track.create!(
         track_name: track,
         track_num: (i + 1),
         album_id: Z1.id
-    )
+    ).song.attach(io: URI.open(Z1_TRACKS[i]), filename: "gd_drZ1_#{i + 1}")
 end
 
 Z2 = Album.create!(
     title: "Dr. Zack's Picks Vol. 2",
     artist_id: gd.id,
     year: 2020,
-    description: "Songs from 6/24/74, 5/2/70, 10/31/70, and 3/22/90",
-    credits: "Guitar: Jer"
+    description: "Playing in the Band -> The Wheel -> Playing in the Band from 2/26/77 at Swing Auditorium in San Bernardino, CA. Scarlet -> Fire from 3/22/90 at Copps Coliseum in Hamilton, Ontario",
+    credits: "2/26/77 show taped and transferred by Rob Bertrando. 3/22/90 show taping/transfer is uncredited. Complete shows can be found on archive.org."
 )
 
 Z2.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z2.webp"), filename: "gd_z2.webp")
 
-Z2_SETLIST = %w(China\ Cat\ -> I\ Know\ You\ Rider Dancing\ in\ the\ Streets Dark\ Star Scarlet\ -> Fire)
+Z2_SETLIST = %w(Playing\ in\ the\ Band\ -> The\ Wheel\ -> Playing\ in\ the\ Band Scarlet\ -> Fire)
+
+Z2_TRACKS = [
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ2/Playing+in+the+Band+-%3E.mp3",
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ2/The+Wheel+-%3E.mp3",
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ2/Playing+in+the+Band.mp3",
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ2/Scarlet+-%3E.mp3",
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ2/Fire.mp3"
+]
 
 Z2_SETLIST.each_with_index do |track, i|
     Track.create!(
         track_name: track,
         track_num: (i + 1),
         album_id: Z2.id
-    )
+    ).song.attach(io: URI.open(Z2_TRACKS[i]), filename: "gd_drZ2_#{i + 1}")
 end
 
 Z3 = Album.create!(
     title: "Dr. Zack's Picks Vol. 3",
     artist_id: gd.id,
     year: 2020,
-    description: "Songs from 6/22/73, 12/6/73, 6/30/85, and 5/22/77.",
-    credits: "Guitar: Jer"
+    description: "Bird Song from 6/22/73 at P.N.E. Coliseum in Vancouver, BC. Shakedown Street from 6/30/85 at Merriweather Post Pavillion in Columbia, MD. The Other One from 2/27/69",
+    credits: "6/22/73 show taped by Donn Amick. 6/30/85 show taped and transferred by Tony Suraci. 2/27/69 taping/transfer is uncredited. Complete shows can be found on archive.org."
 )
 
 Z3.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z3.webp"), filename: "gd_z3.webp")
 
-Z3_SETLIST = %w(Bird\ Song Here\ Comes\ Sunshine Shakedown\ Street Help\ on\ the\ Way\ -> Slipknot\ -> Franklin's\ Tower)
+Z3_SETLIST = %w(Bird\ Song Shakedown\ Street The\ Other\ One)
+
+Z3_TRACKS = [
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ3/Bird+Song.mp3",
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ3/Shakedown+Street.mp3",
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ3/The+Other+One.mp3"
+]
 
 Z3_SETLIST.each_with_index do |track, i|
     Track.create!(
         track_name: track,
         track_num: (i + 1),
         album_id: Z3.id
-    )
+    ).song.attach(io: URI.open(Z3_TRACKS[i]), filename: "gd_drZ3_#{i + 1}")
 end
 
 Z4 = Album.create!(
     title: "Dr. Zack's Picks Vol. 4",
     artist_id: gd.id,
     year: 2020,
-    description: "Songs from 8/27/72, 2/27/69, 11/11/73, 9/3/77, and 2/3/78.",
-    credits: "Guitar: Jer"
+    description: "Help On the Way -> Slipknot -> Franklin's Tower from 5/22/77 at The Sportatorium in Pembroke Pines, FL. Mississippi Half Step from 9/3/77 show at Raceway Park in Englishtown, NJ.",
+    credits: "5/22/77 show taping/transfer is uncredited. 9/3/77 show taped by Ken Flemming and transferred by Rob Berger. Complete shows can be found on archive.org."
 )
 
 Z4.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z4.webp"), filename: "gd_z4.webp")
 
-Z4_SETLIST = %w(He's\ Gone The\ Other\ One Dark\ Star Mississippi\ Half\ Step Scarlet\ -> Fire)
+Z4_SETLIST = %w(Help\ On\ the\ Way\ -> Slipknot\ -> Franklin's\ Tower Mississippi\ Half\ Step)
+
+Z4_TRACKS = [
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Help+on+the+Way+-%3E.mp3",
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Slipnot+-%3E.mp3",
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Franklin's+Tower.mp3",
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Mississippi+Half+Step.mp3"
+]
 
 Z4_SETLIST.each_with_index do |track, i|
     Track.create!(
         track_name: track,
         track_num: (i + 1),
         album_id: Z4.id
-    )
+    ).song.attach(io: URI.open(Z4_TRACKS[i]), filename: "gd_drZ4_#{i + 1}")
 end
 
 
@@ -621,6 +643,17 @@ WEEN_20170604_SETLIST.each_with_index do |track, i|
         album_id: ween_20170604.id
     )
 end
+
+dlo = User.create!(
+    artist_name: "Delvon Lamarr Organ Trio",
+    username: "dlo3",
+    password: "misterhiro",
+    email: "dlo3@dlo3.com",
+    about: "Delvon Lamarr Organ Trio—or as it is sometimes referred to, DLO3—specialize in the lost art of “feel good music.” The ingredients of this intoxicating cocktail include a big helping of the 1960s organ jazz stylings of Jimmy Smith and Baby Face Willette; a pinch of the snappy soul strut of Booker T. & The M.G.’s and The Meters; and sprinkles Motown, Stax Records, blues, and cosmic Jimi Hendrix-style guitar. It’s a soul-jazz concoction that goes straight to your heart and head makes your body break out in a sweat. Live, the band’s fiery and intuitive chemistry is unstoppable, brimming with improvisation, instant composition, imaginative takes on classic tunes, and a booty-shaking back catalog of soulful gems.",
+    location: "Seattle, Washington",
+    personal_url: "https://delvonlamarrorgantrio.com/"
+)
+
 
 # GENRES = [rock, jazz, jam, folk]
 GENRES = Genre.all
