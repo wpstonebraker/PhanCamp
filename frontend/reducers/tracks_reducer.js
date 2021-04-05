@@ -40,6 +40,7 @@ const tracksReducer = (state = {}, action) => {
           songUrl: track.mp3,
           trackName: track.title,
           trackNum: track.position,
+          showDate: action.payload.data.date,
         };
       });
       // action.payload.data.tracks.forEach((track) => {

@@ -1076,7 +1076,10 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
       // } else {
 
       if (album.showDate !== undefined) {
-        trackItems = Object.values(tracks).map(function (track, i) {
+        // trackItems = Object.values(tracks).map((track, i) => {
+        trackItems = Object.values(tracks).filter(function (track) {
+          return track.showDate === album.showDate;
+        }).map(function (track, i) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_phish_track_item__WEBPACK_IMPORTED_MODULE_4__.default, {
             track: track // ref={this.audio}
             ,
@@ -6027,7 +6030,8 @@ var tracksReducer = function tracksReducer() {
           artistName: "Phish",
           songUrl: track.mp3,
           trackName: track.title,
-          trackNum: track.position
+          trackNum: track.position,
+          showDate: action.payload.data.date
         };
       }); // action.payload.data.tracks.forEach((track) => {
       //   newState[track.position] = track;

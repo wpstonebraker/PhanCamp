@@ -96,17 +96,20 @@ class AlbumShow extends React.Component {
     //   });
     // } else {
     if (album.showDate !== undefined) {
-      trackItems = Object.values(tracks).map((track, i) => {
-        return (
-          <PhishTrackItem
-            track={track}
-            // ref={this.audio}
-            key={i}
-            playTrack={this.props.playTrack}
-            // handleTrack={this.handleTrack}
-          />
-        );
-      });
+      // trackItems = Object.values(tracks).map((track, i) => {
+      trackItems = Object.values(tracks)
+        .filter((track) => track.showDate === album.showDate)
+        .map((track, i) => {
+          return (
+            <PhishTrackItem
+              track={track}
+              // ref={this.audio}
+              key={i}
+              playTrack={this.props.playTrack}
+              // handleTrack={this.handleTrack}
+            />
+          );
+        });
     } else {
       // trackItems = Object.values(tracks).map((track, i) => {
       trackItems = Object.values(tracks)
