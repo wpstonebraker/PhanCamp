@@ -549,40 +549,40 @@ goose = User.create!(
 goose.banner.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/goose/goose_banner.jpeg"), filename: "goosebanner.jpeg")
 goose.thumbnail.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/goose/goose_thumbnail.jpeg"), filename: "goosethumbnail.jpeg")
 
-goose_20201019 = Album.create!(
-    title: '2020.10.19 - Frederick, MD',
-    artist_id: goose.id,
-    year: 2020,
-    description: "Drive in show in Frederick, MD. Final show of their Drive-in tour along the East Coast.",
-    credits: "Rick on the Guitar"
-)
+# goose_20201019 = Album.create!(
+#     title: '2020.10.19 - Frederick, MD',
+#     artist_id: goose.id,
+#     year: 2020,
+#     description: "Drive in show in Frederick, MD. Final show of their Drive-in tour along the East Coast.",
+#     credits: "Rick on the Guitar"
+# )
 
-goose_20201019.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/goose/goose_2020_10_19.jpeg"), filename: "goose_20201019.jpeg")
+# goose_20201019.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/goose/goose_2020_10_19.jpeg"), filename: "goose_20201019.jpeg")
 
 
-GOOSE_20201019_SETLIST = [
-    "Drive",
-    "Doc Brown",
-    "So Ready",
-    "AUATC",
-    "Jive1",
-    "Jive Lee",
-    "Indian River/Flee Reprise",
-    "Fish in the Sea",
-    "Drive Reprise",
-    "Rosewood Heart",
-    "Travelers",
-    "Turned Clouds",
-    "Hot Tea"
-]
+# GOOSE_20201019_SETLIST = [
+#     "Drive",
+#     "Doc Brown",
+#     "So Ready",
+#     "AUATC",
+#     "Jive1",
+#     "Jive Lee",
+#     "Indian River/Flee Reprise",
+#     "Fish in the Sea",
+#     "Drive Reprise",
+#     "Rosewood Heart",
+#     "Travelers",
+#     "Turned Clouds",
+#     "Hot Tea"
+# ]
 
-GOOSE_20201019_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: goose_20201019.id
-    )
-end
+# GOOSE_20201019_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: goose_20201019.id
+#     )
+# end
 
 ween = User.create!(
     artist_name: "Ween",
@@ -597,52 +597,52 @@ ween = User.create!(
 ween.banner.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/ween/ween_banner.jpeg"), filename: "weenbanner.jpeg")
 ween.thumbnail.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/ween/ween_thumbnail.jpeg"), filename: "weenthumbnail.jpeg")
 
-ween_20170604 = Album.create!(
-    title: '2017.06.04 - Baltimore, MD',
-    artist_id: ween.id,
-    year: 2017,
-    description: "From Baltimore, MD at Pier Six Pavilion. The show saw the band bust out a David Bowie cover they last played live on New Year’s Eve 2011.",
-    credits: "Deaner"
-)
+# ween_20170604 = Album.create!(
+#     title: '2017.06.04 - Baltimore, MD',
+#     artist_id: ween.id,
+#     year: 2017,
+#     description: "From Baltimore, MD at Pier Six Pavilion. The show saw the band bust out a David Bowie cover they last played live on New Year’s Eve 2011.",
+#     credits: "Deaner"
+# )
 
-ween_20170604.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/ween/ween_2017_06_04.jpeg"), filename: "ween_20170604.jpeg")
+# ween_20170604.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/ween/ween_2017_06_04.jpeg"), filename: "ween_20170604.jpeg")
 
 
-WEEN_20170604_SETLIST = [
-    "She Wanted to Leave",
-    "Buckingham Green",
-    "My Own Bare Hands",
-    "Let's Dance",
-    "Your Party",
-    "Voodoo Lady",
-    "Freedom of '76",
-    "Gabrielle",
-    "Boys Club",
-    "The Grobe",
-    "Japanese Cowboy",
-    "Puerto Rican Power",
-    "Frank",
-    "The Mollusk",
-    "Bananas and Blow",
-    "Tried & True",
-    "Joppa Road",
-    "Ocean Man",
-    "Object",
-    "Zoloft",
-    "Learnin' to Love",
-    "Transdermal Celebration",
-    "Mutilated Lips",
-    "I’ll Be Your Jonny on the Spot",
-    "Buenas Tardes Amigo",
-]
+# WEEN_20170604_SETLIST = [
+#     "She Wanted to Leave",
+#     "Buckingham Green",
+#     "My Own Bare Hands",
+#     "Let's Dance",
+#     "Your Party",
+#     "Voodoo Lady",
+#     "Freedom of '76",
+#     "Gabrielle",
+#     "Boys Club",
+#     "The Grobe",
+#     "Japanese Cowboy",
+#     "Puerto Rican Power",
+#     "Frank",
+#     "The Mollusk",
+#     "Bananas and Blow",
+#     "Tried & True",
+#     "Joppa Road",
+#     "Ocean Man",
+#     "Object",
+#     "Zoloft",
+#     "Learnin' to Love",
+#     "Transdermal Celebration",
+#     "Mutilated Lips",
+#     "I’ll Be Your Jonny on the Spot",
+#     "Buenas Tardes Amigo",
+# ]
 
-WEEN_20170604_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: ween_20170604.id
-    )
-end
+# WEEN_20170604_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: ween_20170604.id
+#     )
+# end
 
 dlo = User.create!(
     artist_name: "Delvon Lamarr Organ Trio",

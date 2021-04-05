@@ -3099,8 +3099,8 @@ var mSTP = function mSTP(_ref, ownProps) {
     return {
       phish: artists[features[0]],
       theGD: artists[features[1]],
-      ween: artists[features[2]],
-      goose: artists[features[3]]
+      goose: artists[features[2]],
+      ween: artists[features[3]]
     };
   } else {
     return {};
