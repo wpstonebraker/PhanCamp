@@ -3826,7 +3826,7 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
         id: "ep-ea-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "ep-ea-album-box"
-      }, userAlbums), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Select an Album"), userAlbums), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "ep-ea-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         id: "ep-ea-form",
@@ -3890,7 +3890,7 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
         onChange: this.update("credits")
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         id: "ep-ea-save-button"
-      }, "Save Changes"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, albumTracks));
+      }, "Save Changes")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, albumTracks)));
     }
   }]);
 

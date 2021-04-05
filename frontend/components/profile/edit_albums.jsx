@@ -138,7 +138,10 @@ class EditAlbum extends React.Component {
     }
     return (
       <div id="ep-ea-container">
-        <div id="ep-ea-album-box">{userAlbums}</div>
+        <div id="ep-ea-album-box">
+          <span>Select an Album</span>
+          {userAlbums}
+        </div>
         <div id="ep-ea-form-container">
           <form id="ep-ea-form" onSubmit={this.handleAlbumSave}>
             <div className="caf-upload-box">
@@ -213,8 +216,8 @@ class EditAlbum extends React.Component {
               </div>
             </div>
           </form>
+          <div>{albumTracks}</div>
         </div>
-        <div>{albumTracks}</div>
       </div>
     );
   }

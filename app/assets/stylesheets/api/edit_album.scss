@@ -1,16 +1,20 @@
 #ep-ea-container {
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 #ep-ea-album-box {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   overflow: auto;
-  width: 150px;
-  height: 300px;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 500px;
+  height: 150px;
+  border: 1px dotted lightgrey;
 }
 
 .ep-ea-img {
@@ -19,7 +23,9 @@
 }
 
 #ep-ea-form-container {
+  width: 80%;
   display: flex;
+  justify-content: space-between;
 }
 
 #ep-ea-form {
