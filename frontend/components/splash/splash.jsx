@@ -10,7 +10,7 @@ const Splash = (props) => {
       <FeatureIndexContainer />
       <SellingNowIndexContainer />
       <DailyIndexContainer />
-      <Foots />
+      {/* <Foots /> */}
     </div>
   );
 };

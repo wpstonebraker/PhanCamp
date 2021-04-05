@@ -13,6 +13,7 @@ import AlbumCreateFormContainer from "./album/album_create_form_container";
 import PhishAlbumCreateFormContainer from "./album/phish_album_create_form_container";
 import profile_container from "./profile/profile_container";
 import SearchDisplayContainer from "./search/search_display_container";
+import Foots from "./footer/foot";
 
 const App = () => {
   return (
@@ -43,6 +44,7 @@ const App = () => {
 
         <Route exact path="/" component={Splash} />
       </Switch>
+      <Foots />
     </div>
   );
 };
