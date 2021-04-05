@@ -10,13 +10,21 @@ const usersReducer = (state = {}, action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_ALL_ALBUMS:
-      newState = Object.assign({}, state, {
-        [action.payload.artists[Object.keys(state)[0]].id]:
-          action.payload.artists[Object.keys(state)[0]],
-      });
+      if (Object.values(state).length !== 0) {
+        newState = Object.assign({}, state, {
+          [action.payload.artists[Object.keys(state)[0]].id]:
+            action.payload.artists[Object.keys(state)[0]],
+        });
+      } else {
+        newState = state;
+      }
       return newState;
     case RECEIVE_DELETED_TRACK:
-      newState = Object.assign({}, state, action.payload.artists);
+      if (Object.values(state).length !== 0) {
+        newState = Object.assign({}, state, action.payload.artists);
+      } else {
+        newState = state;
+      }
       return newState;
     case LOGIN_CURRENT_USER:
       newState = Object.assign({}, state, {

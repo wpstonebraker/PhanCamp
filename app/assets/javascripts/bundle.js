@@ -6070,11 +6070,21 @@ var usersReducer = function usersReducer() {
 
   switch (action.type) {
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALL_ALBUMS:
-      newState = Object.assign({}, state, _defineProperty({}, action.payload.artists[Object.keys(state)[0]].id, action.payload.artists[Object.keys(state)[0]]));
+      if (Object.values(state).length !== 0) {
+        newState = Object.assign({}, state, _defineProperty({}, action.payload.artists[Object.keys(state)[0]].id, action.payload.artists[Object.keys(state)[0]]));
+      } else {
+        newState = state;
+      }
+
       return newState;
 
     case _actions_track_actions__WEBPACK_IMPORTED_MODULE_2__.RECEIVE_DELETED_TRACK:
-      newState = Object.assign({}, state, action.payload.artists);
+      if (Object.values(state).length !== 0) {
+        newState = Object.assign({}, state, action.payload.artists);
+      } else {
+        newState = state;
+      }
+
       return newState;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__.LOGIN_CURRENT_USER:

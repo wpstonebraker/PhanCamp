@@ -421,40 +421,40 @@ gd.thumbnail.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_t
 
 # GD_MSG81_SETLIST.each_with_index do |track, i|
 #     Track.create!(
-#         track_name: track,
-#         track_num: (i + 1),
-#         album_id: msg81.id
-#     )
-# end
-
-Z1 = Album.create!(
-    title: "Dr. Zack's Picks Vol. 1",
-    artist_id: gd.id,
-    year: 2020,
-    description: "Dark Star -> Wharf Rat -> Dark Star from 2/18/71 at the Capitol Theater in Port Chester, NY. Eyes of the World from 3/29/90 at Nassau Coliseum on Long Island.",
-    credits: "No credited taper for 2/18/71, though it was transferred by Dan Stephens and Scott Thompson. 3/29/90 taped and transferred by Roger Eichorn. Complete shows can be found on archive.org."
-)
-
-Z1.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z1.webp"), filename: "gd_z1.webp")
-
-Z1_SETLIST = %w(Dark\ Star\ -> Wharf\ Rat\ -> Dark\ Star Eyes\ of\ the\ World)
-
-Z1_TRACKS = [
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Dark+Star+-%3E.mp3",
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Wharf+Rat+-%3E.mp3",
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Dark+Star.mp3",
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Eyes+of+the+World.mp3"
-]
-
-Z1_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: Z1.id
-    ).song.attach(io: URI.open(Z1_TRACKS[i]), filename: "gd_drZ1_#{i + 1}")
-end
-
-Z2 = Album.create!(
+    #         track_name: track,
+    #         track_num: (i + 1),
+    #         album_id: msg81.id
+    #     )
+    # end
+    Z4 = Album.create!(
+        title: "Dr. Zack's Picks Vol. 1",
+        artist_id: gd.id,
+        year: 2020,
+        description: "Help On the Way -> Slipknot -> Franklin's Tower from 5/22/77 at The Sportatorium in Pembroke Pines, FL. Mississippi Half Step from 9/3/77 show at Raceway Park in Englishtown, NJ.",
+        credits: "5/22/77 show taping/transfer is uncredited. 9/3/77 show taped by Ken Flemming and transferred by Rob Berger. Complete shows can be found on archive.org."
+    )
+    
+    Z4.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z4.webp"), filename: "gd_z1.webp")
+    
+    Z4_SETLIST = %w(Help\ On\ the\ Way\ -> Slipknot\ -> Franklin's\ Tower Mississippi\ Half\ Step)
+    
+    Z4_TRACKS = [
+        "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Help+on+the+Way+-%3E.mp3",
+        "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Slipnot+-%3E.mp3",
+        "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Franklin's+Tower.mp3",
+        "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Mississippi+Half+Step.mp3"
+    ]
+    
+    Z4_SETLIST.each_with_index do |track, i|
+        Track.create!(
+            track_name: track,
+            track_num: (i + 1),
+            album_id: Z4.id
+        ).song.attach(io: URI.open(Z4_TRACKS[i]), filename: "gd_drZ1_#{i + 1}")
+    end
+    
+    
+    Z2 = Album.create!(
     title: "Dr. Zack's Picks Vol. 2",
     artist_id: gd.id,
     year: 2020,
@@ -508,31 +508,31 @@ Z3_SETLIST.each_with_index do |track, i|
     ).song.attach(io: URI.open(Z3_TRACKS[i]), filename: "gd_drZ3_#{i + 1}")
 end
 
-Z4 = Album.create!(
+Z1 = Album.create!(
     title: "Dr. Zack's Picks Vol. 4",
     artist_id: gd.id,
     year: 2020,
-    description: "Help On the Way -> Slipknot -> Franklin's Tower from 5/22/77 at The Sportatorium in Pembroke Pines, FL. Mississippi Half Step from 9/3/77 show at Raceway Park in Englishtown, NJ.",
-    credits: "5/22/77 show taping/transfer is uncredited. 9/3/77 show taped by Ken Flemming and transferred by Rob Berger. Complete shows can be found on archive.org."
+    description: "Dark Star -> Wharf Rat -> Dark Star from 2/18/71 at the Capitol Theater in Port Chester, NY. Eyes of the World from 3/29/90 at Nassau Coliseum on Long Island.",
+    credits: "No credited taper for 2/18/71, though it was transferred by Dan Stephens and Scott Thompson. 3/29/90 taped and transferred by Roger Eichorn. Complete shows can be found on archive.org."
 )
 
-Z4.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z4.webp"), filename: "gd_z4.webp")
+Z1.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z1.webp"), filename: "gd_z4.webp")
 
-Z4_SETLIST = %w(Help\ On\ the\ Way\ -> Slipknot\ -> Franklin's\ Tower Mississippi\ Half\ Step)
+Z1_SETLIST = %w(Dark\ Star\ -> Wharf\ Rat\ -> Dark\ Star Eyes\ of\ the\ World)
 
-Z4_TRACKS = [
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Help+on+the+Way+-%3E.mp3",
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Slipnot+-%3E.mp3",
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Franklin's+Tower.mp3",
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Mississippi+Half+Step.mp3"
+Z1_TRACKS = [
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Dark+Star+-%3E.mp3",
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Wharf+Rat+-%3E.mp3",
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Dark+Star.mp3",
+    "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Eyes+of+the+World.mp3"
 ]
 
-Z4_SETLIST.each_with_index do |track, i|
+Z1_SETLIST.each_with_index do |track, i|
     Track.create!(
         track_name: track,
         track_num: (i + 1),
-        album_id: Z4.id
-    ).song.attach(io: URI.open(Z4_TRACKS[i]), filename: "gd_drZ4_#{i + 1}")
+        album_id: Z1.id
+    ).song.attach(io: URI.open(Z1_TRACKS[i]), filename: "gd_dr41_#{i + 1}")
 end
 
 
