@@ -12,7 +12,6 @@ import {
 const tracksReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState;
-  debugger;
   switch (action.type) {
     // case RECEIVE_ARTIST_ALBUMS:
     //   return {};

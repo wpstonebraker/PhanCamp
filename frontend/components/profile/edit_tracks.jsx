@@ -12,8 +12,6 @@ class TrackEdit extends React.Component {
   }
 
   componentDidMount() {
-    debugger;
-
     this.setState({
       track_name: this.props.track.trackName,
       track_id: this.props.track.id,
@@ -21,7 +19,6 @@ class TrackEdit extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    debugger;
     if (prevProps.track.trackName !== this.props.track.trackName) {
       this.setState({
         track_name: this.props.track.trackName,
@@ -40,12 +37,10 @@ class TrackEdit extends React.Component {
     this.props.editTrack(this.state);
   }
   handleDelete() {
-    debugger;
     this.props.deleteTrack(this.state.track_id);
   }
 
   render() {
-    debugger;
     return (
       <div>
         <form>

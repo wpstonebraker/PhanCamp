@@ -18,7 +18,6 @@ class EditAlbum extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    debugger;
     if (
       Object.keys(prevProps.albums).length !==
       Object.keys(this.props.albums).length
@@ -97,7 +96,6 @@ class EditAlbum extends React.Component {
   }
 
   render() {
-    debugger;
     const { user, albums } = this.props;
     const {
       title,
@@ -118,7 +116,6 @@ class EditAlbum extends React.Component {
     ) : null;
     const userAlbums = user.albumIds.map((id) => {
       const album = albums[id];
-      debugger;
       return (
         <div key={album.id} onClick={() => this.handleClick(album)}>
           <img src={album.photoUrl} className="ep-ea-img" />
@@ -127,7 +124,6 @@ class EditAlbum extends React.Component {
     });
     let albumTracks;
     if (tracks.length !== 0) {
-      debugger;
       albumTracks = tracks
         .sort((a, b) => a - b)
         .map((track) => {

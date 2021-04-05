@@ -3672,8 +3672,6 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
-      debugger;
-
       if (Object.keys(prevProps.albums).length !== Object.keys(this.props.albums).length) {
         console.log("hello");
       }
@@ -3772,7 +3770,6 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this6 = this;
 
-      debugger;
       var _this$props = this.props,
           user = _this$props.user,
           albums = _this$props.albums;
@@ -3798,7 +3795,6 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
       }) : null;
       var userAlbums = user.albumIds.map(function (id) {
         var album = albums[id];
-        debugger;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           key: album.id,
           onClick: function onClick() {
@@ -3812,7 +3808,6 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
       var albumTracks;
 
       if (tracks.length !== 0) {
-        debugger;
         albumTracks = tracks.sort(function (a, b) {
           return a - b;
         }).map(function (track) {
@@ -4021,7 +4016,6 @@ var TrackEdit = /*#__PURE__*/function (_React$Component) {
   _createClass(TrackEdit, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
       this.setState({
         track_name: this.props.track.trackName,
         track_id: this.props.track.id
@@ -4030,8 +4024,6 @@ var TrackEdit = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
-      debugger;
-
       if (prevProps.track.trackName !== this.props.track.trackName) {
         this.setState({
           track_name: this.props.track.trackName,
@@ -4056,13 +4048,11 @@ var TrackEdit = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleDelete",
     value: function handleDelete() {
-      debugger;
       this.props.deleteTrack(this.state.track_id);
     }
   }, {
     key: "render",
     value: function render() {
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, this.props.track.trackNum), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
         value: this.state.track_name,
@@ -6001,7 +5991,6 @@ var tracksReducer = function tracksReducer() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
   var newState;
-  debugger;
 
   switch (action.type) {
     // case RECEIVE_ARTIST_ALBUMS:

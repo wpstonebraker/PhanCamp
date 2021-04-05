@@ -12,9 +12,7 @@ class Api::TracksController < ApplicationController
     end
 
     def destroy
-        debugger
         @track = Track.find(params[:id])
-        debugger
         @album = Album.where(id: @track.album_id)[0]
         @artist = User.where(id: @album.artist_id)[0]
 
