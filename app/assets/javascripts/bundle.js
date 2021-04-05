@@ -1086,7 +1086,10 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
           });
         });
       } else {
-        trackItems = Object.values(tracks).map(function (track, i) {
+        // trackItems = Object.values(tracks).map((track, i) => {
+        trackItems = Object.values(tracks).filter(function (track) {
+          return track.albumId === album.id;
+        }).map(function (track, i) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_track_item__WEBPACK_IMPORTED_MODULE_5__.default, {
             track: track // ref={this.audio}
             ,

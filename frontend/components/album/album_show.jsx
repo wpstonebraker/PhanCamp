@@ -108,17 +108,20 @@ class AlbumShow extends React.Component {
         );
       });
     } else {
-      trackItems = Object.values(tracks).map((track, i) => {
-        return (
-          <TrackItem
-            track={track}
-            // ref={this.audio}
-            key={i}
-            playTrack={this.props.playTrack}
-            // handleTrack={this.handleTrack}
-          />
-        );
-      });
+      // trackItems = Object.values(tracks).map((track, i) => {
+      trackItems = Object.values(tracks)
+        .filter((track) => track.albumId === album.id)
+        .map((track, i) => {
+          return (
+            <TrackItem
+              track={track}
+              // ref={this.audio}
+              key={i}
+              playTrack={this.props.playTrack}
+              // handleTrack={this.handleTrack}
+            />
+          );
+        });
     }
     // }
 
