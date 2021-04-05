@@ -408,11 +408,14 @@ var logout = function logout() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_EDIT_TRACK": () => /* binding */ RECEIVE_EDIT_TRACK,
-/* harmony export */   "editTrack": () => /* binding */ editTrack
+/* harmony export */   "RECEIVE_DELETED_TRACK": () => /* binding */ RECEIVE_DELETED_TRACK,
+/* harmony export */   "editTrack": () => /* binding */ editTrack,
+/* harmony export */   "deleteTrack": () => /* binding */ deleteTrack
 /* harmony export */ });
 /* harmony import */ var _util_track_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/track_api_util */ "./frontend/util/track_api_util.js");
 
 var RECEIVE_EDIT_TRACK = "RECEIVE_EDIT_TRACK";
+var RECEIVE_DELETED_TRACK = "RECEIVE_DELETED_TRACK";
 
 var receiveEditTrack = function receiveEditTrack(payload) {
   return {
@@ -421,10 +424,24 @@ var receiveEditTrack = function receiveEditTrack(payload) {
   };
 };
 
+var receiveDeletedTrack = function receiveDeletedTrack(payload) {
+  return {
+    type: RECEIVE_DELETED_TRACK,
+    payload: payload
+  };
+};
+
 var editTrack = function editTrack(track) {
   return function (dispatch) {
     return _util_track_api_util__WEBPACK_IMPORTED_MODULE_0__.updateTrack(track).then(function (track) {
       return dispatch(receiveEditTrack(track));
+    });
+  };
+};
+var deleteTrack = function deleteTrack(id) {
+  return function (dispatch) {
+    return _util_track_api_util__WEBPACK_IMPORTED_MODULE_0__.deleteTrack(id).then(function (id) {
+      return dispatch(receiveDeletedTrack(id));
     });
   };
 };
@@ -975,13 +992,9 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      debugger;
-
       if (this.props.artist.artistName === "Phish" && this.props.album.showDate !== undefined) {
-        debugger; // this.props.getPhishAlbum(this.props.album.showDate);
-
+        // this.props.getPhishAlbum(this.props.album.showDate);
         this.props.getPhishAlbum(this.props.album.showDate).then(function () {
-          debugger;
           return _this2.props.playTrack(Object.values(_this2.props.tracks)[0]); // this.setState({ track: Object.values(this.props.tracks)[0] });
         });
       } else {
@@ -994,7 +1007,6 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      debugger;
       var tracks = Object.values(this.props.tracks);
       if (tracks.length === 0) return;
 
@@ -1042,7 +1054,6 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      debugger;
       if (!this.props.album) return null;
       if (this.state.track === undefined) return null;
 
@@ -2407,7 +2418,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     track: state.entities.audio,
     tracks: state.entities.tracks
@@ -3646,6 +3656,7 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     _this.handlePhoto = _this.handlePhoto.bind(_assertThisInitialized(_this));
     _this.handleAlbumSave = _this.handleAlbumSave.bind(_assertThisInitialized(_this));
+    _this.handleDeleteTrack = _this.handleDeleteTrack.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3659,15 +3670,23 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      debugger;
+
+      if (Object.keys(prevProps.albums).length !== Object.keys(this.props.albums).length) {
+        console.log("hello");
+      }
+    }
+  }, {
     key: "handleClick",
     value: function handleClick(album) {
       var _this3 = this;
 
-      debugger; // const tracks = {};
+      // const tracks = {};
       // album.trackIds.forEach((id) => {
       //   tracks[id] = this.props.tracks[id];
       // });
-
       this.setState({
         title: album.title,
         year: album.year,
@@ -3737,9 +3756,21 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
       // formData.append("tracks[count]", this.state.tracksArray.length);
     }
   }, {
+    key: "handleDeleteTrack",
+    value: function handleDeleteTrack(id) {
+      var _this5 = this;
+
+      var tracks = this.state.tracks;
+      var trackIdx = tracks.indexOf(id);
+      tracks.splice(trackIdx, 1);
+      this.props.deleteTrack(id).then(function () {
+        return _this5.setState(tracks);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this6 = this;
 
       debugger;
       var _this$props = this.props,
@@ -3771,7 +3802,7 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           key: album.id,
           onClick: function onClick() {
-            return _this5.handleClick(album);
+            return _this6.handleClick(album);
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
           src: album.photoUrl,
@@ -3782,10 +3813,13 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
 
       if (tracks.length !== 0) {
         debugger;
-        albumTracks = tracks.map(function (track) {
+        albumTracks = tracks.sort(function (a, b) {
+          return a - b;
+        }).map(function (track) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_edit_tracks__WEBPACK_IMPORTED_MODULE_1__.default, {
             track: track,
-            editTrack: _this5.props.editTrack
+            editTrack: _this6.props.editTrack,
+            deleteTrack: _this6.handleDeleteTrack
           });
         });
       }
@@ -3888,6 +3922,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
+  debugger;
   var user = state.entities.users[state.session.id];
   return {
     albums: state.entities.albums,
@@ -3914,6 +3949,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     editTrack: function editTrack(track) {
       return dispatch((0,_actions_track_actions__WEBPACK_IMPORTED_MODULE_2__.editTrack)(track));
+    },
+    deleteTrack: function deleteTrack(id) {
+      return dispatch((0,_actions_track_actions__WEBPACK_IMPORTED_MODULE_2__.deleteTrack)(id));
     }
   };
 };
@@ -3976,6 +4014,7 @@ var TrackEdit = /*#__PURE__*/function (_React$Component) {
       track_id: props.track.id
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3989,6 +4028,18 @@ var TrackEdit = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      debugger;
+
+      if (prevProps.track.trackName !== this.props.track.trackName) {
+        this.setState({
+          track_name: this.props.track.trackName,
+          track_id: this.props.track.id
+        });
+      }
+    }
+  }, {
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -4000,20 +4051,27 @@ var TrackEdit = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
-      debugger;
       this.props.editTrack(this.state);
+    }
+  }, {
+    key: "handleDelete",
+    value: function handleDelete() {
+      debugger;
+      this.props.deleteTrack(this.state.track_id);
     }
   }, {
     key: "render",
     value: function render() {
       debugger;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-        onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, this.props.track.trackNum), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
         value: this.state.track_name,
         onChange: this.update("track_name")
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Save Track")));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        onClick: this.handleSubmit
+      }, "Save Track"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        onClick: this.handleDelete
+      }, "DeleteTrack")));
     }
   }]);
 
@@ -5531,7 +5589,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/album_actions */ "./frontend/actions/album_actions.js");
+/* harmony import */ var _actions_track_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/track_actions */ "./frontend/actions/track_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -5541,13 +5601,19 @@ var albumsReducer = function albumsReducer() {
   // ;
   Object.freeze(state);
   var newState;
+  var album;
 
   switch (action.type) {
     // case Object.keys(state).length === 1:
     //   return Object.assign({}, state, action.albums.albums);
     //   break;
+    case _actions_track_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_DELETED_TRACK:
+      album = Object.values(action.payload.albums)[0];
+      newState = Object.assign({}, state, _defineProperty({}, album.id, album));
+      return newState;
+
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALBUM:
-      var album = Object.values(action.payload.albums)[0];
+      album = Object.values(action.payload.albums)[0];
       newState = Object.assign({}, state, _defineProperty({}, album.id, album));
       return newState;
     // return action.album.albums;
@@ -5940,6 +6006,11 @@ var tracksReducer = function tracksReducer() {
   switch (action.type) {
     // case RECEIVE_ARTIST_ALBUMS:
     //   return {};
+    case _actions_track_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_DELETED_TRACK:
+      newState = Object.assign({}, state);
+      delete newState[action.payload.tracks.id];
+      return newState;
+
     case _actions_track_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_EDIT_TRACK:
       newState = {};
       newState[action.payload.id] = action.payload;
@@ -5991,8 +6062,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/album_actions */ "./frontend/actions/album_actions.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_track_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/track_actions */ "./frontend/actions/track_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
@@ -6001,13 +6076,22 @@ var usersReducer = function usersReducer() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
   var newState;
+  debugger;
 
   switch (action.type) {
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.LOGIN_CURRENT_USER:
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALL_ALBUMS:
+      newState = Object.assign({}, state, _defineProperty({}, action.payload.artists[Object.keys(state)[0]].id, action.payload.artists[Object.keys(state)[0]]));
+      return newState;
+
+    case _actions_track_actions__WEBPACK_IMPORTED_MODULE_2__.RECEIVE_DELETED_TRACK:
+      newState = Object.assign({}, state, action.payload.artists);
+      return newState;
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__.LOGIN_CURRENT_USER:
       newState = Object.assign({}, state, _defineProperty({}, action.user.id, action.user));
       return newState;
 
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_USER_UPDATE:
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_USER_UPDATE:
       newState = Object.assign({}, state, _defineProperty({}, action.payload.id, action.payload));
       return newState;
 
@@ -6314,7 +6398,8 @@ var deleteSession = function deleteSession() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "updateTrack": () => /* binding */ updateTrack
+/* harmony export */   "updateTrack": () => /* binding */ updateTrack,
+/* harmony export */   "deleteTrack": () => /* binding */ deleteTrack
 /* harmony export */ });
 var updateTrack = function updateTrack(track) {
   return $.ajax({
@@ -6323,6 +6408,12 @@ var updateTrack = function updateTrack(track) {
     data: {
       track: track
     }
+  });
+};
+var deleteTrack = function deleteTrack(id) {
+  return $.ajax({
+    method: "DELETE",
+    url: "/api/tracks/".concat(id)
   });
 };
 

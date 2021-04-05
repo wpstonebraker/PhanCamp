@@ -8,6 +8,7 @@ class EditAlbum extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handlePhoto = this.handlePhoto.bind(this);
     this.handleAlbumSave = this.handleAlbumSave.bind(this);
+    this.handleDeleteTrack = this.handleDeleteTrack.bind(this);
   }
 
   update(field) {
@@ -16,8 +17,17 @@ class EditAlbum extends React.Component {
     };
   }
 
-  handleClick(album) {
+  componentDidUpdate(prevProps, prevState) {
     debugger;
+    if (
+      Object.keys(prevProps.albums).length !==
+      Object.keys(this.props.albums).length
+    ) {
+      console.log("hello");
+    }
+  }
+
+  handleClick(album) {
     // const tracks = {};
     // album.trackIds.forEach((id) => {
     //   tracks[id] = this.props.tracks[id];
@@ -79,6 +89,13 @@ class EditAlbum extends React.Component {
     // formData.append("tracks[count]", this.state.tracksArray.length);
   }
 
+  handleDeleteTrack(id) {
+    let tracks = this.state.tracks;
+    let trackIdx = tracks.indexOf(id);
+    tracks.splice(trackIdx, 1);
+    this.props.deleteTrack(id).then(() => this.setState(tracks));
+  }
+
   render() {
     debugger;
     const { user, albums } = this.props;
@@ -111,9 +128,17 @@ class EditAlbum extends React.Component {
     let albumTracks;
     if (tracks.length !== 0) {
       debugger;
-      albumTracks = tracks.map((track) => {
-        return <TrackEdit track={track} editTrack={this.props.editTrack} />;
-      });
+      albumTracks = tracks
+        .sort((a, b) => a - b)
+        .map((track) => {
+          return (
+            <TrackEdit
+              track={track}
+              editTrack={this.props.editTrack}
+              deleteTrack={this.handleDeleteTrack}
+            />
+          );
+        });
     }
     return (
       <div id="ep-ea-container">

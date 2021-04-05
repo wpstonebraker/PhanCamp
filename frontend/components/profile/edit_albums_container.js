@@ -1,8 +1,9 @@
 import { connect } from "react-redux";
 import EditAlbum from "./edit_albums";
-import { editTrack } from "../../actions/track_actions";
+import { deleteTrack, editTrack } from "../../actions/track_actions";
 
 const mSTP = (state, ownProps) => {
+  debugger;
   const user = state.entities.users[state.session.id];
   return {
     albums: state.entities.albums,
@@ -28,6 +29,7 @@ const mSTP = (state, ownProps) => {
 const mDTP = (dispatch) => {
   return {
     editTrack: (track) => dispatch(editTrack(track)),
+    deleteTrack: (id) => dispatch(deleteTrack(id)),
   };
 };
 
