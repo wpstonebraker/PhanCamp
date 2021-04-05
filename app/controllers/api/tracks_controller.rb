@@ -17,6 +17,9 @@ class Api::TracksController < ApplicationController
         @artist = User.where(id: @album.artist_id)[0]
 
         if @track.destroy
+            if @album.track_ids.length == 0
+                @album.destroy
+            end
             render :delete
         else
             render json: @track.errors.full_messages, status: 422

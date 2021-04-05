@@ -10,6 +10,8 @@ json.albums do
 end
 
 json.tracks do
+    return {} if @tracks.length == 0
+        
     @tracks.each do |track|
         json.set! track.id do
             json.extract! track, :track_name, :track_num

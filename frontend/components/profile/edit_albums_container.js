@@ -3,7 +3,6 @@ import EditAlbum from "./edit_albums";
 import { deleteTrack, editTrack } from "../../actions/track_actions";
 
 const mSTP = (state, ownProps) => {
-  debugger;
   const user = state.entities.users[state.session.id];
   return {
     albums: state.entities.albums,

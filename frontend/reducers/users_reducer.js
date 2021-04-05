@@ -8,7 +8,6 @@ import { RECEIVE_DELETED_TRACK } from "../actions/track_actions";
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState;
-  debugger;
   switch (action.type) {
     case RECEIVE_ALL_ALBUMS:
       newState = Object.assign({}, state, {

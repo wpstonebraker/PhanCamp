@@ -3917,7 +3917,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   var user = state.entities.users[state.session.id];
   return {
     albums: state.entities.albums,
@@ -6065,7 +6064,6 @@ var usersReducer = function usersReducer() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
   var newState;
-  debugger;
 
   switch (action.type) {
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALL_ALBUMS:
