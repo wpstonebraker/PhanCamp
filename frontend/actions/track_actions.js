@@ -2,6 +2,14 @@ import * as TrackAPIUtil from "../util/track_api_util";
 
 export const RECEIVE_EDIT_TRACK = "RECEIVE_EDIT_TRACK";
 export const RECEIVE_DELETED_TRACK = "RECEIVE_DELETED_TRACK";
+export const RECEIVE_PHISH_TRACK = "RECEIVE_PHISH_TRACK";
+
+export const receivePhishTrack = (payload) => {
+  return {
+    type: RECEIVE_PHISH_TRACK,
+    payload,
+  };
+};
 
 const receiveEditTrack = (payload) => {
   return {

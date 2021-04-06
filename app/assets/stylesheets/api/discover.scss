@@ -1,0 +1,60 @@
+#discover-outer {
+  width: 100%;
+  margin: auto;
+}
+
+#discover-genre-container {
+  height: 20px;
+  background-color: #42a0bd;
+  display: flex;
+}
+
+#discover-genre-box {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.discover-genre-tab {
+  color: white;
+  list-style: none;
+}
+
+#discover-albums-container {
+  width: 70%;
+  //   margin: auto;
+  display: flex;
+  //   flex-direction: row;
+  //   justify-content: space-around;
+  //   align-items: center;
+}
+
+#discover-albums-box {
+  height: 550px;
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.discover-album-tile {
+  height: 250px;
+  width: 200px;
+  border: 1px solid green;
+  li {
+    list-style: none;
+  }
+}
+
+.discover-album-tile-photo {
+  height: 75px;
+  width: 75px;
+}
+
+#splash-player-box {
+  width: 20%;
+  height: 300px;
+  outline: 1px solid red;
+}

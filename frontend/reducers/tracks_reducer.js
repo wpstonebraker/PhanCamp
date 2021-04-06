@@ -7,6 +7,7 @@ import {
 import {
   RECEIVE_DELETED_TRACK,
   RECEIVE_EDIT_TRACK,
+  RECEIVE_PHISH_TRACK,
 } from "../actions/track_actions";
 
 const tracksReducer = (state = {}, action) => {
@@ -47,6 +48,17 @@ const tracksReducer = (state = {}, action) => {
       //   newState[track.position] = track;
       // });
       return newState;
+    case RECEIVE_PHISH_TRACK:
+      let track = action.payload;
+      newState = {};
+      newState[track.id] = {
+        artistName: "Phish",
+        songUrl: track.mp3,
+        trackName: track.title,
+        trackNum: track.position,
+        showDate: track.show_date,
+      };
+      return Object.assign({}, state, newState);
     default:
       return state;
   }

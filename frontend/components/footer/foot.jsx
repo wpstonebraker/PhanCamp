@@ -9,27 +9,27 @@ const Foots = (props) => {
         </div>
         <div id="footer-box">
           <div id="footer-left">
-            <i class="devicon-amazonwebservices-plain-wordmark"></i>
-            <i class="devicon-css3-plain"></i>
-            <i class="devicon-html5-plain-wordmark"></i>
-            <i class="devicon-javascript-plain"></i>
-            <i class="devicon-jquery-plain-wordmark"></i>
-            <i class="devicon-postgresql-plain-wordmark"></i>
-            <i class="devicon-rails-plain-wordmark"></i>
-            <i class="devicon-react-original-wordmark"></i>
-            <i class="devicon-redux-original"></i>
-            <i class="devicon-ruby-plain"></i>
-            <i class="devicon-ubuntu-plain-wordmark"></i>
+            <i className="devicon-amazonwebservices-plain-wordmark"></i>
+            <i className="devicon-css3-plain"></i>
+            <i className="devicon-html5-plain-wordmark"></i>
+            <i className="devicon-javascript-plain"></i>
+            <i className="devicon-jquery-plain-wordmark"></i>
+            <i className="devicon-postgresql-plain-wordmark"></i>
+            <i className="devicon-rails-plain-wordmark"></i>
+            <i className="devicon-react-original-wordmark"></i>
+            <i className="devicon-redux-original"></i>
+            <i className="devicon-ruby-plain"></i>
+            <i className="devicon-ubuntu-plain-wordmark"></i>
           </div>
           <div id="footer-right">
             <a href="https://github.com/wpstonebraker" target="_blank">
-              <i class="devicon-github-original-wordmark"></i>
+              <i className="devicon-github-original-wordmark"></i>
             </a>
             <a
               href="https://www.linkedin.com/in/paul-stonebraker/"
               target="_blank"
             >
-              <i class="devicon-linkedin-plain"></i>
+              <i className="devicon-linkedin-plain"></i>
             </a>
           </div>
         </div>

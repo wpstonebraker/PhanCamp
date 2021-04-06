@@ -10,7 +10,7 @@ const mSTP = (state, ownProps) => {
       year: 2021,
       price: "",
       description: "",
-      credits: "Trey Mike Fish Page",
+      credits: "Trey Anastasio, Jon Fishman, Mike Gordon, Page McConnell",
       genres: "",
       photoFile: null,
       photoUrl: null,

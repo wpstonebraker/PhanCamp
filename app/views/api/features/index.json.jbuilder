@@ -29,7 +29,7 @@ end
 json.albums do
     @albums.each do |album|
         json.set! album.id do
-            json.extract! album, :title, :artist_id, :year, :price, :description, :credits, :id, :track_ids
+            json.extract! album, :title, :artist_id, :year, :price, :description, :credits, :id, :track_ids, :genre_ids
             json.photoUrl url_for(album.photo)
         if album.show_date
             json.extract! album, :show_date
