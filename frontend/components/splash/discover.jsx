@@ -32,7 +32,7 @@ class Discover extends React.Component {
         document.getElementById("play-button-box").click();
         // let audioPlayer = document.getElementById("discover-audio-player");
         // audioPlayer.play();
-      }, 100);
+      }, 200);
     } else {
       let trackId = album.trackIds[0];
       this.props.playTrack(this.props.tracks[trackId]);
@@ -40,7 +40,7 @@ class Discover extends React.Component {
         document.getElementById("play-button-box").click();
         // let audioPlayer = document.getElementById("discover-audio-player");
         // audioPlayer.play();
-      }, 100);
+      }, 200);
     }
   }
 

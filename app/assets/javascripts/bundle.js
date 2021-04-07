@@ -5507,14 +5507,14 @@ var Discover = /*#__PURE__*/function (_React$Component) {
         setTimeout(function () {
           document.getElementById("play-button-box").click(); // let audioPlayer = document.getElementById("discover-audio-player");
           // audioPlayer.play();
-        }, 100);
+        }, 200);
       } else {
         var trackId = album.trackIds[0];
         this.props.playTrack(this.props.tracks[trackId]);
         setTimeout(function () {
           document.getElementById("play-button-box").click(); // let audioPlayer = document.getElementById("discover-audio-player");
           // audioPlayer.play();
-        }, 100);
+        }, 200);
       }
     }
   }, {
