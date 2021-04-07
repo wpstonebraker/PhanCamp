@@ -153,9 +153,20 @@ class SplashPlayer extends React.Component {
             ></audio>
           </div>
         </div>
+
         <div id="splash-player-details">
-          <li>from the album {album.title}</li>
-          <li>by {artist.artistName}</li>
+          <li
+            onClick={() =>
+              this.props.history.push(
+                `/artists/${artist.id}/albums/${album.id}`
+              )
+            }
+          >
+            from the album {album.title}
+          </li>
+          <li onClick={() => this.props.history.push(`/artists/${artist.id}`)}>
+            by {artist.artistName}
+          </li>
           <li>{artist.location}</li>
         </div>
       </div>

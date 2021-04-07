@@ -1,8 +1,12 @@
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import SplashPlayer from "./splash_player";
 
 const mSTP = (state, ownProps) => {
   debugger;
+  const test = Object.values(state.entities.albums).filter((album) => {
+    return album.title === "Dr. Zack's Picks Vol. 1";
+  })[0];
   if (state.entities.audio.albumId) {
     debugger;
     return {
@@ -42,10 +46,13 @@ const mSTP = (state, ownProps) => {
     //   };
     //dev
   } else if (
-    Object.values(state.entities.albums).filter((album) => {
-      return album.title === "Dr. Zack's Picks Vol. 1";
-    })[0]
+    // Object.values(state.entities.albums).filter((album) => {
+    //   return album.title === "Dr. Zack's Picks Vol. 1";
+    // })[0]
+    test &&
+    state.entities.tracks[test.trackIds[0]]
   ) {
+    debugger;
     const init = Object.values(state.entities.albums).filter((album) => {
       return album.title === "Dr. Zack's Picks Vol. 1";
     })[0];
@@ -67,4 +74,4 @@ const mDTP = (dispatch) => {
   return {};
 };
 
-export default connect(mSTP, mDTP)(SplashPlayer);
+export default withRouter(connect(mSTP, mDTP)(SplashPlayer));

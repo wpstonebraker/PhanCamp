@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import { getPhishShow } from "../../actions/album_actions";
 import { playPhishTrack, playTrack } from "../../actions/audio_actions";
 import { receivePhishTrack } from "../../actions/track_actions";
@@ -22,4 +23,4 @@ const mDTP = (dispatch) => {
   };
 };
 
-export default connect(mSTP, mDTP)(Discover);
+export default withRouter(connect(mSTP, mDTP)(Discover));

@@ -75,34 +75,67 @@ class Discover extends React.Component {
                   key={album.id}
                   id={`discover-album-tile-${i}`}
                   className="discover-album-tile"
-                  onClick={() => this.handleAlbumClick(album.id)}
                 >
                   <img
                     src={album.photoUrl}
                     alt=""
                     className="discover-album-tile-photo"
+                    onClick={() => this.handleAlbumClick(album.id)}
                   />
 
-                  <li>{album.title}</li>
-                  <li>{artists[album.artistId].artistName}</li>
+                  <li
+                    onClick={() =>
+                      this.props.history.push(
+                        `/artists/${artists[album.artistId].id}/albums/${
+                          album.id
+                        }`
+                      )
+                    }
+                  >
+                    {album.title}
+                  </li>
+                  <li
+                    onClick={() =>
+                      this.props.history.push(
+                        `/artists/${artists[album.artistId].id}`
+                      )
+                    }
+                  >
+                    {artists[album.artistId].artistName}
+                  </li>
                 </div>
               );
             })
         : Object.values(this.state.discoverAlbums).map((album) => {
             return (
-              <div
-                key={album.id}
-                className="discover-album-tile"
-                onClick={() => this.handleAlbumClick(album.id)}
-              >
+              <div key={album.id} className="discover-album-tile">
                 <img
                   src={album.photoUrl}
                   alt=""
                   className="discover-album-tile-photo"
+                  onClick={() => this.handleAlbumClick(album.id)}
                 />
 
-                <li>{album.title}</li>
-                <li>{artists[album.artistId].artistName}</li>
+                <li
+                  onClick={() =>
+                    this.props.history.push(
+                      `/artists/${artists[album.artistId].id}/albums/${
+                        album.id
+                      }`
+                    )
+                  }
+                >
+                  {album.title}
+                </li>
+                <li
+                  onClick={() =>
+                    this.props.history.push(
+                      `/artists/${artists[album.artistId].id}`
+                    )
+                  }
+                >
+                  {artists[album.artistId].artistName}
+                </li>
               </div>
             );
           });

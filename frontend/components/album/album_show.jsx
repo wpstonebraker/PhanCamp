@@ -19,6 +19,7 @@ class AlbumShow extends React.Component {
   }
 
   componentDidMount() {
+    debugger;
     if (
       this.props.artist.artistName === "Phish" &&
       this.props.album.showDate !== undefined

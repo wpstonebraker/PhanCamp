@@ -47,6 +47,7 @@ const tracksReducer = (state = {}, action) => {
       // action.payload.data.tracks.forEach((track) => {
       //   newState[track.position] = track;
       // });
+      // return Object.assign({}, state, newState);
       return newState;
     case RECEIVE_PHISH_TRACK:
       let track = action.payload;
