@@ -89,10 +89,16 @@ class EditAlbum extends React.Component {
   }
 
   handleDeleteTrack(id) {
+    debugger;
     let tracks = this.state.tracks;
-    let trackIdx = tracks.indexOf(id);
-    tracks.splice(trackIdx, 1);
-    this.props.deleteTrack(id).then(() => this.setState(tracks));
+    debugger;
+    let newTracks = [];
+    tracks.forEach((track) => {
+      if (track.id !== id) newTracks.push(track);
+    });
+    this.props.deleteTrack(id);
+    this.setState({ tracks: newTracks });
+    debugger;
   }
 
   render() {
@@ -123,7 +129,9 @@ class EditAlbum extends React.Component {
       );
     });
     let albumTracks;
+    debugger;
     if (tracks.length !== 0) {
+      debugger;
       albumTracks = tracks
         .sort((a, b) => a - b)
         .map((track) => {
@@ -136,6 +144,7 @@ class EditAlbum extends React.Component {
           );
         });
     }
+    debugger;
     return (
       <div id="ep-ea-container">
         <div id="ep-ea-album-box">
@@ -145,6 +154,9 @@ class EditAlbum extends React.Component {
         <div id="ep-ea-form-container">
           <form id="ep-ea-form" onSubmit={this.handleAlbumSave}>
             <div className="caf-upload-box">
+              <span className={uploadPreview === null ? "hidden" : ""}>
+                Click Image to Upload New Cover
+              </span>
               <div className="caf-upload" onClick={this.uploadImage}>
                 {uploadPreview}
                 <span

@@ -19,6 +19,7 @@ class TrackEdit extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    debugger;
     if (prevProps.track.trackName !== this.props.track.trackName) {
       this.setState({
         track_name: this.props.track.trackName,
@@ -44,7 +45,7 @@ class TrackEdit extends React.Component {
     return (
       <div>
         <form>
-          <span>{this.props.track.trackNum}</span>
+          {/* <span>{this.props.track.trackNum}</span> */}
           <input
             type="text"
             value={this.state.track_name}

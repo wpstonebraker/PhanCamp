@@ -3775,19 +3775,23 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleDeleteTrack",
     value: function handleDeleteTrack(id) {
-      var _this5 = this;
-
+      debugger;
       var tracks = this.state.tracks;
-      var trackIdx = tracks.indexOf(id);
-      tracks.splice(trackIdx, 1);
-      this.props.deleteTrack(id).then(function () {
-        return _this5.setState(tracks);
+      debugger;
+      var newTracks = [];
+      tracks.forEach(function (track) {
+        if (track.id !== id) newTracks.push(track);
       });
+      this.props.deleteTrack(id);
+      this.setState({
+        tracks: newTracks
+      });
+      debugger;
     }
   }, {
     key: "render",
     value: function render() {
-      var _this6 = this;
+      var _this5 = this;
 
       var _this$props = this.props,
           user = _this$props.user,
@@ -3817,7 +3821,7 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           key: album.id,
           onClick: function onClick() {
-            return _this6.handleClick(album);
+            return _this5.handleClick(album);
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
           src: album.photoUrl,
@@ -3825,19 +3829,22 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
         }));
       });
       var albumTracks;
+      debugger;
 
       if (tracks.length !== 0) {
+        debugger;
         albumTracks = tracks.sort(function (a, b) {
           return a - b;
         }).map(function (track) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_edit_tracks__WEBPACK_IMPORTED_MODULE_1__.default, {
             track: track,
-            editTrack: _this6.props.editTrack,
-            deleteTrack: _this6.handleDeleteTrack
+            editTrack: _this5.props.editTrack,
+            deleteTrack: _this5.handleDeleteTrack
           });
         });
       }
 
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "ep-ea-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3849,7 +3856,9 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
         onSubmit: this.handleAlbumSave
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-upload-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        className: uploadPreview === null ? "hidden" : ""
+      }, "Click Image to Upload New Cover"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-upload",
         onClick: this.uploadImage
       }, uploadPreview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
@@ -4042,6 +4051,8 @@ var TrackEdit = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
+      debugger;
+
       if (prevProps.track.trackName !== this.props.track.trackName) {
         this.setState({
           track_name: this.props.track.trackName,
@@ -4071,7 +4082,7 @@ var TrackEdit = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, this.props.track.trackNum), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
         value: this.state.track_name,
         onChange: this.update("track_name")
@@ -6004,18 +6015,15 @@ var mSTP = function mSTP(state, ownProps) {
   //   return album.title === "Dr. Zack's Picks Vol. 1";
   // })[0]
   test && state.entities.tracks[test.trackIds[0]]) {
-    debugger;
     var init = Object.values(state.entities.albums).filter(function (album) {
       return album.title === "Dr. Zack's Picks Vol. 1";
     })[0];
-    debugger;
     return {
       album: init,
       track: state.entities.tracks[init.trackIds[0]],
       artist: state.entities.artists[init.artistId]
     };
   } else {
-    debugger;
     return {
       track: state.entities.audio
     };

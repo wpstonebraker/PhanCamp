@@ -52,18 +52,15 @@ const mSTP = (state, ownProps) => {
     test &&
     state.entities.tracks[test.trackIds[0]]
   ) {
-    debugger;
     const init = Object.values(state.entities.albums).filter((album) => {
       return album.title === "Dr. Zack's Picks Vol. 1";
     })[0];
-    debugger;
     return {
       album: init,
       track: state.entities.tracks[init.trackIds[0]],
       artist: state.entities.artists[init.artistId],
     };
   } else {
-    debugger;
     return {
       track: state.entities.audio,
     };
