@@ -4,7 +4,6 @@ const AudioReducer = (state = {}, action) => {
   Object.freeze(state);
   let track;
 
-  debugger;
   switch (action.type) {
     case PLAY_TRACK:
       track = action.payload;

@@ -5504,9 +5504,17 @@ var Discover = /*#__PURE__*/function (_React$Component) {
         }).then(function (track) {
           _this2.props.playTrack(_this2.props.tracks[track.id]);
         });
+        setTimeout(function () {
+          document.getElementById("play-button-box").click(); // let audioPlayer = document.getElementById("discover-audio-player");
+          // audioPlayer.play();
+        }, 100);
       } else {
         var trackId = album.trackIds[0];
         this.props.playTrack(this.props.tracks[trackId]);
+        setTimeout(function () {
+          document.getElementById("play-button-box").click(); // let audioPlayer = document.getElementById("discover-audio-player");
+          // audioPlayer.play();
+        }, 100);
       }
     }
   }, {
@@ -5602,7 +5610,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     genres: state.entities.genres,
     albums: state.entities.albums,
@@ -5709,29 +5716,159 @@ var SplashPlayer = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      songurl: ""
-    };
+      // track: props.track,
+      playing: false,
+      currentTime: "00:00",
+      duration: "00:00",
+      src: props.track.songUrl,
+      playButton: window.playIcon,
+      songUrl: "",
+      title: props.track.trackName
+    }; // this.track = props.track;
+
     _this.audio = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
+    _this.progressBar = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
+    _this.progressPlayed = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
+    _this.togglePlay = _this.togglePlay.bind(_assertThisInitialized(_this));
+    _this.handleTime = _this.handleTime.bind(_assertThisInitialized(_this));
+    _this.handleProgress = _this.handleProgress.bind(_assertThisInitialized(_this));
+    _this.handleTrack = _this.handleTrack.bind(_assertThisInitialized(_this));
+    _this.playTrack = _this.playTrack.bind(_assertThisInitialized(_this));
+    _this.scrub = _this.scrub.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(SplashPlayer, [{
     key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      debugger;
-      this.audio.current.play();
+    value: function componentDidUpdate() {// this.audio.current.play();
+    }
+  }, {
+    key: "getDerivedStateFromProps",
+    value: function getDerivedStateFromProps(props, state) {}
+  }, {
+    key: "togglePlay",
+    value: function togglePlay() {
+      var audio = this.audio.current;
+
+      if (audio.paused) {
+        audio.play();
+        this.setState({
+          playButton: window.pauseIcon,
+          playing: true
+        });
+      } else {
+        audio.pause();
+        this.setState({
+          playButton: window.playIcon,
+          playing: false
+        });
+      }
+    }
+  }, {
+    key: "convertTime",
+    value: function convertTime(time) {
+      var minutes = Math.floor(time / 60);
+      var displayMinutes = minutes < 10 ? "0".concat(minutes) : minutes;
+      var seconds = Math.floor(time - minutes * 60);
+      var displaySeconds = seconds < 10 ? "0".concat(seconds) : seconds; // return Number.isNan(time) ? `00:00` : `${displayMinutes}:${displaySeconds}`;
+
+      return "".concat(displayMinutes, ":").concat(displaySeconds);
+    }
+  }, {
+    key: "handleTrack",
+    value: function handleTrack(track, title) {
+      this.setState({
+        src: track,
+        title: title
+      }); // this.setState({ src: track.songUrl }, () => {
+
+      this.playTrack(); // });
+    }
+  }, {
+    key: "playTrack",
+    value: function playTrack() {
+      var audio = this.audio.current;
+      audio.play();
+      this.setState({
+        playButton: window.pauseIcon
+      }); // const duration = this.convertTime(audio.duration);
+    }
+  }, {
+    key: "handleTime",
+    value: function handleTime() {
+      var audio = this.audio.current;
+      var time = this.convertTime(audio.currentTime);
+      var duration = this.convertTime(audio.duration);
+      this.setState({
+        currentTime: time,
+        duration: duration
+      });
+      this.handleProgress();
+    }
+  }, {
+    key: "handleProgress",
+    value: function handleProgress() {
+      var audio = this.audio.current;
+      var progressPlayed = this.progressPlayed.current;
+      var percent = audio.currentTime / audio.duration * 100;
+      progressPlayed.style.flexBasis = "".concat(percent, "%");
+    }
+  }, {
+    key: "scrub",
+    value: function scrub(e) {
+      e.preventDefault();
+      var scrubTime = e.nativeEvent.offsetX / this.progressBar.current.offsetWidth * this.audio.current.duration;
+      this.audio.current.currentTime = scrubTime;
     }
   }, {
     key: "render",
     value: function render() {
       if (this.props.track === undefined) return null;
-      debugger;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        id: "splash-player-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("audio", {
-        src: this.props.track.songUrl,
-        ref: this.audio
-      }));
+      return (
+        /*#__PURE__*/
+        // <div id="splash-player-box">
+        //   <audio src={this.props.track.songUrl} ref={this.audio}></audio>
+        // </div>
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          id: "audio-player-box"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          onClick: this.togglePlay,
+          id: "play-button-box"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+          src: this.state.playing ? window.pauseIcon : window.playIcon,
+          id: "play-button",
+          alt: ""
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          id: "audio-player-right"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          id: "track-info-box"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          id: "track-info-display"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+          id: "track-info-title"
+        }, this.props.track.trackName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+          id: "track-info-time"
+        }, this.state.currentTime, " /", " ", this.state.duration === "NaN:NaN" ? "00:00" : this.state.duration))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          id: "progress-bar-box"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          id: "progress-bar",
+          onClick: this.scrub,
+          ref: this.progressBar
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          id: "progress-bar-played",
+          ref: this.progressPlayed
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          id: "progress-bar-block"
+        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("audio", {
+          controls: true,
+          onTimeUpdate: this.handleTime //   onLoadStart={this.playTrack}
+          ,
+          id: "discover-audio-player",
+          ref: this.audio,
+          src: this.props.track.songUrl // src={this.state.src}
+
+        })))
+      );
     }
   }]);
 
@@ -5759,7 +5896,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     track: state.entities.audio
   };
@@ -6036,7 +6172,6 @@ var AudioReducer = function AudioReducer() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
   var track;
-  debugger;
 
   switch (action.type) {
     case _actions_audio_actions__WEBPACK_IMPORTED_MODULE_0__.PLAY_TRACK:

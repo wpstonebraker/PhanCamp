@@ -5,7 +5,6 @@ import { receivePhishTrack } from "../../actions/track_actions";
 import Discover from "./discover";
 
 const mSTP = (state, ownProps) => {
-  debugger;
   return {
     genres: state.entities.genres,
     albums: state.entities.albums,

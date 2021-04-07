@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import SplashPlayer from "./splash_player";
 
 const mSTP = (state, ownProps) => {
-  debugger;
   return {
     track: state.entities.audio,
   };
