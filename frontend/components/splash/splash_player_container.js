@@ -33,21 +33,28 @@ const mSTP = (state, ownProps) => {
     //       ],
     //   };
     //prod
-  } else if (state.entities.albums[33]) {
-    debugger;
-    return {
-      album: state.entities.albums[33],
-      track: state.entities.tracks[state.entities.albums[33].trackIds[0]],
-      artist: state.entities.artists[27],
-    };
-    //dev
-    // } else if (state.entities.albums[273]) {
+    // } else if (state.entities.albums[33]) {
     //   debugger;
     //   return {
-    //     album: state.entities.albums[273],
-    //     track: state.entities.tracks[state.entities.albums[273].trackIds[0]],
-    //     artist: state.entities.artists[168],
+    //     album: state.entities.albums[33],
+    //     track: state.entities.tracks[state.entities.albums[33].trackIds[0]],
+    //     artist: state.entities.artists[27],
     //   };
+    //dev
+  } else if (
+    Object.values(state.entities.albums).filter((album) => {
+      return album.title === "Dr. Zack's Picks Vol. 1";
+    })[0]
+  ) {
+    const init = Object.values(state.entities.albums).filter((album) => {
+      return album.title === "Dr. Zack's Picks Vol. 1";
+    })[0];
+    debugger;
+    return {
+      album: init,
+      track: state.entities.tracks[init.trackIds[0]],
+      artist: state.entities.artists[init.artistId],
+    };
   } else {
     debugger;
     return {
