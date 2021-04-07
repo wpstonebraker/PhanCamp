@@ -1,0 +1,22 @@
+#splash-player-photo-box {
+  height: 335px;
+  width: 335px;
+  outline: 1px solid green;
+}
+
+#splash-player-photo {
+  width: 100%;
+  height: 100%;
+}
+
+#splash-audio-player {
+  height: 50px;
+  width: 100%;
+  display: none;
+}
+
+#splash-player-details {
+  li {
+    list-style: none;
+  }
+}

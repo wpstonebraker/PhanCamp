@@ -5479,13 +5479,23 @@ var Discover = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       selected: "",
       discoverAlbums: []
-    };
+    }; // this.initialAlbum = Object.values(props.albums)[0];
+
     _this.handleTabClick = _this.handleTabClick.bind(_assertThisInitialized(_this));
     _this.handleAlbumClick = _this.handleAlbumClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Discover, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {// setTimeout(() => {
+      //   document.getElementById("discover-album-tile-0").click();
+      // }, 200);
+      // setTimeout(() => {
+      //   document.getElementById("play-button-box").click();
+      // }, 250);
+    }
+  }, {
     key: "handleAlbumClick",
     value: function handleAlbumClick(albumId) {
       var _this2 = this;
@@ -5507,14 +5517,14 @@ var Discover = /*#__PURE__*/function (_React$Component) {
         setTimeout(function () {
           document.getElementById("play-button-box").click(); // let audioPlayer = document.getElementById("discover-audio-player");
           // audioPlayer.play();
-        }, 200);
+        }, 250);
       } else {
         var trackId = album.trackIds[0];
         this.props.playTrack(this.props.tracks[trackId]);
         setTimeout(function () {
           document.getElementById("play-button-box").click(); // let audioPlayer = document.getElementById("discover-audio-player");
           // audioPlayer.play();
-        }, 200);
+        }, 100);
       }
     }
   }, {
@@ -5532,9 +5542,12 @@ var Discover = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var albumTiles = this.state.discoverAlbums.length === 0 ? Object.values(this.props.albums).slice(0, 8).map(function (album) {
+      var artists = this.props.artists;
+      var albumTiles = this.state.discoverAlbums.length === 0 ? Object.values(this.props.albums).slice(0, 8).map(function (album, i) {
+        debugger;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           key: album.id,
+          id: "discover-album-tile-".concat(i),
           className: "discover-album-tile",
           onClick: function onClick() {
             return _this3.handleAlbumClick(album.id);
@@ -5543,7 +5556,7 @@ var Discover = /*#__PURE__*/function (_React$Component) {
           src: album.photoUrl,
           alt: "",
           className: "discover-album-tile-photo"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, album.title));
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, artists[album.artistId].artistName));
       }) : Object.values(this.state.discoverAlbums).map(function (album) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           key: album.id,
@@ -5555,7 +5568,7 @@ var Discover = /*#__PURE__*/function (_React$Component) {
           src: album.photoUrl,
           alt: "",
           className: "discover-album-tile-photo"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, album.title));
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, artists[album.artistId].artistName));
       });
       var genreTabs = Object.values(this.props.genres).map(function (genre) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
@@ -5613,7 +5626,8 @@ var mSTP = function mSTP(state, ownProps) {
   return {
     genres: state.entities.genres,
     albums: state.entities.albums,
-    tracks: state.entities.tracks
+    tracks: state.entities.tracks,
+    artists: state.entities.artists
   };
 };
 
@@ -5823,13 +5837,25 @@ var SplashPlayer = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      if (this.props.track === undefined) return null;
+      debugger;
+      if (this.props.track === undefined // this.props.artist === undefined ||
+      // this.props.album === undefined
+      ) return null; // const { artist, album } = this.props;
+
+      var artist = this.props.artist || {};
+      var album = this.props.album || {};
       return (
         /*#__PURE__*/
         // <div id="splash-player-box">
         //   <audio src={this.props.track.songUrl} ref={this.audio}></audio>
         // </div>
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          id: "splash-player-photo-box"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+          id: "splash-player-photo",
+          src: this.props.photo ? this.props.photo : this.props.album ? this.props.album.photoUrl : "",
+          alt: ""
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           id: "audio-player-box"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           onClick: this.togglePlay,
@@ -5863,11 +5889,13 @@ var SplashPlayer = /*#__PURE__*/function (_React$Component) {
           controls: true,
           onTimeUpdate: this.handleTime //   onLoadStart={this.playTrack}
           ,
-          id: "discover-audio-player",
+          id: "splash-audio-player",
           ref: this.audio,
           src: this.props.track.songUrl // src={this.state.src}
 
-        })))
+        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          id: "splash-player-details"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "from the album ", album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "by ", artist.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, artist.location)))
       );
     }
   }]);
@@ -5896,9 +5924,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  return {
-    track: state.entities.audio
-  };
+  debugger;
+
+  if (state.entities.audio.albumId) {
+    return {
+      track: state.entities.audio,
+      artist: state.entities.artists[state.entities.albums[state.entities.audio.albumId].artistId],
+      album: state.entities.albums[state.entities.audio.albumId],
+      photo: state.entities.albums[state.entities.audio.albumId].photoUrl
+    };
+  } else if (Object.values(state.entities.albums)[0] !== undefined) {
+    debugger;
+    return {
+      // track: state.entities.audio,
+      track: state.entities.tracks[Object.values(state.entities.albums)[0].trackIds[0]],
+      album: Object.values(state.entities.albums)[0],
+      artist: state.entities.artists[state.entities.albums[state.entities.tracks[Object.values(state.entities.albums)[0].trackIds[0]].albumId].artistId]
+    };
+  } else {
+    return {
+      track: state.entities.audio
+    };
+  }
 };
 
 var mDTP = function mDTP(dispatch) {

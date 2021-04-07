@@ -9,6 +9,7 @@ const mSTP = (state, ownProps) => {
     genres: state.entities.genres,
     albums: state.entities.albums,
     tracks: state.entities.tracks,
+    artists: state.entities.artists,
   };
 };
 

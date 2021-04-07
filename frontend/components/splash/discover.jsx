@@ -8,8 +8,18 @@ class Discover extends React.Component {
       selected: "",
       discoverAlbums: [],
     };
+    // this.initialAlbum = Object.values(props.albums)[0];
     this.handleTabClick = this.handleTabClick.bind(this);
     this.handleAlbumClick = this.handleAlbumClick.bind(this);
+  }
+
+  componentDidMount() {
+    // setTimeout(() => {
+    //   document.getElementById("discover-album-tile-0").click();
+    // }, 200);
+    // setTimeout(() => {
+    //   document.getElementById("play-button-box").click();
+    // }, 250);
   }
 
   handleAlbumClick(albumId) {
@@ -32,7 +42,7 @@ class Discover extends React.Component {
         document.getElementById("play-button-box").click();
         // let audioPlayer = document.getElementById("discover-audio-player");
         // audioPlayer.play();
-      }, 200);
+      }, 250);
     } else {
       let trackId = album.trackIds[0];
       this.props.playTrack(this.props.tracks[trackId]);
@@ -40,7 +50,7 @@ class Discover extends React.Component {
         document.getElementById("play-button-box").click();
         // let audioPlayer = document.getElementById("discover-audio-player");
         // audioPlayer.play();
-      }, 200);
+      }, 100);
     }
   }
 
@@ -52,14 +62,17 @@ class Discover extends React.Component {
   }
 
   render() {
+    const artists = this.props.artists;
     const albumTiles =
       this.state.discoverAlbums.length === 0
         ? Object.values(this.props.albums)
             .slice(0, 8)
-            .map((album) => {
+            .map((album, i) => {
+              debugger;
               return (
                 <div
                   key={album.id}
+                  id={`discover-album-tile-${i}`}
                   className="discover-album-tile"
                   onClick={() => this.handleAlbumClick(album.id)}
                 >
@@ -70,6 +83,7 @@ class Discover extends React.Component {
                   />
 
                   <li>{album.title}</li>
+                  <li>{artists[album.artistId].artistName}</li>
                 </div>
               );
             })
@@ -87,6 +101,7 @@ class Discover extends React.Component {
                 />
 
                 <li>{album.title}</li>
+                <li>{artists[album.artistId].artistName}</li>
               </div>
             );
           });
