@@ -5527,7 +5527,7 @@ var Discover = /*#__PURE__*/function (_React$Component) {
         setTimeout(function () {
           document.getElementById("play-button-box").click(); // let audioPlayer = document.getElementById("discover-audio-player");
           // audioPlayer.play();
-        }, 250);
+        }, 400);
       } else {
         var trackId = album.trackIds[0];
         this.props.playTrack(this.props.tracks[trackId]);
@@ -5552,6 +5552,7 @@ var Discover = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
+      if (Object.values(this.props.artists).length === 0) return null;
       var artists = this.props.artists;
       var albumTiles = this.state.discoverAlbums.length === 0 ? Object.values(this.props.albums).slice(0, 8).map(function (album, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
