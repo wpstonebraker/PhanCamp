@@ -57,6 +57,7 @@ const tracksReducer = (state = {}, action) => {
         trackName: track.title,
         trackNum: track.position,
         showDate: track.show_date,
+        albumId: track.albumId,
       };
       return Object.assign({}, state, newState);
     default:

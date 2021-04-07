@@ -4,6 +4,7 @@ import SplashPlayer from "./splash_player";
 const mSTP = (state, ownProps) => {
   debugger;
   if (state.entities.audio.albumId) {
+    debugger;
     return {
       track: state.entities.audio,
       artist:
@@ -13,25 +14,42 @@ const mSTP = (state, ownProps) => {
       album: state.entities.albums[state.entities.audio.albumId],
       photo: state.entities.albums[state.entities.audio.albumId].photoUrl,
     };
-  } else if (Object.values(state.entities.albums)[0] !== undefined) {
+    // } else if (Object.values(state.entities.albums)[0] !== undefined) {
+    //   // debugger;
+    //   return {
+    //     audio: state.entities.audio,
+    //     track:
+    //       state.entities.tracks[
+    //         Object.values(state.entities.albums)[0].trackIds[0]
+    //       ],
+    //     album: Object.values(state.entities.albums)[0],
+    //     artist:
+    //       state.entities.artists[
+    //         state.entities.albums[
+    //           state.entities.tracks[
+    //             Object.values(state.entities.albums)[0].trackIds[0]
+    //           ].albumId
+    //         ].artistId
+    //       ],
+    //   };
+    //prod
+  } else if (state.entities.albums[33]) {
     debugger;
     return {
-      // track: state.entities.audio,
-      track:
-        state.entities.tracks[
-          Object.values(state.entities.albums)[0].trackIds[0]
-        ],
-      album: Object.values(state.entities.albums)[0],
-      artist:
-        state.entities.artists[
-          state.entities.albums[
-            state.entities.tracks[
-              Object.values(state.entities.albums)[0].trackIds[0]
-            ].albumId
-          ].artistId
-        ],
+      album: state.entities.albums[33],
+      track: state.entities.tracks[state.entities.albums[33].trackIds[0]],
+      artist: state.entities.artists[27],
     };
+    //dev
+    // } else if (state.entities.albums[273]) {
+    //   debugger;
+    //   return {
+    //     album: state.entities.albums[273],
+    //     track: state.entities.tracks[state.entities.albums[273].trackIds[0]],
+    //     artist: state.entities.artists[168],
+    //   };
   } else {
+    debugger;
     return {
       track: state.entities.audio,
     };

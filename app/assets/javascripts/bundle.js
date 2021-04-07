@@ -5442,6 +5442,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _splash_player_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./splash_player_container */ "./frontend/components/splash/splash_player_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -5508,11 +5514,15 @@ var Discover = /*#__PURE__*/function (_React$Component) {
         this.props.getPhishShow(album.showDate).then(function (payload) {
           var track = payload.data.tracks[0];
 
-          _this2.props.receivePhishTrack(track);
+          var newTrack = _objectSpread({
+            albumId: albumId
+          }, track);
 
-          return track;
-        }).then(function (track) {
-          _this2.props.playTrack(_this2.props.tracks[track.id]);
+          _this2.props.receivePhishTrack(newTrack);
+
+          return newTrack;
+        }).then(function (newTrack) {
+          _this2.props.playTrack(_this2.props.tracks[newTrack.id]);
         });
         setTimeout(function () {
           document.getElementById("play-button-box").click(); // let audioPlayer = document.getElementById("discover-audio-player");
@@ -5544,7 +5554,6 @@ var Discover = /*#__PURE__*/function (_React$Component) {
 
       var artists = this.props.artists;
       var albumTiles = this.state.discoverAlbums.length === 0 ? Object.values(this.props.albums).slice(0, 8).map(function (album, i) {
-        debugger;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           key: album.id,
           id: "discover-album-tile-".concat(i),
@@ -5754,11 +5763,7 @@ var SplashPlayer = /*#__PURE__*/function (_React$Component) {
 
   _createClass(SplashPlayer, [{
     key: "componentDidUpdate",
-    value: function componentDidUpdate() {// this.audio.current.play();
-    }
-  }, {
-    key: "getDerivedStateFromProps",
-    value: function getDerivedStateFromProps(props, state) {}
+    value: function componentDidUpdate(prevProps, prevState) {}
   }, {
     key: "togglePlay",
     value: function togglePlay() {
@@ -5837,7 +5842,6 @@ var SplashPlayer = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       if (this.props.track === undefined // this.props.artist === undefined ||
       // this.props.album === undefined
       ) return null; // const { artist, album } = this.props;
@@ -5927,21 +5931,47 @@ var mSTP = function mSTP(state, ownProps) {
   debugger;
 
   if (state.entities.audio.albumId) {
+    debugger;
     return {
       track: state.entities.audio,
       artist: state.entities.artists[state.entities.albums[state.entities.audio.albumId].artistId],
       album: state.entities.albums[state.entities.audio.albumId],
       photo: state.entities.albums[state.entities.audio.albumId].photoUrl
-    };
-  } else if (Object.values(state.entities.albums)[0] !== undefined) {
+    }; // } else if (Object.values(state.entities.albums)[0] !== undefined) {
+    //   // debugger;
+    //   return {
+    //     audio: state.entities.audio,
+    //     track:
+    //       state.entities.tracks[
+    //         Object.values(state.entities.albums)[0].trackIds[0]
+    //       ],
+    //     album: Object.values(state.entities.albums)[0],
+    //     artist:
+    //       state.entities.artists[
+    //         state.entities.albums[
+    //           state.entities.tracks[
+    //             Object.values(state.entities.albums)[0].trackIds[0]
+    //           ].albumId
+    //         ].artistId
+    //       ],
+    //   };
+    //prod
+  } else if (state.entities.albums[33]) {
     debugger;
     return {
-      // track: state.entities.audio,
-      track: state.entities.tracks[Object.values(state.entities.albums)[0].trackIds[0]],
-      album: Object.values(state.entities.albums)[0],
-      artist: state.entities.artists[state.entities.albums[state.entities.tracks[Object.values(state.entities.albums)[0].trackIds[0]].albumId].artistId]
-    };
+      album: state.entities.albums[33],
+      track: state.entities.tracks[state.entities.albums[33].trackIds[0]],
+      artist: state.entities.artists[27]
+    }; //dev
+    // } else if (state.entities.albums[273]) {
+    //   debugger;
+    //   return {
+    //     album: state.entities.albums[273],
+    //     track: state.entities.tracks[state.entities.albums[273].trackIds[0]],
+    //     artist: state.entities.artists[168],
+    //   };
   } else {
+    debugger;
     return {
       track: state.entities.audio
     };
@@ -6555,7 +6585,8 @@ var tracksReducer = function tracksReducer() {
         songUrl: track.mp3,
         trackName: track.title,
         trackNum: track.position,
-        showDate: track.show_date
+        showDate: track.show_date,
+        albumId: track.albumId
       };
       return Object.assign({}, state, newState);
 

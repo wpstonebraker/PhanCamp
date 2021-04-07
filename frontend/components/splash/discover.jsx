@@ -32,11 +32,12 @@ class Discover extends React.Component {
         .getPhishShow(album.showDate)
         .then((payload) => {
           let track = payload.data.tracks[0];
-          this.props.receivePhishTrack(track);
-          return track;
+          let newTrack = { albumId, ...track };
+          this.props.receivePhishTrack(newTrack);
+          return newTrack;
         })
-        .then((track) => {
-          this.props.playTrack(this.props.tracks[track.id]);
+        .then((newTrack) => {
+          this.props.playTrack(this.props.tracks[newTrack.id]);
         });
       setTimeout(() => {
         document.getElementById("play-button-box").click();
@@ -68,7 +69,6 @@ class Discover extends React.Component {
         ? Object.values(this.props.albums)
             .slice(0, 8)
             .map((album, i) => {
-              debugger;
               return (
                 <div
                   key={album.id}

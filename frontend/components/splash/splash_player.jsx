@@ -25,11 +25,7 @@ class SplashPlayer extends React.Component {
     this.scrub = this.scrub.bind(this);
   }
 
-  componentDidUpdate() {
-    // this.audio.current.play();
-  }
-
-  getDerivedStateFromProps(props, state) {}
+  componentDidUpdate(prevProps, prevState) {}
 
   togglePlay() {
     const audio = this.audio.current;
@@ -89,7 +85,6 @@ class SplashPlayer extends React.Component {
   }
 
   render() {
-    debugger;
     if (
       this.props.track === undefined
       // this.props.artist === undefined ||
