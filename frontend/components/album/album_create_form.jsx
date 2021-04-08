@@ -113,6 +113,10 @@ class AlbumCreateForm extends React.Component {
       errorsArray.push("Please upload at least one track");
       errorsCount++;
     }
+    if (this.state.genresArray.length === 0) {
+      errorsArray.push("Select at least one genre");
+      errorsCount++;
+    }
     // if (this.state.credits === "")
     //   Object.assign(this.errors, { credits: "Please enter credits for album" });
     if (errorsCount !== 0) {
@@ -325,6 +329,9 @@ class AlbumCreateForm extends React.Component {
                 </div>
                 <div className="flex-col caf-input">
                   select one or more genres:
+                  <span className="caf-errormsg" id="error-username">
+                    {errors.genre}
+                  </span>
                   <div className="caf-genre-tabs-box">{genreTabs}</div>
                 </div>
                 <div className="caf-description-box flex-col caf-input">

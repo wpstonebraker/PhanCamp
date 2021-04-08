@@ -647,6 +647,11 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       if (this.state.tracksArray.length === 0) {
         errorsArray.push("Please upload at least one track");
         errorsCount++;
+      }
+
+      if (this.state.genresArray.length === 0) {
+        errorsArray.push("Select at least one genre");
+        errorsCount++;
       } // if (this.state.credits === "")
       //   Object.assign(this.errors, { credits: "Please enter credits for album" });
 
@@ -841,7 +846,10 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         className: "caf-artist-name-box flex-col caf-input"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "artist: ", this.props.currentUser.artistName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "flex-col caf-input"
-      }, "select one or more genres:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, "select one or more genres:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        className: "caf-errormsg",
+        id: "error-username"
+      }, errors.genre), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-genre-tabs-box"
       }, genreTabs)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-description-box flex-col caf-input"

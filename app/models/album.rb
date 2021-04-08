@@ -1,6 +1,6 @@
 class Album < ApplicationRecord
     include Genreable
-    validates :title, :artist_id, :year, :credits, presence: true
+    validates :title, :artist_id, :year, presence: true
     validates :title, uniqueness: { scope: :artist_id }
     validates :year, numericality: { minimum: 1950, maximum: 2022 }
 
