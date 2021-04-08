@@ -12,6 +12,13 @@ export const getAllAlbums = () => {
   });
 };
 
+export const deleteAlbum = (id) => {
+  return $.ajax({
+    method: "DELETE",
+    url: `/api/albums/${id}`,
+  });
+};
+
 export const getArtistAlbums = (artistId) => {
   return $.ajax({
     url: `/api/artists/${artistId}/albums`,

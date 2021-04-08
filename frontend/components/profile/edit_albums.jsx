@@ -8,6 +8,7 @@ class EditAlbum extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handlePhoto = this.handlePhoto.bind(this);
     this.handleAlbumSave = this.handleAlbumSave.bind(this);
+    this.handleAlbumDelete = this.handleAlbumDelete.bind(this);
     this.handleDeleteTrack = this.handleDeleteTrack.bind(this);
   }
 
@@ -88,6 +89,11 @@ class EditAlbum extends React.Component {
     // formData.append("tracks[count]", this.state.tracksArray.length);
   }
 
+  handleAlbumDelete(id) {
+    debugger;
+    this.props.deleteAlbum(id);
+  }
+
   handleDeleteTrack(id) {
     let tracks = this.state.tracks;
     let newTracks = [];
@@ -99,6 +105,7 @@ class EditAlbum extends React.Component {
   }
 
   render() {
+    debugger;
     const { user, albums } = this.props;
     const {
       title,
@@ -109,6 +116,7 @@ class EditAlbum extends React.Component {
       credits,
       genres,
       tracks,
+      albumId,
     } = this.state;
     if (user === undefined || Object.values(albums).length === 0) return null;
     if (user.albumIds.length === 0) {
@@ -140,6 +148,7 @@ class EditAlbum extends React.Component {
           );
         });
     }
+    debugger;
     return (
       <div id="ep-ea-container">
         <div id="ep-ea-album-box">
@@ -147,7 +156,7 @@ class EditAlbum extends React.Component {
           {userAlbums}
         </div>
         <div id="ep-ea-form-container">
-          <form id="ep-ea-form" onSubmit={this.handleAlbumSave}>
+          <form id="ep-ea-form">
             <div className="caf-upload-box">
               <span className={uploadPreview === null ? "hidden" : ""}>
                 Click Image to Upload New Cover
@@ -199,7 +208,6 @@ class EditAlbum extends React.Component {
                   onChange={this.update("price")}
                 />
               </div>
-
               <div className="caf-description-box flex-col caf-input">
                 <label htmlFor="caf-description">about this album:</label>
                 <textarea
@@ -209,6 +217,7 @@ class EditAlbum extends React.Component {
                   onChange={this.update("description")}
                 />
               </div>
+              onSubmit={this.handleAlbumSave}
               <div className="caf-credits-box flex-col caf-input">
                 <label htmlFor="caf-credits">album credits:</label>
                 <textarea
@@ -219,7 +228,16 @@ class EditAlbum extends React.Component {
                 />
               </div>
               <div>
-                <button id="ep-ea-save-button">Save Changes</button>
+                <button id="ep-ea-save-button" onClick={this.handleAlbumSave}>
+                  Save Changes
+                </button>
+                <button
+                  id="ep-ea-delete-button"
+                  onClick={() => this.handleAlbumDelete(albumId)}
+                  value={albumId}
+                >
+                  Delete Album
+                </button>
               </div>
             </div>
           </form>

@@ -6,10 +6,18 @@ export const RECEIVE_SELLING_ALBUMS = "RECEIVE_SELLING_ALBUMS";
 export const RECEIVE_ALL_ALBUMS = "RECEIVE_ALL_ALBUMS";
 export const RECEIVE_PHISH_ALBUM = "RECEIVE_PHISH_ALBUM";
 export const RECEIVE_ALBUM_ERRORS = "RECEIVE_ALBUM_ERRORS";
+export const RECEIVE_DELETED_ALBUM = "RECEIVE_DELETED_ALBUM";
 
 export const receiveAllAlbums = (payload) => {
   return {
     type: RECEIVE_ALL_ALBUMS,
+    payload,
+  };
+};
+
+const receiveDeletedAlbum = (payload) => {
+  return {
+    type: RECEIVE_DELETED_ALBUM,
     payload,
   };
 };
@@ -113,5 +121,13 @@ export const postPhishAlbum = (album) => {
     // return APIUtil.postPhishAlbum(album).then((album) => {
     //   return dispatch(receivePhishAlbum(album));
     return APIUtil.postPhishAlbum(album);
+  };
+};
+
+export const deleteAlbum = (id) => {
+  return (dispatch) => {
+    return APIUtil.deleteAlbum(id).then((id) => {
+      return dispatch(receiveDeletedAlbum(id));
+    });
   };
 };

@@ -2,6 +2,7 @@ import {
   RECEIVE_ALBUM,
   RECEIVE_ALL_ALBUMS,
   RECEIVE_ARTIST_ALBUMS,
+  RECEIVE_DELETED_ALBUM,
   RECEIVE_SELLING_ALBUMS,
 } from "../actions/album_actions";
 import { RECEIVE_DELETED_TRACK } from "../actions/track_actions";
@@ -11,10 +12,15 @@ const albumsReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState;
   let album;
+  debugger;
   switch (action.type) {
     // case Object.keys(state).length === 1:
     //   return Object.assign({}, state, action.albums.albums);
     //   break;
+    case RECEIVE_DELETED_ALBUM:
+      newState = Object.assign({}, state);
+      delete newState[action.payload.albums.id];
+      return newState;
     case RECEIVE_DELETED_TRACK:
       album = Object.values(action.payload.albums)[0];
       newState = Object.assign({}, state, {

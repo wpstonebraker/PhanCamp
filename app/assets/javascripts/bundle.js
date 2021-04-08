@@ -94,6 +94,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_ALL_ALBUMS": () => /* binding */ RECEIVE_ALL_ALBUMS,
 /* harmony export */   "RECEIVE_PHISH_ALBUM": () => /* binding */ RECEIVE_PHISH_ALBUM,
 /* harmony export */   "RECEIVE_ALBUM_ERRORS": () => /* binding */ RECEIVE_ALBUM_ERRORS,
+/* harmony export */   "RECEIVE_DELETED_ALBUM": () => /* binding */ RECEIVE_DELETED_ALBUM,
 /* harmony export */   "receiveAllAlbums": () => /* binding */ receiveAllAlbums,
 /* harmony export */   "receiveAlbum": () => /* binding */ receiveAlbum,
 /* harmony export */   "receiveArtistAlbums": () => /* binding */ receiveArtistAlbums,
@@ -107,7 +108,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getPhishShow": () => /* binding */ getPhishShow,
 /* harmony export */   "getSellingAlbums": () => /* binding */ getSellingAlbums,
 /* harmony export */   "postAlbum": () => /* binding */ postAlbum,
-/* harmony export */   "postPhishAlbum": () => /* binding */ postPhishAlbum
+/* harmony export */   "postPhishAlbum": () => /* binding */ postPhishAlbum,
+/* harmony export */   "deleteAlbum": () => /* binding */ deleteAlbum
 /* harmony export */ });
 /* harmony import */ var _util_album_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/album_api_util */ "./frontend/util/album_api_util.js");
 
@@ -117,12 +119,21 @@ var RECEIVE_SELLING_ALBUMS = "RECEIVE_SELLING_ALBUMS";
 var RECEIVE_ALL_ALBUMS = "RECEIVE_ALL_ALBUMS";
 var RECEIVE_PHISH_ALBUM = "RECEIVE_PHISH_ALBUM";
 var RECEIVE_ALBUM_ERRORS = "RECEIVE_ALBUM_ERRORS";
+var RECEIVE_DELETED_ALBUM = "RECEIVE_DELETED_ALBUM";
 var receiveAllAlbums = function receiveAllAlbums(payload) {
   return {
     type: RECEIVE_ALL_ALBUMS,
     payload: payload
   };
 };
+
+var receiveDeletedAlbum = function receiveDeletedAlbum(payload) {
+  return {
+    type: RECEIVE_DELETED_ALBUM,
+    payload: payload
+  };
+};
+
 var receiveAlbum = function receiveAlbum(payload) {
   return {
     type: RECEIVE_ALBUM,
@@ -207,6 +218,13 @@ var postPhishAlbum = function postPhishAlbum(album) {
     // return APIUtil.postPhishAlbum(album).then((album) => {
     //   return dispatch(receivePhishAlbum(album));
     return _util_album_api_util__WEBPACK_IMPORTED_MODULE_0__.postPhishAlbum(album);
+  };
+};
+var deleteAlbum = function deleteAlbum(id) {
+  return function (dispatch) {
+    return _util_album_api_util__WEBPACK_IMPORTED_MODULE_0__.deleteAlbum(id).then(function (id) {
+      return dispatch(receiveDeletedAlbum(id));
+    });
   };
 };
 
@@ -3713,6 +3731,7 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     _this.handlePhoto = _this.handlePhoto.bind(_assertThisInitialized(_this));
     _this.handleAlbumSave = _this.handleAlbumSave.bind(_assertThisInitialized(_this));
+    _this.handleAlbumDelete = _this.handleAlbumDelete.bind(_assertThisInitialized(_this));
     _this.handleDeleteTrack = _this.handleDeleteTrack.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -3811,6 +3830,12 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
       // formData.append("tracks[count]", this.state.tracksArray.length);
     }
   }, {
+    key: "handleAlbumDelete",
+    value: function handleAlbumDelete(id) {
+      debugger;
+      this.props.deleteAlbum(id);
+    }
+  }, {
     key: "handleDeleteTrack",
     value: function handleDeleteTrack(id) {
       var tracks = this.state.tracks;
@@ -3828,6 +3853,7 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this5 = this;
 
+      debugger;
       var _this$props = this.props,
           user = _this$props.user,
           albums = _this$props.albums;
@@ -3839,7 +3865,8 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
           description = _this$state.description,
           credits = _this$state.credits,
           genres = _this$state.genres,
-          tracks = _this$state.tracks;
+          tracks = _this$state.tracks,
+          albumId = _this$state.albumId;
       if (user === undefined || Object.values(albums).length === 0) return null;
 
       if (user.albumIds.length === 0) {
@@ -3878,6 +3905,7 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
         });
       }
 
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "ep-ea-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3885,8 +3913,7 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Select an Album"), userAlbums), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "ep-ea-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-        id: "ep-ea-form",
-        onSubmit: this.handleAlbumSave
+        id: "ep-ea-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-upload-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
@@ -3937,7 +3964,7 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
         placeholder: "(optional)",
         value: description,
         onChange: this.update("description")
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      })), "onSubmit=", this.handleAlbumSave, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-credits-box flex-col caf-input"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "caf-credits"
@@ -3947,8 +3974,15 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
         value: credits,
         onChange: this.update("credits")
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        id: "ep-ea-save-button"
-      }, "Save Changes")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, albumTracks)));
+        id: "ep-ea-save-button",
+        onClick: this.handleAlbumSave
+      }, "Save Changes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        id: "ep-ea-delete-button",
+        onClick: function onClick() {
+          return _this5.handleAlbumDelete(albumId);
+        },
+        value: albumId
+      }, "Delete Album")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, albumTracks)));
     }
   }]);
 
@@ -3973,6 +4007,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _edit_albums__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit_albums */ "./frontend/components/profile/edit_albums.jsx");
 /* harmony import */ var _actions_track_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/track_actions */ "./frontend/actions/track_actions.js");
+/* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/album_actions */ "./frontend/actions/album_actions.js");
+
 
 
 
@@ -4007,6 +4043,9 @@ var mDTP = function mDTP(dispatch) {
     },
     deleteTrack: function deleteTrack(id) {
       return dispatch((0,_actions_track_actions__WEBPACK_IMPORTED_MODULE_2__.deleteTrack)(id));
+    },
+    deleteAlbum: function deleteAlbum(id) {
+      return dispatch((0,_actions_album_actions__WEBPACK_IMPORTED_MODULE_3__.deleteAlbum)(id));
     }
   };
 };
@@ -6241,11 +6280,17 @@ var albumsReducer = function albumsReducer() {
   Object.freeze(state);
   var newState;
   var album;
+  debugger;
 
   switch (action.type) {
     // case Object.keys(state).length === 1:
     //   return Object.assign({}, state, action.albums.albums);
     //   break;
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_DELETED_ALBUM:
+      newState = Object.assign({}, state);
+      delete newState[action.payload.albums.id];
+      return newState;
+
     case _actions_track_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_DELETED_TRACK:
       album = Object.values(action.payload.albums)[0];
       newState = Object.assign({}, state, _defineProperty({}, album.id, album));
@@ -6840,6 +6885,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getAlbum": () => /* binding */ getAlbum,
 /* harmony export */   "getAllAlbums": () => /* binding */ getAllAlbums,
+/* harmony export */   "deleteAlbum": () => /* binding */ deleteAlbum,
 /* harmony export */   "getArtistAlbums": () => /* binding */ getArtistAlbums,
 /* harmony export */   "getPhishAlbum": () => /* binding */ getPhishAlbum,
 /* harmony export */   "getSellingAlbums": () => /* binding */ getSellingAlbums,
@@ -6856,6 +6902,12 @@ var getAlbum = function getAlbum(albumId) {
 var getAllAlbums = function getAllAlbums() {
   return $.ajax({
     url: "/api/features"
+  });
+};
+var deleteAlbum = function deleteAlbum(id) {
+  return $.ajax({
+    method: "DELETE",
+    url: "/api/albums/".concat(id)
   });
 };
 var getArtistAlbums = function getArtistAlbums(artistId) {
