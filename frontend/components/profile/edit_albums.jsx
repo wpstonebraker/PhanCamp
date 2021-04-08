@@ -137,6 +137,7 @@ class EditAlbum extends React.Component {
         .map((track) => {
           return (
             <TrackEdit
+              key={track.id}
               track={track}
               editTrack={this.props.editTrack}
               deleteTrack={this.handleDeleteTrack}
@@ -153,8 +154,7 @@ class EditAlbum extends React.Component {
         </div>
         <div id="ep-ea-form-container">
           <form id="ep-ea-form" onSubmit={this.handleAlbumSave}>
-            <div>
-              {/* <div className="caf-upload-box"> */}
+            <div className="caf-upload-box">
               <span className={uploadPreview === null ? "hidden" : ""}>
                 Click Image to Upload New Cover
               </span>
@@ -169,7 +169,7 @@ class EditAlbum extends React.Component {
                 <input
                   id="ep-ea-photo-button"
                   type="file"
-                  // className="caf-add-photo-button"
+                  className="caf-add-photo-button"
                   hidden
                   onChange={this.handlePhoto.bind(this)}
                 />

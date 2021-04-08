@@ -1,7 +1,7 @@
 json.albums do
     @albums.each do |album|
         json.set! album.id do
-            json.extract! album, :id, :title, :year, :description, :credits, :artist_id
+            json.extract! album, :id, :title, :year, :description, :credits, :artist_id, :track_ids
             if album.show_date
                 json.extract! album, :show_date
             end

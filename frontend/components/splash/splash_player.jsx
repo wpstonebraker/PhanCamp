@@ -3,6 +3,7 @@ import React from "react";
 class SplashPlayer extends React.Component {
   constructor(props) {
     super(props);
+    debugger;
     this.state = {
       // track: props.track,
       playing: false,
@@ -164,6 +165,7 @@ class SplashPlayer extends React.Component {
           >
             from the album {album.title}
           </li>
+          <br />
           <li onClick={() => this.props.history.push(`/artists/${artist.id}`)}>
             by {artist.artistName}
           </li>

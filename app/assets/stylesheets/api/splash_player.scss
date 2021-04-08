@@ -1,7 +1,6 @@
 #splash-player-photo-box {
   height: 335px;
   width: 335px;
-  outline: 1px solid green;
 }
 
 #splash-player-photo {
@@ -17,6 +16,12 @@
 
 #splash-player-details {
   li {
+    font-size: 12px;
     list-style: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 335px;
+    display: block;
+    overflow: hidden;
   }
 }

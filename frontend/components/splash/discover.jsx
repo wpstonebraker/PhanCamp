@@ -84,6 +84,7 @@ class Discover extends React.Component {
                   />
 
                   <li
+                    className="dat-album-link"
                     onClick={() =>
                       this.props.history.push(
                         `/artists/${artists[album.artistId].id}/albums/${
@@ -95,6 +96,7 @@ class Discover extends React.Component {
                     {album.title}
                   </li>
                   <li
+                    className="dat-artist-link"
                     onClick={() =>
                       this.props.history.push(
                         `/artists/${artists[album.artistId].id}`
@@ -117,6 +119,7 @@ class Discover extends React.Component {
                 />
 
                 <li
+                  className="dat-album-link"
                   onClick={() =>
                     this.props.history.push(
                       `/artists/${artists[album.artistId].id}/albums/${
@@ -128,6 +131,7 @@ class Discover extends React.Component {
                   {album.title}
                 </li>
                 <li
+                  className="dat-artist-link"
                   onClick={() =>
                     this.props.history.push(
                       `/artists/${artists[album.artistId].id}`
@@ -153,7 +157,13 @@ class Discover extends React.Component {
     return (
       <div id="discover-outer">
         <div id="discover-genre-container">
-          <div id="discover-genre-box">{genreTabs}</div>
+          <div id="discover-genre-box">
+            <div id="genre-line-1-box">
+              <div id="genre-line-1">{genreTabs}</div>
+            </div>
+            <div id="genre-line-2"></div>
+            <div id="genre-line-3"></div>
+          </div>
         </div>
         <div id="discover-albums-container">
           <div id="discover-albums-box">{albumTiles}</div>

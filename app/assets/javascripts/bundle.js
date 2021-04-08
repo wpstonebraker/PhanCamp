@@ -3860,6 +3860,7 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
           return a - b;
         }).map(function (track) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_edit_tracks__WEBPACK_IMPORTED_MODULE_1__.default, {
+            key: track.id,
             track: track,
             editTrack: _this5.props.editTrack,
             deleteTrack: _this5.handleDeleteTrack
@@ -3877,7 +3878,9 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         id: "ep-ea-form",
         onSubmit: this.handleAlbumSave
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "caf-upload-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         className: uploadPreview === null ? "hidden" : ""
       }, "Click Image to Upload New Cover"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-upload",
@@ -3887,8 +3890,8 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
         className: uploadPreview === null ? "" : "hidden"
       }, "Upload Album Art"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "ep-ea-photo-button",
-        type: "file" // className="caf-add-photo-button"
-        ,
+        type: "file",
+        className: "caf-add-photo-button",
         hidden: true,
         onChange: this.handlePhoto.bind(this)
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5601,10 +5604,12 @@ var Discover = /*#__PURE__*/function (_React$Component) {
             return _this3.handleAlbumClick(album.id);
           }
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+          className: "dat-album-link",
           onClick: function onClick() {
             return _this3.props.history.push("/artists/".concat(artists[album.artistId].id, "/albums/").concat(album.id));
           }
         }, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+          className: "dat-artist-link",
           onClick: function onClick() {
             return _this3.props.history.push("/artists/".concat(artists[album.artistId].id));
           }
@@ -5621,10 +5626,12 @@ var Discover = /*#__PURE__*/function (_React$Component) {
             return _this3.handleAlbumClick(album.id);
           }
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+          className: "dat-album-link",
           onClick: function onClick() {
             return _this3.props.history.push("/artists/".concat(artists[album.artistId].id, "/albums/").concat(album.id));
           }
         }, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+          className: "dat-artist-link",
           onClick: function onClick() {
             return _this3.props.history.push("/artists/".concat(artists[album.artistId].id));
           }
@@ -5645,7 +5652,15 @@ var Discover = /*#__PURE__*/function (_React$Component) {
         id: "discover-genre-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "discover-genre-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "genre-line-1-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "genre-line-1"
       }, genreTabs)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "genre-line-2"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "genre-line-3"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "discover-albums-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "discover-albums-box"
@@ -5791,6 +5806,7 @@ var SplashPlayer = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, SplashPlayer);
 
     _this = _super.call(this, props);
+    debugger;
     _this.state = {
       // track: props.track,
       playing: false,
@@ -5958,7 +5974,7 @@ var SplashPlayer = /*#__PURE__*/function (_React$Component) {
           onClick: function onClick() {
             return _this2.props.history.push("/artists/".concat(artist.id, "/albums/").concat(album.id));
           }
-        }, "from the album ", album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+        }, "from the album ", album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
           onClick: function onClick() {
             return _this2.props.history.push("/artists/".concat(artist.id));
           }
@@ -6035,7 +6051,9 @@ var mSTP = function mSTP(state, ownProps) {
   } else if ( // Object.values(state.entities.albums).filter((album) => {
   //   return album.title === "Dr. Zack's Picks Vol. 1";
   // })[0]
-  test && state.entities.tracks[test.trackIds[0]]) {
+  // test !== undefined
+  test !== undefined && state.entities.tracks[test.trackIds[0]]) {
+    debugger;
     var init = Object.values(state.entities.albums).filter(function (album) {
       return album.title === "Dr. Zack's Picks Vol. 1";
     })[0];

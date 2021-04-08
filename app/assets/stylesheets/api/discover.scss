@@ -4,16 +4,40 @@
 }
 
 #discover-genre-container {
-  height: 20px;
-  background-color: #42a0bd;
+  height: 120px;
   display: flex;
 }
 
 #discover-genre-box {
+  height: 120px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#genre-line-1-box {
+  background-color: #42a0bd;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+#genre-line-1 {
+  background-color: #42a0bd;
   width: 70%;
   margin: auto;
   display: flex;
   justify-content: space-around;
+}
+
+#genre-line-2 {
+  height: 40px;
+  background-color: #4390a8;
+}
+#genre-line-3 {
+  height: 40px;
+  background-color: #428194;
 }
 
 .discover-genre-tab {
@@ -22,8 +46,9 @@
 }
 
 #discover-albums-container {
+  padding-top: 40px;
   width: 70%;
-  //   margin: auto;
+  margin: auto;
   display: flex;
   //   flex-direction: row;
   //   justify-content: space-around;
@@ -42,13 +67,32 @@
 .discover-album-tile {
   height: 250px;
   width: 200px;
-  border: 1px solid green;
   li {
     list-style: none;
   }
 }
 
 .discover-album-tile-photo {
-  height: 75px;
-  width: 75px;
+  height: 200px;
+  width: 200px;
+}
+
+.dat-album-link {
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 200px;
+  display: block;
+  overflow: hidden;
+}
+
+.dat-album-link:hover {
+  text-decoration: underline;
+}
+
+.dat-artist-link {
+  font-size: 12px;
+  cursor: pointer;
 }
