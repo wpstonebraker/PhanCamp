@@ -108,41 +108,43 @@ class Discover extends React.Component {
                 </div>
               );
             })
-        : Object.values(this.state.discoverAlbums).map((album) => {
-            return (
-              <div key={album.id} className="discover-album-tile">
-                <img
-                  src={album.photoUrl}
-                  alt=""
-                  className="discover-album-tile-photo"
-                  onClick={() => this.handleAlbumClick(album.id)}
-                />
+        : Object.values(this.state.discoverAlbums)
+            .slice(0, 8)
+            .map((album) => {
+              return (
+                <div key={album.id} className="discover-album-tile">
+                  <img
+                    src={album.photoUrl}
+                    alt=""
+                    className="discover-album-tile-photo"
+                    onClick={() => this.handleAlbumClick(album.id)}
+                  />
 
-                <li
-                  className="dat-album-link"
-                  onClick={() =>
-                    this.props.history.push(
-                      `/artists/${artists[album.artistId].id}/albums/${
-                        album.id
-                      }`
-                    )
-                  }
-                >
-                  {album.title}
-                </li>
-                <li
-                  className="dat-artist-link"
-                  onClick={() =>
-                    this.props.history.push(
-                      `/artists/${artists[album.artistId].id}`
-                    )
-                  }
-                >
-                  {artists[album.artistId].artistName}
-                </li>
-              </div>
-            );
-          });
+                  <li
+                    className="dat-album-link"
+                    onClick={() =>
+                      this.props.history.push(
+                        `/artists/${artists[album.artistId].id}/albums/${
+                          album.id
+                        }`
+                      )
+                    }
+                  >
+                    {album.title}
+                  </li>
+                  <li
+                    className="dat-artist-link"
+                    onClick={() =>
+                      this.props.history.push(
+                        `/artists/${artists[album.artistId].id}`
+                      )
+                    }
+                  >
+                    {artists[album.artistId].artistName}
+                  </li>
+                </div>
+              );
+            });
     const genreTabs = Object.values(this.props.genres).map((genre) => {
       return (
         <li

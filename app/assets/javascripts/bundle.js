@@ -5625,7 +5625,7 @@ var Discover = /*#__PURE__*/function (_React$Component) {
             return _this3.props.history.push("/artists/".concat(artists[album.artistId].id));
           }
         }, artists[album.artistId].artistName));
-      }) : Object.values(this.state.discoverAlbums).map(function (album) {
+      }) : Object.values(this.state.discoverAlbums).slice(0, 8).map(function (album) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           key: album.id,
           className: "discover-album-tile"
