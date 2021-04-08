@@ -125,6 +125,17 @@ class PhishAlbumCreateForm extends React.Component {
     document.getElementById("caf-add-photo-button").click();
   }
 
+  // handleGenreClick(id) {
+  //   const genreTag = document.getElementById(`genre-${id}`);
+  //   genreTag.classList.toggle("selected-genre");
+  //   if (this.state.genresArray.includes(id)) {
+  //     this.state.genresArray.splice(this.state.genresArray.indexOf(id), 1);
+  //   } else {
+  //     this.state.genresArray.push(id);
+  //   }
+  //   console.log(this.state.genresArray);
+  // }
+
   renderTracks() {
     return this.state.tracksArray.map((track) => {
       return <li key={track.id}>{track.title}</li>;
@@ -137,6 +148,18 @@ class PhishAlbumCreateForm extends React.Component {
     const uploadPreview = this.state.photoUrl ? (
       <img height="212px" width="212px" src={this.state.photoUrl} />
     ) : null;
+    // const genreTabs = Object.values(this.props.genres).map((genre) => {
+    //   return (
+    //     <li
+    //       className="caf-genre-tab"
+    //       key={genre.id}
+    //       id={`genre-${genre.id}`}
+    //       onClick={() => this.handleGenreClick(genre.id)}
+    //     >
+    //       {genre.genre}
+    //     </li>
+    //   );
+    // });
     return (
       <div className="caf-outer">
         <div className="caf-inner">
@@ -188,6 +211,7 @@ class PhishAlbumCreateForm extends React.Component {
               <p id="phish-caf-art-error" className="hidden">
                 please upload an album cover
               </p>
+              {/* <div>{genreTabs}</div> */}
             </div>
 
             <button onClick={() => this.handleSubmit()}>Add Phish Show</button>

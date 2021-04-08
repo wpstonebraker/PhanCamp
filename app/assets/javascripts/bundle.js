@@ -1413,7 +1413,17 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
     key: "uploadImage",
     value: function uploadImage() {
       document.getElementById("caf-add-photo-button").click();
-    }
+    } // handleGenreClick(id) {
+    //   const genreTag = document.getElementById(`genre-${id}`);
+    //   genreTag.classList.toggle("selected-genre");
+    //   if (this.state.genresArray.includes(id)) {
+    //     this.state.genresArray.splice(this.state.genresArray.indexOf(id), 1);
+    //   } else {
+    //     this.state.genresArray.push(id);
+    //   }
+    //   console.log(this.state.genresArray);
+    // }
+
   }, {
     key: "renderTracks",
     value: function renderTracks() {
@@ -1433,7 +1443,19 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         height: "212px",
         width: "212px",
         src: this.state.photoUrl
-      }) : null;
+      }) : null; // const genreTabs = Object.values(this.props.genres).map((genre) => {
+      //   return (
+      //     <li
+      //       className="caf-genre-tab"
+      //       key={genre.id}
+      //       id={`genre-${genre.id}`}
+      //       onClick={() => this.handleGenreClick(genre.id)}
+      //     >
+      //       {genre.genre}
+      //     </li>
+      //   );
+      // });
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1523,7 +1545,8 @@ var mSTP = function mSTP(state, ownProps) {
       photoUrl: null,
       showDate: null,
       tracksArray: []
-    }
+    },
+    genres: state.entities.genres
   };
 };
 
@@ -3854,9 +3877,7 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         id: "ep-ea-form",
         onSubmit: this.handleAlbumSave
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "caf-upload-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         className: uploadPreview === null ? "hidden" : ""
       }, "Click Image to Upload New Cover"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-upload",
@@ -3866,8 +3887,8 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
         className: uploadPreview === null ? "" : "hidden"
       }, "Upload Album Art"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "ep-ea-photo-button",
-        type: "file",
-        className: "caf-add-photo-button",
+        type: "file" // className="caf-add-photo-button"
+        ,
         hidden: true,
         onChange: this.handlePhoto.bind(this)
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

@@ -18,7 +18,7 @@ def get_tracks
     
 end
 
-GENRES_TAGS = %w(electronic rock metal alternative hip-hop experimental punk folk pop ambient soundtrack jazz acoustic funk soul classical reggae country blues latin kids)
+GENRES_TAGS = %w(electronic rock metal alternative experimental punk folk pop ambient jazz funk soul reggae blues)
 
 GENRES_TAGS.each do |genre|
     Genre.create!(

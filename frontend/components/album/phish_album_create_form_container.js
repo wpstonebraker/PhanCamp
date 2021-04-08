@@ -17,6 +17,7 @@ const mSTP = (state, ownProps) => {
       showDate: null,
       tracksArray: [],
     },
+    genres: state.entities.genres,
   };
 };
 
