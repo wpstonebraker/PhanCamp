@@ -56,9 +56,6 @@ json.util do
     json.features do
         json.array!(@features.ids)
     end
-    json.selling do
-        json.array!(@selling)
-    end
     json.daily do
         json.array!(@daily)
     end

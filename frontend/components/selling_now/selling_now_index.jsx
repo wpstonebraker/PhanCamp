@@ -11,7 +11,7 @@ class SellingNowIndex extends React.Component {
   // }
 
   render() {
-    if (!this.props.selling) return null;
+    if (Object.keys(this.props.albums).length === 0) return null;
 
     // const items = [];
     // while (items.length < 7) {
@@ -25,18 +25,26 @@ class SellingNowIndex extends React.Component {
     // const newItems = items.map((album, i) => {
     //   return <SellingNowItem album={album} key={album.id + i} seconds={i} />;
     // });
-
-    const items = this.props.selling.map((key, i) => {
-      const album = this.props.albums[key];
-      return (
+    debugger;
+    const max = Object.keys(this.props.albums).length;
+    const albums = Object.values(this.props.albums);
+    const artists = this.props.artists;
+    let items = [];
+    debugger;
+    for (let i = 0; i < 8; i++) {
+      debugger;
+      const rand = ~~(Math.random() * max);
+      const album = albums[rand];
+      items.push(
         <SellingNowItem
           album={album}
-          artist={this.props.artists[album.artistId]}
+          artist={artists[album.artistId]}
           // key={this.props.albums[key].id}
           seconds={i}
         />
       );
-    });
+    }
+
     // const newItems = [];
     // while (newItems.length < 8) {
     //   // let newItem = items[~~(Math.random() * this.props.albums.length) + 1];

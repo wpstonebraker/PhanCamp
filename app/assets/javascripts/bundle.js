@@ -5091,9 +5091,7 @@ var SellingNowIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(SellingNowIndex, [{
     key: "render",
     value: function render() {
-      var _this = this;
-
-      if (!this.props.selling) return null; // const items = [];
+      if (Object.keys(this.props.albums).length === 0) return null; // const items = [];
       // while (items.length < 7) {
       //   ;
       //   items.push(
@@ -5105,15 +5103,24 @@ var SellingNowIndex = /*#__PURE__*/function (_React$Component) {
       //   return <SellingNowItem album={album} key={album.id + i} seconds={i} />;
       // });
 
-      var items = this.props.selling.map(function (key, i) {
-        var album = _this.props.albums[key];
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_selling_now_item__WEBPACK_IMPORTED_MODULE_1__.default, {
+      debugger;
+      var max = Object.keys(this.props.albums).length;
+      var albums = Object.values(this.props.albums);
+      var artists = this.props.artists;
+      var items = [];
+      debugger;
+
+      for (var i = 0; i < 8; i++) {
+        debugger;
+        var rand = ~~(Math.random() * max);
+        var album = albums[rand];
+        items.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_selling_now_item__WEBPACK_IMPORTED_MODULE_1__.default, {
           album: album,
-          artist: _this.props.artists[album.artistId] // key={this.props.albums[key].id}
+          artist: artists[album.artistId] // key={this.props.albums[key].id}
           ,
           seconds: i
-        });
-      }); // const newItems = [];
+        }));
+      } // const newItems = [];
       // while (newItems.length < 8) {
       //   // let newItem = items[~~(Math.random() * this.props.albums.length) + 1];
       //   // if (!newItems.includes(newItem)) {
@@ -5125,6 +5132,7 @@ var SellingNowIndex = /*#__PURE__*/function (_React$Component) {
       // }
       // const randMax = this.props.albums.length;
       // const randTimes =
+
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "factoid-outer"
@@ -5168,10 +5176,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
+  debugger;
   return {
     artists: state.entities.artists,
-    albums: state.entities.albums,
-    selling: state.entities.util.selling
+    albums: state.entities.albums
   };
 };
 
