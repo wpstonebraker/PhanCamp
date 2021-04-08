@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const DailyItem = ({ album, history }) => {
+const DailyItem = ({ album, artist, history }) => {
   // const handleClick = () => {
   //   getAlbum(album.id);
   //   history.push(`/artists/${album.artistId}/albums/${album.id}`);
   //   // <Redirect to={`/album/${album.id}`} />;
   // };
+
   return (
     // <div className="di-item-box" onClick={() => handleClick()}>
     <Link to={`/artists/${album.artistId}/albums/${album.id}`}>
@@ -14,7 +15,7 @@ const DailyItem = ({ album, history }) => {
         <div className="di-item-tile">
           <img src={album.photoUrl} alt="" />
           <div className="sni-tile-title">{album.title}</div>
-          <div className="sni-tile-deets">by {album.artist}</div>
+          <div className="sni-tile-deets">by {artist.artistName}</div>
           <br />
           <div className="sni-tile-deets">{album.description}</div>
         </div>

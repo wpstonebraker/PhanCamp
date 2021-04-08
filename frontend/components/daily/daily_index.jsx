@@ -14,11 +14,20 @@ class DailyIndex extends React.Component {
   render() {
     if (!this.props.daily) return null;
     const mainItem = this.props.albums[this.props.daily.shift()];
-    const main = <DailyMainItem album={mainItem} key={mainItem.id} />;
+    const main = (
+      <DailyMainItem
+        album={mainItem}
+        key={mainItem.id}
+        artist={this.props.artists[mainItem.artistId]}
+      />
+    );
     const items = this.props.daily.map((key, i) => {
+      const album = this.props.albums[key];
       return (
         <DailyItem
-          album={this.props.albums[key]}
+          key={album.id}
+          album={album}
+          artist={this.props.artists[album.artistId]}
           // key={album.id}
           history={this.props.history}
         />

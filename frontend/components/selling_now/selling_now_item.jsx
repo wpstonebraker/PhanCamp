@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SellingNowItem = ({ album, seconds }) => {
+const SellingNowItem = ({ album, artist, seconds }) => {
   return (
     <Link to={`/artists/${album.artistId}/albums/${album.id}`}>
       {/* // <Link to="/albums"> */}
@@ -9,7 +9,7 @@ const SellingNowItem = ({ album, seconds }) => {
         <div className="sni-tile">
           <img src={album.photoUrl} alt="" className="sni-tile-photo" />
           <div className="sni-tile-title">{album.title}</div>
-          <div className="sni-tile-deets">by {album.artist}</div>
+          <div className="sni-tile-deets">by {artist.artistName}</div>
           <div className="sni-tile-deets">
             Sold for ${~~(Math.random() * 10) + 1}
           </div>

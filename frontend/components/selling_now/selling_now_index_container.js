@@ -4,6 +4,7 @@ import SellingNowIndex from "./selling_now_index";
 
 const mSTP = (state, ownProps) => {
   return {
+    artists: state.entities.artists,
     albums: state.entities.albums,
     selling: state.entities.util.selling,
   };

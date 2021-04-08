@@ -27,9 +27,11 @@ class SellingNowIndex extends React.Component {
     // });
 
     const items = this.props.selling.map((key, i) => {
+      const album = this.props.albums[key];
       return (
         <SellingNowItem
-          album={this.props.albums[key]}
+          album={album}
+          artist={this.props.artists[album.artistId]}
           // key={this.props.albums[key].id}
           seconds={i}
         />

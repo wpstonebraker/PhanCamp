@@ -5,6 +5,7 @@ import DailyIndex from "./daily_index";
 
 const mSTP = (state, ownProps) => {
   return {
+    artists: state.entities.artists,
     albums: state.entities.albums,
     daily: state.entities.util.daily,
   };

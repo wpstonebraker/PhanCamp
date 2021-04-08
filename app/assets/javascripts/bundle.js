@@ -2819,11 +2819,15 @@ var DailyIndex = /*#__PURE__*/function (_React$Component) {
       var mainItem = this.props.albums[this.props.daily.shift()];
       var main = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_daily_main_item__WEBPACK_IMPORTED_MODULE_2__.default, {
         album: mainItem,
-        key: mainItem.id
+        key: mainItem.id,
+        artist: this.props.artists[mainItem.artistId]
       });
       var items = this.props.daily.map(function (key, i) {
+        var album = _this.props.albums[key];
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_daily_item__WEBPACK_IMPORTED_MODULE_1__.default, {
-          album: _this.props.albums[key] // key={album.id}
+          key: album.id,
+          album: album,
+          artist: _this.props.artists[album.artistId] // key={album.id}
           ,
           history: _this.props.history
         });
@@ -2876,6 +2880,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state, ownProps) {
   return {
+    artists: state.entities.artists,
     albums: state.entities.albums,
     daily: state.entities.util.daily
   };
@@ -2911,6 +2916,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var DailyItem = function DailyItem(_ref) {
   var album = _ref.album,
+      artist = _ref.artist,
       history = _ref.history;
   // const handleClick = () => {
   //   getAlbum(album.id);
@@ -2933,7 +2939,7 @@ var DailyItem = function DailyItem(_ref) {
       className: "sni-tile-title"
     }, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "sni-tile-deets"
-    }, "by ", album.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    }, "by ", artist.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "sni-tile-deets"
     }, album.description))))
   );
@@ -2966,6 +2972,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var DailyMainItem = function DailyMainItem(_ref) {
   var album = _ref.album,
+      artist = _ref.artist,
       history = _ref.history;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
     to: "/artists/".concat(album.artistId, "/albums/").concat(album.id)
@@ -2982,7 +2989,7 @@ var DailyMainItem = function DailyMainItem(_ref) {
     className: "di-main-title"
   }, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "di-main-artist"
-  }, "by ", album.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "by ", artist.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "di-main-deets"
   }, album.description)))));
 };
@@ -5099,8 +5106,10 @@ var SellingNowIndex = /*#__PURE__*/function (_React$Component) {
       // });
 
       var items = this.props.selling.map(function (key, i) {
+        var album = _this.props.albums[key];
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_selling_now_item__WEBPACK_IMPORTED_MODULE_1__.default, {
-          album: _this.props.albums[key] // key={this.props.albums[key].id}
+          album: album,
+          artist: _this.props.artists[album.artistId] // key={this.props.albums[key].id}
           ,
           seconds: i
         });
@@ -5160,6 +5169,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state, ownProps) {
   return {
+    artists: state.entities.artists,
     albums: state.entities.albums,
     selling: state.entities.util.selling
   };
@@ -5195,6 +5205,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var SellingNowItem = function SellingNowItem(_ref) {
   var album = _ref.album,
+      artist = _ref.artist,
       seconds = _ref.seconds;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
     to: "/artists/".concat(album.artistId, "/albums/").concat(album.id)
@@ -5210,7 +5221,7 @@ var SellingNowItem = function SellingNowItem(_ref) {
     className: "sni-tile-title"
   }, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "sni-tile-deets"
-  }, "by ", album.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "by ", artist.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "sni-tile-deets"
   }, "Sold for $", ~~(Math.random() * 10) + 1), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "sni-tile-deets"
