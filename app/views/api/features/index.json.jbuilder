@@ -40,7 +40,6 @@ json.albums do
 end
 
 json.tracks do
-    debugger
     @tracks.each do |track|
         json.set! track.id do
             json.extract! track, :track_name, :track_num, :id, :album_id
