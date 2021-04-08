@@ -98,6 +98,7 @@ class AlbumShow extends React.Component {
     if (album.showDate !== undefined) {
       // trackItems = Object.values(tracks).map((track, i) => {
       trackItems = Object.values(tracks)
+        .sort((a, b) => a.trackNum - b.trackNum)
         .filter((track) => track.showDate === album.showDate)
         .map((track, i) => {
           return (

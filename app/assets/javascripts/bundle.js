@@ -1094,7 +1094,9 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
 
       if (album.showDate !== undefined) {
         // trackItems = Object.values(tracks).map((track, i) => {
-        trackItems = Object.values(tracks).filter(function (track) {
+        trackItems = Object.values(tracks).sort(function (a, b) {
+          return a.trackNum - b.trackNum;
+        }).filter(function (track) {
           return track.showDate === album.showDate;
         }).map(function (track, i) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_phish_track_item__WEBPACK_IMPORTED_MODULE_4__.default, {
