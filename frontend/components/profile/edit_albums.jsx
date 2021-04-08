@@ -89,16 +89,13 @@ class EditAlbum extends React.Component {
   }
 
   handleDeleteTrack(id) {
-    debugger;
     let tracks = this.state.tracks;
-    debugger;
     let newTracks = [];
     tracks.forEach((track) => {
       if (track.id !== id) newTracks.push(track);
     });
     this.props.deleteTrack(id);
     this.setState({ tracks: newTracks });
-    debugger;
   }
 
   render() {
@@ -129,9 +126,7 @@ class EditAlbum extends React.Component {
       );
     });
     let albumTracks;
-    debugger;
     if (tracks.length !== 0) {
-      debugger;
       albumTracks = tracks
         .sort((a, b) => a - b)
         .map((track) => {
@@ -145,7 +140,6 @@ class EditAlbum extends React.Component {
           );
         });
     }
-    debugger;
     return (
       <div id="ep-ea-container">
         <div id="ep-ea-album-box">

@@ -3,7 +3,6 @@ import React from "react";
 class SplashPlayer extends React.Component {
   constructor(props) {
     super(props);
-    debugger;
     this.state = {
       // track: props.track,
       playing: false,

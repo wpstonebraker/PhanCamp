@@ -3,12 +3,10 @@ import { withRouter } from "react-router";
 import SplashPlayer from "./splash_player";
 
 const mSTP = (state, ownProps) => {
-  debugger;
   const test = Object.values(state.entities.albums).filter((album) => {
     return album.title === "Dr. Zack's Picks Vol. 1";
   })[0];
   if (state.entities.audio.albumId) {
-    debugger;
     return {
       track: state.entities.audio,
       artist:
@@ -19,7 +17,6 @@ const mSTP = (state, ownProps) => {
       photo: state.entities.albums[state.entities.audio.albumId].photoUrl,
     };
     // } else if (Object.values(state.entities.albums)[0] !== undefined) {
-    //   // debugger;
     //   return {
     //     audio: state.entities.audio,
     //     track:
@@ -38,7 +35,6 @@ const mSTP = (state, ownProps) => {
     //   };
     //prod
     // } else if (state.entities.albums[33]) {
-    //   debugger;
     //   return {
     //     album: state.entities.albums[33],
     //     track: state.entities.tracks[state.entities.albums[33].trackIds[0]],
@@ -53,7 +49,6 @@ const mSTP = (state, ownProps) => {
     test !== undefined &&
     state.entities.tracks[test.trackIds[0]]
   ) {
-    debugger;
     const init = Object.values(state.entities.albums).filter((album) => {
       return album.title === "Dr. Zack's Picks Vol. 1";
     })[0];

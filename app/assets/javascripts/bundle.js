@@ -1009,8 +1009,6 @@ var AlbumShow = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      debugger;
-
       if (this.props.artist.artistName === "Phish" && this.props.album.showDate !== undefined) {
         // this.props.getPhishAlbum(this.props.album.showDate);
         this.props.getPhishAlbum(this.props.album.showDate).then(function () {
@@ -3806,9 +3804,7 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleDeleteTrack",
     value: function handleDeleteTrack(id) {
-      debugger;
       var tracks = this.state.tracks;
-      debugger;
       var newTracks = [];
       tracks.forEach(function (track) {
         if (track.id !== id) newTracks.push(track);
@@ -3817,7 +3813,6 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
       this.setState({
         tracks: newTracks
       });
-      debugger;
     }
   }, {
     key: "render",
@@ -3860,10 +3855,8 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
         }));
       });
       var albumTracks;
-      debugger;
 
       if (tracks.length !== 0) {
-        debugger;
         albumTracks = tracks.sort(function (a, b) {
           return a - b;
         }).map(function (track) {
@@ -3876,7 +3869,6 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
         });
       }
 
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "ep-ea-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -4083,8 +4075,6 @@ var TrackEdit = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
-      debugger;
-
       if (prevProps.track.trackName !== this.props.track.trackName) {
         this.setState({
           track_name: this.props.track.trackName,
@@ -5814,7 +5804,6 @@ var SplashPlayer = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, SplashPlayer);
 
     _this = _super.call(this, props);
-    debugger;
     _this.state = {
       // track: props.track,
       playing: false,
@@ -6017,20 +6006,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   var test = Object.values(state.entities.albums).filter(function (album) {
     return album.title === "Dr. Zack's Picks Vol. 1";
   })[0];
 
   if (state.entities.audio.albumId) {
-    debugger;
     return {
       track: state.entities.audio,
       artist: state.entities.artists[state.entities.albums[state.entities.audio.albumId].artistId],
       album: state.entities.albums[state.entities.audio.albumId],
       photo: state.entities.albums[state.entities.audio.albumId].photoUrl
     }; // } else if (Object.values(state.entities.albums)[0] !== undefined) {
-    //   // debugger;
     //   return {
     //     audio: state.entities.audio,
     //     track:
@@ -6049,7 +6035,6 @@ var mSTP = function mSTP(state, ownProps) {
     //   };
     //prod
     // } else if (state.entities.albums[33]) {
-    //   debugger;
     //   return {
     //     album: state.entities.albums[33],
     //     track: state.entities.tracks[state.entities.albums[33].trackIds[0]],
@@ -6061,7 +6046,6 @@ var mSTP = function mSTP(state, ownProps) {
   // })[0]
   // test !== undefined
   test !== undefined && state.entities.tracks[test.trackIds[0]]) {
-    debugger;
     var init = Object.values(state.entities.albums).filter(function (album) {
       return album.title === "Dr. Zack's Picks Vol. 1";
     })[0];
