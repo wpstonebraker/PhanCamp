@@ -12,7 +12,6 @@ const albumsReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState;
   let album;
-  debugger;
   switch (action.type) {
     // case Object.keys(state).length === 1:
     //   return Object.assign({}, state, action.albums.albums);

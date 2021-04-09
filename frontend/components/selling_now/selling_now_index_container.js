@@ -3,7 +3,6 @@ import { getAllAlbums } from "../../actions/album_actions";
 import SellingNowIndex from "./selling_now_index";
 
 const mSTP = (state, ownProps) => {
-  debugger;
   return {
     artists: state.entities.artists,
     albums: state.entities.albums,

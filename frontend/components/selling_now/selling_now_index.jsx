@@ -25,14 +25,11 @@ class SellingNowIndex extends React.Component {
     // const newItems = items.map((album, i) => {
     //   return <SellingNowItem album={album} key={album.id + i} seconds={i} />;
     // });
-    debugger;
     const max = Object.keys(this.props.albums).length;
     const albums = Object.values(this.props.albums);
     const artists = this.props.artists;
     let items = [];
-    debugger;
     for (let i = 0; i < 8; i++) {
-      debugger;
       const rand = ~~(Math.random() * max);
       const album = albums[rand];
       items.push(

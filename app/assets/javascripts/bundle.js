@@ -3834,7 +3834,6 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleAlbumDelete",
     value: function handleAlbumDelete(id) {
-      debugger;
       this.props.deleteAlbum(id);
     }
   }, {
@@ -3855,7 +3854,6 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this5 = this;
 
-      debugger;
       var _this$props = this.props,
           user = _this$props.user,
           albums = _this$props.albums;
@@ -3907,7 +3905,6 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
         });
       }
 
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "ep-ea-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5144,15 +5141,12 @@ var SellingNowIndex = /*#__PURE__*/function (_React$Component) {
       //   return <SellingNowItem album={album} key={album.id + i} seconds={i} />;
       // });
 
-      debugger;
       var max = Object.keys(this.props.albums).length;
       var albums = Object.values(this.props.albums);
       var artists = this.props.artists;
       var items = [];
-      debugger;
 
       for (var i = 0; i < 8; i++) {
-        debugger;
         var rand = ~~(Math.random() * max);
         var album = albums[rand];
         items.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_selling_now_item__WEBPACK_IMPORTED_MODULE_1__.default, {
@@ -5217,7 +5211,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  debugger;
   return {
     artists: state.entities.artists,
     albums: state.entities.albums
@@ -6286,7 +6279,6 @@ var albumsReducer = function albumsReducer() {
   Object.freeze(state);
   var newState;
   var album;
-  debugger;
 
   switch (action.type) {
     // case Object.keys(state).length === 1:

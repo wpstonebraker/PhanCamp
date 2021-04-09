@@ -90,7 +90,6 @@ class EditAlbum extends React.Component {
   }
 
   handleAlbumDelete(id) {
-    debugger;
     this.props.deleteAlbum(id);
   }
 
@@ -105,7 +104,6 @@ class EditAlbum extends React.Component {
   }
 
   render() {
-    debugger;
     const { user, albums } = this.props;
     const {
       title,
@@ -148,7 +146,6 @@ class EditAlbum extends React.Component {
           );
         });
     }
-    debugger;
     return (
       <div id="ep-ea-container">
         <div id="ep-ea-album-box">

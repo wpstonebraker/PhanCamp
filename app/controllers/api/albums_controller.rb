@@ -87,12 +87,9 @@ class Api::AlbumsController < ApplicationController
     end
 
     def destroy
-        debugger
         @album = Album.find(params[:id])
-        debugger
         
         if @album.destroy
-            debugger
             render :delete
         else
             render json: @album.errors.full_messages, status: 422
