@@ -36,7 +36,9 @@ class DailyIndex extends React.Component {
     const topRow = items.splice(0, 2);
     return (
       <div className="di-outer">
-        <span className="di-label">PHANCAMP DAILY</span>
+        <div id="di-label-box">
+          <div className="di-label">PHANCAMP DAILY</div>
+        </div>
         <div className="di-inner">
           <div className="di-box">
             <div className="di-box-top-row">

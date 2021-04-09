@@ -3,15 +3,23 @@
   width: 100%;
   height: 750px;
   display: flex;
-  margin: auto;
-  flex-direction: row;
+  // margin: auto;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   background-color: #eef2f3;
+}
+
+#di-label-box {
+  width: 1200px;
+  // top: 100px;
+  // margin: auto;
 }
 
 .di-label {
   text-transform: uppercase;
   position: absolute;
-  left: 364px;
+  // left: 364px;
   top: 50px;
   color: #408ea3;
   font-size: 14px;
@@ -19,8 +27,8 @@
 }
 
 .di-inner {
-  width: 70%;
-  margin: auto;
+  width: 1200px;
+  // margin: auto;
   display: flex;
   //   background-color: royalblue;
 }

@@ -158,6 +158,9 @@ class Discover extends React.Component {
     });
     return (
       <div id="discover-outer">
+        <div id="discover-label-box">
+          <div id="discover-label">Discover</div>
+        </div>
         <div id="discover-genre-container">
           <div id="discover-genre-box">
             <div id="genre-line-1-box">
