@@ -217,7 +217,7 @@ class EditAlbum extends React.Component {
                   onChange={this.update("description")}
                 />
               </div>
-              onSubmit={this.handleAlbumSave}
+
               <div className="caf-credits-box flex-col caf-input">
                 <label htmlFor="caf-credits">album credits:</label>
                 <textarea

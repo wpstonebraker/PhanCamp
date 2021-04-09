@@ -3964,7 +3964,7 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
         placeholder: "(optional)",
         value: description,
         onChange: this.update("description")
-      })), "onSubmit=", this.handleAlbumSave, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "caf-credits-box flex-col caf-input"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "caf-credits"
