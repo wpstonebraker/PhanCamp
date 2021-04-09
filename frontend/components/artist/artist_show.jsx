@@ -28,9 +28,9 @@ class ArtistShow extends React.Component {
     if (this.props.artistId !== this.props.match.params.id) return null;
     if (this.props.artist === undefined) return null;
     if (
-      (this.props.artist.id === this.props.currentUserId &&
-        this.props.artist.bannerUrl === undefined) ||
-      this.props.artist.thumbnailUrl === undefined
+      this.props.artist.id === this.props.currentUserId &&
+      (this.props.artist.bannerUrl === undefined ||
+        this.props.artist.thumbnailUrl === undefined)
     ) {
       return <Redirect to="/edit-profile" />;
     }

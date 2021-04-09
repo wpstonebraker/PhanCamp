@@ -5,16 +5,23 @@ import { receiveUserUpdate } from "../../actions/session_actions";
 import Profile from "./profile";
 
 const mSTP = (state, ownProps) => {
-  const user = state.entities.users[state.session.id];
-  return {
-    user,
-    genres: state.entities.genres,
+  if (Object.keys(state.entities.artists).length) {
+    const user = state.entities.users[state.session.id];
+    return {
+      user,
+      genres: state.entities.genres,
+    };
+  } else {
+    return {
+      user: {},
+      genres: {},
+    };
+  }
 
-    // state: {
-    //   artist_name: user.artistName,
-    //   email: user.email,
-    // },
-  };
+  // state: {
+  //   artist_name: user.artistName,
+  //   email: user.email,
+  // },
 };
 
 const mDTP = (dispatch) => {

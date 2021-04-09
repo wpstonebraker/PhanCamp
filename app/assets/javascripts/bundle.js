@@ -1938,7 +1938,7 @@ var ArtistShow = /*#__PURE__*/function (_React$Component) {
       if (this.props.artistId !== this.props.match.params.id) return null;
       if (this.props.artist === undefined) return null;
 
-      if (this.props.artist.id === this.props.currentUserId && this.props.artist.bannerUrl === undefined || this.props.artist.thumbnailUrl === undefined) {
+      if (this.props.artist.id === this.props.currentUserId && (this.props.artist.bannerUrl === undefined || this.props.artist.thumbnailUrl === undefined)) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Redirect, {
           to: "/edit-profile"
         });
@@ -4557,15 +4557,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  var user = state.entities.users[state.session.id];
-  return {
-    user: user,
-    genres: state.entities.genres // state: {
-    //   artist_name: user.artistName,
-    //   email: user.email,
-    // },
+  if (Object.keys(state.entities.artists).length) {
+    var user = state.entities.users[state.session.id];
+    return {
+      user: user,
+      genres: state.entities.genres
+    };
+  } else {
+    return {
+      user: {},
+      genres: {}
+    };
+  } // state: {
+  //   artist_name: user.artistName,
+  //   email: user.email,
+  // },
 
-  };
 };
 
 var mDTP = function mDTP(dispatch) {
@@ -6275,7 +6282,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var albumsReducer = function albumsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  // ;
   Object.freeze(state);
   var newState;
   var album;
@@ -6774,6 +6780,16 @@ var usersReducer = function usersReducer() {
   var newState;
 
   switch (action.type) {
+    // case RECEIVE_ALBUM:
+    //   if (Object.values(state).length !== 0) {
+    //     newState = Object.assign({}, state, {
+    //       [action.payload.artists[Object.keys(state)[0]].id]:
+    //         action.payload.artists[Object.keys(state)[0]],
+    //     });
+    //   } else {
+    //     newState = state;
+    //   }
+    //   return newState;
     case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALL_ALBUMS:
       if (Object.values(state).length !== 0) {
         newState = Object.assign({}, state, _defineProperty({}, action.payload.artists[Object.keys(state)[0]].id, action.payload.artists[Object.keys(state)[0]]));

@@ -8,7 +8,6 @@ import {
 import { RECEIVE_DELETED_TRACK } from "../actions/track_actions";
 
 const albumsReducer = (state = {}, action) => {
-  // ;
   Object.freeze(state);
   let newState;
   let album;
