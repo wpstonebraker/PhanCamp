@@ -105,6 +105,7 @@ class EditAlbum extends React.Component {
 
   render() {
     const { user, albums } = this.props;
+    if (user === undefined || Object.values(albums).length === 0) return null;
     const {
       title,
       artist_id,
@@ -116,7 +117,6 @@ class EditAlbum extends React.Component {
       tracks,
       albumId,
     } = this.state;
-    if (user === undefined || Object.values(albums).length === 0) return null;
     if (user.albumIds.length === 0) {
       return <div>Artist has no Albums</div>;
     }

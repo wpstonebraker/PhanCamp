@@ -88,6 +88,7 @@ class Api::AlbumsController < ApplicationController
 
     def destroy
         @album = Album.find(params[:id])
+        @artist = User.find(@album.artist_id)
         
         if @album.destroy
             render :delete

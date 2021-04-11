@@ -4,26 +4,34 @@ import { deleteTrack, editTrack } from "../../actions/track_actions";
 import { deleteAlbum } from "../../actions/album_actions";
 
 const mSTP = (state, ownProps) => {
-  const user = state.entities.users[state.session.id];
-  return {
-    albums: state.entities.albums,
-    tracks: state.entities.tracks,
-    user,
-    state: {
-      albumId: "",
-      title: "",
-      artist_id: user.id,
-      year: 2021,
-      price: "",
-      description: "",
-      credits: "",
-      genres: "",
-      photoFile: null,
-      photoUrl: null,
-      tracks: [],
-      genresArray: [],
-    },
-  };
+  if (Object.keys(state.entities.artists).length) {
+    const user = state.entities.artists[state.session.id];
+    return {
+      albums: state.entities.albums,
+      tracks: state.entities.tracks,
+      user,
+      state: {
+        albumId: "",
+        title: "",
+        artist_id: user.id,
+        year: 2021,
+        price: "",
+        description: "",
+        credits: "",
+        genres: "",
+        photoFile: null,
+        photoUrl: null,
+        tracks: [],
+        genresArray: [],
+      },
+    };
+  } else {
+    return {
+      albums: {},
+      tracks: {},
+      state: {},
+    };
+  }
 };
 
 const mDTP = (dispatch) => {

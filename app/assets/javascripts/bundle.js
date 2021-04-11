@@ -2831,25 +2831,53 @@ var DailyIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(DailyIndex, [{
     key: "render",
     value: function render() {
-      var _this = this;
-
       if (!this.props.daily) return null;
-      var mainItem = this.props.albums[this.props.daily.shift()];
-      var main = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_daily_main_item__WEBPACK_IMPORTED_MODULE_2__.default, {
-        album: mainItem,
-        key: mainItem.id,
-        artist: this.props.artists[mainItem.artistId]
-      });
-      var items = this.props.daily.map(function (key, i) {
-        var album = _this.props.albums[key];
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_daily_item__WEBPACK_IMPORTED_MODULE_1__.default, {
-          key: album.id,
-          album: album,
-          artist: _this.props.artists[album.artistId] // key={album.id}
-          ,
-          history: _this.props.history
-        });
-      });
+      var max = Object.keys(this.props.albums).length;
+      var albums = Object.values(this.props.albums);
+      var artists = this.props.artists;
+      var items = [];
+      var main; // let usedIdx = []
+
+      for (var i = 0; i < 8; i++) {
+        var album = albums[albums.length - 1 - i];
+
+        if (i === 0) {
+          main = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_daily_main_item__WEBPACK_IMPORTED_MODULE_2__.default, {
+            album: album,
+            key: album.id,
+            artist: artists[album.artistId]
+          });
+        } else {
+          items.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_daily_item__WEBPACK_IMPORTED_MODULE_1__.default, {
+            key: album.id,
+            album: album,
+            artist: artists[album.artistId] // key={album.id}
+            ,
+            history: this.props.history
+          }));
+        }
+      } // const mainItem = this.props.albums[this.props.daily.shift()];
+      // const main = (
+      //   <DailyMainItem
+      //     album={mainItem}
+      //     key={mainItem.id}
+      //     artist={this.props.artists[mainItem.artistId]}
+      //   />
+      // );
+      // const items = this.props.daily.map((key, i) => {
+      //   const album = this.props.albums[key];
+      //   return (
+      //     <DailyItem
+      //       key={album.id}
+      //       album={album}
+      //       artist={this.props.artists[album.artistId]}
+      //       // key={album.id}
+      //       history={this.props.history}
+      //     />
+      //   );
+      // });
+
+
       var topRow = items.splice(0, 2);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "di-outer"
@@ -3857,6 +3885,7 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           user = _this$props.user,
           albums = _this$props.albums;
+      if (user === undefined || Object.values(albums).length === 0) return null;
       var _this$state = this.state,
           title = _this$state.title,
           artist_id = _this$state.artist_id,
@@ -3867,7 +3896,6 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
           genres = _this$state.genres,
           tracks = _this$state.tracks,
           albumId = _this$state.albumId;
-      if (user === undefined || Object.values(albums).length === 0) return null;
 
       if (user.albumIds.length === 0) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Artist has no Albums");
@@ -4013,26 +4041,34 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  var user = state.entities.users[state.session.id];
-  return {
-    albums: state.entities.albums,
-    tracks: state.entities.tracks,
-    user: user,
-    state: {
-      albumId: "",
-      title: "",
-      artist_id: user.id,
-      year: 2021,
-      price: "",
-      description: "",
-      credits: "",
-      genres: "",
-      photoFile: null,
-      photoUrl: null,
-      tracks: [],
-      genresArray: []
-    }
-  };
+  if (Object.keys(state.entities.artists).length) {
+    var user = state.entities.artists[state.session.id];
+    return {
+      albums: state.entities.albums,
+      tracks: state.entities.tracks,
+      user: user,
+      state: {
+        albumId: "",
+        title: "",
+        artist_id: user.id,
+        year: 2021,
+        price: "",
+        description: "",
+        credits: "",
+        genres: "",
+        photoFile: null,
+        photoUrl: null,
+        tracks: [],
+        genresArray: []
+      }
+    };
+  } else {
+    return {
+      albums: {},
+      tracks: {},
+      state: {}
+    };
+  }
 };
 
 var mDTP = function mDTP(dispatch) {
@@ -6339,6 +6375,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/album_actions */ "./frontend/actions/album_actions.js");
 /* harmony import */ var _actions_artist_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/artist_actions */ "./frontend/actions/artist_actions.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -6366,6 +6406,13 @@ var artistsReducer = function artistsReducer() {
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.RECEIVE_USER_UPDATE:
       newState = Object.assign({}, state, _defineProperty({}, action.payload.id, action.payload));
+      return newState;
+
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_DELETED_ALBUM:
+      var newArtist = _defineProperty({}, action.payload.artists.id, _objectSpread({}, state[action.payload.artists.id]));
+
+      newArtist[action.payload.artists.id]["albumIds"] = action.payload.artists.albumIds;
+      newState = Object.assign({}, state, newArtist);
       return newState;
 
     default:

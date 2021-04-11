@@ -13,26 +13,54 @@ class DailyIndex extends React.Component {
 
   render() {
     if (!this.props.daily) return null;
-    const mainItem = this.props.albums[this.props.daily.shift()];
-    const main = (
-      <DailyMainItem
-        album={mainItem}
-        key={mainItem.id}
-        artist={this.props.artists[mainItem.artistId]}
-      />
-    );
-    const items = this.props.daily.map((key, i) => {
-      const album = this.props.albums[key];
-      return (
-        <DailyItem
-          key={album.id}
-          album={album}
-          artist={this.props.artists[album.artistId]}
-          // key={album.id}
-          history={this.props.history}
-        />
-      );
-    });
+    const max = Object.keys(this.props.albums).length;
+    const albums = Object.values(this.props.albums);
+    const artists = this.props.artists;
+    let items = [];
+    let main;
+    // let usedIdx = []
+    for (let i = 0; i < 8; i++) {
+      const album = albums[albums.length - 1 - i];
+      if (i === 0) {
+        main = (
+          <DailyMainItem
+            album={album}
+            key={album.id}
+            artist={artists[album.artistId]}
+          />
+        );
+      } else {
+        items.push(
+          <DailyItem
+            key={album.id}
+            album={album}
+            artist={artists[album.artistId]}
+            // key={album.id}
+            history={this.props.history}
+          />
+        );
+      }
+    }
+    // const mainItem = this.props.albums[this.props.daily.shift()];
+    // const main = (
+    //   <DailyMainItem
+    //     album={mainItem}
+    //     key={mainItem.id}
+    //     artist={this.props.artists[mainItem.artistId]}
+    //   />
+    // );
+    // const items = this.props.daily.map((key, i) => {
+    //   const album = this.props.albums[key];
+    //   return (
+    //     <DailyItem
+    //       key={album.id}
+    //       album={album}
+    //       artist={this.props.artists[album.artistId]}
+    //       // key={album.id}
+    //       history={this.props.history}
+    //     />
+    //   );
+    // });
     const topRow = items.splice(0, 2);
     return (
       <div className="di-outer">
