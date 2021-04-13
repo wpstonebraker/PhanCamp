@@ -737,7 +737,9 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         src: this.state.photoUrl
       }) : null;
       var trackList = this.state.tracksArray.map(function (track, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "".concat(i + 1), " ", track.name);
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+          key: "track-".concat(i)
+        }, "".concat(i + 1), " ", track.name);
       });
       var errors = {};
       this.props.errors.forEach(function (error) {

@@ -174,7 +174,7 @@ class AlbumCreateForm extends React.Component {
     ) : null;
     const trackList = this.state.tracksArray.map((track, i) => {
       return (
-        <li>
+        <li key={`track-${i}`}>
           {`${i + 1}`} {track.name}
         </li>
       );
