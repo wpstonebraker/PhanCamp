@@ -34,6 +34,7 @@ class SellingNowIndex extends React.Component {
       const album = albums[rand];
       items.push(
         <SellingNowItem
+          key={`selling-${album.id + Math.random()}`}
           album={album}
           artist={artists[album.artistId]}
           // key={this.props.albums[key].id}

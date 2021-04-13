@@ -278,7 +278,7 @@ class AlbumCreateForm extends React.Component {
                   />
                   <p className="grey-label">enter zero or more</p>
 
-                  <div>
+                  {/* <div>
                     <input
                       type="checkbox"
                       checked
@@ -287,7 +287,7 @@ class AlbumCreateForm extends React.Component {
                     <span className="caf-price-check-label">
                       let fans pay more if they want
                     </span>
-                  </div>
+                  </div> */}
                   <span className="caf-payments-email">
                     Payments will go to{" "}
                     <b className="bold">{this.props.currentUser.email}</b> via

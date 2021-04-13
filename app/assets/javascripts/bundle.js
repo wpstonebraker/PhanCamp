@@ -836,13 +836,7 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.update("price")
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
         className: "grey-label"
-      }, "enter zero or more"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        type: "checkbox",
-        checked: true,
-        className: "caf-price-check"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-        className: "caf-price-check-label"
-      }, "let fans pay more if they want")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      }, "enter zero or more"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         className: "caf-payments-email"
       }, "Payments will go to", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", {
         className: "bold"
@@ -5195,6 +5189,7 @@ var SellingNowIndex = /*#__PURE__*/function (_React$Component) {
         var rand = ~~(Math.random() * max);
         var album = albums[rand];
         items.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_selling_now_item__WEBPACK_IMPORTED_MODULE_1__.default, {
+          key: "selling-".concat(album.id + Math.random()),
           album: album,
           artist: artists[album.artistId] // key={this.props.albums[key].id}
           ,
