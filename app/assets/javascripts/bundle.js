@@ -4733,6 +4733,10 @@ var Search = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       this.props.getSearch(this.state.terms).then(function () {
+        _this2.setState({
+          terms: ""
+        });
+
         _this2.props.history.push("/search");
       });
     }
@@ -5038,9 +5042,15 @@ var DisplayItem = /*#__PURE__*/function (_React$Component) {
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
             className: "dt-details-class"
           }, "ALBUM"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-            className: "dt-details-name"
+            className: "dt-details-name",
+            onClick: function onClick() {
+              return _this.props.history.push("/artists/".concat(artist.id, "/albums/").concat(item.albumId));
+            }
           }, item.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-            className: "dt-details-location"
+            className: "dt-details-location",
+            onClick: function onClick() {
+              return _this.props.history.push("/artists/".concat(artist.id, "/albums/").concat(item.albumId));
+            }
           }, "by ", this.props.artists[item.artistId].artistName)));
           break;
 
@@ -5061,9 +5071,15 @@ var DisplayItem = /*#__PURE__*/function (_React$Component) {
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
             className: "dt-details-class"
           }, "TRACK"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-            className: "dt-details-name"
+            className: "dt-details-name",
+            onClick: function onClick() {
+              return _this.props.history.push("/artists/".concat(artist.id, "/albums/").concat(item.albumId));
+            }
           }, item.trackName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-            className: "dt-details-location"
+            className: "dt-details-location",
+            onClick: function onClick() {
+              return _this.props.history.push("/artists/".concat(artist.id, "/albums/").concat(item.albumId));
+            }
           }, "from ", this.props.albums[item.albumId].title, " by", " ", artist.artistName)));
 
         default:

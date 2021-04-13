@@ -31,6 +31,7 @@ class Search extends React.Component {
 
   handleSubmit() {
     this.props.getSearch(this.state.terms).then(() => {
+      this.setState({ terms: "" });
       this.props.history.push("/search");
     });
   }

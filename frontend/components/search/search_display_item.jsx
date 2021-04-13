@@ -51,8 +51,24 @@ class DisplayItem extends React.Component {
             </div>
             <div className="dt-details">
               <li className="dt-details-class">ALBUM</li>
-              <li className="dt-details-name">{item.name}</li>
-              <li className="dt-details-location">
+              <li
+                className="dt-details-name"
+                onClick={() =>
+                  this.props.history.push(
+                    `/artists/${artist.id}/albums/${item.albumId}`
+                  )
+                }
+              >
+                {item.name}
+              </li>
+              <li
+                className="dt-details-location"
+                onClick={() =>
+                  this.props.history.push(
+                    `/artists/${artist.id}/albums/${item.albumId}`
+                  )
+                }
+              >
                 by {this.props.artists[item.artistId].artistName}
               </li>
               {/* <li className="dt-details-website">{item.personalUrl}</li> */}
@@ -81,8 +97,24 @@ class DisplayItem extends React.Component {
             </div>
             <div className="dt-details">
               <li className="dt-details-class">TRACK</li>
-              <li className="dt-details-name">{item.trackName}</li>
-              <li className="dt-details-location">
+              <li
+                className="dt-details-name"
+                onClick={() =>
+                  this.props.history.push(
+                    `/artists/${artist.id}/albums/${item.albumId}`
+                  )
+                }
+              >
+                {item.trackName}
+              </li>
+              <li
+                className="dt-details-location"
+                onClick={() =>
+                  this.props.history.push(
+                    `/artists/${artist.id}/albums/${item.albumId}`
+                  )
+                }
+              >
                 from {this.props.albums[item.albumId].title} by{" "}
                 {artist.artistName}
               </li>
