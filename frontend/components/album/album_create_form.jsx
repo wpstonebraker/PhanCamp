@@ -88,14 +88,14 @@ class AlbumCreateForm extends React.Component {
   // }
 
   renderLocalErrors() {
-    switch (this.errors) {
-      case this.errors.art:
-        console.log(hello);
-      default:
-        break;
-    }
-    this.render();
-    return;
+    // switch (this.errors) {
+    //   case this.errors.art:
+    //     console.log(hello);
+    //   default:
+    //     break;
+    // }
+    // this.render();
+    // return;
   }
 
   handleSubmit() {

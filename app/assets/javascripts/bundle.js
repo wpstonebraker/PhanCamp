@@ -634,17 +634,14 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
 
   }, {
     key: "renderLocalErrors",
-    value: function renderLocalErrors() {
-      switch (this.errors) {
-        case this.errors.art:
-          console.log(hello);
-
-        default:
-          break;
-      }
-
-      this.render();
-      return;
+    value: function renderLocalErrors() {// switch (this.errors) {
+      //   case this.errors.art:
+      //     console.log(hello);
+      //   default:
+      //     break;
+      // }
+      // this.render();
+      // return;
     }
   }, {
     key: "handleSubmit",
@@ -3841,8 +3838,7 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
-      if (Object.keys(prevProps.albums).length !== Object.keys(this.props.albums).length) {
-        console.log("hello");
+      if (Object.keys(prevProps.albums).length !== Object.keys(this.props.albums).length) {// console.log("hello");
       }
     }
   }, {
@@ -4332,27 +4328,45 @@ var Profile = /*#__PURE__*/function (_React$Component) {
   _createClass(Profile, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.getAllAlbums();
+      var _this2 = this;
+
+      // this.props.getAllAlbums();
+      this.props.getArtistAlbums(this.props.currentUserId).then(function () {
+        var user = _this2.props.user;
+
+        _this2.setState({
+          artistName: user.artistName,
+          email: user.email,
+          location: user.location,
+          about: user.about,
+          personalUrl: user.personalUrl,
+          thumbnailFile: null,
+          thumbnailUrl: user.thumbnailUrl || null,
+          bannerFile: null,
+          bannerUrl: user.bannerUrl || null,
+          genresArray: user.genreIds || []
+        });
+      });
     }
   }, {
     key: "update",
     value: function update(field) {
-      var _this2 = this;
+      var _this3 = this;
 
       return function (e) {
-        _this2.setState(_defineProperty({}, field, e.target.value));
+        _this3.setState(_defineProperty({}, field, e.target.value));
       };
     }
   }, {
     key: "handleThumbnail",
     value: function handleThumbnail(e) {
-      var _this3 = this;
+      var _this4 = this;
 
       var reader = new FileReader();
       var file = e.currentTarget.files[0];
 
       reader.onloadend = function () {
-        return _this3.setState({
+        return _this4.setState({
           thumbnailUrl: reader.result,
           thumbnailFile: file
         });
@@ -4370,13 +4384,13 @@ var Profile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleBanner",
     value: function handleBanner(e) {
-      var _this4 = this;
+      var _this5 = this;
 
       var reader = new FileReader();
       var file = e.currentTarget.files[0];
 
       reader.onloadend = function () {
-        return _this4.setState({
+        return _this5.setState({
           bannerUrl: reader.result,
           bannerFile: file
         });
@@ -4404,7 +4418,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
-      var _this5 = this;
+      var _this6 = this;
 
       // e.preventDefault();
       if (this.state.bannerUrl === null) {
@@ -4438,9 +4452,9 @@ var Profile = /*#__PURE__*/function (_React$Component) {
           contentType: false,
           processData: false
         }).then(function (payload) {
-          _this5.props.receiveUserUpdate(payload);
+          _this6.props.receiveUserUpdate(payload);
         }).then(function () {
-          return _this5.props.history.push("/artists/".concat(_this5.props.user.id));
+          return _this6.props.history.push("/artists/".concat(_this6.props.user.id));
         }); // .then(() => {
         //   this.props.history.push(`/artists/${this.props.user.id}`);
         // });
@@ -4472,7 +4486,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this6 = this;
+      var _this7 = this;
 
       var bannerPreview = this.state.bannerUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         height: "100%",
@@ -4492,11 +4506,11 @@ var Profile = /*#__PURE__*/function (_React$Component) {
           personalUrl = _this$state.personalUrl;
       var genreTabs = Object.values(this.props.genres).map(function (genre) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-          className: "caf-genre-tab ".concat(_this6.props.user.genreIds.includes(genre.id) ? "selected-genre" : ""),
+          className: "caf-genre-tab ".concat(_this7.props.user.genreIds.includes(genre.id) ? "selected-genre" : ""),
           key: genre.id,
           id: "genre-".concat(genre.id),
           onClick: function onClick() {
-            return _this6.handleGenreClick(genre.id);
+            return _this7.handleGenreClick(genre.id);
           }
         }, genre.genre);
       });
@@ -4651,11 +4665,13 @@ var mSTP = function mSTP(state, ownProps) {
   if (Object.keys(state.entities.artists).length) {
     var user = state.entities.users[state.session.id];
     return {
+      currentUserId: state.session.id,
       user: user,
       genres: state.entities.genres
     };
   } else {
     return {
+      currentUserId: state.session.id,
       user: {},
       genres: {}
     };
@@ -4670,6 +4686,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     getAllAlbums: function getAllAlbums() {
       return dispatch((0,_actions_album_actions__WEBPACK_IMPORTED_MODULE_1__.getAllAlbums)());
+    },
+    getArtistAlbums: function getArtistAlbums(artistId) {
+      return dispatch((0,_actions_album_actions__WEBPACK_IMPORTED_MODULE_1__.getArtistAlbums)(artistId));
     },
     receiveUserUpdate: function receiveUserUpdate(payload) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.receiveUserUpdate)(payload));
@@ -6977,8 +6996,9 @@ var tracksReducer = function tracksReducer() {
   var newState;
 
   switch (action.type) {
-    // case RECEIVE_ARTIST_ALBUMS:
-    //   return {};
+    case _actions_album_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ARTIST_ALBUMS:
+      return Object.assign({}, state, action.albums.tracks);
+
     case _actions_track_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_DELETED_TRACK:
       newState = Object.assign({}, state);
       delete newState[action.payload.tracks.id];

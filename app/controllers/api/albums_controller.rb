@@ -4,6 +4,7 @@ class Api::AlbumsController < ApplicationController
         @artist = User.find(params[:artist_id])
         @albums = Album.where(artist_id: @artist.id)
         @genres = Genre.all
+        @tracks = Track.joins(:album).where(albums: { artist_id: params[:artist_id] }) # production
         render :index
     end
 

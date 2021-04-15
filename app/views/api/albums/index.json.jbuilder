@@ -27,6 +27,19 @@ json.genres do
         end
     end
 end
+
+json.tracks do
+    @tracks.each do |track|
+        json.set! track.id do
+            json.extract! track, :track_name, :track_num, :id, :album_id
+            if track.song.attached?
+                json.songUrl url_for(track.song)
+            else
+                json.extract! track, :songUrl
+            end
+        end
+    end
+end  
 # json.albums do
 #     @albums.each do |album|
 #         json.set! album.id do

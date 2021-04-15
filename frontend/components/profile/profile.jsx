@@ -23,7 +23,22 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAllAlbums();
+    // this.props.getAllAlbums();
+    this.props.getArtistAlbums(this.props.currentUserId).then(() => {
+      const user = this.props.user;
+      this.setState({
+        artistName: user.artistName,
+        email: user.email,
+        location: user.location,
+        about: user.about,
+        personalUrl: user.personalUrl,
+        thumbnailFile: null,
+        thumbnailUrl: user.thumbnailUrl || null,
+        bannerFile: null,
+        bannerUrl: user.bannerUrl || null,
+        genresArray: user.genreIds || [],
+      });
+    });
   }
 
   update(field) {

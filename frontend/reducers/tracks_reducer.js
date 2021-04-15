@@ -14,8 +14,8 @@ const tracksReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState;
   switch (action.type) {
-    // case RECEIVE_ARTIST_ALBUMS:
-    //   return {};
+    case RECEIVE_ARTIST_ALBUMS:
+      return Object.assign({}, state, action.albums.tracks);
     case RECEIVE_DELETED_TRACK:
       newState = Object.assign({}, state);
       delete newState[action.payload.tracks.id];

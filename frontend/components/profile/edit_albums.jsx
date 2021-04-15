@@ -35,7 +35,7 @@ class EditAlbum extends React.Component {
       Object.keys(prevProps.albums).length !==
       Object.keys(this.props.albums).length
     ) {
-      console.log("hello");
+      // console.log("hello");
     }
   }
 
