@@ -1,6 +1,9 @@
 #profile-label {
   margin: 20px;
   font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #profile-box {
@@ -27,14 +30,15 @@
   width: 100%;
   height: 100%;
   border: 1px dashed lightgrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #profile-banner-upload-span {
   font-size: 19px;
   position: relative;
   color: #0687f5;
-  top: 90px;
-  left: 30px;
 }
 
 #profile-bottom {

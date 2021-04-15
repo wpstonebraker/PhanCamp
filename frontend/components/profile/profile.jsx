@@ -159,7 +159,19 @@ class Profile extends React.Component {
           <div className="caf-inner">
             <form id="profile-form">
               <div id="profile-label">
-                Artist Profile for {this.props.user.artistName}
+                <span>Artist Profile for {this.props.user.artistName}</span>
+                <br />
+                <span
+                  className={
+                    bannerPreview === null
+                      ? ""
+                      : thumbnailPreview === null
+                      ? ""
+                      : "hidden"
+                  }
+                >
+                  Please Upload Banner and Thumbnail Images to Create an Album
+                </span>
               </div>
               <div className="profile-banner-upload-box">
                 <span id="" className={bannerPreview === null ? "hidden" : ""}>

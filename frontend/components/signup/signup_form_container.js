@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import {
   createNewUser,
   receiveSessionErrors,
@@ -20,4 +21,4 @@ const mDTP = (dispatch) => {
   };
 };
 
-export default connect(mSTP, mDTP)(SignupForm);
+export default withRouter(connect(mSTP, mDTP)(SignupForm));

@@ -5,25 +5,14 @@ import { deleteAlbum } from "../../actions/album_actions";
 
 const mSTP = (state, ownProps) => {
   if (Object.keys(state.entities.artists).length) {
-    debugger;
     const user = state.entities.artists[state.session.id];
     return {
       albums: state.entities.albums,
       tracks: state.entities.tracks,
       user,
       state: {
-        albumId: "",
-        title: "",
         artist_id: user.id,
         year: 2021,
-        price: "",
-        description: "",
-        credits: "",
-        genres: "",
-        photoFile: null,
-        photoUrl: null,
-        tracks: [],
-        genresArray: [],
       },
     };
   } else {

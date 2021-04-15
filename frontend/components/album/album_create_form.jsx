@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Redirect } from "react-router";
 class AlbumCreateForm extends React.Component {
   constructor(props) {
     super(props);
@@ -157,6 +157,13 @@ class AlbumCreateForm extends React.Component {
   }
 
   render() {
+    if (
+      this.props.currentUser.bannerUrl === undefined ||
+      this.props.currentUser.thumbnailUrl === undefined
+    ) {
+      return <Redirect to="/edit-profile" />;
+    }
+
     const {
       title,
       artist_id,
