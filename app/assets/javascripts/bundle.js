@@ -5193,18 +5193,37 @@ var SellingNowIndex = /*#__PURE__*/function (_React$Component) {
       items: []
     };
     _this.addToCarousel = _this.addToCarousel.bind(_assertThisInitialized(_this));
+    _this.loop = _this.loop.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(SellingNowIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.initCarousel();
+      this.loop(); // setInterval(() => {
+      //   this.addToCarousel();
+      // }, 1500);
+    } //   function doSomething() {}
+    // (function loop() {
+    //     var rand = Math.round(Math.random() * (3000 - 500)) + 500;
+    //     setTimeout(function() {
+    //             doSomething();
+    //             loop();
+    //     }, rand);
+    // }());
+
+  }, {
+    key: "loop",
+    value: function loop() {
       var _this2 = this;
 
-      this.initCarousel();
-      setInterval(function () {
+      var rand = ~~(Math.random() * (3000 - 500)) + 500;
+      setTimeout(function () {
         _this2.addToCarousel();
-      }, 1500);
+
+        _this2.loop();
+      }, rand);
     }
   }, {
     key: "initCarousel",
@@ -5214,7 +5233,7 @@ var SellingNowIndex = /*#__PURE__*/function (_React$Component) {
       var artists = this.props.artists;
       var items = [];
 
-      for (var i = 0; i < 9; i++) {
+      for (var i = 0; i < 8; i++) {
         var rand = ~~(Math.random() * max);
         var album = albums[rand];
         items.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_selling_now_item__WEBPACK_IMPORTED_MODULE_1__.default, {
@@ -5246,7 +5265,7 @@ var SellingNowIndex = /*#__PURE__*/function (_React$Component) {
         ,
         seconds: rand
       }));
-      if (items.length > 12) items.pop();
+      items.pop();
       this.setState({
         items: items
       });

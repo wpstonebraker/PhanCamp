@@ -8,13 +8,33 @@ class SellingNowIndex extends React.Component {
       items: [],
     };
     this.addToCarousel = this.addToCarousel.bind(this);
+    this.loop = this.loop.bind(this);
   }
 
   componentDidMount() {
     this.initCarousel();
-    setInterval(() => {
+    this.loop();
+    // setInterval(() => {
+    //   this.addToCarousel();
+    // }, 1500);
+  }
+
+  //   function doSomething() {}
+
+  // (function loop() {
+  //     var rand = Math.round(Math.random() * (3000 - 500)) + 500;
+  //     setTimeout(function() {
+  //             doSomething();
+  //             loop();
+  //     }, rand);
+  // }());
+
+  loop() {
+    const rand = ~~(Math.random() * (3000 - 500)) + 500;
+    setTimeout(() => {
       this.addToCarousel();
-    }, 1500);
+      this.loop();
+    }, rand);
   }
 
   initCarousel() {
@@ -22,7 +42,7 @@ class SellingNowIndex extends React.Component {
     const albums = Object.values(this.props.albums);
     const artists = this.props.artists;
     let items = [];
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 8; i++) {
       const rand = ~~(Math.random() * max);
       const album = albums[rand];
       items.push(
@@ -55,7 +75,7 @@ class SellingNowIndex extends React.Component {
       />
     );
 
-    if (items.length > 12) items.pop();
+    items.pop();
 
     this.setState({ items });
   }
