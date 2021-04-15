@@ -31,7 +31,7 @@ class SellingNowIndex extends React.Component {
           album={album}
           artist={artists[album.artistId]}
           // key={this.props.albums[key].id}
-          seconds={i}
+          seconds={rand}
         />
       );
     }
