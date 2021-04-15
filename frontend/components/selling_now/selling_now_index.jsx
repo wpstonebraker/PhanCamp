@@ -4,11 +4,61 @@ import SellingNowItem from "./selling_now_item";
 class SellingNowIndex extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      items: [],
+    };
+    this.addToCarousel = this.addToCarousel.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.props.getAllAlbums();
-  // }
+  componentDidMount() {
+    this.initCarousel();
+    setInterval(() => {
+      this.addToCarousel();
+    }, 1500);
+  }
+
+  initCarousel() {
+    const max = Object.keys(this.props.albums).length;
+    const albums = Object.values(this.props.albums);
+    const artists = this.props.artists;
+    let items = [];
+    for (let i = 0; i < 9; i++) {
+      const rand = ~~(Math.random() * max);
+      const album = albums[rand];
+      items.push(
+        <SellingNowItem
+          key={`selling-${album.id + Math.random()}`}
+          album={album}
+          artist={artists[album.artistId]}
+          // key={this.props.albums[key].id}
+          seconds={i}
+        />
+      );
+    }
+    this.setState({ items });
+  }
+
+  addToCarousel() {
+    const max = Object.keys(this.props.albums).length;
+    const albums = Object.values(this.props.albums);
+    const artists = this.props.artists;
+    let items = this.state.items;
+    const rand = ~~(Math.random() * max);
+    const album = albums[rand];
+    items.unshift(
+      <SellingNowItem
+        key={`selling-${album.id + Math.random()}`}
+        album={album}
+        artist={artists[album.artistId]}
+        // key={this.props.albums[key].id}
+        seconds={rand}
+      />
+    );
+
+    if (items.length > 12) items.pop();
+
+    this.setState({ items });
+  }
 
   render() {
     if (Object.keys(this.props.albums).length === 0) return null;
@@ -25,23 +75,23 @@ class SellingNowIndex extends React.Component {
     // const newItems = items.map((album, i) => {
     //   return <SellingNowItem album={album} key={album.id + i} seconds={i} />;
     // });
-    const max = Object.keys(this.props.albums).length;
-    const albums = Object.values(this.props.albums);
-    const artists = this.props.artists;
-    let items = [];
-    for (let i = 0; i < 8; i++) {
-      const rand = ~~(Math.random() * max);
-      const album = albums[rand];
-      items.push(
-        <SellingNowItem
-          key={`selling-${album.id + Math.random()}`}
-          album={album}
-          artist={artists[album.artistId]}
-          // key={this.props.albums[key].id}
-          seconds={i}
-        />
-      );
-    }
+    // const max = Object.keys(this.props.albums).length;
+    // const albums = Object.values(this.props.albums);
+    // const artists = this.props.artists;
+    // let items = [];
+    // for (let i = 0; i < 8; i++) {
+    //   const rand = ~~(Math.random() * max);
+    //   const album = albums[rand];
+    //   items.push(
+    //     <SellingNowItem
+    //       key={`selling-${album.id + Math.random()}`}
+    //       album={album}
+    //       artist={artists[album.artistId]}
+    //       // key={this.props.albums[key].id}
+    //       seconds={i}
+    //     />
+    //   );
+    // }
 
     // const newItems = [];
     // while (newItems.length < 8) {
@@ -69,7 +119,7 @@ class SellingNowIndex extends React.Component {
         </div>
         <div className="sn-idx-box-container">
           <span className="sn-idx-box-label">SELLING RIGHT NOW</span>
-          <div className="sn-idx-box">{items}</div>
+          <div className="sn-idx-box">{this.state.items}</div>
         </div>
       </div>
     );

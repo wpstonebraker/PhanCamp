@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
 import { getAllAlbums } from "../../actions/album_actions";
-import SellingNowIndex from "./selling_now_index";
+import Splash from "./splash";
 
 const mSTP = (state, ownProps) => {
   return {
+    albums: state.entities.albums,
     artists: state.entities.artists,
-    // albums: state.entities.albums,
   };
 };
 
@@ -15,4 +15,4 @@ const mDTP = (dispatch) => {
   };
 };
 
-export default connect(mSTP, mDTP)(SellingNowIndex);
+export default connect(mSTP, mDTP)(Splash);

@@ -5,7 +5,7 @@ const SellingNowItem = ({ album, artist, seconds }) => {
   return (
     <Link to={`/artists/${album.artistId}/albums/${album.id}`}>
       {/* // <Link to="/albums"> */}
-      <div className="sni-tile-box">
+      <div className="sni-tile-box carousel-trans">
         <div className="sni-tile">
           <img src={album.photoUrl} alt="" className="sni-tile-photo" />
           <div className="sni-tile-title">{album.title}</div>

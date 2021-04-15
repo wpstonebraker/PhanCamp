@@ -14,6 +14,7 @@ import PhishAlbumCreateFormContainer from "./album/phish_album_create_form_conta
 import profile_container from "./profile/profile_container";
 import SearchDisplayContainer from "./search/search_display_container";
 import Foots from "./footer/foot";
+import SplashContainer from "./splash/splash_container";
 
 const App = () => {
   return (
@@ -42,7 +43,7 @@ const App = () => {
         <Route path="/search" component={SearchDisplayContainer} />
         <Route path="/artists/:id" component={ArtistShowContainer} />
 
-        <Route exact path="/" component={Splash} />
+        <Route exact path="/" component={SplashContainer} />
       </Switch>
       <Foots />
     </div>

@@ -10,9 +10,9 @@ class FeatureIndex extends React.Component {
   //   // props.history.push(`/artists/${benchId}`);
   //   props.history.push(`/artists/45`);
   // };
-  componentDidMount() {
-    this.props.getAllAlbums();
-  }
+  // componentDidMount() {
+  //   this.props.getAllAlbums();
+  // }
 
   render() {
     const { phish, theGD, goose, ween } = this.props;
