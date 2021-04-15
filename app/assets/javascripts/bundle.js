@@ -1305,7 +1305,10 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.redirectHome = _this.redirectHome.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // componentDidMount() {
+  //   this.getRandomShow();
+  // }
+
 
   _createClass(PhishAlbumCreateForm, [{
     key: "update",
@@ -1457,10 +1460,10 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderTracks",
     value: function renderTracks() {
-      return this.state.tracksArray.map(function (track) {
+      return this.state.tracksArray.map(function (track, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
           key: track.id
-        }, track.title);
+        }, "".concat(i + 1), " ", track.title);
       });
     }
   }, {
@@ -1487,35 +1490,52 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       // });
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "caf-outer"
+        id: "phish-caf-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "caf-inner"
+        id: "phish-caf-inner"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "phish-caf-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "phish-credits"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Add any Phish concert recording that is readily available, thanks to the fine folks at Phish.in!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Simple select a date, upload whatever album art you wish, and VOILA!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Don't know any Phish concerts? Visit phish.net to find a show OR use our random setlist button!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        id: "phish-credits-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        id: "phish-caf-credits-label"
+      }, "Add any Phish concert, brought to you by:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        href: "https://phish.in",
+        target: "_blank"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: window.phishinLogo,
+        alt: ""
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "phish-caf-form"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "phish-caf-form-left"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "phish-caf-date-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Select a date OR a random show"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "phish-caf-date-box-inner"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "date",
         min: "1983-12-02",
         max: "2019-12-31",
         onChange: function onChange() {
           return _this7.getShow();
         }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.state.showDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
         id: "phish-caf-date-error",
         className: "hidden",
         ref: this.dateRef
       }, "please select a date with a Phish concert"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        id: "random-show-button",
         onClick: function onClick() {
           return _this7.getRandomShow();
         }
-      }, "Random Show"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "caf-upload-box"
+      }, "Random Show"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "phish-caf-upload-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "caf-upload",
+        id: "phish-caf-upload",
         onClick: this.uploadImage
       }, uploadPreview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-        id: "caf-upload-span",
+        id: "phish-caf-upload-span",
         className: uploadPreview === null ? "" : "hidden"
       }, "Upload Album Art"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "caf-add-photo-button",
@@ -1526,13 +1546,26 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
         id: "phish-caf-art-error",
         className: "hidden"
-      }, "please upload an album cover")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }, "please upload an album cover"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "phish-caf-form-right"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "phish-caf-display"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "phish-caf-display-date-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        id: "phish-caf-date-label"
+      }, "Date:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        id: "phish-caf-date"
+      }, this.state.showDate)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        id: "phish-caf-display-tracks-label"
+      }, "Tracks:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+        id: "phish-caf-display-tracks"
+      }, tracksPreview))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        id: "add-phish-show-button",
         onClick: function onClick() {
           return _this7.handleSubmit();
         }
-      }, "Add Phish Show")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        id: "phish-caf-display"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.state.showDate)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, tracksPreview)))));
+      }, "Add Phish Show"))));
     }
   }]);
 

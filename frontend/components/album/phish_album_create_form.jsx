@@ -10,6 +10,10 @@ class PhishAlbumCreateForm extends React.Component {
     this.redirectHome = this.redirectHome.bind(this);
   }
 
+  // componentDidMount() {
+  //   this.getRandomShow();
+  // }
+
   update(field) {
     return (e) => {
       this.setState({ [field]: e.target.value });
@@ -137,8 +141,12 @@ class PhishAlbumCreateForm extends React.Component {
   // }
 
   renderTracks() {
-    return this.state.tracksArray.map((track) => {
-      return <li key={track.id}>{track.title}</li>;
+    return this.state.tracksArray.map((track, i) => {
+      return (
+        <li key={track.id}>
+          {`${i + 1}`} {track.title}
+        </li>
+      );
     });
   }
 
@@ -161,68 +169,88 @@ class PhishAlbumCreateForm extends React.Component {
     //   );
     // });
     return (
-      <div className="caf-outer">
-        <div className="caf-inner">
+      <div id="phish-caf-outer">
+        <div id="phish-caf-inner">
           <div id="phish-caf-box">
-            <div className="phish-credits">
-              <div>
-                <p>
-                  Add any Phish concert recording that is readily available,
-                  thanks to the fine folks at Phish.in!
-                </p>
-                <p>
-                  Simple select a date, upload whatever album art you wish, and
-                  VOILA!
-                </p>
-                <p>
-                  Don't know any Phish concerts? Visit phish.net to find a show
-                  OR use our random setlist button!
-                </p>
-              </div>
-            </div>
-            <input
-              type="date"
-              min="1983-12-02"
-              max="2019-12-31"
-              onChange={() => this.getShow()}
-            />
-            <p>{this.state.showDate}</p>
-            <p id="phish-caf-date-error" className="hidden" ref={this.dateRef}>
-              please select a date with a Phish concert
-            </p>
-            <button onClick={() => this.getRandomShow()}>Random Show</button>
-            <div className="caf-upload-box">
-              <div className="caf-upload" onClick={this.uploadImage}>
-                {uploadPreview}
-                <span
-                  id="caf-upload-span"
-                  className={uploadPreview === null ? "" : "hidden"}
-                >
-                  Upload Album Art
-                </span>
-                <input
-                  id="caf-add-photo-button"
-                  type="file"
-                  className="caf-add-photo-button"
-                  hidden
-                  onChange={this.handlePhoto.bind(this)}
-                />
-              </div>
-              <p id="phish-caf-art-error" className="hidden">
-                please upload an album cover
+            <div id="phish-credits-box">
+              <p id="phish-caf-credits-label">
+                Add any Phish concert, brought to you by:
               </p>
-              {/* <div>{genreTabs}</div> */}
+              <div>
+                <a href="https://phish.in" target="_blank">
+                  <img src={window.phishinLogo} alt="" />
+                </a>
+              </div>
             </div>
-
-            <button onClick={() => this.handleSubmit()}>Add Phish Show</button>
-          </div>
-          <div id="phish-caf-display">
-            <div>
-              <p>{this.state.showDate}</p>
+            <div id="phish-caf-form">
+              <div id="phish-caf-form-left">
+                <div id="phish-caf-date-box">
+                  <p>Select a date OR a random show</p>
+                  <div id="phish-caf-date-box-inner">
+                    <input
+                      type="date"
+                      min="1983-12-02"
+                      max="2019-12-31"
+                      onChange={() => this.getShow()}
+                    />
+                    {/* <p>{this.state.showDate}</p> */}
+                    <p
+                      id="phish-caf-date-error"
+                      className="hidden"
+                      ref={this.dateRef}
+                    >
+                      please select a date with a Phish concert
+                    </p>
+                    <button
+                      id="random-show-button"
+                      onClick={() => this.getRandomShow()}
+                    >
+                      Random Show
+                    </button>
+                  </div>
+                </div>
+                <div id="phish-caf-upload-box">
+                  <div id="phish-caf-upload" onClick={this.uploadImage}>
+                    {uploadPreview}
+                    <span
+                      id="phish-caf-upload-span"
+                      className={uploadPreview === null ? "" : "hidden"}
+                    >
+                      Upload Album Art
+                    </span>
+                    <input
+                      id="caf-add-photo-button"
+                      type="file"
+                      className="caf-add-photo-button"
+                      hidden
+                      onChange={this.handlePhoto.bind(this)}
+                    />
+                  </div>
+                  <p id="phish-caf-art-error" className="hidden">
+                    please upload an album cover
+                  </p>
+                  {/* <div>{genreTabs}</div> */}
+                </div>
+              </div>
+              <div id="phish-caf-form-right">
+                <div id="phish-caf-display">
+                  <div id="phish-caf-display-date-box">
+                    <p id="phish-caf-date-label">Date:</p>
+                    <p id="phish-caf-date">{this.state.showDate}</p>
+                  </div>
+                  <div>
+                    <p id="phish-caf-display-tracks-label">Tracks:</p>
+                    <ul id="phish-caf-display-tracks">{tracksPreview}</ul>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div>
-              <ul>{tracksPreview}</ul>
-            </div>
+            <button
+              id="add-phish-show-button"
+              onClick={() => this.handleSubmit()}
+            >
+              Add Phish Show
+            </button>
           </div>
         </div>
       </div>
