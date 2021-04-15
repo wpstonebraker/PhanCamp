@@ -6,6 +6,7 @@ class SellingNowIndex extends React.Component {
     super(props);
     this.state = {
       items: [],
+      flag: true,
     };
     this.addToCarousel = this.addToCarousel.bind(this);
     this.loop = this.loop.bind(this);
@@ -19,22 +20,19 @@ class SellingNowIndex extends React.Component {
     // }, 1500);
   }
 
-  //   function doSomething() {}
-
-  // (function loop() {
-  //     var rand = Math.round(Math.random() * (3000 - 500)) + 500;
-  //     setTimeout(function() {
-  //             doSomething();
-  //             loop();
-  //     }, rand);
-  // }());
+  componentWillUnmount() {
+    this.setState({ flag: false });
+    // clearTimeout(this.loop);
+  }
 
   loop() {
-    const rand = ~~(Math.random() * (3000 - 500)) + 500;
-    setTimeout(() => {
-      this.addToCarousel();
-      this.loop();
-    }, rand);
+    if (this.state.flag) {
+      const rand = ~~(Math.random() * (3000 - 500)) + 500;
+      setTimeout(() => {
+        this.addToCarousel();
+        this.loop();
+      }, rand);
+    }
   }
 
   initCarousel() {

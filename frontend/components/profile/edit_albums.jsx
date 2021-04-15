@@ -4,7 +4,19 @@ import TrackEdit from "./edit_tracks";
 class EditAlbum extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.state;
+    this.state = {
+      ...this.props.state,
+      albumId: "",
+      title: "",
+      price: "",
+      description: "",
+      credits: "",
+      genres: "",
+      photoFile: null,
+      photoUrl: null,
+      tracks: [],
+      genresArray: [],
+    };
     this.handleClick = this.handleClick.bind(this);
     this.handlePhoto = this.handlePhoto.bind(this);
     this.handleAlbumSave = this.handleAlbumSave.bind(this);

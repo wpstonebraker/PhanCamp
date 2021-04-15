@@ -5,6 +5,7 @@ import { deleteAlbum } from "../../actions/album_actions";
 
 const mSTP = (state, ownProps) => {
   if (Object.keys(state.entities.artists).length) {
+    debugger;
     const user = state.entities.artists[state.session.id];
     return {
       albums: state.entities.albums,

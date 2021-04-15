@@ -171,7 +171,7 @@ class Profile extends React.Component {
                 >
                   {bannerPreview}
                   <span
-                    id="caf-upload-span"
+                    id="profile-banner-upload-span"
                     className={bannerPreview === null ? "" : "hidden"}
                   >
                     Upload Banner
@@ -179,7 +179,7 @@ class Profile extends React.Component {
                   <input
                     id="profile-banner-upload-button"
                     type="file"
-                    className="profile-Banner-upload-button"
+                    className="profile-banner-upload-button"
                     hidden
                     onChange={this.handleBanner.bind(this)}
                   />

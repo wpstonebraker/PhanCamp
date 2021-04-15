@@ -3728,6 +3728,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _edit_tracks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit_tracks */ "./frontend/components/profile/edit_tracks.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3764,7 +3768,18 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, EditAlbum);
 
     _this = _super.call(this, props);
-    _this.state = _this.props.state;
+    _this.state = _objectSpread(_objectSpread({}, _this.props.state), {}, {
+      albumId: "",
+      title: "",
+      price: "",
+      description: "",
+      credits: "",
+      genres: "",
+      photoFile: null,
+      photoUrl: null,
+      tracks: [],
+      genresArray: []
+    });
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     _this.handlePhoto = _this.handlePhoto.bind(_assertThisInitialized(_this));
     _this.handleAlbumSave = _this.handleAlbumSave.bind(_assertThisInitialized(_this));
@@ -4049,6 +4064,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state, ownProps) {
   if (Object.keys(state.entities.artists).length) {
+    debugger;
     var user = state.entities.artists[state.session.id];
     return {
       albums: state.entities.albums,
@@ -4473,12 +4489,12 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         className: "profile-banner-upload",
         onClick: this.uploadBanner
       }, bannerPreview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-        id: "caf-upload-span",
+        id: "profile-banner-upload-span",
         className: bannerPreview === null ? "" : "hidden"
       }, "Upload Banner"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "profile-banner-upload-button",
         type: "file",
-        className: "profile-Banner-upload-button",
+        className: "profile-banner-upload-button",
         hidden: true,
         onChange: this.handleBanner.bind(this)
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
@@ -5190,7 +5206,8 @@ var SellingNowIndex = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      items: []
+      items: [],
+      flag: true
     };
     _this.addToCarousel = _this.addToCarousel.bind(_assertThisInitialized(_this));
     _this.loop = _this.loop.bind(_assertThisInitialized(_this));
@@ -5204,26 +5221,27 @@ var SellingNowIndex = /*#__PURE__*/function (_React$Component) {
       this.loop(); // setInterval(() => {
       //   this.addToCarousel();
       // }, 1500);
-    } //   function doSomething() {}
-    // (function loop() {
-    //     var rand = Math.round(Math.random() * (3000 - 500)) + 500;
-    //     setTimeout(function() {
-    //             doSomething();
-    //             loop();
-    //     }, rand);
-    // }());
-
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.setState({
+        flag: false
+      }); // clearTimeout(this.loop);
+    }
   }, {
     key: "loop",
     value: function loop() {
       var _this2 = this;
 
-      var rand = ~~(Math.random() * (3000 - 500)) + 500;
-      setTimeout(function () {
-        _this2.addToCarousel();
+      if (this.state.flag) {
+        var rand = ~~(Math.random() * (3000 - 500)) + 500;
+        setTimeout(function () {
+          _this2.addToCarousel();
 
-        _this2.loop();
-      }, rand);
+          _this2.loop();
+        }, rand);
+      }
     }
   }, {
     key: "initCarousel",
