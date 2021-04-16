@@ -18,22 +18,24 @@
 
 .di-label {
   text-transform: uppercase;
-  position: absolute;
+  // position: absolute;
   // left: 364px;
-  top: 50px;
+  // top: 50px;
   color: #408ea3;
   font-size: 14px;
   font-weight: bold;
 }
 
 .di-inner {
-  width: 1200px;
+  width: 1105px;
   // margin: auto;
   display: flex;
+  flex-direction: column;
   //   background-color: royalblue;
 }
 
 .di-box {
+  width: 1105px;
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -57,7 +59,7 @@
   height: 300px;
   //   border: 1px solid blue;
   //   display: flex;
-  margin: 5px 10px;
+  margin: 5px 0;
   background-color: #ffffff;
 }
 
@@ -71,14 +73,35 @@
   }
 }
 
+.di-tile-title {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 0 0 10px;
+}
+
+// .di-tile-title:hover {
+//   cursor: pointer;
+//   text-decoration: underline;
+// }
+
+.di-tile-artist {
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.di-tile-deets {
+  padding: 0 10px;
+  font-size: 10px;
+}
+
 #di-main-item {
   display: flex;
   background-color: #ffffff;
-  width: 645px;
+  width: 655px;
   height: 300px;
   //   grid-area: main;
   //   border: 1px solid blue;
-  margin: 5px 10px;
+  margin: 5px 0;
   img {
     width: 295px;
     height: 295px;

@@ -2918,12 +2918,12 @@ var DailyIndex = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "di-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "di-inner"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "di-label-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "di-label"
-      }, "PHANCAMP DAILY")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "di-inner"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, "LATEST RELEASES")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "di-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "di-box-top-row"
@@ -2931,7 +2931,7 @@ var DailyIndex = /*#__PURE__*/function (_React$Component) {
         id: "di-main-item"
       }, main), topRow), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "di-box-bottom-row"
-      }, items))));
+      }, items)))));
     }
   }]);
 
@@ -3020,11 +3020,11 @@ var DailyItem = function DailyItem(_ref) {
       src: album.photoUrl,
       alt: ""
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "sni-tile-title"
+      className: "di-tile-title"
     }, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "sni-tile-deets"
+      className: "di-tile-artist"
     }, "by ", artist.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "sni-tile-deets"
+      className: "di-tile-deets"
     }, album.description))))
   );
 };

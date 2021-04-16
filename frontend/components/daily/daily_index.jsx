@@ -64,16 +64,18 @@ class DailyIndex extends React.Component {
     const topRow = items.splice(0, 2);
     return (
       <div className="di-outer">
-        <div id="di-label-box">
-          <div className="di-label">PHANCAMP DAILY</div>
-        </div>
         <div className="di-inner">
-          <div className="di-box">
-            <div className="di-box-top-row">
-              <span id="di-main-item">{main}</span>
-              {topRow}
+          <div id="di-label-box">
+            <div className="di-label">LATEST RELEASES</div>
+          </div>
+          <div>
+            <div className="di-box">
+              <div className="di-box-top-row">
+                <span id="di-main-item">{main}</span>
+                {topRow}
+              </div>
+              <div className="di-box-bottom-row">{items}</div>
             </div>
-            <div className="di-box-bottom-row">{items}</div>
           </div>
         </div>
       </div>

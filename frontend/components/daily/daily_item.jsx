@@ -14,10 +14,10 @@ const DailyItem = ({ album, artist, history }) => {
       <div className="di-item-box">
         <div className="di-item-tile">
           <img src={album.photoUrl} alt="" />
-          <div className="sni-tile-title">{album.title}</div>
-          <div className="sni-tile-deets">by {artist.artistName}</div>
+          <div className="di-tile-title">{album.title}</div>
+          <div className="di-tile-artist">by {artist.artistName}</div>
           <br />
-          <div className="sni-tile-deets">{album.description}</div>
+          <div className="di-tile-deets">{album.description}</div>
         </div>
       </div>
     </Link>
