@@ -10,7 +10,7 @@ const GenresIndex = (props) => {
     return <li key={genreId}>{genres[genreId].genre}</li>;
   });
   return (
-    <ul>
+    <ul className="genres-index-box">
       <span>genres</span>
       {artistGenres}
     </ul>

@@ -3375,7 +3375,9 @@ var GenresIndex = function GenresIndex(props) {
       key: genreId
     }, genres[genreId].genre);
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "genres"), artistGenres);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+    className: "genres-index-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "genres"), artistGenres);
 };
 
 var mSTP = function mSTP(state, ownProps) {
@@ -4001,22 +4003,6 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         id: "ep-ea-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "caf-upload-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-        className: uploadPreview === null ? "hidden" : ""
-      }, "Click Image to Upload New Cover"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "caf-upload",
-        onClick: this.uploadImage
-      }, uploadPreview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-        id: "caf-upload-span",
-        className: uploadPreview === null ? "" : "hidden"
-      }, "Upload Album Art"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        id: "ep-ea-photo-button",
-        type: "file",
-        className: "caf-add-photo-button",
-        hidden: true,
-        onChange: this.handlePhoto.bind(this)
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "ep-ea-inputs"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "ep-ea-input-box"
@@ -4059,7 +4045,29 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
         placeholder: "(optional)",
         value: credits,
         onChange: this.update("credits")
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "ep-ea-upload-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        className: uploadPreview === null ? "hidden" : ""
+      }, "Click Image to Upload New Cover"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "ep-ea-upload",
+        onClick: this.uploadImage
+      }, uploadPreview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        id: "ep-ea-upload-span",
+        className: uploadPreview === null ? "" : "hidden"
+      }, "Upload Album Art"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        id: "ep-ea-photo-button",
+        type: "file",
+        className: "ep-ea-add-photo-button",
+        hidden: true,
+        onChange: this.handlePhoto.bind(this)
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "ep-ea-track-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "ep-ea-track-box-label"
+      }, "tracks"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, albumTracks)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "ep-ea-button-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         id: "ep-ea-save-button",
         onClick: this.handleAlbumSave
       }, "Save Changes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -4068,7 +4076,7 @@ var EditAlbum = /*#__PURE__*/function (_React$Component) {
           return _this5.handleAlbumDelete(albumId);
         },
         value: albumId
-      }, "Delete Album")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, albumTracks)));
+      }, "Delete Album")));
     }
   }]);
 
@@ -4100,7 +4108,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  if (Object.keys(state.entities.artists).length) {
+  if (state.entities.artists[state.session.id] !== undefined) {
+    // if (Object.keys(state.entities.artists).length) {
     var user = state.entities.artists[state.session.id];
     return {
       albums: state.entities.albums,
@@ -4236,15 +4245,15 @@ var TrackEdit = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
         value: this.state.track_name,
         onChange: this.update("track_name")
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.handleSubmit
-      }, "Save Track"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }, "\u2714\uFE0F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.handleDelete
-      }, "DeleteTrack")));
+      }, "\u274C"));
     }
   }]);
 
@@ -4628,7 +4637,9 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         type: "submit",
         value: "Update Profile",
         onClick: this.handleSubmit
-      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_edit_albums_container__WEBPACK_IMPORTED_MODULE_1__.default, null)));
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "profile-divider"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_edit_albums_container__WEBPACK_IMPORTED_MODULE_1__.default, null)));
     }
   }]);
 

@@ -23,17 +23,124 @@
 }
 
 #ep-ea-form-container {
-  width: 80%;
+  width: 1000;
   display: flex;
   justify-content: space-between;
+  div {
+    margin: 10px;
+  }
 }
 
 #ep-ea-form {
   display: flex;
+  width: 1000px;
+  justify-content: space-between;
+}
+
+#ep-ea-inputs {
+  input {
+    width: 280px;
+    border: 1px solid #9c9c9c;
+    border-color: #9c9c9c #9c9c9c #ccc #ccc;
+  }
+
+  input:focus {
+    border-color: #50a1e6;
+    -webkit-transition-duration: 0.5s;
+  }
+
+  textarea:focus {
+    outline: none;
+    border-color: #50a1e6;
+    -webkit-transition-duration: 0.5s;
+  }
+
+  textarea {
+    border: 1px solid #9c9c9c;
+    border-color: #9c9c9c #9c9c9c #ccc #ccc;
+    height: 56px;
+    width: 280px;
+    font-size: 13px;
+  }
+}
+
+.ep-ea-upload-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  // width: 448px;
+  height: 250px;
+  position: relative;
+}
+
+.ep-ea-upload {
+  height: 212px;
+  width: 212px;
+  border: 1px dashed lightgrey;
+  position: relative;
+}
+
+.ep-ea-add-photo-button {
+  height: 212px;
+  width: 212px;
+  background: transparent;
+  border: none;
+  color: transparent;
+  opacity: 0;
+}
+
+#ep-ea-upload-span {
+  font-size: 19px;
+  position: relative;
+  color: #0687f5;
+  top: 90px;
+  left: 30px;
+}
+
+#ep-ea-upload-span:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .ep-ea-input-box {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
+}
+
+#ep-ea-track-box {
+  width: 300px;
+  background-color: white;
+}
+
+#ep-ea-track-box-label {
+  color: #0687f5;
+}
+
+#ep-ea-button-box {
+  width: 1000px;
+}
+
+#ep-ea-save-button {
+  box-sizing: content-box;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #00a1c6;
+  margin: 20px;
+  width: 166px;
+  height: 36px;
+  border: 0.5px solid lightgrey;
+}
+
+#ep-ea-delete-button {
+  margin-left: 190px;
+  box-sizing: content-box;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: red;
+  width: 166px;
+  height: 36px;
+  border: 0.5px solid lightgrey;
 }

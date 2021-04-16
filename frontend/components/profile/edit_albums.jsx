@@ -166,27 +166,6 @@ class EditAlbum extends React.Component {
         </div>
         <div id="ep-ea-form-container">
           <form id="ep-ea-form">
-            <div className="caf-upload-box">
-              <span className={uploadPreview === null ? "hidden" : ""}>
-                Click Image to Upload New Cover
-              </span>
-              <div className="caf-upload" onClick={this.uploadImage}>
-                {uploadPreview}
-                <span
-                  id="caf-upload-span"
-                  className={uploadPreview === null ? "" : "hidden"}
-                >
-                  Upload Album Art
-                </span>
-                <input
-                  id="ep-ea-photo-button"
-                  type="file"
-                  className="caf-add-photo-button"
-                  hidden
-                  onChange={this.handlePhoto.bind(this)}
-                />
-              </div>
-            </div>
             <div id="ep-ea-inputs">
               <div className="ep-ea-input-box">
                 title:
@@ -236,21 +215,45 @@ class EditAlbum extends React.Component {
                   onChange={this.update("credits")}
                 />
               </div>
-              <div>
-                <button id="ep-ea-save-button" onClick={this.handleAlbumSave}>
-                  Save Changes
-                </button>
-                <button
-                  id="ep-ea-delete-button"
-                  onClick={() => this.handleAlbumDelete(albumId)}
-                  value={albumId}
+            </div>
+            <div className="ep-ea-upload-box">
+              <span className={uploadPreview === null ? "hidden" : ""}>
+                Click Image to Upload New Cover
+              </span>
+              <div className="ep-ea-upload" onClick={this.uploadImage}>
+                {uploadPreview}
+                <span
+                  id="ep-ea-upload-span"
+                  className={uploadPreview === null ? "" : "hidden"}
                 >
-                  Delete Album
-                </button>
+                  Upload Album Art
+                </span>
+                <input
+                  id="ep-ea-photo-button"
+                  type="file"
+                  className="ep-ea-add-photo-button"
+                  hidden
+                  onChange={this.handlePhoto.bind(this)}
+                />
               </div>
             </div>
+            <div id="ep-ea-track-box">
+              <div id="ep-ea-track-box-label">tracks</div>
+              <div>{albumTracks}</div>
+            </div>
           </form>
-          <div>{albumTracks}</div>
+        </div>
+        <div id="ep-ea-button-box">
+          <button id="ep-ea-save-button" onClick={this.handleAlbumSave}>
+            Save Changes
+          </button>
+          <button
+            id="ep-ea-delete-button"
+            onClick={() => this.handleAlbumDelete(albumId)}
+            value={albumId}
+          >
+            Delete Album
+          </button>
         </div>
       </div>
     );

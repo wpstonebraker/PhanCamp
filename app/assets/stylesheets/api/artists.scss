@@ -118,14 +118,14 @@
 
 .artist-sidebar-inner {
   display: flex;
-  width: 15%;
+  width: 20%;
 }
 
 .artist-sidebar-box {
   display: flex;
   // justify-self: end;
   padding: 0 5px;
-  width: 90%;
+  width: 80%;
   max-width: 135px;
 
   li {
@@ -152,20 +152,24 @@
 
 .artist-sidebar-name {
   padding-top: 10px;
+  padding-left: 10px;
   font-size: 16px;
   font-weight: bold;
 }
 
 .artist-sidebar-location {
+  padding-left: 10px;
   font-size: 12px;
   color: #888888;
 }
 
 .artist-sidebar-about {
+  padding-left: 10px;
   font-size: 12px;
   color: #363636;
 }
 .artist-sidebar-website {
+  padding-left: 10px;
   white-space: nowrap;
   text-overflow: ellipsis;
   width: 130px;
@@ -174,7 +178,18 @@
   font-size: 12px;
   color: #363636;
 }
-.artist-sidebar-about {
+.artist-sidebar-contact {
+  padding-left: 10px;
   font-size: 12px;
   color: #363636;
+}
+
+.genres-index-box {
+  padding-bottom: 0;
+  span {
+    margin-bottom: 10px;
+  }
+  li {
+    padding-left: 10px;
+  }
 }

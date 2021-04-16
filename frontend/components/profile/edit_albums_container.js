@@ -4,7 +4,8 @@ import { deleteTrack, editTrack } from "../../actions/track_actions";
 import { deleteAlbum } from "../../actions/album_actions";
 
 const mSTP = (state, ownProps) => {
-  if (Object.keys(state.entities.artists).length) {
+  if (state.entities.artists[state.session.id] !== undefined) {
+    // if (Object.keys(state.entities.artists).length) {
     const user = state.entities.artists[state.session.id];
     return {
       albums: state.entities.albums,

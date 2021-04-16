@@ -43,16 +43,16 @@ class TrackEdit extends React.Component {
   render() {
     return (
       <div>
-        <form>
-          {/* <span>{this.props.track.trackNum}</span> */}
-          <input
-            type="text"
-            value={this.state.track_name}
-            onChange={this.update("track_name")}
-          />
-          <button onClick={this.handleSubmit}>Save Track</button>
-          <button onClick={this.handleDelete}>DeleteTrack</button>
-        </form>
+        {/* <form > */}
+        {/* <span>{this.props.track.trackNum}</span> */}
+        <input
+          type="text"
+          value={this.state.track_name}
+          onChange={this.update("track_name")}
+        />
+        <button onClick={this.handleSubmit}>✔️</button>
+        <button onClick={this.handleDelete}>❌</button>
+        {/* </form> */}
       </div>
     );
   }

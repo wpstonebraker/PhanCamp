@@ -314,6 +314,7 @@ class Profile extends React.Component {
               </div>
             </form>
           </div>
+          <div id="profile-divider" />
           <EditAlbumContainer />
         </div>
       </div>
