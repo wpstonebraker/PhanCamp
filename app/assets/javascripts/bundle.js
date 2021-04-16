@@ -4955,11 +4955,21 @@ var SearchDisplay = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      // let searchResults = [];
+      if (Object.keys(this.props.search).length === 0) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "sd-outer"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "sd-inner"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "sd-box"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "No Results Found."))));
+      } // let searchResults = [];
       // for (const [key, value] of Object.entries(this.props.artists)) {
       //   searchResults.push(<DisplayItem artist={key} details={value} />);
       // }
       // const artistItems = <DisplayItem artists={this.props.artists} />;
+
+
       var artistItems = Object.keys(this.props.artists).length !== 0 ? Object.values(this.props.artists).map(function (res) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_search_display_item_container__WEBPACK_IMPORTED_MODULE_1__.default, {
           details: res,
@@ -5016,6 +5026,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state, ownProps) {
   return {
+    search: state.entities.search,
     albums: state.entities.search.albums ? state.entities.search.albums : {},
     tracks: state.entities.search.tracks ? state.entities.search.tracks : {},
     artists: state.entities.search.artists ? state.entities.search.artists : {}

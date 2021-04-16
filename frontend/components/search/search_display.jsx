@@ -12,6 +12,17 @@ class SearchDisplay extends React.Component {
   }
 
   render() {
+    if (Object.keys(this.props.search).length === 0) {
+      return (
+        <div className="sd-outer">
+          <div className="sd-inner">
+            <div className="sd-box">
+              <div>No Results Found.</div>
+            </div>
+          </div>
+        </div>
+      );
+    }
     // let searchResults = [];
     // for (const [key, value] of Object.entries(this.props.artists)) {
     //   searchResults.push(<DisplayItem artist={key} details={value} />);
