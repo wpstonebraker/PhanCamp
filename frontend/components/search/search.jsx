@@ -29,7 +29,8 @@ class Search extends React.Component {
     // );
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
     this.props.getSearch(this.state.terms).then(() => {
       this.setState({ terms: "" });
       this.props.history.push("/search");

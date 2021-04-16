@@ -4428,10 +4428,11 @@ var Profile = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleSubmit",
-    value: function handleSubmit() {
+    value: function handleSubmit(e) {
       var _this6 = this;
 
-      // e.preventDefault();
+      e.preventDefault();
+
       if (this.state.bannerUrl === null) {
         document.getElementById("profile-banner-error").classList.remove("hidden");
       } else if (this.state.thumbnailUrl === null) {
@@ -4820,9 +4821,10 @@ var Search = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleSubmit",
-    value: function handleSubmit() {
+    value: function handleSubmit(e) {
       var _this2 = this;
 
+      e.preventDefault();
       this.props.getSearch(this.state.terms).then(function () {
         _this2.setState({
           terms: ""

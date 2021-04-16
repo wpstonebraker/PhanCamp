@@ -80,8 +80,8 @@ class Profile extends React.Component {
     document.getElementById("profile-banner-upload-button").click();
   }
 
-  handleSubmit() {
-    // e.preventDefault();
+  handleSubmit(e) {
+    e.preventDefault();
     if (this.state.bannerUrl === null) {
       document
         .getElementById("profile-banner-error")
