@@ -75,9 +75,14 @@ export const getAlbum = (albumId) => {
 
 export const getArtistAlbums = (artistId) => {
   return (dispatch) => {
-    return APIUtil.getArtistAlbums(artistId).then((albums) => {
-      return dispatch(receiveArtistAlbums(albums));
-    });
+    return APIUtil.getArtistAlbums(artistId).then(
+      (albums) => {
+        return dispatch(receiveArtistAlbums(albums));
+      },
+      (errors) => {
+        return console.log(errors);
+      }
+    );
   };
 };
 

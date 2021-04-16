@@ -182,6 +182,8 @@ var getArtistAlbums = function getArtistAlbums(artistId) {
   return function (dispatch) {
     return _util_album_api_util__WEBPACK_IMPORTED_MODULE_0__.getArtistAlbums(artistId).then(function (albums) {
       return dispatch(receiveArtistAlbums(albums));
+    }, function (errors) {
+      return console.log(errors);
     });
   };
 };
@@ -4639,7 +4641,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         onClick: this.handleSubmit
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "profile-divider"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_edit_albums_container__WEBPACK_IMPORTED_MODULE_1__.default, null)));
+      })));
     }
   }]);
 
