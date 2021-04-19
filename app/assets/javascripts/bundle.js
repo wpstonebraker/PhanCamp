@@ -647,9 +647,10 @@ var AlbumCreateForm = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleSubmit",
-    value: function handleSubmit() {
+    value: function handleSubmit(e) {
       var _this5 = this;
 
+      e.preventDefault();
       var errorsCount = 0;
       var errorsArray = [];
 
@@ -4641,7 +4642,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         onClick: this.handleSubmit
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "profile-divider"
-      })));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_edit_albums_container__WEBPACK_IMPORTED_MODULE_1__.default, null)));
     }
   }]);
 

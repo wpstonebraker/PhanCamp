@@ -98,7 +98,8 @@ class AlbumCreateForm extends React.Component {
     // return;
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
     let errorsCount = 0;
     let errorsArray = [];
     if (this.state.photoUrl === null) {
