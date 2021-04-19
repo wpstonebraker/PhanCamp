@@ -5,11 +5,11 @@ const Foots = (props) => {
     <div id="footer-outer">
       <div id="footer-inner">
         <div id="footer-box">
-          <div id="footer-personal-box">
+          {/* <div id="footer-personal-box">
             <span id="footer-personal">
               visit my website at www.paulstonebraker.com
             </span>
-          </div>
+          </div> */}
           <div id="footer-top">
             <a href="https://github.com/wpstonebraker" target="_blank">
               <i className="devicon-github-original-wordmark"></i>
@@ -24,12 +24,15 @@ const Foots = (props) => {
               <i className="fab fa-angellist"></i>
             </a>
           </div>
+          <span>
+            This site was made with love by{" "}
+            <a href="https://www.paulstonebraker.com" target="_blank">
+              Paul Stonebraker
+            </a>
+            , using these technologies:
+          </span>
           <div id="footer-bottom-box">
-            <div id="footer-tech-label">
-              <span>
-                This site was made with love, using these technologies:
-              </span>
-            </div>
+            <div id="footer-tech-label"></div>
             <div id="footer-bottom">
               <i className="devicon-amazonwebservices-plain-wordmark"></i>
               <i className="devicon-css3-plain"></i>
