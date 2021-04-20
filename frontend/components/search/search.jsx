@@ -44,6 +44,7 @@ class Search extends React.Component {
           <input
             className="search-placeholder"
             onChange={this.handleInput}
+            value={this.state.terms}
           ></input>
           <img src={window.searchMag} className="search-icon" />
         </form>

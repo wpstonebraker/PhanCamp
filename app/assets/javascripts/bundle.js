@@ -4842,7 +4842,8 @@ var Search = /*#__PURE__*/function (_React$Component) {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         className: "search-placeholder",
-        onChange: this.handleInput
+        onChange: this.handleInput,
+        value: this.state.terms
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         src: window.searchMag,
         className: "search-icon"
