@@ -180,6 +180,11 @@
 }
 .artist-sidebar-contact {
   padding-left: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 130px;
+  display: block;
+  overflow: hidden;
   font-size: 12px;
   color: #363636;
 }
