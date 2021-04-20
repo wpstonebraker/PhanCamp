@@ -5118,7 +5118,7 @@ var DisplayItem = /*#__PURE__*/function (_React$Component) {
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
             className: "dt-details-class"
           }, "ARTIST"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-            className: "dt-details-name",
+            className: "dt-details-name pointer",
             onClick: function onClick() {
               return _this.props.history.push("/artists/".concat(item.id));
             }
@@ -5146,14 +5146,14 @@ var DisplayItem = /*#__PURE__*/function (_React$Component) {
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
             className: "dt-details-class"
           }, "ALBUM"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-            className: "dt-details-name",
+            className: "dt-details-name pointer",
             onClick: function onClick() {
-              return _this.props.history.push("/artists/".concat(artist.id, "/albums/").concat(item.albumId));
+              return _this.props.history.push("/artists/".concat(item.artistId, "/albums/").concat(item.id));
             }
           }, item.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-            className: "dt-details-location",
+            className: "dt-details-location pointer",
             onClick: function onClick() {
-              return _this.props.history.push("/artists/".concat(artist.id, "/albums/").concat(item.albumId));
+              return _this.props.history.push("/artists/".concat(item.artistId));
             }
           }, "by ", this.props.artists[item.artistId].artistName)));
           break;
@@ -5180,11 +5180,22 @@ var DisplayItem = /*#__PURE__*/function (_React$Component) {
               return _this.props.history.push("/artists/".concat(artist.id, "/albums/").concat(item.albumId));
             }
           }, item.trackName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-            className: "dt-details-location",
+            className: "dt-details-location pointer",
             onClick: function onClick() {
               return _this.props.history.push("/artists/".concat(artist.id, "/albums/").concat(item.albumId));
             }
-          }, "from ", this.props.albums[item.albumId].title, " by", " ", artist.artistName)));
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+            onClick: function onClick() {
+              return _this.props.history.push("/artists/".concat(artist.id, "/albums/").concat(item.albumId));
+            }
+          }, "from ", this.props.albums[item.albumId].title), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+            className: "dt-details-location"
+          }, "by", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+            className: "pointer",
+            onClick: function onClick() {
+              return _this.props.history.push("/artists/".concat(artist.id));
+            }
+          }, " ", artist.artistName))));
 
         default:
           break;
@@ -7213,7 +7224,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return (0,redux__WEBPACK_IMPORTED_MODULE_3__.createStore)(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_0__.default, preloadedState, (0,redux__WEBPACK_IMPORTED_MODULE_3__.applyMiddleware)(_middleware_thunk__WEBPACK_IMPORTED_MODULE_1__.default, (redux_logger__WEBPACK_IMPORTED_MODULE_2___default())));
+  return (0,redux__WEBPACK_IMPORTED_MODULE_3__.createStore)(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_0__.default, preloadedState, (0,redux__WEBPACK_IMPORTED_MODULE_3__.applyMiddleware)(_middleware_thunk__WEBPACK_IMPORTED_MODULE_1__.default) // applyMiddleware(thunk, logger)
+  );
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (configureStore);

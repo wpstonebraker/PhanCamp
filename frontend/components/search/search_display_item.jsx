@@ -23,7 +23,7 @@ class DisplayItem extends React.Component {
             <div className="dt-details">
               <li className="dt-details-class">ARTIST</li>
               <li
-                className="dt-details-name"
+                className="dt-details-name pointer"
                 onClick={() => this.props.history.push(`/artists/${item.id}`)}
               >
                 {item.name}
@@ -52,21 +52,19 @@ class DisplayItem extends React.Component {
             <div className="dt-details">
               <li className="dt-details-class">ALBUM</li>
               <li
-                className="dt-details-name"
+                className="dt-details-name pointer"
                 onClick={() =>
                   this.props.history.push(
-                    `/artists/${artist.id}/albums/${item.albumId}`
+                    `/artists/${item.artistId}/albums/${item.id}`
                   )
                 }
               >
                 {item.name}
               </li>
               <li
-                className="dt-details-location"
+                className="dt-details-location pointer"
                 onClick={() =>
-                  this.props.history.push(
-                    `/artists/${artist.id}/albums/${item.albumId}`
-                  )
+                  this.props.history.push(`/artists/${item.artistId}`)
                 }
               >
                 by {this.props.artists[item.artistId].artistName}
@@ -108,15 +106,34 @@ class DisplayItem extends React.Component {
                 {item.trackName}
               </li>
               <li
-                className="dt-details-location"
+                className="dt-details-location pointer"
                 onClick={() =>
                   this.props.history.push(
                     `/artists/${artist.id}/albums/${item.albumId}`
                   )
                 }
               >
-                from {this.props.albums[item.albumId].title} by{" "}
-                {artist.artistName}
+                <span
+                  onClick={() =>
+                    this.props.history.push(
+                      `/artists/${artist.id}/albums/${item.albumId}`
+                    )
+                  }
+                >
+                  from {this.props.albums[item.albumId].title}
+                </span>{" "}
+              </li>
+              <li className="dt-details-location">
+                by
+                <span
+                  className="pointer"
+                  onClick={() =>
+                    this.props.history.push(`/artists/${artist.id}`)
+                  }
+                >
+                  {` `}
+                  {artist.artistName}
+                </span>
               </li>
               {/* <li className="dt-details-website">{item.personalUrl}</li> */}
             </div>
