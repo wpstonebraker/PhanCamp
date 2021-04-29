@@ -24,9 +24,13 @@ const Foots = (props) => {
               <i className="fab fa-angellist"></i>
             </a>
           </div>
-          <span>
+          <span id="footer-credits">
             This site was made with love by{" "}
-            <a href="https://www.paulstonebraker.com" target="_blank">
+            <a
+              href="https://www.paulstonebraker.com"
+              target="_blank"
+              id="personal-link"
+            >
               Paul Stonebraker
             </a>
             , using these technologies:

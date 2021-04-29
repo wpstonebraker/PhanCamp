@@ -25,6 +25,7 @@
 }
 
 #footer-bottom {
+  color: #fff;
   width: 1100px;
   // height: 100%;
   font-size: 50px;
@@ -35,6 +36,7 @@
 }
 
 #footer-top {
+  color: #fff;
   font-size: 80px;
   display: flex;
   width: 1100px;
@@ -45,6 +47,15 @@
 #footer-personal-box {
   display: flex;
   justify-content: center;
+}
+
+#footer-credits {
+  color: #fff;
+}
+
+#personal-link {
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 #footer-personal {
