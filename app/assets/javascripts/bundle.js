@@ -3097,116 +3097,79 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+ // class FeatureIndex extends React.Component {
+//   constructor(props) {
+//     super(props);
+//   }
+// const handleClick = () => {
+//   // const benchId = props.bench.id;
+//   // props.history.push(`/artists/${benchId}`);
+//   props.history.push(`/artists/45`);
+// };
+// componentDidMount() {
+//   props.getAllAlbums();
+// }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-
-var FeatureIndex = /*#__PURE__*/function (_React$Component) {
-  _inherits(FeatureIndex, _React$Component);
-
-  var _super = _createSuper(FeatureIndex);
-
-  function FeatureIndex(props) {
-    _classCallCheck(this, FeatureIndex);
-
-    return _super.call(this, props);
-  } // const handleClick = () => {
-  //   // const benchId = this.props.bench.id;
-  //   // props.history.push(`/artists/${benchId}`);
-  //   props.history.push(`/artists/45`);
-  // };
-  // componentDidMount() {
-  //   this.props.getAllAlbums();
-  // }
-
-
-  _createClass(FeatureIndex, [{
-    key: "render",
-    value: function render() {
-      var _this = this;
-
-      var _this$props = this.props,
-          phish = _this$props.phish,
-          theGD = _this$props.theGD,
-          goose = _this$props.goose,
-          ween = _this$props.ween;
-      if (this.props.phish === undefined) return null;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "fi-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "fi-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "fi-main",
-        onClick: function onClick() {
-          return _this.props.history.push("/artists/".concat(phish.id));
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: window.featurePhish,
-        alt: "Main feature Phish"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "fi-main-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Phish"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "1600+ shows"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "4000 hours of music"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "fi-side"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "fis-item-container",
-        onClick: function onClick() {
-          return _this.props.history.push("/artists/".concat(ween.id));
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: window.featureWeen,
-        alt: "Ween feature",
-        className: "fi-side-item"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-        className: "fis-side-item-label"
-      }, "Ween")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "fis-item-container",
-        onClick: function onClick() {
-          return _this.props.history.push("/artists/".concat(theGD.id));
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: window.featureGD,
-        alt: "GD feature",
-        className: "fi-side-item"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-        className: "fis-side-item-label"
-      }, "The Grateful Dead")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "fis-item-container",
-        onClick: function onClick() {
-          return _this.props.history.push("/artists/".concat(goose.id));
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: window.featureGoose,
-        alt: "Goose feature",
-        className: "fi-side-item"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-        className: "fis-side-item-label"
-      }, "Goose")))));
+var FeatureIndex = function FeatureIndex(props) {
+  debugger;
+  if (props.features.phish === undefined) return null;
+  var _props$features = props.features,
+      phish = _props$features.phish,
+      theGD = _props$features.theGD,
+      goose = _props$features.goose,
+      ween = _props$features.ween;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "fi-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "fi-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "fi-main",
+    onClick: function onClick() {
+      return props.history.push("/artists/".concat(phish.id));
     }
-  }]);
-
-  return FeatureIndex;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: window.featurePhish,
+    alt: "Main feature Phish"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "fi-main-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Phish"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "1600+ shows"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "4000 hours of music"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "fi-side"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "fis-item-container",
+    onClick: function onClick() {
+      return props.history.push("/artists/".concat(ween.id));
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: window.featureWeen,
+    alt: "Ween feature",
+    className: "fi-side-item"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    className: "fis-side-item-label"
+  }, "Ween")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "fis-item-container",
+    onClick: function onClick() {
+      return props.history.push("/artists/".concat(theGD.id));
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: window.featureGD,
+    alt: "GD feature",
+    className: "fi-side-item"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    className: "fis-side-item-label"
+  }, "The Grateful Dead")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "fis-item-container",
+    onClick: function onClick() {
+      return props.history.push("/artists/".concat(goose.id));
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: window.featureGoose,
+    alt: "Goose feature",
+    className: "fi-side-item"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    className: "fis-side-item-label"
+  }, "Goose")))));
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FeatureIndex);
 
@@ -6056,6 +6019,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _selling_now_selling_now_index_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../selling_now/selling_now_index_container */ "./frontend/components/selling_now/selling_now_index_container.js");
 /* harmony import */ var _daily_daily_index_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../daily/daily_index_container */ "./frontend/components/daily/daily_index_container.js");
 /* harmony import */ var _discover_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./discover_container */ "./frontend/components/splash/discover_container.js");
+/* harmony import */ var _feature_feature_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../feature/feature_index */ "./frontend/components/feature/feature_index.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -6084,6 +6048,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Splash = /*#__PURE__*/function (_React$Component) {
   _inherits(Splash, _React$Component);
 
@@ -6104,7 +6069,24 @@ var Splash = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       if (Object.keys(this.props.albums).length === 0) return null;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feature_feature_index_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_selling_now_selling_now_index_container__WEBPACK_IMPORTED_MODULE_2__.default, {
+      var _this$props = this.props,
+          artists = _this$props.artists,
+          albums = _this$props.albums,
+          features = _this$props.features;
+      var featureItems = {
+        phish: artists[features[0]],
+        theGD: artists[features[1]],
+        goose: artists[features[2]],
+        ween: artists[features[3]]
+      }; // const phish = artists[features[0]];
+      // const theGD = artists[features[1]];
+      // const goose = artists[features[2]];
+      // const ween = artists[features[3]];
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feature_feature_index__WEBPACK_IMPORTED_MODULE_5__.default, {
+        features: featureItems,
+        history: this.props.history
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_selling_now_selling_now_index_container__WEBPACK_IMPORTED_MODULE_2__.default, {
         albums: this.props.albums,
         artists: this.props.artists
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_daily_daily_index_container__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_discover_container__WEBPACK_IMPORTED_MODULE_4__.default, null));
@@ -6130,8 +6112,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _actions_album_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/album_actions */ "./frontend/actions/album_actions.js");
 /* harmony import */ var _splash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./splash */ "./frontend/components/splash/splash.jsx");
+
 
 
 
@@ -6139,7 +6123,8 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state, ownProps) {
   return {
     albums: state.entities.albums,
-    artists: state.entities.artists
+    artists: state.entities.artists,
+    features: state.entities.util.features
   };
 };
 
@@ -6151,7 +6136,7 @@ var mDTP = function mDTP(dispatch) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_splash__WEBPACK_IMPORTED_MODULE_2__.default));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router__WEBPACK_IMPORTED_MODULE_3__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_splash__WEBPACK_IMPORTED_MODULE_2__.default)));
 
 /***/ }),
 
@@ -7225,8 +7210,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return (0,redux__WEBPACK_IMPORTED_MODULE_3__.createStore)(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_0__.default, preloadedState, (0,redux__WEBPACK_IMPORTED_MODULE_3__.applyMiddleware)(_middleware_thunk__WEBPACK_IMPORTED_MODULE_1__.default) // applyMiddleware(thunk, logger)
-  );
+  return (0,redux__WEBPACK_IMPORTED_MODULE_3__.createStore)(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_0__.default, preloadedState, // applyMiddleware(thunk)
+  (0,redux__WEBPACK_IMPORTED_MODULE_3__.applyMiddleware)(_middleware_thunk__WEBPACK_IMPORTED_MODULE_1__.default, (redux_logger__WEBPACK_IMPORTED_MODULE_2___default())));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (configureStore);
