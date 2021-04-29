@@ -43,7 +43,7 @@ class Discover extends React.Component {
         document.getElementById("play-button-box").click();
         // let audioPlayer = document.getElementById("discover-audio-player");
         // audioPlayer.play();
-      }, 400);
+      }, 1000);
     } else {
       let trackId = album.trackIds[0];
       this.props.playTrack(this.props.tracks[trackId]);
