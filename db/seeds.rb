@@ -63,33 +63,33 @@ phish = User.create!(
     personal_url: "www.phish.com"
 )
 
-phish.banner.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_banner.png"), filename: "phishbanner.png")
-phish.thumbnail.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_thumbnail.png"), filename: "phishthumbnail.png")
+phish.banner.attach(io: URI.open("https://phancamp-seeds.s3.us-west-2.amazonaws.com/ph_banner.png"), filename: "phishbanner.png")
+phish.thumbnail.attach(io: URI.open("https://phancamp-seeds.s3.us-west-2.amazonaws.com/ph_thumbnail.png"), filename: "phishthumbnail.png")
 
 # track.song.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/II+02+Simple+-.mp3"), filename: "bdSimple.mp3")
 # Track.create!(track_name: "test track", track_num: 4, album_id: a.id).song.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/drZ2/The+Wheel+-%3E.mp3"), filename: "drZ1.mp3")
 
 
-# PHISH_20100619 = Album.create!(
-#     title: '2010-06-19 - SPAC Night 1',
-#     artist_id: phish.id,
-#     year: 2017,
-#     description: "First of two shows at the Saratoga Performing Arts Center",
-#     credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman",
-#     show_date: "2010-06-19"
-# )
+PHISH_20100619 = Album.create!(
+    title: '2010-06-19 - SPAC Night 1',
+    artist_id: phish.id,
+    year: 2017,
+    description: "First of two shows at the Saratoga Performing Arts Center",
+    credits: "Guitar: Trey Anastasio, Bass: Mike Gordon, Keys: Page McConnell, Drums: Jon Fishman",
+    show_date: "2010-06-19"
+)
 
-# PHISH_20100619.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phish/ph_2010-06-19.png"), filename: "ph_2010-06-19.png")
+PHISH_20100619.photo.attach(io: URI.open("https://phancamp-seeds.s3.us-west-2.amazonaws.com/ph_thumbnail.png"), filename: "ph_2010-06-19.png")
 
-# PHISH_20100619_SETLIST = %w(Tweezer\ Reprise Chalk\ Dust\ Torture Funky\ Bitch\ > Runaway\ Jim\ > Ya\ Mar Sample\ in\ a\ Jar Axilla\ > Fluffhead Bathtub\Gin Suzy\ Greenberg Rock\ and\ Roll\ > Free Backwards\ Down\ the\ Number\ Line Halfway\ to\ the\ Moon\ > Prince\ Caspian\ > Joy David\ Bowie Show\ of\ Life The\ Squirming\ Coil Character\ Zero Tweezer\ Reprise)
+PHISH_20100619_SETLIST = %w(Tweezer\ Reprise Chalk\ Dust\ Torture Funky\ Bitch\ > Runaway\ Jim\ > Ya\ Mar Sample\ in\ a\ Jar Axilla\ > Fluffhead Bathtub\Gin Suzy\ Greenberg Rock\ and\ Roll\ > Free Backwards\ Down\ the\ Number\ Line Halfway\ to\ the\ Moon\ > Prince\ Caspian\ > Joy David\ Bowie Show\ of\ Life The\ Squirming\ Coil Character\ Zero Tweezer\ Reprise)
 
-# PHISH_20100619_SETLIST.each_with_index do |track, i|
-#     Track.create!(
-#         track_name: track,
-#         track_num: (i + 1),
-#         album_id: PHISH_20100619.id
-#     )
-# end
+PHISH_20100619_SETLIST.each_with_index do |track, i|
+    Track.create!(
+        track_name: track,
+        track_num: (i + 1),
+        album_id: PHISH_20100619.id
+    )
+end
 
 # PHISH_20170806 = Album.create!(
 #     title: '2017.08.06 - Madison Square Garden',
@@ -372,18 +372,18 @@ phish.thumbnail.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/phis
 #     )
 # end
 
-gd = User.create!(
-    artist_name: "The Grateful Dead",
-    username: "gratefuldead",
-    password: "misterhiro",
-    email: "jer@gd.com",
-    about: "The Grateful Dead was an American rock band formed in 1965 in Palo Alto, California.[1][2] The band is known for its eclectic style, which fused elements of rock, folk, country, jazz, bluegrass, blues, gospel, and psychedelic rock; for live performances of lengthy instrumental jams; and for its devoted fan base, known as 'Deadheads'.",
-    location: "San Francisco, CA",
-    personal_url: "www.dead.net"
-)
+# gd = User.create!(
+#     artist_name: "The Grateful Dead",
+#     username: "gratefuldead",
+#     password: "misterhiro",
+#     email: "jer@gd.com",
+#     about: "The Grateful Dead was an American rock band formed in 1965 in Palo Alto, California.[1][2] The band is known for its eclectic style, which fused elements of rock, folk, country, jazz, bluegrass, blues, gospel, and psychedelic rock; for live performances of lengthy instrumental jams; and for its devoted fan base, known as 'Deadheads'.",
+#     location: "San Francisco, CA",
+#     personal_url: "www.dead.net"
+# )
 
-gd.banner.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_banner.jpeg"), filename: "gdbanner.jpeg")
-gd.thumbnail.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_thumbnail.jpeg"), filename: "gdthumbnail.jpeg")
+# gd.banner.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_banner.jpeg"), filename: "gdbanner.jpeg")
+# gd.thumbnail.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_thumbnail.jpeg"), filename: "gdthumbnail.jpeg")
 
 # msg81 = Album.create!(
 #     title: '1981.03.09 - New York, NY',
@@ -426,151 +426,151 @@ gd.thumbnail.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_t
     #         album_id: msg81.id
     #     )
     # end
-    Z4 = Album.create!(
-        title: "Dr. Zack's Picks Vol. 1",
-        artist_id: gd.id,
-        year: 2020,
-        description: "Help On the Way -> Slipknot -> Franklin's Tower from 5/22/77 at The Sportatorium in Pembroke Pines, FL. Mississippi Half Step from 9/3/77 show at Raceway Park in Englishtown, NJ.",
-        credits: "5/22/77 show taping/transfer is uncredited. 9/3/77 show taped by Ken Flemming and transferred by Rob Berger. Complete shows can be found on archive.org."
-    )
+    # Z4 = Album.create!(
+    #     title: "Dr. Zack's Picks Vol. 1",
+    #     artist_id: gd.id,
+    #     year: 2020,
+    #     description: "Help On the Way -> Slipknot -> Franklin's Tower from 5/22/77 at The Sportatorium in Pembroke Pines, FL. Mississippi Half Step from 9/3/77 show at Raceway Park in Englishtown, NJ.",
+    #     credits: "5/22/77 show taping/transfer is uncredited. 9/3/77 show taped by Ken Flemming and transferred by Rob Berger. Complete shows can be found on archive.org."
+    # )
     
-    Z4.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z4.webp"), filename: "gd_z1.webp")
+    # Z4.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z4.webp"), filename: "gd_z1.webp")
     
-    Z4_SETLIST = %w(Help\ On\ the\ Way\ -> Slipknot\ -> Franklin's\ Tower Mississippi\ Half\ Step)
+    # Z4_SETLIST = %w(Help\ On\ the\ Way\ -> Slipknot\ -> Franklin's\ Tower Mississippi\ Half\ Step)
     
-    Z4_TRACKS = [
-        "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Help+on+the+Way+-%3E.mp3",
-        "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Slipnot+-%3E.mp3",
-        "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Franklin's+Tower.mp3",
-        "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Mississippi+Half+Step.mp3"
-    ]
+    # Z4_TRACKS = [
+    #     "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Help+on+the+Way+-%3E.mp3",
+    #     "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Slipnot+-%3E.mp3",
+    #     "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Franklin's+Tower.mp3",
+    #     "https://phancamp-seed.s3.amazonaws.com/gd/drZ4/Mississippi+Half+Step.mp3"
+    # ]
     
-    Z4_SETLIST.each_with_index do |track, i|
-        Track.create!(
-            track_name: track,
-            track_num: (i + 1),
-            album_id: Z4.id
-        ).song.attach(io: URI.open(Z4_TRACKS[i]), filename: "gd_drZ1_#{i + 1}")
-    end
+    # Z4_SETLIST.each_with_index do |track, i|
+    #     Track.create!(
+    #         track_name: track,
+    #         track_num: (i + 1),
+    #         album_id: Z4.id
+    #     ).song.attach(io: URI.open(Z4_TRACKS[i]), filename: "gd_drZ1_#{i + 1}")
+    # end
     
     
-    Z2 = Album.create!(
-    title: "Dr. Zack's Picks Vol. 2",
-    artist_id: gd.id,
-    year: 2020,
-    description: "Playing in the Band -> The Wheel -> Playing in the Band from 2/26/77 at Swing Auditorium in San Bernardino, CA. Scarlet -> Fire from 3/22/90 at Copps Coliseum in Hamilton, Ontario",
-    credits: "2/26/77 show taped and transferred by Rob Bertrando. 3/22/90 show taping/transfer is uncredited. Complete shows can be found on archive.org."
-)
+#     Z2 = Album.create!(
+#     title: "Dr. Zack's Picks Vol. 2",
+#     artist_id: gd.id,
+#     year: 2020,
+#     description: "Playing in the Band -> The Wheel -> Playing in the Band from 2/26/77 at Swing Auditorium in San Bernardino, CA. Scarlet -> Fire from 3/22/90 at Copps Coliseum in Hamilton, Ontario",
+#     credits: "2/26/77 show taped and transferred by Rob Bertrando. 3/22/90 show taping/transfer is uncredited. Complete shows can be found on archive.org."
+# )
 
-Z2.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z2.webp"), filename: "gd_z2.webp")
+# Z2.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z2.webp"), filename: "gd_z2.webp")
 
-Z2_SETLIST = %w(Playing\ in\ the\ Band\ -> The\ Wheel\ -> Playing\ in\ the\ Band Scarlet\ -> Fire)
+# Z2_SETLIST = %w(Playing\ in\ the\ Band\ -> The\ Wheel\ -> Playing\ in\ the\ Band Scarlet\ -> Fire)
 
-Z2_TRACKS = [
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ2/Playing+in+the+Band+-%3E.mp3",
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ2/The+Wheel+-%3E.mp3",
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ2/Playing+in+the+Band.mp3",
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ2/Scarlet+-%3E.mp3",
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ2/Fire.mp3"
-]
+# Z2_TRACKS = [
+#     "https://phancamp-seed.s3.amazonaws.com/gd/drZ2/Playing+in+the+Band+-%3E.mp3",
+#     "https://phancamp-seed.s3.amazonaws.com/gd/drZ2/The+Wheel+-%3E.mp3",
+#     "https://phancamp-seed.s3.amazonaws.com/gd/drZ2/Playing+in+the+Band.mp3",
+#     "https://phancamp-seed.s3.amazonaws.com/gd/drZ2/Scarlet+-%3E.mp3",
+#     "https://phancamp-seed.s3.amazonaws.com/gd/drZ2/Fire.mp3"
+# ]
 
-Z2_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: Z2.id
-    ).song.attach(io: URI.open(Z2_TRACKS[i]), filename: "gd_drZ2_#{i + 1}")
-end
+# Z2_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: Z2.id
+#     ).song.attach(io: URI.open(Z2_TRACKS[i]), filename: "gd_drZ2_#{i + 1}")
+# end
 
-Z3 = Album.create!(
-    title: "Dr. Zack's Picks Vol. 3",
-    artist_id: gd.id,
-    year: 2020,
-    description: "Bird Song from 6/22/73 at P.N.E. Coliseum in Vancouver, BC. Shakedown Street from 6/30/85 at Merriweather Post Pavillion in Columbia, MD. The Other One from 2/27/69",
-    credits: "6/22/73 show taped by Donn Amick. 6/30/85 show taped and transferred by Tony Suraci. 2/27/69 taping/transfer is uncredited. Complete shows can be found on archive.org."
-)
+# Z3 = Album.create!(
+#     title: "Dr. Zack's Picks Vol. 3",
+#     artist_id: gd.id,
+#     year: 2020,
+#     description: "Bird Song from 6/22/73 at P.N.E. Coliseum in Vancouver, BC. Shakedown Street from 6/30/85 at Merriweather Post Pavillion in Columbia, MD. The Other One from 2/27/69",
+#     credits: "6/22/73 show taped by Donn Amick. 6/30/85 show taped and transferred by Tony Suraci. 2/27/69 taping/transfer is uncredited. Complete shows can be found on archive.org."
+# )
 
-Z3.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z3.webp"), filename: "gd_z3.webp")
+# Z3.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z3.webp"), filename: "gd_z3.webp")
 
-Z3_SETLIST = %w(Bird\ Song Shakedown\ Street The\ Other\ One)
+# Z3_SETLIST = %w(Bird\ Song Shakedown\ Street The\ Other\ One)
 
-Z3_TRACKS = [
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ3/Bird+Song.mp3",
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ3/Shakedown+Street.mp3",
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ3/The+Other+One.mp3"
-]
+# Z3_TRACKS = [
+#     "https://phancamp-seed.s3.amazonaws.com/gd/drZ3/Bird+Song.mp3",
+#     "https://phancamp-seed.s3.amazonaws.com/gd/drZ3/Shakedown+Street.mp3",
+#     "https://phancamp-seed.s3.amazonaws.com/gd/drZ3/The+Other+One.mp3"
+# ]
 
-Z3_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: Z3.id
-    ).song.attach(io: URI.open(Z3_TRACKS[i]), filename: "gd_drZ3_#{i + 1}")
-end
+# Z3_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: Z3.id
+#     ).song.attach(io: URI.open(Z3_TRACKS[i]), filename: "gd_drZ3_#{i + 1}")
+# end
 
-Z1 = Album.create!(
-    title: "Dr. Zack's Picks Vol. 4",
-    artist_id: gd.id,
-    year: 2020,
-    description: "Dark Star -> Wharf Rat -> Dark Star from 2/18/71 at the Capitol Theater in Port Chester, NY. Eyes of the World from 3/29/90 at Nassau Coliseum on Long Island.",
-    credits: "No credited taper for 2/18/71, though it was transferred by Dan Stephens and Scott Thompson. 3/29/90 taped and transferred by Roger Eichorn. Complete shows can be found on archive.org."
-)
+# Z1 = Album.create!(
+#     title: "Dr. Zack's Picks Vol. 4",
+#     artist_id: gd.id,
+#     year: 2020,
+#     description: "Dark Star -> Wharf Rat -> Dark Star from 2/18/71 at the Capitol Theater in Port Chester, NY. Eyes of the World from 3/29/90 at Nassau Coliseum on Long Island.",
+#     credits: "No credited taper for 2/18/71, though it was transferred by Dan Stephens and Scott Thompson. 3/29/90 taped and transferred by Roger Eichorn. Complete shows can be found on archive.org."
+# )
 
-Z1.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z1.webp"), filename: "gd_z4.webp")
+# Z1.photo.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/gd/gd_z1.webp"), filename: "gd_z4.webp")
 
-Z1_SETLIST = %w(Dark\ Star\ -> Wharf\ Rat\ -> Dark\ Star Eyes\ of\ the\ World)
+# Z1_SETLIST = %w(Dark\ Star\ -> Wharf\ Rat\ -> Dark\ Star Eyes\ of\ the\ World)
 
-Z1_TRACKS = [
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Dark+Star+-%3E.mp3",
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Wharf+Rat+-%3E.mp3",
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Dark+Star.mp3",
-    "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Eyes+of+the+World.mp3"
-]
+# Z1_TRACKS = [
+#     "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Dark+Star+-%3E.mp3",
+#     "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Wharf+Rat+-%3E.mp3",
+#     "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Dark+Star.mp3",
+#     "https://phancamp-seed.s3.amazonaws.com/gd/drZ1/Eyes+of+the+World.mp3"
+# ]
 
-Z1_SETLIST.each_with_index do |track, i|
-    Track.create!(
-        track_name: track,
-        track_num: (i + 1),
-        album_id: Z1.id
-    ).song.attach(io: URI.open(Z1_TRACKS[i]), filename: "gd_dr41_#{i + 1}")
-end
+# Z1_SETLIST.each_with_index do |track, i|
+#     Track.create!(
+#         track_name: track,
+#         track_num: (i + 1),
+#         album_id: Z1.id
+#     ).song.attach(io: URI.open(Z1_TRACKS[i]), filename: "gd_dr41_#{i + 1}")
+# end
 
 
-goose = User.create!(
-    artist_name: "Goose",
-    username: "Goose",
-    password: "misterhiro",
-    email: "rick@goosetheband.com",
-    about: "Goose’s music is the culmination of a rich history between friends of differing ages and experiences from the same small town in Connecticut, drawn together through a deep love of music and storytelling.",
-    location: "CT",
-    personal_url: "www.goosetheband.com"
-)
+# goose = User.create!(
+#     artist_name: "Goose",
+#     username: "Goose",
+#     password: "misterhiro",
+#     email: "rick@goosetheband.com",
+#     about: "Goose’s music is the culmination of a rich history between friends of differing ages and experiences from the same small town in Connecticut, drawn together through a deep love of music and storytelling.",
+#     location: "CT",
+#     personal_url: "www.goosetheband.com"
+# )
 
-goose.banner.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/goose/goose_banner.jpeg"), filename: "goosebanner.jpeg")
-goose.thumbnail.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/goose/goose_thumbnail.jpeg"), filename: "goosethumbnail.jpeg")
+# goose.banner.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/goose/goose_banner.jpeg"), filename: "goosebanner.jpeg")
+# goose.thumbnail.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/goose/goose_thumbnail.jpeg"), filename: "goosethumbnail.jpeg")
 
-ween = User.create!(
-    artist_name: "Ween",
-    username: "Ween",
-    password: "misterhiro",
-    email: "dean@ween.com",
-    about: "Ween is an American rock band from New Hope, Pennsylvania, formed in 1984 by childhood friends Aaron Freeman and Mickey Melchiondo, better known by their respective stage names, Gene and Dean Ween. After meeting in a middle-school typing class, the two began playing music and immediately chose the name Ween as well as their Ramones-inspired pseudonyms. While they are generally categorized as an alternative rock band, the band are known for their highly eclectic catalog of songs inspired by funk, soul, country, gospel, prog, psychedelia, R&B, heavy metal, punk rock, and more.",
-    location: "New Hope, Pennsylvania",
-    personal_url: "www.ween.com"
-)
+# ween = User.create!(
+#     artist_name: "Ween",
+#     username: "Ween",
+#     password: "misterhiro",
+#     email: "dean@ween.com",
+#     about: "Ween is an American rock band from New Hope, Pennsylvania, formed in 1984 by childhood friends Aaron Freeman and Mickey Melchiondo, better known by their respective stage names, Gene and Dean Ween. After meeting in a middle-school typing class, the two began playing music and immediately chose the name Ween as well as their Ramones-inspired pseudonyms. While they are generally categorized as an alternative rock band, the band are known for their highly eclectic catalog of songs inspired by funk, soul, country, gospel, prog, psychedelia, R&B, heavy metal, punk rock, and more.",
+#     location: "New Hope, Pennsylvania",
+#     personal_url: "www.ween.com"
+# )
 
-ween.banner.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/ween/ween_banner.jpeg"), filename: "weenbanner.jpeg")
-ween.thumbnail.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/ween/ween_thumbnail.jpeg"), filename: "weenthumbnail.jpeg")
+# ween.banner.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/ween/ween_banner.jpeg"), filename: "weenbanner.jpeg")
+# ween.thumbnail.attach(io: URI.open("https://phancamp-seed.s3.amazonaws.com/ween/ween_thumbnail.jpeg"), filename: "weenthumbnail.jpeg")
 
-dlo = User.create!(
-    artist_name: "Delvon Lamarr Organ Trio",
-    username: "dlo3",
-    password: "misterhiro",
-    email: "dlo3@dlo3.com",
-    about: "Delvon Lamarr Organ Trio—or as it is sometimes referred to, DLO3—specialize in the lost art of “feel good music.” The ingredients of this intoxicating cocktail include a big helping of the 1960s organ jazz stylings of Jimmy Smith and Baby Face Willette; a pinch of the snappy soul strut of Booker T. & The M.G.’s and The Meters; and sprinkles Motown, Stax Records, blues, and cosmic Jimi Hendrix-style guitar. It’s a soul-jazz concoction that goes straight to your heart and head makes your body break out in a sweat. Live, the band’s fiery and intuitive chemistry is unstoppable, brimming with improvisation, instant composition, imaginative takes on classic tunes, and a booty-shaking back catalog of soulful gems.",
-    location: "Seattle, Washington",
-    personal_url: "https://delvonlamarrorgantrio.com/"
-)
+# dlo = User.create!(
+#     artist_name: "Delvon Lamarr Organ Trio",
+#     username: "dlo3",
+#     password: "misterhiro",
+#     email: "dlo3@dlo3.com",
+#     about: "Delvon Lamarr Organ Trio—or as it is sometimes referred to, DLO3—specialize in the lost art of “feel good music.” The ingredients of this intoxicating cocktail include a big helping of the 1960s organ jazz stylings of Jimmy Smith and Baby Face Willette; a pinch of the snappy soul strut of Booker T. & The M.G.’s and The Meters; and sprinkles Motown, Stax Records, blues, and cosmic Jimi Hendrix-style guitar. It’s a soul-jazz concoction that goes straight to your heart and head makes your body break out in a sweat. Live, the band’s fiery and intuitive chemistry is unstoppable, brimming with improvisation, instant composition, imaginative takes on classic tunes, and a booty-shaking back catalog of soulful gems.",
+#     location: "Seattle, Washington",
+#     personal_url: "https://delvonlamarrorgantrio.com/"
+# )
 
 
 # GENRES = [rock, jazz, jam, folk]

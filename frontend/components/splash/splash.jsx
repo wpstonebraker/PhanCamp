@@ -22,7 +22,6 @@ class Splash extends React.Component {
           albums={this.props.albums}
           artists={this.props.artists}
         />
-        <DailyIndexContainer />
         <DiscoverContainer />
       </div>
     );
