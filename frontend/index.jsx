@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { deleteSession, postSession, postUser } from "./util/session_api_util";
 import configureStore from "./store/store";
 import { login } from "./actions/session_actions";
+import { createRoot } from "react-dom/client";
 import Root from "./components/root";
 import {
   getAlbum,
