@@ -5443,6 +5443,7 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
     key: "getRandomShow",
     value: function getRandomShow() {
       var _this5 = this;
+      debugger;
       $.ajax({
         url: "http://phish.in/api/v1/random-show",
         headers: {
@@ -5562,7 +5563,7 @@ var PhishAlbumCreateForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "date",
         min: "1983-12-02",
-        max: "2019-12-31",
+        max: "2023-12-31",
         onChange: function onChange() {
           return _this7.getShow();
         }
@@ -5829,13 +5830,12 @@ function AlbumDetails() {
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
-                console.log(albumId);
-                _context.next = 3;
+                _context.next = 2;
                 return fetch("/api/albums/".concat(albumId));
-              case 3:
+              case 2:
                 response = _context.sent;
                 return _context.abrupt("return", response.json());
-              case 5:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -5850,7 +5850,6 @@ function AlbumDetails() {
     }),
     albumData = _useQuery.data,
     isLoading = _useQuery.isLoading;
-  //   const loc = useLocation();
   console.log("album data = ", albumData);
   if (isLoading) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Loading...");
@@ -5964,12 +5963,14 @@ __webpack_require__.r(__webpack_exports__);
 
 var App = function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__.AuthRoutes, null)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
     path: "/signup",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_signup_signup_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
     path: "/login",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_login_login_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_banner_bar_banner_bar_container__WEBPACK_IMPORTED_MODULE_5__["default"], null)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Route, {
     path: "/",
@@ -6028,11 +6029,11 @@ var App = function App() {
     path: "/",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_splash_splash_container__WEBPACK_IMPORTED_MODULE_15__["default"], null)
   })));
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__.AuthRoute, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AuthRoute, {
     exact: true,
     path: "/signup",
     component: _signup_signup_form_container__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__.AuthRoute, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(AuthRoute, {
     exact: true,
     path: "/login",
     component: _login_login_form_container__WEBPACK_IMPORTED_MODULE_3__["default"]
@@ -6483,6 +6484,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _ArtistAlbum__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ArtistAlbum */ "./frontend/components/artists/ArtistAlbum.jsx");
 /* harmony import */ var _artist_artist_sidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../artist/artist_sidebar */ "./frontend/components/artist/artist_sidebar.jsx");
@@ -6505,7 +6507,7 @@ var Banner = styled_components__WEBPACK_IMPORTED_MODULE_4__.styled.img.attrs(fun
   };
 })(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  width: 975px;\n  height: 220px;\n"])));
 var DetailsBox = styled_components__WEBPACK_IMPORTED_MODULE_4__.styled.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  display: flex;\n"])));
-var OutletBox = styled_components__WEBPACK_IMPORTED_MODULE_4__.styled.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  display: flex;\n  width: 80%;\n"])));
+var OutletBox = styled_components__WEBPACK_IMPORTED_MODULE_4__.styled.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  display: flex;\n  width: 80%;\n  flex-wrap: wrap;\n"])));
 function ArtistLayout() {
   //   const { id: artistId } = useParams();
   var params = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useLocation)();
@@ -6522,13 +6524,12 @@ function ArtistLayout() {
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
-                console.log("query in Artist Layout");
-                _context.next = 3;
+                _context.next = 2;
                 return fetch("/api/artists/".concat(artistId, "/albums"));
-              case 3:
+              case 2:
                 response = _context.sent;
                 return _context.abrupt("return", response.json());
-              case 5:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -6544,14 +6545,19 @@ function ArtistLayout() {
     artistData = _useQuery.data,
     isLoading = _useQuery.isLoading;
   var bannerImg = artistData === null || artistData === void 0 ? void 0 : artistData.artist[artistId].bannerUrl;
-  console.log(bannerImg);
-  console.log(bannerImg == undefined);
   if (isLoading || bannerImg == undefined) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Loading...");
   }
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Banner, {
     src: bannerImg
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Tabs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(DetailsBox, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(OutletBox, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Outlet, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_artist_artist_sidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+    to: "/artists/".concat(artistId)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "music")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+    to: "/albums/addPhish",
+    className: artistId == 25 ? "" : "hidden"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+    className: "selected-tab"
+  }, "add show")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(DetailsBox, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(OutletBox, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Outlet, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_artist_artist_sidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
     artist: artistData.artist[artistId]
   })));
 }
@@ -11584,7 +11590,7 @@ var getFeatureArtists = function getFeatureArtists() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   AuthRoute: () => (/* binding */ AuthRoute),
+/* harmony export */   AuthRoutes: () => (/* binding */ AuthRoutes),
 /* harmony export */   ProtectedRoute: () => (/* binding */ ProtectedRoute)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
@@ -11601,6 +11607,9 @@ var Auth = function Auth(_ref) {
     path = _ref.path,
     loggedIn = _ref.loggedIn,
     exact = _ref.exact;
+  return !loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Outlet, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Navigate, {
+    to: "/"
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
     path: path,
     exact: exact,
@@ -11631,7 +11640,7 @@ var mSTP = function mSTP(state) {
     loggedIn: Boolean(state.session.id)
   };
 };
-var AuthRoute = (0,_with_router_util__WEBPACK_IMPORTED_MODULE_2__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mSTP)(Auth));
+var AuthRoutes = (0,_with_router_util__WEBPACK_IMPORTED_MODULE_2__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mSTP)(Auth));
 var ProtectedRoute = (0,_with_router_util__WEBPACK_IMPORTED_MODULE_2__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mSTP)(Protected));
 
 /***/ }),

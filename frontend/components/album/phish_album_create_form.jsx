@@ -80,6 +80,7 @@ class PhishAlbumCreateForm extends React.Component {
   }
 
   getRandomShow() {
+    debugger;
     $.ajax({
       url: `http://phish.in/api/v1/random-show`,
       headers: {
@@ -190,7 +191,7 @@ class PhishAlbumCreateForm extends React.Component {
                     <input
                       type="date"
                       min="1983-12-02"
-                      max="2019-12-31"
+                      max="2023-12-31"
                       onChange={() => this.getShow()}
                     />
                     {/* <p>{this.state.showDate}</p> */}

@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { Outlet, useLocation, useParams } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { styled } from "styled-components";
 import ArtistAlbum from "./ArtistAlbum";
 import ArtistSidebar from "../artist/artist_sidebar";
@@ -27,6 +27,7 @@ const DetailsBox = styled.div`
 const OutletBox = styled.div`
   display: flex;
   width: 80%;
+  flex-wrap: wrap;
 `;
 
 export function ArtistLayout() {
@@ -42,7 +43,6 @@ export function ArtistLayout() {
 
   const { data: artistData, isLoading } = useQuery({
     queryFn: async () => {
-      console.log("query in Artist Layout");
       const response = await fetch(`/api/artists/${artistId}/albums`);
       return response.json();
     },
@@ -50,8 +50,7 @@ export function ArtistLayout() {
   });
 
   const bannerImg = artistData?.artist[artistId].bannerUrl;
-  console.log(bannerImg);
-  console.log(bannerImg == undefined);
+
   if (isLoading || bannerImg == undefined) {
     return <div>Loading...</div>;
   }
@@ -59,7 +58,12 @@ export function ArtistLayout() {
   return (
     <Container>
       <Banner src={bannerImg} />
-      <div>Tabs</div>
+      <Link to={`/artists/${artistId}`}>
+        <span>music</span>
+      </Link>
+      <Link to={`/albums/addPhish`} className={artistId == 25 ? "" : "hidden"}>
+        <li className="selected-tab">add show</li>
+      </Link>
       <DetailsBox>
         <OutletBox>
           <Outlet />

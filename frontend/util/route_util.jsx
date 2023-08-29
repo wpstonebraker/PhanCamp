@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Navigate, Route } from "react-router-dom";
+import { Navigate, Outlet, Route } from "react-router-dom";
 import { withRouter } from "./with_router_util";
 
 const Auth = ({ component: Component, path, loggedIn, exact }) => {
+  return !loggedIn ? <Outlet /> : <Navigate to="/" />;
   return (
     <Route
       path={path}
@@ -33,5 +34,5 @@ const mSTP = (state) => {
   };
 };
 
-export const AuthRoute = withRouter(connect(mSTP)(Auth));
+export const AuthRoutes = withRouter(connect(mSTP)(Auth));
 export const ProtectedRoute = withRouter(connect(mSTP)(Protected));

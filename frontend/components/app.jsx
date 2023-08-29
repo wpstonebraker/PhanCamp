@@ -3,7 +3,7 @@ import GreetingContainer from "./greeting/greeting_container";
 import SignupFormContainer from "./signup/signup_form_container";
 import LoginFormContainer from "./login/login_form_container";
 import { Routes, Route, Switch } from "react-router-dom";
-import { AuthRoute, ProtectedRoute } from "../util/route_util";
+import { AuthRoutes, ProtectedRoute } from "../util/route_util";
 import BannerBarContainer from "./banner_bar/banner_bar_container";
 import FeatureIndexContainer from "./feature/feature_index_container";
 import ArtistShowContainer from "./artist/artist_show_container";
@@ -23,8 +23,10 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/signup" element={<SignupFormContainer />} />
-        <Route path="/login" element={<LoginFormContainer />} />
+        <Route element={<AuthRoutes />}>
+          <Route path="/signup" element={<SignupFormContainer />} />
+          <Route path="/login" element={<LoginFormContainer />} />
+        </Route>
         <Route element={<BannerBarContainer />}>
           <Route path="/" element={<SplashContainer />} />
           <Route path="/albums/create" element={<AlbumCreateFormContainer />} />

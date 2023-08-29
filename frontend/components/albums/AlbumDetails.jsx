@@ -9,13 +9,12 @@ export default function AlbumDetails() {
   const { id: albumId } = useParams();
   const { data: albumData, isLoading } = useQuery({
     queryFn: async () => {
-      console.log(albumId);
       const response = await fetch(`/api/albums/${albumId}`);
       return response.json();
     },
     queryKey: `album${albumId}Data`,
   });
-  //   const loc = useLocation();
+
   console.log("album data = ", albumData);
   if (isLoading) {
     return <div>Loading...</div>;
