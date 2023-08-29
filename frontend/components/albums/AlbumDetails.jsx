@@ -13,7 +13,7 @@ export default function AlbumDetails() {
       const response = await fetch(`/api/albums/${albumId}`);
       return response.json();
     },
-    queryKey: "albumData",
+    queryKey: `album${albumId}Data`,
   });
   //   const loc = useLocation();
   console.log("album data = ", albumData);

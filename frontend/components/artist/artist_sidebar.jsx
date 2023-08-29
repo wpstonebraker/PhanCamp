@@ -2,7 +2,7 @@ import React from "react";
 import GenresIndex from "../genres/genres_index";
 
 const ArtistSidebar = ({ artist }) => {
-  debugger;
+  // debugger;
   if (!artist) return null;
   return (
     <div className="artist-sidebar-inner">

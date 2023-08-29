@@ -20,12 +20,10 @@ class Splash extends React.Component {
     return (
       <div>
         <Feature />
-        <FeatureIndexContainer />
         <SellingNowIndexContainer
           albums={this.props.albums}
           artists={this.props.artists}
         />
-        <Asdf />
         <DiscoverContainer />
       </div>
     );

@@ -20,10 +20,29 @@ const Feature = () => {
   }
 
   console.log(artists.artists);
-  let phishId = 25;
-  // for (artist in artists.artists) {
-  //   if (artists.artistName == 'phish') phishId = artists.id
-  // }
+  let phishId;
+  let weenId;
+  let gdId;
+  let gooseId;
+  Object.values(artists.artists).forEach((artist) => {
+    switch (artist.artistName) {
+      case "Phish":
+        phishId = artist.id;
+        break;
+      case "Ween":
+        weenId = artist.id;
+        break;
+      case "The Grateful Dead":
+        gdId = artist.id;
+        break;
+      case "Goose":
+        gooseId = artist.id;
+        break;
+      default:
+        break;
+    }
+  });
+  // debugger;
 
   return (
     <div className="fi-container">
@@ -42,7 +61,7 @@ const Feature = () => {
         <div className="fi-side">
           <div
             className="fis-item-container"
-            onClick={() => this.props.history.push(`/artists/${ween.id}`)}
+            onClick={() => navigate(`/artists/${weenId}`)}
           >
             <img
               src={window.featureWeen}
@@ -53,7 +72,7 @@ const Feature = () => {
           </div>
           <div
             className="fis-item-container"
-            onClick={() => this.props.history.push(`/artists/${theGD.id}`)}
+            onClick={() => navigate(`/artists/${gdId}`)}
           >
             <img
               src={window.featureGD}
@@ -64,7 +83,7 @@ const Feature = () => {
           </div>
           <div
             className="fis-item-container"
-            onClick={() => this.props.history.push(`/artists/${goose.id}`)}
+            onClick={() => navigate(`/artists/${gooseId}`)}
           >
             <img
               src={window.featureGoose}

@@ -11,12 +11,13 @@ import AlbumShowContainer from "./album/album_show_container";
 import Splash from "./splash/splash";
 import AlbumCreateFormContainer from "./album/album_create_form_container";
 import PhishAlbumCreateFormContainer from "./album/phish_album_create_form_container";
-import profile_container from "./profile/profile_container";
+import ProfileContainer from "./profile/profile_container";
 import SearchDisplayContainer from "./search/search_display_container";
 import Foots from "./footer/foot";
 import SplashContainer from "./splash/splash_container";
 import ArtistsDetails from "./artists/ArtistsDetails";
 import AlbumDetails from "./albums/AlbumDetails";
+import { ArtistLayout } from "./artists/ArtistLayout";
 
 const App = () => {
   return (
@@ -26,7 +27,14 @@ const App = () => {
         <Route path="/login" element={<LoginFormContainer />} />
         <Route element={<BannerBarContainer />}>
           <Route path="/" element={<SplashContainer />} />
-          <Route path="/artists">
+          <Route path="/albums/create" element={<AlbumCreateFormContainer />} />
+          <Route
+            path="/albums/addPhish"
+            element={<PhishAlbumCreateFormContainer />}
+          />
+          <Route path="/edit-profile" element={<ProfileContainer />} />
+          <Route path="/search" element={<SearchDisplayContainer />} />
+          <Route path="/artists" element={<ArtistLayout />}>
             <Route path=":id" element={<ArtistsDetails />} />
             <Route path=":id/albums/:id" element={<AlbumDetails />} />
           </Route>

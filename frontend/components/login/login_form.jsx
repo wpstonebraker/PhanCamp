@@ -22,7 +22,7 @@ class LoginForm extends React.Component {
   }
 
   handleSubmit(e) {
-    debugger;
+    // debugger;
     e.preventDefault();
     const errors = ["Username cannot be blank", "Password cannot be blank"];
     if (this.state.password === "" && this.state.username === "") {

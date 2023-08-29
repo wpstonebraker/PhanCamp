@@ -3,7 +3,7 @@ import React from "react";
 class AudioPlayer extends React.Component {
   constructor(props) {
     super(props);
-    debugger;
+    // debugger;
     this.state = {
       // track: props.track,
       playing: false,
