@@ -26,19 +26,6 @@ class AudioPlayer extends React.Component {
   }
 
   componentDidMount() {
-    // let song;
-    // let title;
-    // if (this.track.mp3) {
-    //   song = this.track.mp3;
-    //   title = this.track.title;
-    // }
-    // if (this.track.songUrl) {
-    //   song = this.track.songUrl;
-    //   title = this.track.trackName;
-    // }
-    // this.setState({ src: song, playButton: window.playIcon, title });
-    // if (Object.values(this.props.track).length !== 0) {
-    // this.props.playTrack(Object.values(this.props.track));
     this.setState({
       src: this.props.track.songUrl,
       playButton: window.playIcon,
@@ -46,14 +33,11 @@ class AudioPlayer extends React.Component {
     });
     this.props.playing ? this.togglePlay() : null;
     this.props.playing ? this.togglePlay() : null;
-    // }
-    // this.audio.current.load();
   }
 
   componentWillUnmount() {}
 
   componentDidUpdate() {
-    // this.props.playing ? null : this.togglePlay();
     if (
       Object.values(this.props.track).length !== 0 &&
       this.props.track.songUrl !== this.state.src
@@ -68,35 +52,6 @@ class AudioPlayer extends React.Component {
         // () => this.audio.current.play()
         () => this.togglePlay()
       );
-    // let song;
-    // let title;
-    // if (this.props.track.mp3 && this.state.src !== this.props.track.mp3) {
-    //   song = this.props.track.mp3;
-    //   title = this.props.track.title;
-    //   this.setState({ src: song, playButton: window.playIcon, title });
-    // }
-    // if (
-    //   this.props.track.songUrl &&
-    //   this.state.src !== this.props.track.songUrl
-    // ) {
-    //   song = this.props.track.songUrl;
-    //   title = this.props.track.trackName;
-    //   this.setState({ src: song, playButton: window.playIcon, title });
-    // }
-    // let song;
-    // let title;
-    // if (this.track.mp3 && this.state.src !== this.track.mp3) {
-    //   song = this.track.mp3;
-    //   title = this.track.title;
-    //   this.setState({ src: song, playButton: window.playIcon, title });
-    //   console.log("yo");
-    // }
-    // if (this.track.songUrl && this.state.src !== this.track.songUrl) {
-    //   song = this.track.songUrl;
-    //   title = this.track.trackName;
-    //   this.setState({ src: song, playButton: window.playIcon, title });
-    //   console.log("yo");
-    // }
   }
 
   togglePlay() {
@@ -115,22 +70,18 @@ class AudioPlayer extends React.Component {
     const displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
     const seconds = Math.floor(time - minutes * 60);
     const displaySeconds = seconds < 10 ? `0${seconds}` : seconds;
-    // return Number.isNan(time) ? `00:00` : `${displayMinutes}:${displaySeconds}`;
     return `${displayMinutes}:${displaySeconds}`;
   }
 
   handleTrack(track, title) {
     this.setState({ src: track, title });
-    // this.setState({ src: track.songUrl }, () => {
     this.playTrack();
-    // });
   }
 
   playTrack() {
     const audio = this.audio.current;
     audio.play();
     this.setState({ playButton: window.pauseIcon });
-    // const duration = this.convertTime(audio.duration);
   }
 
   handleTime() {
@@ -140,17 +91,6 @@ class AudioPlayer extends React.Component {
     this.setState({ currentTime: time, duration });
     this.handleProgress();
   }
-  //   handleTime() {
-  //     const audio = this.audio.current;
-  //     const time = audio.currentTime;
-
-  //     const minutes = Math.floor(time / 60);
-  //     const displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
-  //     const seconds = Math.floor(time - minutes * 60);
-  //     const displaySeconds = seconds < 10 ? `0${seconds}` : seconds;
-  //     this.setState({ currentTime: `${displayMinutes}:${displaySeconds}` });
-  //     this.handleProgress();
-  //   }
 
   handleProgress() {
     const audio = this.audio.current;
@@ -168,24 +108,6 @@ class AudioPlayer extends React.Component {
   }
 
   render() {
-    let song;
-    let title;
-    // if (Object.values(this.props.track).length === 0) return null;
-    // if (this.props.track === undefined) return null;
-    // if (this.props.track === null) return null;
-    // if (this.props.track.mp3 && this.state.src === this.props.track.mp3) {
-    //   song = this.props.track.mp3;
-    //   title = this.props.track.title;
-    //   this.setState({ src: song, playButton: window.playIcon, title });
-    // }
-    // if (
-    //   this.props.track.songUrl &&
-    //   this.state.src === this.props.track.songUrl
-    // ) {
-    //   song = this.props.track.songUrl;
-    //   title = this.props.track.trackName;
-    //   this.setState({ src: song, playButton: window.playIcon, title });
-    // }
     return (
       <div id="audio-player-box">
         <div onClick={this.togglePlay} id="play-button-box">

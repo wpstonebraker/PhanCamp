@@ -52,6 +52,7 @@ export const postAlbum = (album) => {
 };
 
 export const postPhishAlbum = (album) => {
+  debugger;
   return $.ajax({
     url: "/api/phish_albums",
     method: "POST",

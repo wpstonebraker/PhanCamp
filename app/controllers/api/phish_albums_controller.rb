@@ -26,6 +26,7 @@ class Api::PhishAlbumsController < ApplicationController
                     track_name: track["title"],
                     track_num: track["position"],
                     album_id: @album.id,
+                    songUrl: track["mp3"]
                 )
                 @genresIds.each do |genreId|
                     GenreJoin.create!(
