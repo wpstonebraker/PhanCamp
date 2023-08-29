@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
+import { withRouter } from "react-router-dom";
 import SplashPlayer from "./splash_player";
 
 const mSTP = (state, ownProps) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router";
+import { Redirect } from "react-router-dom";
 class AlbumCreateForm extends React.Component {
   constructor(props) {
     super(props);
@@ -165,15 +165,8 @@ class AlbumCreateForm extends React.Component {
       return <Redirect to="/edit-profile" />;
     }
 
-    const {
-      title,
-      artist_id,
-      year,
-      price,
-      description,
-      credits,
-      genres,
-    } = this.props;
+    const { title, artist_id, year, price, description, credits, genres } =
+      this.props;
     const photoPreview = this.state.photoUrl ? (
       <img height="72px" width="72px" src={this.state.photoUrl} />
     ) : null;

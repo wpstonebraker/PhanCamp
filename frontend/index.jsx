@@ -1,4 +1,4 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import { deleteSession, postSession, postUser } from "./util/session_api_util";
 import configureStore from "./store/store";
@@ -14,7 +14,7 @@ import {
 import { getFeatureArtists } from "./actions/artist_actions";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const root = document.getElementById("root");
+  const container = document.getElementById("root");
   let store;
   if (window.currentUser) {
     const preloadedState = {
@@ -48,5 +48,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // testing end
 
-  ReactDOM.render(<Root store={store} />, root);
+  const root = createRoot(container);
+
+  // ReactDOM.render(<Root store={store} />, root);
+  root.render(<Root store={store} />);
 });
+
+// <StrictMode></StrictMode>
