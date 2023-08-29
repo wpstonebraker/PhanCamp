@@ -1,8 +1,10 @@
 import React from "react";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import "regenerator-runtime/runtime";
 
 const Feature = () => {
+  const navigate = useNavigate();
   const { data: artists, isLoading } = useQuery({
     queryFn: async () => {
       const response = await fetch("/api/features");
@@ -18,6 +20,10 @@ const Feature = () => {
   }
 
   console.log(artists.artists);
+  let phishId = 25;
+  // for (artist in artists.artists) {
+  //   if (artists.artistName == 'phish') phishId = artists.id
+  // }
   debugger;
 
   return (
@@ -25,7 +31,7 @@ const Feature = () => {
       <div className="fi-box">
         <div
           className="fi-main"
-          onClick={() => this.props.history.push(`/artists/${phish.id}`)}
+          onClick={() => navigate(`/artists/${phishId}`)}
         >
           <img src={window.featurePhish} alt="Main feature Phish" />
           <div className="fi-main-box">

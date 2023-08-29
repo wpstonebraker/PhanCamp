@@ -2,7 +2,7 @@ import React from "react";
 import GreetingContainer from "./greeting/greeting_container";
 import SignupFormContainer from "./signup/signup_form_container";
 import LoginFormContainer from "./login/login_form_container";
-import { Route, Switch } from "react-router-dom";
+import { Routes, Route, Switch } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import BannerBarContainer from "./banner_bar/banner_bar_container";
 import FeatureIndexContainer from "./feature/feature_index_container";
@@ -15,16 +15,59 @@ import profile_container from "./profile/profile_container";
 import SearchDisplayContainer from "./search/search_display_container";
 import Foots from "./footer/foot";
 import SplashContainer from "./splash/splash_container";
+import ArtistsDetails from "./artists/ArtistsDetails";
 
 const App = () => {
   return (
+    <>
+      <Routes>
+        <Route path="/signup" element={<SignupFormContainer />} />
+        <Route path="/login" element={<LoginFormContainer />} />
+        <Route path="/" element={<BannerBarContainer />} />
+      </Routes>
+      <Routes>
+        <Route path="/" element={<SplashContainer />} />
+        <Route path="/artists" element={<BannerBarContainer />}>
+          <Route path=":id" element={<ArtistsDetails />} />
+        </Route>
+      </Routes>
+    </>
+  );
+  return (
     <div>
-      <Switch>
+      <Routes>
+        <Route path="/signup" element={<SignupFormContainer />} />
+        <Route path="/login" element={<LoginFormContainer />} />
+        <Route path="/" element={<BannerBarContainer />} />
+      </Routes>
+      <Routes>
+        <Route path="/" element={<SplashContainer />} />
+        <Route path="/albums/create" element={<AlbumCreateFormContainer />} />
+        <Route
+          path="/albums/addPhish"
+          element={<PhishAlbumCreateFormContainer />}
+        />
+        <Route path="/edit-profile" element={<profile_container />} />
+        <Route path="/search" element={<SearchDisplayContainer />} />
+        <Route path="/artists/:id" element={<ArtistsDetails />} />
+      </Routes>
+    </div>
+  );
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<SplashContainer />} />
+      </Routes>
+    </div>
+  );
+  return (
+    <div>
+      <Routes>
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <BannerBarContainer />
-      </Switch>
-      <Switch>
+      </Routes>
+      <Routes>
         <ProtectedRoute
           exact
           path="/albums/create"
@@ -44,7 +87,7 @@ const App = () => {
         <Route path="/artists/:id" component={ArtistShowContainer} />
 
         <Route exact path="/" component={SplashContainer} />
-      </Switch>
+      </Routes>
       <Foots />
     </div>
   );

@@ -10,13 +10,15 @@ const queryClient = new QueryClient();
 
 const Root = ({ store }) => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Provider store={store}>
-        <HashRouter>
-          <App />
-        </HashRouter>
-      </Provider>
-    </QueryClientProvider>
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <HashRouter>
+            <App />
+          </HashRouter>
+        </Provider>
+      </QueryClientProvider>
+    </React.StrictMode>
   );
 };
 

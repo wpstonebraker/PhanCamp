@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import { getPhishShow } from "../../actions/album_actions";
 import { playPhishTrack, playTrack } from "../../actions/audio_actions";
 import { receivePhishTrack } from "../../actions/track_actions";
 import Discover from "./discover";
+import { withRouter } from "../../util/with_router_util";
 
 const mSTP = (state, ownProps) => {
   return {

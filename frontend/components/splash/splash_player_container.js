@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import SplashPlayer from "./splash_player";
+import { withRouter } from "../../util/with_router_util";
 
 const mSTP = (state, ownProps) => {
   const test = Object.values(state.entities.albums).filter((album) => {

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter } from "../../util/with_router_util";
 import { getSearch } from "../../actions/search_actions";
 import Search from "./search";
 

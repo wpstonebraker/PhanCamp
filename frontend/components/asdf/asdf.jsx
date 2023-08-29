@@ -12,7 +12,7 @@ export default function Asdf() {
       //   url: `/api/features`,
       // });
     },
-    queryKey: "albums",
+    queryKey: "features",
   });
 
   if (isLoading) {

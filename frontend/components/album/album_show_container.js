@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter } from "../../util/with_router_util";
 import { getAlbum, getPhishAlbum } from "../../actions/album_actions";
 import { playPhishTrack, playTrack } from "../../actions/audio_actions";
 import AlbumShow from "./album_show";

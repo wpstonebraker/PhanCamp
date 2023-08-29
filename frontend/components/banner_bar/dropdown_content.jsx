@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { logout } from "../../actions/session_actions";
+import { withRouter } from "../../util/with_router_util";
 
 const DropdownContent = (props) => {
   return (

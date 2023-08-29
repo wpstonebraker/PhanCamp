@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import DropdownButton from "../banner_bar/dropdown_button";
 
 const Greeting = ({ currentUser, logout }) => {
@@ -40,13 +40,13 @@ const Greeting = ({ currentUser, logout }) => {
   const loggedOut = () => {
     return (
       <nav className="login-signup">
-        <Link to="/login" className="greeting-login">
+        <NavLink to="/login" className="greeting-login">
           login
-        </Link>
+        </NavLink>
         &nbsp; &nbsp;
-        <Link to="/signup" className="greeting-signup">
+        <NavLink to="/signup" className="greeting-signup">
           sign up
-        </Link>
+        </NavLink>
       </nav>
     );
   };
