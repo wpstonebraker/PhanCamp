@@ -2,6 +2,7 @@ import React from "react";
 import GenresIndex from "../genres/genres_index";
 
 const ArtistSidebar = ({ artist }) => {
+  debugger;
   if (!artist) return null;
   return (
     <div className="artist-sidebar-inner">
@@ -15,7 +16,7 @@ const ArtistSidebar = ({ artist }) => {
           <li className="artist-sidebar-about">{artist.about}</li>
           <li className="artist-sidebar-website">{artist.personalUrl}</li>
           <li className="artist-sidebar-contact">{artist.email}</li>
-          <GenresIndex artist={artist} />
+          {/* <GenresIndex artist={artist} /> */}
         </ul>
       </div>
     </div>

@@ -3,12 +3,13 @@ import React from "react";
 class AudioPlayer extends React.Component {
   constructor(props) {
     super(props);
+    debugger;
     this.state = {
       // track: props.track,
       playing: false,
       currentTime: "00:00",
       duration: "00:00",
-      src: props.track.songUrl,
+      src: props.track.songUrl || "",
       playButton: null,
       title: props.track.trackName,
     };
@@ -37,7 +38,7 @@ class AudioPlayer extends React.Component {
     // }
     // this.setState({ src: song, playButton: window.playIcon, title });
     // if (Object.values(this.props.track).length !== 0) {
-    this.props.playTrack(Object.values(this.props.tracks)[0]);
+    // this.props.playTrack(Object.values(this.props.track));
     this.setState({
       src: this.props.track.songUrl,
       playButton: window.playIcon,

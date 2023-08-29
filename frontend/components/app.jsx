@@ -16,6 +16,7 @@ import SearchDisplayContainer from "./search/search_display_container";
 import Foots from "./footer/foot";
 import SplashContainer from "./splash/splash_container";
 import ArtistsDetails from "./artists/ArtistsDetails";
+import AlbumDetails from "./albums/AlbumDetails";
 
 const App = () => {
   return (
@@ -23,12 +24,12 @@ const App = () => {
       <Routes>
         <Route path="/signup" element={<SignupFormContainer />} />
         <Route path="/login" element={<LoginFormContainer />} />
-        <Route path="/" element={<BannerBarContainer />} />
-      </Routes>
-      <Routes>
-        <Route path="/" element={<SplashContainer />} />
-        <Route path="/artists" element={<BannerBarContainer />}>
-          <Route path=":id" element={<ArtistsDetails />} />
+        <Route element={<BannerBarContainer />}>
+          <Route path="/" element={<SplashContainer />} />
+          <Route path="/artists">
+            <Route path=":id" element={<ArtistsDetails />} />
+            <Route path=":id/albums/:id" element={<AlbumDetails />} />
+          </Route>
         </Route>
       </Routes>
     </>

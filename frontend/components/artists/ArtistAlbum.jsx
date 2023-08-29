@@ -5,7 +5,6 @@ import { styled } from "styled-components";
 
 export default function ArtistAlbum({ album }) {
   const navigate = useNavigate();
-  debugger;
   return (
     <ul className="discog-tile">
       <img

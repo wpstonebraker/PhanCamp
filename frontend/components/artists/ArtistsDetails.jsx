@@ -3,6 +3,15 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { styled } from "styled-components";
 import ArtistAlbum from "./ArtistAlbum";
+import ArtistSidebar from "../artist/artist_sidebar";
+
+const Container = styled.div`
+  width: 975px;
+  display: flex;
+  margin: auto;
+  border: 0.5px solid lightgrey;
+  flex-direction: column;
+`;
 
 export default function ArtistsDetails() {
   const { id: artistId } = useParams();
@@ -15,13 +24,13 @@ export default function ArtistsDetails() {
     queryKey: "artistData",
   });
 
-  console.log(artistData);
   const bannerImg = artistData?.artist[artistId].bannerUrl;
 
   const Banner = styled.img.attrs((props) => ({
     src: bannerImg,
   }))`
-    width: 975;
+    width: 975px;
+    height: 220px;
   `;
 
   if (isLoading) {
@@ -35,10 +44,12 @@ export default function ArtistsDetails() {
   // debugger;
 
   return (
-    <div>
-      <div>Artists Details for artist {artistId}</div>
+    <Container>
       <Banner />
-      {albumItems}
-    </div>
+      <div>
+        {albumItems}
+        <ArtistSidebar artist={artistData.artist[artistId]} />
+      </div>
+    </Container>
   );
 }

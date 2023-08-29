@@ -24,7 +24,6 @@ const Feature = () => {
   // for (artist in artists.artists) {
   //   if (artists.artistName == 'phish') phishId = artists.id
   // }
-  debugger;
 
   return (
     <div className="fi-container">
