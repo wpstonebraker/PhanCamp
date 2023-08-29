@@ -1,6 +1,11 @@
 import React from "react";
 
-const TrackItem = React.forwardRef(({ track, playTrack }, ref) => {
+// const TrackItem = React.forwardRef(({ track, playTrack }, ref) => {
+const TrackItem = ({ track, onPlayTrack }) => {
+  const handlePlayClick = () => {
+    debugger;
+    onPlayTrack(track);
+  };
   const playSong = () => {
     // const audio = ref.current;
     // audio.handleTrack(track.songUrl, track.trackName);
@@ -11,7 +16,7 @@ const TrackItem = React.forwardRef(({ track, playTrack }, ref) => {
   if (track === null) return null;
   return (
     <tr key={track.id}>
-      <td onClick={() => playSong()}>
+      <td onClick={handlePlayClick}>
         <img className="track-play" src={window.playIcon} alt="" />
       </td>
 
@@ -25,7 +30,7 @@ const TrackItem = React.forwardRef(({ track, playTrack }, ref) => {
       </td>
     </tr>
   );
-});
+};
 // const TrackItem = ({ track }) => {
 //   const playSong = () => {
 //     document.getElementById("audio-player").src = track.songUrl;

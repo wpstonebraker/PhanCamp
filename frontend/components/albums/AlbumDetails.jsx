@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { useLocation, useParams } from "react-router-dom";
 import AudioPlayer from "../audio_player/audio_player";
 import PhishTrackItem from "../album/phish_track_item";
 import TrackItem from "../album/track_item";
+import MusicPlayer from "../MusicPlayer/MusicPlayer";
 
 export default function AlbumDetails() {
+  const [currentTrackUrl, setCurrentTrackUrl] = useState("");
+  const [currentTrackName, setCurrentTrackName] = useState("");
+  const [playing, setPlaying] = useState(false);
+
   const { id: albumId } = useParams();
   const { data: albumData, isLoading } = useQuery({
     queryFn: async () => {
@@ -15,7 +20,13 @@ export default function AlbumDetails() {
     queryKey: `album${albumId}Data`,
   });
 
-  console.log("album data = ", albumData);
+  const handlePlayTrack = (track) => {
+    setCurrentTrackUrl(track.songUrl);
+    setCurrentTrackName(track.trackName);
+    setPlaying(true);
+    debugger;
+  };
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -29,10 +40,14 @@ export default function AlbumDetails() {
         track={track}
         // ref={this.audio}
         key={i}
+        onPlayTrack={handlePlayTrack}
         // handleTrack={this.handleTrack}
       />
     );
   });
+  console.log(currentTrackUrl);
+  console.log(currentTrackName);
+  debugger;
   return (
     <div className="album-show-page-box">
       <div className="album-show-page-left">
@@ -40,16 +55,11 @@ export default function AlbumDetails() {
           <p id="album-show-title">{album.title}</p>
           <p id="album-show-artist">by: {album.artistName}</p>
           <div>
-            <AudioPlayer
-              id="album-audio-player"
+            <MusicPlayer
               track={tracks[0]}
-              // ref={this.audio}
-              // track={track}
-              // song={
-              //   album.showDate !== undefined
-              //     ? Object.values(tracks)[0].mp3
-              //     : Object.values(tracks)[0].songUrl
-              // }
+              trackUrl={currentTrackUrl}
+              trackName={currentTrackName}
+              playing={playing}
             />
             {/* <audio controls id="audio-player">
           <source
