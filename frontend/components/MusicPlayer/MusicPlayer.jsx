@@ -7,6 +7,8 @@ function MusicPlayer(props) {
   const [src, setSrc] = useState(props.trackUrl);
   const [playButton, setPlayButton] = useState(null);
   const [title, setTitle] = useState(props.track.trackName);
+  const [eCount1, setECount1] = useState(0);
+  const [eCount2, setECount2] = useState(0);
 
   const audio = useRef();
   const progressBar = useRef();
@@ -58,12 +60,16 @@ function MusicPlayer(props) {
   };
 
   useEffect(() => {
+    setECount1(eCount1 + 1);
+    console.log(eCount1);
     setSrc(props.trackUrl);
     setPlayButton(window.playIcon);
     setTitle(props.trackName);
   }, [props.trackUrl, props.trackName]);
 
   useEffect(() => {
+    setECount2(eCount2 + 1);
+    console.log(eCount2);
     if (audio.current) {
       audio.current.src = src;
       if (props.playing) {

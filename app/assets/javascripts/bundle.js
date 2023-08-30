@@ -4644,6 +4644,14 @@ function MusicPlayer(props) {
     _useState12 = _slicedToArray(_useState11, 2),
     title = _useState12[0],
     setTitle = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState14 = _slicedToArray(_useState13, 2),
+    eCount1 = _useState14[0],
+    setECount1 = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState16 = _slicedToArray(_useState15, 2),
+    eCount2 = _useState16[0],
+    setECount2 = _useState16[1];
   var audio = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var progressBar = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var progressPlayed = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
@@ -4686,11 +4694,15 @@ function MusicPlayer(props) {
     audioElement.currentTime = scrubTime;
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setECount1(eCount1 + 1);
+    console.log(eCount1);
     setSrc(props.trackUrl);
     setPlayButton(window.playIcon);
     setTitle(props.trackName);
   }, [props.trackUrl, props.trackName]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setECount2(eCount2 + 1);
+    console.log(eCount2);
     if (audio.current) {
       audio.current.src = src;
       if (props.playing) {
@@ -6039,8 +6051,6 @@ function AlbumDetails() {
     });
   });
 
-  console.log(currentTrackUrl);
-  console.log(currentTrackName);
   debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "album-show-page-box"

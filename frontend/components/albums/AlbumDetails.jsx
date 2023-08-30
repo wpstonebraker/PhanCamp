@@ -45,8 +45,7 @@ export default function AlbumDetails() {
       />
     );
   });
-  console.log(currentTrackUrl);
-  console.log(currentTrackName);
+
   debugger;
   return (
     <div className="album-show-page-box">
