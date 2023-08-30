@@ -7,7 +7,7 @@ export default function Asdf() {
     queryFn: async () => {
       const response = await fetch(`/api/features`);
       return response.json();
-      // debugger;
+      // ;
       // return $.ajax({
       //   url: `/api/features`,
       // });

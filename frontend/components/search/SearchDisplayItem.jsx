@@ -4,7 +4,6 @@ import AlbumSearchItem from "./SearchItems/AlbumSearchItem";
 import TrackSearchItem from "./SearchItems/TrackSearchItem";
 
 function SearchDisplayItem({ details }) {
-  debugger;
   let display;
   switch (details.class) {
     case "artist":
@@ -31,7 +30,7 @@ function SearchDisplayItem({ details }) {
 //       </div>
 //     </>
 //   );
-//   debugger;
+//   ;
 //   let item = details;
 //   let display;
 //   switch (item.class) {
@@ -176,7 +175,7 @@ function SearchDisplayItem({ details }) {
 //   constructor(props) {
 //     super(props);
 //   }
-//   debugger;
+//   ;
 
 //   render() {
 //     let item = this.props.details;

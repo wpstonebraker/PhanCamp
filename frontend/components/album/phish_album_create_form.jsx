@@ -86,7 +86,6 @@ class PhishAlbumCreateForm extends React.Component {
   }
 
   getRandomShow() {
-    debugger;
     $.ajax({
       url: `http://phish.in/api/v1/random-show`,
       headers: {

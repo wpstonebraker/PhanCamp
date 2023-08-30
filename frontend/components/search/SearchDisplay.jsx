@@ -4,7 +4,6 @@ import SearchDisplayItem from "./SearchDisplayItem";
 
 function SearchDisplay() {
   const { state } = useLocation();
-  debugger;
   if (state == undefined) {
     return <div>No Results Found.</div>;
   }

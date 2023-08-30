@@ -3,7 +3,6 @@ import React from "react";
 // const TrackItem = React.forwardRef(({ track, playTrack }, ref) => {
 const TrackItem = ({ track, onPlayTrack }) => {
   const handlePlayClick = () => {
-    debugger;
     onPlayTrack(track);
   };
   const playSong = () => {

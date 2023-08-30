@@ -1,8 +1,6 @@
-json.features do
-    json.array! @features do |artist|
-        json.id artist.id
-        json.artistName artist.artist_name
-    end
+json.array! @features do |artist|
+    json.id artist.id
+    json.artistName artist.artist_name
 end
 
 # json.artists do

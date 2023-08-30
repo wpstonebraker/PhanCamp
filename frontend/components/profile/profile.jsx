@@ -120,7 +120,7 @@ class Profile extends React.Component {
         .then((payload) => {
           this.props.receiveUserUpdate(payload);
         })
-        .then(() => this.props.history.push(`/artists/${this.props.user.id}`));
+        .then(() => this.props.history.push(`/`));
       // .then(() => {
       //   this.props.history.push(`/artists/${this.props.user.id}`);
       // });

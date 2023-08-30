@@ -56,7 +56,7 @@ const Feature = () => {
   let weenId;
   let gdId;
   let gooseId;
-  data.features.forEach((artist) => {
+  data.forEach((artist) => {
     switch (artist.artistName) {
       case "Phish":
         phishId = artist.id;

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
-import { useLocation, useParams } from "react-router-dom";
-import AudioPlayer from "../audio_player/audio_player";
-import PhishTrackItem from "../album/phish_track_item";
+import { useParams } from "react-router-dom";
 import TrackItem from "./TrackItem";
 import MusicPlayer from "../MusicPlayer/MusicPlayer";
 
@@ -24,7 +22,6 @@ export default function AlbumDetails() {
     setCurrentTrackUrl(track.songUrl);
     setCurrentTrackName(track.trackName);
     setPlaying(true);
-    debugger;
   };
 
   if (isLoading) {
@@ -46,7 +43,6 @@ export default function AlbumDetails() {
     );
   });
 
-  debugger;
   return (
     <div className="album-show-page-box">
       <div className="album-show-page-left">

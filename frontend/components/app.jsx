@@ -5,8 +5,6 @@ import LoginFormContainer from "./login/login_form_container";
 import { Routes, Route, Switch } from "react-router-dom";
 import { AuthRoutes, ProtectedRoute } from "../util/route_util";
 import BannerBarContainer from "./banner_bar/banner_bar_container";
-import FeatureIndexContainer from "./feature/feature_index_container";
-import AlbumShowContainer from "./album/album_show_container";
 import Splash from "./splash/splash";
 import AlbumCreateFormContainer from "./album/album_create_form_container";
 import PhishAlbumCreateFormContainer from "./album/phish_album_create_form_container";

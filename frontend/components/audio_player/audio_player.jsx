@@ -3,7 +3,7 @@ import React from "react";
 class AudioPlayer extends React.Component {
   constructor(props) {
     super(props);
-    // debugger;
+    // ;
     this.state = {
       // track: props.track,
       playing: false,
@@ -55,7 +55,6 @@ class AudioPlayer extends React.Component {
   }
 
   togglePlay() {
-    debugger;
     const audio = this.audio.current;
     if (audio.paused) {
       audio.play();
@@ -80,7 +79,6 @@ class AudioPlayer extends React.Component {
   }
 
   playTrack() {
-    debugger;
     const audio = this.audio.current;
     audio.play();
     this.setState({ playButton: window.pauseIcon });
