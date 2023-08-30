@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import SearchDisplay from "./search_display";
+import SearchDisplay from "./old_search_display";
 
 const mSTP = (state, ownProps) => {
   return {

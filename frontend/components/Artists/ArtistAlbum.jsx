@@ -1,7 +1,5 @@
 import React from "react";
-import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { styled } from "styled-components";
 
 export default function ArtistAlbum({ album }) {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import React from "react";
 import DisplayItem from "./search_display_item_container";
 
-class SearchDisplay extends React.Component {
+class OldSearchDisplay extends React.Component {
   constructor(props) {
     super(props);
     // if (window.performance) {

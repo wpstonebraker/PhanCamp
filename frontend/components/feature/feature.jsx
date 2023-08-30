@@ -1,7 +1,36 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import "regenerator-runtime/runtime";
+import { styled } from "styled-components";
+
+const Container = styled.div`
+  background-color: #222222;
+  height: 540px;
+`;
+
+const FeaturesBox = styled.div`
+  display: grid;
+  grid-template-columns: 70% 30%;
+  margin: auto;
+  width: 1400px;
+  height: 540px;
+
+  img {
+    width: 100%;
+    height: 540px;
+    grid-column: 1;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  .fi-main-box {
+    font-size: 30px;
+    color: white;
+    position: relative;
+    bottom: 500px;
+    cursor: pointer;
+  }
+`;
 
 const Feature = () => {
   const navigate = useNavigate();
@@ -14,6 +43,10 @@ const Feature = () => {
     },
     queryKey: "featuredAlbums",
   });
+
+  const handleClick = (artistId) => {
+    navigate(`/artists/${artistId}`);
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -41,15 +74,11 @@ const Feature = () => {
         break;
     }
   });
-  // debugger;
 
   return (
-    <div className="fi-container">
-      <div className="fi-box">
-        <div
-          className="fi-main"
-          onClick={() => navigate(`/artists/${phishId}`)}
-        >
+    <Container>
+      <FeaturesBox>
+        <div onClick={() => handleClick(phishId)}>
           <img src={window.featurePhish} alt="Main feature Phish" />
           <div className="fi-main-box">
             <span>Phish</span>
@@ -60,7 +89,7 @@ const Feature = () => {
         <div className="fi-side">
           <div
             className="fis-item-container"
-            onClick={() => navigate(`/artists/${weenId}`)}
+            onClick={() => handleClick(weenId)}
           >
             <img
               src={window.featureWeen}
@@ -69,10 +98,7 @@ const Feature = () => {
             />
             <span className="fis-side-item-label">Ween</span>
           </div>
-          <div
-            className="fis-item-container"
-            onClick={() => navigate(`/artists/${gdId}`)}
-          >
+          <div className="fis-item-container" onClick={() => handleClick(gdId)}>
             <img
               src={window.featureGD}
               alt="GD feature"
@@ -82,7 +108,7 @@ const Feature = () => {
           </div>
           <div
             className="fis-item-container"
-            onClick={() => navigate(`/artists/${gooseId}`)}
+            onClick={() => handleClick(gooseId)}
           >
             <img
               src={window.featureGoose}
@@ -92,15 +118,8 @@ const Feature = () => {
             <span className="fis-side-item-label">Goose</span>
           </div>
         </div>
-        {/* <div className="fi-side-item-labels">
-          <span id="fis-ween">Ween</span>
-          <br />
-          <span id="fis-gd">The Grateful Dead</span>
-          <br />
-          <span id="fis-goose">Goose</span>
-        </div> */}
-      </div>
-    </div>
+      </FeaturesBox>
+    </Container>
   );
 };
 

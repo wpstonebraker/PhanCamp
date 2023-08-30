@@ -12,13 +12,13 @@ import Splash from "./splash/splash";
 import AlbumCreateFormContainer from "./album/album_create_form_container";
 import PhishAlbumCreateFormContainer from "./album/phish_album_create_form_container";
 import ProfileContainer from "./profile/profile_container";
-import SearchDisplayContainer from "./search/search_display_container";
 import Foots from "./footer/foot";
 import SplashContainer from "./splash/splash_container";
 import ArtistsDetails from "./Artists/ArtistsDetails";
 import AlbumDetails from "./Albums/AlbumDetails";
 import { ArtistLayout } from "./Artists/ArtistLayout";
 import Landing from "./Landing/Landing";
+import SearchDisplay from "./search/SearchDisplay";
 
 const App = () => {
   return (
@@ -36,7 +36,7 @@ const App = () => {
             element={<PhishAlbumCreateFormContainer />}
           />
           <Route path="/edit-profile" element={<ProfileContainer />} />
-          <Route path="/search" element={<SearchDisplayContainer />} />
+          <Route path="/search" element={<SearchDisplay />} />
           <Route path="/artists" element={<ArtistLayout />}>
             <Route path=":id" element={<ArtistsDetails />} />
             <Route path=":id/albums/:id" element={<AlbumDetails />} />
