@@ -15,9 +15,10 @@ import ProfileContainer from "./profile/profile_container";
 import SearchDisplayContainer from "./search/search_display_container";
 import Foots from "./footer/foot";
 import SplashContainer from "./splash/splash_container";
-import ArtistsDetails from "./artists/ArtistsDetails";
-import AlbumDetails from "./albums/AlbumDetails";
-import { ArtistLayout } from "./artists/ArtistLayout";
+import ArtistsDetails from "./Artists/ArtistsDetails";
+import AlbumDetails from "./Albums/AlbumDetails";
+import { ArtistLayout } from "./Artists/ArtistLayout";
+import Landing from "./Landing/Landing";
 
 const App = () => {
   return (
@@ -28,7 +29,7 @@ const App = () => {
           <Route path="/login" element={<LoginFormContainer />} />
         </Route>
         <Route element={<BannerBarContainer />}>
-          <Route path="/" element={<SplashContainer />} />
+          <Route path="/" element={<Landing />} />
           <Route path="/albums/create" element={<AlbumCreateFormContainer />} />
           <Route
             path="/albums/addPhish"

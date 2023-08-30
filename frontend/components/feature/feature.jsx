@@ -5,26 +5,25 @@ import "regenerator-runtime/runtime";
 
 const Feature = () => {
   const navigate = useNavigate();
-  const { data: artists, isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryFn: async () => {
       const response = await fetch("/api/features");
       const data = response.json();
 
       return data;
     },
-    queryKey: "albums",
+    queryKey: "featuredAlbums",
   });
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  console.log(artists.artists);
   let phishId;
   let weenId;
   let gdId;
   let gooseId;
-  Object.values(artists.artists).forEach((artist) => {
+  data.features.forEach((artist) => {
     switch (artist.artistName) {
       case "Phish":
         phishId = artist.id;
