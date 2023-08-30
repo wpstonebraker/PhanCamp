@@ -54,7 +54,13 @@ class PhishAlbumCreateForm extends React.Component {
 
   getShow() {
     const date = document.querySelector('input[type="date"]');
-    this.props.getPhishShow(date.value).then(
+    $.ajax({
+      url: `http://phish.in/api/v1/shows/${date.value}`,
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${window.phishAPIKey}`,
+      },
+    }).then(
       (payload) => {
         document.getElementById("phish-caf-date-error").classList.add("hidden");
         const show = payload.data;
