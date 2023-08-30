@@ -32,56 +32,22 @@ const FeaturesBox = styled.div`
   }
 `;
 
-const Feature = () => {
+function Feature({ features }) {
   const navigate = useNavigate();
-  const { data, isLoading } = useQuery({
-    queryFn: async () => {
-      const response = await fetch("/api/features");
-      const data = response.json();
-
-      return data;
-    },
-    queryKey: "featuredAlbums",
-  });
 
   const handleClick = (artistId) => {
     navigate(`/artists/${artistId}`);
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  let phishId;
-  let weenId;
-  let gdId;
-  let gooseId;
-  data.forEach((artist) => {
-    switch (artist.artistName) {
-      case "Phish":
-        phishId = artist.id;
-        break;
-      case "Ween":
-        weenId = artist.id;
-        break;
-      case "The Grateful Dead":
-        gdId = artist.id;
-        break;
-      case "Goose":
-        gooseId = artist.id;
-        break;
-      default:
-        break;
-    }
-  });
+  const [main, sideTop, sideMid, sideBot] = features;
 
   return (
     <Container>
       <FeaturesBox>
-        <div onClick={() => handleClick(phishId)}>
+        <div onClick={() => handleClick(main.id)}>
           <img src={window.featurePhish} alt="Main feature Phish" />
           <div className="fi-main-box">
-            <span>Phish</span>
+            <span>main.artistName</span>
             <p>1600+ shows</p>
             <p>4000 hours of music</p>
           </div>
@@ -89,38 +55,41 @@ const Feature = () => {
         <div className="fi-side">
           <div
             className="fis-item-container"
-            onClick={() => handleClick(weenId)}
+            onClick={() => handleClick(sideTop.id)}
           >
-            <img
-              src={window.featureWeen}
-              alt="Ween feature"
-              className="fi-side-item"
-            />
-            <span className="fis-side-item-label">Ween</span>
-          </div>
-          <div className="fis-item-container" onClick={() => handleClick(gdId)}>
             <img
               src={window.featureGD}
               alt="GD feature"
               className="fi-side-item"
             />
-            <span className="fis-side-item-label">The Grateful Dead</span>
+            <span className="fis-side-item-label">{sideTop.artistName}</span>
           </div>
           <div
             className="fis-item-container"
-            onClick={() => handleClick(gooseId)}
+            onClick={() => handleClick(sideMid.id)}
           >
             <img
               src={window.featureGoose}
               alt="Goose feature"
               className="fi-side-item"
             />
-            <span className="fis-side-item-label">Goose</span>
+            <span className="fis-side-item-label">{sideMid.artistName}</span>
+          </div>
+          <div
+            className="fis-item-container"
+            onClick={() => handleClick(sideBot.id)}
+          >
+            <img
+              src={window.featureWeen}
+              alt="Ween feature"
+              className="fi-side-item"
+            />
+            <span className="fis-side-item-label">{sideBot.artistName}</span>
           </div>
         </div>
       </FeaturesBox>
     </Container>
   );
-};
+}
 
 export default Feature;

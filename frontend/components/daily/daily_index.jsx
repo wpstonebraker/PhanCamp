@@ -7,10 +7,6 @@ class DailyIndex extends React.Component {
     super(props);
   }
 
-  // componentDidMount() {
-  //   this.props.getSellingAlbums();
-  // }
-
   render() {
     if (!this.props.daily) return null;
     const max = Object.keys(this.props.albums).length;

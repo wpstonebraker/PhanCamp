@@ -11,7 +11,7 @@ class Api::AlbumsController < ApplicationController
     def show
         @album = Album.find(params[:id])
         @artist = @album.artist
-        @tracks = Track.where(album_id: @album.id)
+        @tracks = Track.where(album_id: @album.id).order(track_num: :asc)
 
         #@albums = Album.where(artist_id: @artist.id)
         #albumsArr = @albums.pluck(:id)

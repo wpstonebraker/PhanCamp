@@ -9,7 +9,7 @@ const DailyMainItem = ({ album, artist, history }) => {
           <img src={album.photoUrl} alt="" />
           <div className="di-main-details">
             <div className="di-main-title">{album.title}</div>
-            <div className="di-main-artist">by {artist.artistName}</div>
+            <div className="di-main-artist">by {album.artist}</div>
             <br />
             <div className="di-main-deets">{album.description}</div>
           </div>

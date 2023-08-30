@@ -2,6 +2,7 @@ import React from "react";
 import SplashPlayerContainer from "./splash_player_container";
 
 class Discover extends React.Component {
+  debugger;
   constructor(props) {
     super(props);
     this.state = {

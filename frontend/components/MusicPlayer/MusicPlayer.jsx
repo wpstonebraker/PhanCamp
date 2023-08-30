@@ -61,7 +61,7 @@ function MusicPlayer(props) {
 
   useEffect(() => {
     setECount1(eCount1 + 1);
-    console.log(eCount1);
+    console.log("music player comp e1", eCount1);
     setSrc(props.trackUrl);
     setPlayButton(window.playIcon);
     setTitle(props.trackName);
@@ -69,7 +69,7 @@ function MusicPlayer(props) {
 
   useEffect(() => {
     setECount2(eCount2 + 1);
-    console.log(eCount2);
+    console.log("music player comp e2", eCount2);
     if (audio.current) {
       audio.current.src = src;
       if (props.playing) {

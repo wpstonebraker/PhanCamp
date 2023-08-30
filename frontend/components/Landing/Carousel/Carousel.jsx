@@ -9,7 +9,6 @@ function Carousel(props) {
 
   const { data: albumsData, isLoading } = useQuery({
     queryFn: async () => {
-      console.log("fetching in react query");
       const response = await fetch("/api/selling");
       const data = await response.json();
       return data;
@@ -26,7 +25,7 @@ function Carousel(props) {
 
     // call add to carousel semi randomly
     const loop = () => {
-      const rand = ~~(Math.random() * 5000) + 500;
+      const rand = ~~(Math.random() * (3000 - 500)) + 500;
       setTimeout(() => {
         addToCarousel();
         loop();
@@ -58,6 +57,7 @@ function Carousel(props) {
     };
 
     const addToCarousel = () => {
+      console.log("adding");
       if (albumsData.length === 0) {
         return;
       }
@@ -80,8 +80,11 @@ function Carousel(props) {
       });
     };
 
+    // init carousel
     initCarousel();
+    // init loop
     loop();
+    // cleanup
     return () => {
       setItems([]);
     };

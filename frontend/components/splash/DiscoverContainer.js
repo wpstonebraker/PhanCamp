@@ -6,6 +6,7 @@ import Discover from "./discover";
 import { withRouter } from "../../util/with_router_util";
 
 const mSTP = (state, ownProps) => {
+  debugger;
   return {
     genres: state.entities.genres,
     albums: state.entities.albums,

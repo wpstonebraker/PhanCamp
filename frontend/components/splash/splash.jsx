@@ -1,7 +1,7 @@
 import React from "react";
 import SellingNowIndexContainer from "../selling_now/selling_now_index_container";
 import DailyIndexContainer from "../daily/daily_index_container";
-import DiscoverContainer from "./discover_container";
+import DiscoverContainer from "./DiscoverContainer";
 import Asdf from "../asdf/asdf";
 import Feature from "../Landing/Feature/Feature";
 

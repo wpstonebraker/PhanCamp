@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :artists, only: [:show] do
       resources :albums, only: [:index]
     end
+    resources :genres, only: [:index]
+    resources :landings, only: [:index]
     resource :session, only: [:create, :destroy]
     resources :albums, only: [:show, :create, :update, :destroy]
     resources :features, only: [:index]

@@ -27,20 +27,11 @@ export default function AlbumDetails() {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-  const album = albumData.albums[albumId];
-  const artistId = album.artistId;
-  const artist = albumData.artist[artistId];
-  const tracks = Object.values(albumData.tracks);
+
+  const album = albumData.albums;
+  const tracks = albumData.tracks;
   const trackItems = tracks.map((track, i) => {
-    return (
-      <TrackItem
-        track={track}
-        // ref={this.audio}
-        key={i}
-        onPlayTrack={handlePlayTrack}
-        // handleTrack={this.handleTrack}
-      />
-    );
+    return <TrackItem track={track} key={i} onPlayTrack={handlePlayTrack} />;
   });
 
   return (
@@ -56,13 +47,6 @@ export default function AlbumDetails() {
               trackName={currentTrackName}
               playing={playing}
             />
-            {/* <audio controls id="audio-player">
-          <source
-            id="audio-player-source"
-            src="/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb1lCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--186d9de110146fa7c63638c22e6eb50ccc7de6cd/1997-11-17Tweezer.mp3"
-            type="audio/mpeg"
-          ></source>
-        </audio> */}
           </div>
         </div>
         <div className="album-track-table-box">
