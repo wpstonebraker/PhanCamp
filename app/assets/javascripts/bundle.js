@@ -4632,20 +4632,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function AlbumDetails() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState2 = _slicedToArray(_useState, 2),
-    currentTrackUrl = _useState2[0],
-    setCurrentTrackUrl = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-    _useState4 = _slicedToArray(_useState3, 2),
-    currentTrackName = _useState4[0],
-    setCurrentTrackName = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState6 = _slicedToArray(_useState5, 2),
-    playing = _useState6[0],
-    setPlaying = _useState6[1];
   var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useParams)(),
     albumId = _useParams.id;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState2 = _slicedToArray(_useState, 2),
+    currentTrack = _useState2[0],
+    setCurrentTrack = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    playing = _useState4[0],
+    setPlaying = _useState4[1];
   var _useQuery = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)({
       queryFn: function () {
         var _queryFn = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -4673,9 +4669,13 @@ function AlbumDetails() {
     }),
     albumData = _useQuery.data,
     isLoading = _useQuery.isLoading;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (albumData) {
+      setCurrentTrack(albumData.tracks[0]);
+    }
+  }, [albumData]);
   var handlePlayTrack = function handlePlayTrack(track) {
-    setCurrentTrackUrl(track.songUrl);
-    setCurrentTrackName(track.trackName);
+    setCurrentTrack(track);
     setPlaying(true);
   };
   if (isLoading) {
@@ -4687,7 +4687,8 @@ function AlbumDetails() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_TrackItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
       track: track,
       key: i,
-      onPlayTrack: handlePlayTrack
+      onPlayTrack: handlePlayTrack,
+      isPlaying: track === currentTrack && playing
     });
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -4700,10 +4701,11 @@ function AlbumDetails() {
     id: "album-show-title"
   }, album.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     id: "album-show-artist"
-  }, "by: ", album.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MusicPlayer_MusicPlayer__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    track: tracks[0],
-    trackUrl: currentTrackUrl,
-    trackName: currentTrackName,
+  }, "by: ", album.artistName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MusicPlayer_MusicPlayer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  // track={currentTrack}
+  , {
+    trackName: currentTrack.trackName,
+    trackUrl: currentTrack.songUrl,
     playing: playing
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "album-track-table-box"
@@ -5564,38 +5566,27 @@ function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" !=
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function MusicPlayer(props) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var trackUrl = props.trackUrl,
+    trackName = props.trackName,
+    playing = props.playing;
+  // const [playing, setPlaying] = useState(false);
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("00:00"),
     _useState2 = _slicedToArray(_useState, 2),
-    playing = _useState2[0],
-    setPlaying = _useState2[1];
+    currentTime = _useState2[0],
+    setCurrentTime = _useState2[1];
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("00:00"),
     _useState4 = _slicedToArray(_useState3, 2),
-    currentTime = _useState4[0],
-    setCurrentTime = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("00:00"),
+    duration = _useState4[0],
+    setDuration = _useState4[1];
+  // const [src, setSrc] = useState(props.trackUrl);
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(window.playIcon),
     _useState6 = _slicedToArray(_useState5, 2),
-    duration = _useState6[0],
-    setDuration = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.trackUrl),
-    _useState8 = _slicedToArray(_useState7, 2),
-    src = _useState8[0],
-    setSrc = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-    _useState10 = _slicedToArray(_useState9, 2),
-    playButton = _useState10[0],
-    setPlayButton = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.track.trackName),
-    _useState12 = _slicedToArray(_useState11, 2),
-    title = _useState12[0],
-    setTitle = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
-    _useState14 = _slicedToArray(_useState13, 2),
-    eCount1 = _useState14[0],
-    setECount1 = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
-    _useState16 = _slicedToArray(_useState15, 2),
-    eCount2 = _useState16[0],
-    setECount2 = _useState16[1];
+    playButton = _useState6[0],
+    setPlayButton = _useState6[1];
+  // const [title, setTitle] = useState(props.track.trackName);
+  // const [eCount1, setECount1] = useState(0);
+  // const [eCount2, setECount2] = useState(0);
+
   var audio = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var progressBar = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var progressPlayed = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
@@ -5604,11 +5595,9 @@ function MusicPlayer(props) {
     if (audioElement.paused) {
       audioElement.play();
       setPlayButton(window.pauseIcon);
-      setPlaying(true);
     } else {
       audioElement.pause();
       setPlayButton(window.playIcon);
-      setPlaying(false);
     }
   };
   var convertTime = function convertTime(time) {
@@ -5638,22 +5627,15 @@ function MusicPlayer(props) {
     audioElement.currentTime = scrubTime;
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    setECount1(eCount1 + 1);
-    console.log("music player comp e1", eCount1);
-    setSrc(props.trackUrl);
-    setPlayButton(window.playIcon);
-    setTitle(props.trackName);
-  }, [props.trackUrl, props.trackName]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    setECount2(eCount2 + 1);
-    console.log("music player comp e2", eCount2);
     if (audio.current) {
-      audio.current.src = src;
-      if (props.playing) {
-        togglePlay();
+      audio.current.src = trackUrl;
+      if (playing) {
+        audio.current.play();
+      } else {
+        audio.current.pause();
       }
     }
-  }, [src, props.playing]);
+  }, [trackUrl, playing]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "audio-player-box"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -5689,7 +5671,7 @@ function MusicPlayer(props) {
     onTimeUpdate: handleTime,
     id: "audio-player",
     ref: audio,
-    src: props.track.songUrl
+    src: trackUrl
   })));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MusicPlayer);

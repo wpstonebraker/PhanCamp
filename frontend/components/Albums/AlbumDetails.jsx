@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import TrackItem from "./TrackItem";
 import MusicPlayer from "../MusicPlayer/MusicPlayer";
 
 export default function AlbumDetails() {
-  const [currentTrackUrl, setCurrentTrackUrl] = useState("");
-  const [currentTrackName, setCurrentTrackName] = useState("");
-  const [playing, setPlaying] = useState(false);
-
   const { id: albumId } = useParams();
+  const [currentTrack, setCurrentTrack] = useState("");
+  const [playing, setPlaying] = useState(false);
   const { data: albumData, isLoading } = useQuery({
     queryFn: async () => {
       const response = await fetch(`/api/albums/${albumId}`);
@@ -18,9 +16,14 @@ export default function AlbumDetails() {
     queryKey: `album${albumId}Data`,
   });
 
+  useEffect(() => {
+    if (albumData) {
+      setCurrentTrack(albumData.tracks[0]);
+    }
+  }, [albumData]);
+
   const handlePlayTrack = (track) => {
-    setCurrentTrackUrl(track.songUrl);
-    setCurrentTrackName(track.trackName);
+    setCurrentTrack(track);
     setPlaying(true);
   };
 
@@ -31,7 +34,14 @@ export default function AlbumDetails() {
   const album = albumData.albums;
   const tracks = albumData.tracks;
   const trackItems = tracks.map((track, i) => {
-    return <TrackItem track={track} key={i} onPlayTrack={handlePlayTrack} />;
+    return (
+      <TrackItem
+        track={track}
+        key={i}
+        onPlayTrack={handlePlayTrack}
+        isPlaying={track === currentTrack && playing}
+      />
+    );
   });
 
   return (
@@ -42,9 +52,9 @@ export default function AlbumDetails() {
           <p id="album-show-artist">by: {album.artistName}</p>
           <div>
             <MusicPlayer
-              track={tracks[0]}
-              trackUrl={currentTrackUrl}
-              trackName={currentTrackName}
+              // track={currentTrack}
+              trackName={currentTrack.trackName}
+              trackUrl={currentTrack.songUrl}
               playing={playing}
             />
           </div>

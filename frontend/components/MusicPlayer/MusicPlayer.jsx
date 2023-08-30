@@ -1,14 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 
 function MusicPlayer(props) {
-  const [playing, setPlaying] = useState(false);
+  const { trackUrl, trackName, playing } = props;
+  // const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState("00:00");
   const [duration, setDuration] = useState("00:00");
-  const [src, setSrc] = useState(props.trackUrl);
-  const [playButton, setPlayButton] = useState(null);
-  const [title, setTitle] = useState(props.track.trackName);
-  const [eCount1, setECount1] = useState(0);
-  const [eCount2, setECount2] = useState(0);
+  // const [src, setSrc] = useState(props.trackUrl);
+  const [playButton, setPlayButton] = useState(window.playIcon);
+  // const [title, setTitle] = useState(props.track.trackName);
+  // const [eCount1, setECount1] = useState(0);
+  // const [eCount2, setECount2] = useState(0);
 
   const audio = useRef();
   const progressBar = useRef();
@@ -19,11 +20,9 @@ function MusicPlayer(props) {
     if (audioElement.paused) {
       audioElement.play();
       setPlayButton(window.pauseIcon);
-      setPlaying(true);
     } else {
       audioElement.pause();
       setPlayButton(window.playIcon);
-      setPlaying(false);
     }
   };
 
@@ -60,23 +59,15 @@ function MusicPlayer(props) {
   };
 
   useEffect(() => {
-    setECount1(eCount1 + 1);
-    console.log("music player comp e1", eCount1);
-    setSrc(props.trackUrl);
-    setPlayButton(window.playIcon);
-    setTitle(props.trackName);
-  }, [props.trackUrl, props.trackName]);
-
-  useEffect(() => {
-    setECount2(eCount2 + 1);
-    console.log("music player comp e2", eCount2);
     if (audio.current) {
-      audio.current.src = src;
-      if (props.playing) {
-        togglePlay();
+      audio.current.src = trackUrl;
+      if (playing) {
+        audio.current.play();
+      } else {
+        audio.current.pause();
       }
     }
-  }, [src, props.playing]);
+  }, [trackUrl, playing]);
 
   return (
     <div id="audio-player-box">
@@ -103,7 +94,7 @@ function MusicPlayer(props) {
           onTimeUpdate={handleTime}
           id="audio-player"
           ref={audio}
-          src={props.track.songUrl}
+          src={trackUrl}
         ></audio>
       </div>
     </div>
