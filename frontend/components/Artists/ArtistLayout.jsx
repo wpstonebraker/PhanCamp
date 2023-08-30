@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { styled } from "styled-components";
 import ArtistAlbum from "./ArtistAlbum";
-import ArtistSidebar from "../artist/artist_sidebar";
+import ArtistSidebar from "./ArtistSidebar";
 
 const Container = styled.div`
   width: 975px;

@@ -1,10 +1,8 @@
 import React from "react";
-import artist_banner from "../artist/artist_banner";
-import ArtistBanner from "../artist/artist_banner";
-import ArtistSidebar from "../artist/artist_sidebar";
+import ArtistSidebar from "../Artists/ArtistSidebar";
 import AudioPlayer from "../audio_player/audio_player_container";
 import PhishTrackItem from "./phish_track_item";
-import TrackItem from "./track_item";
+import TrackItem from "../Albums/TrackItem";
 // import AudioPlayer from "../audio_player/audio_player_container";
 
 class AlbumShow extends React.Component {

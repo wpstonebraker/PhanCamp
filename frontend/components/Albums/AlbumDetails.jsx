@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { useLocation, useParams } from "react-router-dom";
 import AudioPlayer from "../audio_player/audio_player";
 import PhishTrackItem from "../album/phish_track_item";
-import TrackItem from "../album/track_item";
+import TrackItem from "./TrackItem";
 import MusicPlayer from "../MusicPlayer/MusicPlayer";
 
 export default function AlbumDetails() {

@@ -2,7 +2,7 @@ import React from "react";
 import GreetingContainer from "../greeting/greeting_container";
 import { Link, Outlet } from "react-router-dom";
 import DropdownButton from "./dropdown_button";
-import Search from "../search/search_container";
+import Search from "../search/Search";
 
 const BannerBar = (props) => {
   const loggedOut = () => {
