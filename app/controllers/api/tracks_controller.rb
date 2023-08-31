@@ -1,5 +1,9 @@
 class Api::TracksController < ApplicationController
 
+    def show
+        @track = Track.find(params[:id])
+    end
+
     def update
         @track = Track.find(params["track"]["track_id"].to_i)
 

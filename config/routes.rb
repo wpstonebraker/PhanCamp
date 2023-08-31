@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :albums, only: [:show, :create, :update, :destroy]
     resources :features, only: [:index]
     resources :selling, only: [:index]
-    resources :tracks, only: [:update, :destroy]
+    resources :tracks, only: [:show, :update, :destroy]
     resource :phish_albums, only: [:create]
     get '/search', to: 'search#search'
   end

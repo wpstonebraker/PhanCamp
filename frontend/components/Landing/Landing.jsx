@@ -4,6 +4,7 @@ import Carousel from "./Carousel/Carousel";
 import Daily from "./Daily/Daily";
 import Discover from "./Discover/Discover";
 import { useQuery } from "react-query";
+import Foots from "./Footer/Foots";
 
 export default function Landing() {
   const { data: landingData, isLoading } = useQuery({
@@ -42,6 +43,7 @@ export default function Landing() {
       <Carousel />
       <Daily albums={dailyAlbums} />
       <Discover albums={albums} genres={genres} />
+      <Foots />
     </>
   );
 }

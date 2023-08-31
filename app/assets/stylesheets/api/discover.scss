@@ -1,6 +1,7 @@
 #discover-outer {
   width: 100%;
   margin: auto;
+  background-color: #eef2f3;
 }
 
 #discover-label-box {
@@ -81,9 +82,6 @@
   width: 1200px;
   margin: auto;
   display: flex;
-  //   flex-direction: row;
-  //   justify-content: space-around;
-  //   align-items: center;
 }
 
 #discover-albums-box {
@@ -93,6 +91,18 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+#discover-player-container {
+  height: 400px;
+  background-color: white;
+  border: 1px solid #d9d9d9;
+}
+
+#discover-player-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .discover-album-tile {
@@ -106,6 +116,12 @@
 .discover-album-tile-photo {
   height: 200px;
   width: 200px;
+}
+
+.dat-selected-art {
+  height: 300px;
+  width: 300px;
+  margin: auto;
 }
 
 .dat-album-link {

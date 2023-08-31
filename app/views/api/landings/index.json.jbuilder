@@ -3,6 +3,8 @@ json.albums do
         json.extract! album, :id, :title, :year, :description, :artist_id
         json.photoUrl url_for(album.photo)
         json.artist album.artist.artist_name
+        json.genreIds album.genre_ids
+        json.trackIds album.track_ids
     end
 end
 

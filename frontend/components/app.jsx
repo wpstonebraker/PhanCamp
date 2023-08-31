@@ -9,7 +9,6 @@ import Splash from "./splash/splash";
 import AlbumCreateFormContainer from "./album/album_create_form_container";
 import PhishAlbumCreateFormContainer from "./album/phish_album_create_form_container";
 import ProfileContainer from "./profile/profile_container";
-import Foots from "./footer/foot";
 import SplashContainer from "./splash/splash_container";
 import ArtistsDetails from "./Artists/ArtistsDetails";
 import AlbumDetails from "./Albums/AlbumDetails";

@@ -2,32 +2,44 @@ import React, { useState, useEffect } from "react";
 import MusicPlayer from "../../MusicPlayer/MusicPlayer";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
+import { styled } from "styled-components";
+
+const MusicPlayerBox = styled.div`
+  height: 370px;
+`;
 
 function Discover({ albums, genres }) {
   const navigate = useNavigate();
-  const [selected, setSelected] = useState("");
-  const [discoverAlbums, setDiscoverAlbums] = useState([]);
+  const [selectedAlbum, setSelectedAlbum] = useState(albums[0]);
+  const [discoverAlbums, setDiscoverAlbums] = useState(albums);
 
-  const handleAlbumClick = (albumId) => {
-    // Your album click logic
-    // ...
+  const [currentTrack, setCurrentTrack] = useState("");
+  const [playing, setPlaying] = useState(false);
+
+  const handleAlbumClick = async (album) => {
+    fetchTrack(album.trackIds[0]).then((res) => {
+      handlePlayTrack(res);
+      setSelectedAlbum(album);
+    });
   };
 
+  const handlePlayTrack = (track) => {
+    setCurrentTrack(track);
+    setPlaying(true);
+  };
+
+  async function fetchTrack(trackId) {
+    const response = await fetch(`/api/tracks/${trackId}`);
+    const trackData = await response.json();
+    return trackData;
+  }
+
   const handleTabClick = (genreId) => {
-    const discoverAlbums = Object.values(props.albums).filter((album) => {
+    const discoverAlbums = albums.filter((album) => {
       return album.genreIds.includes(genreId);
     });
     setDiscoverAlbums(discoverAlbums);
   };
-
-  useEffect(() => {
-    // ComponentDidMount logic
-    // ...
-    return () => {
-      // ComponentWillUnmount logic
-      // ...
-    };
-  }, []);
 
   const genreTabs = genres.map((genre) => (
     <li
@@ -39,8 +51,9 @@ function Discover({ albums, genres }) {
     </li>
   ));
 
-  console.log(albums);
-  const albumTiles = albums.slice(0, 8).map((album, i) => (
+  console.log(discoverAlbums);
+
+  const albumTiles = discoverAlbums.slice(0, 8).map((album, i) => (
     <div
       key={album.id}
       id={`discover-album-tile-${i}`}
@@ -50,24 +63,22 @@ function Discover({ albums, genres }) {
         src={album.photoUrl}
         alt=""
         className="discover-album-tile-photo"
-        onClick={() => this.handleAlbumClick(album.id)}
+        onClick={() => handleAlbumClick(album)}
       />
 
       <li
         className="dat-album-link"
         onClick={() =>
-          this.props.history.push(
-            `/artists/${album.artistId}/albums/${album.id}`
-          )
+          navigate(`/artists/${album.artistId}/albums/${album.id}`)
         }
       >
         {album.title}
       </li>
       <li
         className="dat-artist-link"
-        onClick={() => this.props.history.push(`/artists/${album.artistId}`)}
+        onClick={() => navigate(`/artists/${album.artistId}`)}
       >
-        {album.artistName}
+        {album.artist}
       </li>
     </div>
   ));
@@ -88,7 +99,24 @@ function Discover({ albums, genres }) {
       </div>
       <div id="discover-albums-container">
         <div id="discover-albums-box">{albumTiles}</div>
-        {/* <MusicPlayer /> */}
+        <div id="discover-player-container">
+          <div id="discover-player-box">
+            <div>
+              <img
+                src={selectedAlbum.photoUrl}
+                className="dat-selected-art"
+                alt=""
+              />
+            </div>
+            <MusicPlayerBox>
+              <MusicPlayer
+                trackName={currentTrack.trackName}
+                trackUrl={currentTrack.songUrl}
+                playing={playing}
+              />
+            </MusicPlayerBox>
+          </div>
+        </div>
       </div>
     </div>
   );

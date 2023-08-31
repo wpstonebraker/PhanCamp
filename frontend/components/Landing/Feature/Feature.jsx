@@ -47,7 +47,7 @@ function Feature({ features }) {
         <div onClick={() => handleClick(main.id)}>
           <img src={window.featurePhish} alt="Main feature Phish" />
           <div className="fi-main-box">
-            <span>main.artistName</span>
+            <span>{main.artistName}</span>
             <p>1600+ shows</p>
             <p>4000 hours of music</p>
           </div>
