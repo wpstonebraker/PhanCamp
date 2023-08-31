@@ -3,7 +3,6 @@ import { useCallback, useEffect, useRef } from "react";
 const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
 const useRandomInterval = (callback, minDelay, maxDelay) => {
-  debugger;
   const timeoutId = useRef(null);
   const savedCallback = useRef(callback);
   useEffect(() => {

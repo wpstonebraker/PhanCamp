@@ -42,15 +42,13 @@ const OutletBox = styled.div`
 `;
 
 export function ArtistLayout() {
-  //   const { id: artistId } = useParams();
   const params = useLocation();
   if (!params) return;
-  let artistId;
-  let albumId;
+
   const path = params.pathname.split("/");
 
-  artistId = path[2];
-  albumId = path[4];
+  const artistId = path[2];
+  const albumId = path[4];
 
   const { data: artistData, isLoading } = useQuery({
     queryFn: async () => {

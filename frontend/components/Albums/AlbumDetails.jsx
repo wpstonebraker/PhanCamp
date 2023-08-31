@@ -29,22 +29,26 @@ export default function AlbumDetails() {
     setPlaying(true);
   };
 
+  const createTrackItems = (tracks) => {
+    return tracks.map((track, i) => {
+      return (
+        <TrackItem
+          track={track}
+          key={i}
+          onPlayTrack={handlePlayTrack}
+          isPlaying={track === currentTrack && playing}
+        />
+      );
+    });
+  };
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   const album = albumData.albums;
   const tracks = albumData.tracks;
-  const trackItems = tracks.map((track, i) => {
-    return (
-      <TrackItem
-        track={track}
-        key={i}
-        onPlayTrack={handlePlayTrack}
-        isPlaying={track === currentTrack && playing}
-      />
-    );
-  });
+  const trackItems = createTrackItems(tracks);
 
   return (
     <div className="album-show-page-box">
@@ -84,3 +88,27 @@ export default function AlbumDetails() {
     </div>
   );
 }
+
+function createTrackItems(tracks) {
+  return tracks.map((track, i) => {
+    return (
+      <TrackItem
+        track={track}
+        key={i}
+        onPlayTrack={handlePlayTrack}
+        isPlaying={track === currentTrack && playing}
+      />
+    );
+  });
+}
+
+// const trackItems = tracks.map((track, i) => {
+//   return (
+//     <TrackItem
+//       track={track}
+//       key={i}
+//       onPlayTrack={handlePlayTrack}
+//       isPlaying={track === currentTrack && playing}
+//     />
+//   );
+// });
