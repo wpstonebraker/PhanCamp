@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import TrackItem from "./TrackItem";
-import MusicPlayer from "../MusicPlayer/MusicPlayer";
-import useToggle from "../../util/hooks/useToggle";
+import MusicPlayer from "../../MusicPlayer/MusicPlayer";
+import useToggle from "../../../util/hooks/useToggle";
 
 export default function AlbumDetails() {
   const [currentTrack, setCurrentTrack] = useState("");

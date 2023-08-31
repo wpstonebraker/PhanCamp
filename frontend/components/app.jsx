@@ -11,7 +11,7 @@ import PhishAlbumCreateFormContainer from "./album/phish_album_create_form_conta
 import ProfileContainer from "./profile/profile_container";
 import SplashContainer from "./splash/splash_container";
 import ArtistsDetails from "./Artists/ArtistsDetails";
-import AlbumDetails from "./Albums/AlbumDetails";
+import AlbumDetails from "./Artists/Albums/AlbumDetails";
 import { ArtistLayout } from "./Artists/ArtistLayout";
 import Landing from "./Landing/Landing";
 import SearchDisplay from "./search/SearchDisplay";
