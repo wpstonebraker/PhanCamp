@@ -5035,7 +5035,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
 /* harmony import */ var _selling_now_selling_now_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../selling_now/selling_now_item */ "./frontend/components/selling_now/selling_now_item.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var _util_hooks_useRandomInterval__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../util/hooks/useRandomInterval */ "./frontend/util/hooks/useRandomInterval.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -5054,12 +5055,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function Carousel(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     items = _useState2[0],
     setItems = _useState2[1];
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useNavigate)();
   var _useQuery = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)({
       queryFn: function () {
         var _queryFn = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -5091,21 +5093,34 @@ function Carousel(props) {
     }),
     albumsData = _useQuery.data,
     isLoading = _useQuery.isLoading;
+  var addToCarousel = function addToCarousel() {
+    if (albumsData.length === 0) {
+      return;
+    }
+    console.log("adding");
+    var max = albumsData.length;
+    var albums = albumsData;
+    setItems(function (prevItems) {
+      var newItems = _toConsumableArray(prevItems);
+      var rand = ~~(Math.random() * max);
+      var album = albums[rand];
+      newItems.unshift({
+        key: "selling-".concat(album.id + Math.random()),
+        album: album,
+        artist: album.artist,
+        seconds: rand
+      });
+      newItems.pop();
+      return newItems;
+    });
+  };
+  (0,_util_hooks_useRandomInterval__WEBPACK_IMPORTED_MODULE_3__["default"])(addToCarousel, 1000, 5000);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     // if data hasn't fetched, return
     // we add it to dependency array so if isLoading changes, it'll run again
     if (isLoading) {
       return;
     }
-
-    // call add to carousel semi randomly
-    var loop = function loop() {
-      var rand = ~~(Math.random() * (3000 - 500)) + 500;
-      setTimeout(function () {
-        addToCarousel();
-        loop();
-      }, rand);
-    };
     var initCarousel = function initCarousel() {
       if (albumsData.length === 0) {
         return;
@@ -5129,32 +5144,10 @@ function Carousel(props) {
       // set state
       setItems(initialItems);
     };
-    var addToCarousel = function addToCarousel() {
-      console.log("adding");
-      if (albumsData.length === 0) {
-        return;
-      }
-      var max = albumsData.length;
-      var albums = albumsData;
-      setItems(function (prevItems) {
-        var newItems = _toConsumableArray(prevItems);
-        var rand = ~~(Math.random() * max);
-        var album = albums[rand];
-        newItems.unshift({
-          key: "selling-".concat(album.id + Math.random()),
-          album: album,
-          artist: album.artist,
-          seconds: rand
-        });
-        newItems.pop();
-        return newItems;
-      });
-    };
 
     // init carousel
     initCarousel();
     // init loop
-    loop();
     // cleanup
     return function () {
       setItems([]);
@@ -11170,6 +11163,55 @@ var getFeatureArtists = function getFeatureArtists() {
 //     processData: false,
 //   });
 // };
+
+/***/ }),
+
+/***/ "./frontend/util/hooks/useRandomInterval.js":
+/*!**************************************************!*\
+  !*** ./frontend/util/hooks/useRandomInterval.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var random = function random(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+};
+var useRandomInterval = function useRandomInterval(callback, minDelay, maxDelay) {
+  debugger;
+  var timeoutId = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var savedCallback = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(callback);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    savedCallback.current = callback;
+  }, [callback]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var isEnabled = typeof minDelay === "number" && typeof maxDelay === "number";
+    if (isEnabled) {
+      var handleTick = function handleTick() {
+        var nextTickAt = random(minDelay, maxDelay);
+        timeoutId.current = window.setTimeout(function () {
+          savedCallback.current();
+          handleTick();
+        }, nextTickAt);
+      };
+      handleTick();
+    }
+    return function () {
+      return window.clearTimeout(timeoutId.current);
+    };
+  }, [minDelay, maxDelay]);
+  var cancel = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function () {
+    window.clearTimeout(timeoutId.current);
+  }, []);
+  return cancel;
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useRandomInterval);
 
 /***/ }),
 

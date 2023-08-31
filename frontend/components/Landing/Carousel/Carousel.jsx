@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import SellingNowItem from "../../selling_now/selling_now_item";
 import { useNavigate } from "react-router-dom";
+import useRandomInterval from "../../../util/hooks/useRandomInterval";
 
 function Carousel(props) {
   const [items, setItems] = useState([]);
@@ -16,21 +17,38 @@ function Carousel(props) {
     queryKey: "carousel",
   });
 
+  const addToCarousel = () => {
+    if (albumsData.length === 0) {
+      return;
+    }
+
+    console.log("adding");
+    const max = albumsData.length;
+    const albums = albumsData;
+    setItems((prevItems) => {
+      const newItems = [...prevItems];
+      const rand = ~~(Math.random() * max);
+      const album = albums[rand];
+      newItems.unshift({
+        key: `selling-${album.id + Math.random()}`,
+        album,
+        artist: album.artist,
+        seconds: rand,
+      });
+
+      newItems.pop();
+      return newItems;
+    });
+  };
+
+  useRandomInterval(addToCarousel, 1000, 5000);
+
   useEffect(() => {
     // if data hasn't fetched, return
     // we add it to dependency array so if isLoading changes, it'll run again
     if (isLoading) {
       return;
     }
-
-    // call add to carousel semi randomly
-    const loop = () => {
-      const rand = ~~(Math.random() * (3000 - 500)) + 500;
-      setTimeout(() => {
-        addToCarousel();
-        loop();
-      }, rand);
-    };
 
     const initCarousel = () => {
       if (albumsData.length === 0) {
@@ -56,34 +74,9 @@ function Carousel(props) {
       setItems(initialItems);
     };
 
-    const addToCarousel = () => {
-      console.log("adding");
-      if (albumsData.length === 0) {
-        return;
-      }
-
-      const max = albumsData.length;
-      const albums = albumsData;
-      setItems((prevItems) => {
-        const newItems = [...prevItems];
-        const rand = ~~(Math.random() * max);
-        const album = albums[rand];
-        newItems.unshift({
-          key: `selling-${album.id + Math.random()}`,
-          album,
-          artist: album.artist,
-          seconds: rand,
-        });
-
-        newItems.pop();
-        return newItems;
-      });
-    };
-
     // init carousel
     initCarousel();
     // init loop
-    loop();
     // cleanup
     return () => {
       setItems([]);
