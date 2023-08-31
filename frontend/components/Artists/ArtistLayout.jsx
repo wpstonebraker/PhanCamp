@@ -10,6 +10,7 @@ export function ArtistLayout() {
 
   const { data: artistData, isLoading } = useQuery({
     queryFn: async () => {
+      console.log("query in artist layout");
       const response = await fetch(`/api/artists/${artistId}/albums`);
       return response.json();
     },

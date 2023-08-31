@@ -14,7 +14,6 @@ function SearchDisplay() {
   //     return <DisplayItem details={res} key={res.id} />;
   //   });
   const trackItems = state.map((res) => {
-    console.log(res);
     return <SearchDisplayItem details={res} key={`${res.class}${res.id}`} />;
   });
   return (

@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 function TrackSearchItem({ details }) {
   const navigate = useNavigate();
   const item = details;
-  console.log("Track = ", item);
   return (
     <div className="display-tile">
       <div

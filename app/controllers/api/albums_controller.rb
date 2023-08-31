@@ -9,13 +9,11 @@ class Api::AlbumsController < ApplicationController
     end
 
     def show
-        @album = Album.find(params[:id])
+        @album = Album.includes(:artist, :tracks).find(params[:id])
         @artist = @album.artist
-        @tracks = Track.where(album_id: @album.id).order(track_num: :asc)
-
-        #@albums = Album.where(artist_id: @artist.id)
-        #albumsArr = @albums.pluck(:id)
-    end
+        @tracks = @album.tracks.order(track_num: :asc)
+      end
+      
 
     def create
         @album = Album.new(album_params)

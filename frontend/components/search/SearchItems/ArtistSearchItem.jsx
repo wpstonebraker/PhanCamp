@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 function ArtistSearchItem({ details }) {
   const navigate = useNavigate();
   const item = details;
-  console.log("Artist = ", item);
 
   return (
     <div className="display-tile">

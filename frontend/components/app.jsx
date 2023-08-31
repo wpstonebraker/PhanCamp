@@ -15,13 +15,14 @@ import AlbumDetails from "./Artists/Albums/AlbumDetails";
 import { ArtistLayout } from "./Artists/ArtistLayout";
 import Landing from "./Landing/Landing";
 import SearchDisplay from "./search/SearchDisplay";
+import SignupForm from "./signup/SignupForm";
 
 const App = () => {
   return (
     <>
       <Routes>
         <Route element={<AuthRoutes />}>
-          <Route path="/signup" element={<SignupFormContainer />} />
+          <Route path="/signup" element={<SignupForm />} />
           <Route path="/login" element={<LoginFormContainer />} />
         </Route>
         <Route element={<BannerBarContainer />}>

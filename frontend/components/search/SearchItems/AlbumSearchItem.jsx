@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 function AlbumSearchItem({ details }) {
   const navigate = useNavigate();
   const item = details;
-  console.log("Album = ", item);
   return (
     <div className="display-tile">
       <div

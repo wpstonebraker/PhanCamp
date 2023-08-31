@@ -8,16 +8,14 @@ json.albums do
 end
 
 json.tracks do
-    return {} if @tracks.length == 0
-    json.array! @tracks do |track|
-        json.extract! track, :track_name, :track_num, :album_id
-        json.extract! @artist, :artist_name 
-        if track.song.attached?
-            json.songUrl url_for(track.song)
-        else
-            json.extract! track, :songUrl
-        end
-        json.showDate @album.show_date
+    return {} if @tracks.empty?
+    json.array! @tracks, include: :artist do |track|
+      json.extract! track, :track_name, :track_num, :album_id, :songUrl
+      json.artistName track.artist.artist_name
+      if track.song.attached?
+        json.songUrl url_for(track.song)
+      end
+      json.showDate @album.show_date
     end
 end
 

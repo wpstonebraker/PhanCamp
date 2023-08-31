@@ -5,7 +5,6 @@ const TrackItem = ({ track, onPlayTrack }) => {
     onPlayTrack(track);
   };
 
-  console.log(track);
   return (
     <tr key={track.id}>
       <td onClick={handlePlayClick}>
