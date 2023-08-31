@@ -3,36 +3,30 @@ import MusicPlayer from "../../MusicPlayer/MusicPlayer";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
+import useToggle from "../../../util/hooks/useToggle";
 
 const MusicPlayerBox = styled.div`
   height: 370px;
 `;
 
 function Discover({ albums, genres }) {
+  console.log(albums);
   const navigate = useNavigate();
   const [selectedAlbum, setSelectedAlbum] = useState(albums[0]);
   const [discoverAlbums, setDiscoverAlbums] = useState(albums);
-
-  const [currentTrack, setCurrentTrack] = useState("");
-  const [playing, setPlaying] = useState(false);
+  const [currentTrack, setCurrentTrack] = useState(albums[0].firstTrack);
+  const [playing, setPlaying] = useToggle(false);
 
   const handleAlbumClick = async (album) => {
-    fetchTrack(album.trackIds[0]).then((res) => {
-      handlePlayTrack(res);
-      setSelectedAlbum(album);
-    });
+    setSelectedAlbum(album);
+    setCurrentTrack(album.firstTrack);
+    setPlaying(true);
   };
 
   const handlePlayTrack = (track) => {
     setCurrentTrack(track);
     setPlaying(true);
   };
-
-  async function fetchTrack(trackId) {
-    const response = await fetch(`/api/tracks/${trackId}`);
-    const trackData = await response.json();
-    return trackData;
-  }
 
   const handleTabClick = (genreId) => {
     const discoverAlbums = albums.filter((album) => {
@@ -50,8 +44,6 @@ function Discover({ albums, genres }) {
       {genre.genre}
     </li>
   ));
-
-  console.log(discoverAlbums);
 
   const albumTiles = discoverAlbums.slice(0, 8).map((album, i) => (
     <div
@@ -109,11 +101,24 @@ function Discover({ albums, genres }) {
               />
             </div>
             <MusicPlayerBox>
-              <MusicPlayer
-                trackName={currentTrack.trackName}
-                trackUrl={currentTrack.songUrl}
-                playing={playing}
-              />
+              <div id="discover-music-player">
+                <MusicPlayer
+                  trackName={currentTrack.trackName}
+                  trackUrl={currentTrack.songUrl}
+                  playing={playing}
+                />
+              </div>
+              &nbsp; from the album{" "}
+              <span
+                id="discover-selected-album"
+                onClick={() =>
+                  navigate(
+                    `/artists/${selectedAlbum.artistId}/albums/${selectedAlbum.id}`
+                  )
+                }
+              >
+                {selectedAlbum.title}
+              </span>
             </MusicPlayerBox>
           </div>
         </div>

@@ -3,11 +3,13 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import TrackItem from "./TrackItem";
 import MusicPlayer from "../MusicPlayer/MusicPlayer";
+import useToggle from "../../util/hooks/useToggle";
 
 export default function AlbumDetails() {
-  const { id: albumId } = useParams();
   const [currentTrack, setCurrentTrack] = useState("");
-  const [playing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useToggle(false);
+
+  const { id: albumId } = useParams();
   const { data: albumData, isLoading } = useQuery({
     queryFn: async () => {
       const response = await fetch(`/api/albums/${albumId}`);

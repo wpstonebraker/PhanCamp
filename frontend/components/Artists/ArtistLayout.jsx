@@ -20,6 +20,17 @@ const Banner = styled.img.attrs((props) => ({
   height: 220px;
 `;
 
+const Tabs = styled.div`
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 0.5px solid lightgrey;
+
+  span {
+    margin: 15px;
+  }
+`;
+
 const DetailsBox = styled.div`
   display: flex;
 `;
@@ -58,12 +69,17 @@ export function ArtistLayout() {
   return (
     <Container>
       <Banner src={bannerImg} />
-      <Link to={`/artists/${artistId}`}>
-        <span>music</span>
-      </Link>
-      <Link to={`/albums/addPhish`} className={artistId == 25 ? "" : "hidden"}>
-        <li className="selected-tab">add show</li>
-      </Link>
+      <Tabs>
+        <Link to={`/artists/${artistId}`}>
+          <span>music</span>
+        </Link>
+        <Link
+          to={`/albums/addPhish`}
+          className={artistId == 25 ? "" : "hidden"}
+        >
+          <span className="selected-tab">add show</span>
+        </Link>
+      </Tabs>
       <DetailsBox>
         <OutletBox>
           <Outlet />

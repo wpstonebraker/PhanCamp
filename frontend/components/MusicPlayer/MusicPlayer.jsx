@@ -63,8 +63,10 @@ function MusicPlayer(props) {
       audio.current.src = trackUrl;
       if (playing) {
         audio.current.play();
+        setPlayButton(window.pauseIcon);
       } else {
         audio.current.pause();
+        setPlayButton(window.playIcon);
       }
     }
   }, [trackUrl, playing]);
@@ -77,7 +79,7 @@ function MusicPlayer(props) {
       <div id="audio-player-right">
         <div id="track-info-box">
           <div id="track-info-display">
-            <span id="track-info-title">{props.trackName}</span>
+            <span id="track-info-title">{trackName}</span>
             <span id="track-info-time">
               {currentTime} / {duration === `NaN:NaN` ? `00:00` : duration}
             </span>
