@@ -10,70 +10,26 @@ const MusicPlayerBox = styled.div`
 `;
 
 function Discover({ albums, genres }) {
-  console.log(albums);
-  const navigate = useNavigate();
   const [selectedAlbum, setSelectedAlbum] = useState(albums[0]);
   const [discoverAlbums, setDiscoverAlbums] = useState(albums);
   const [currentTrack, setCurrentTrack] = useState(albums[0].firstTrack);
   const [playing, setPlaying] = useToggle(false);
 
-  const handleAlbumClick = async (album) => {
+  const navigate = useNavigate();
+
+  const handleAlbumClick = (album) => {
     setSelectedAlbum(album);
     setCurrentTrack(album.firstTrack);
     setPlaying(true);
   };
 
-  const handlePlayTrack = (track) => {
-    setCurrentTrack(track);
-    setPlaying(true);
-  };
-
   const handleTabClick = (genreId) => {
-    const discoverAlbums = albums.filter((album) => {
-      return album.genreIds.includes(genreId);
-    });
-    setDiscoverAlbums(discoverAlbums);
+    setDiscoverAlbums(filterAlbums(albums, genreId));
   };
 
-  const genreTabs = genres.map((genre) => (
-    <li
-      key={genre.id}
-      className="discover-genre-tab"
-      onClick={() => handleTabClick(genre.id)}
-    >
-      {genre.genre}
-    </li>
-  ));
+  const genreTabs = initGenreTabs(genres, handleTabClick);
 
-  const albumTiles = discoverAlbums.slice(0, 8).map((album, i) => (
-    <div
-      key={album.id}
-      id={`discover-album-tile-${i}`}
-      className="discover-album-tile"
-    >
-      <img
-        src={album.photoUrl}
-        alt=""
-        className="discover-album-tile-photo"
-        onClick={() => handleAlbumClick(album)}
-      />
-
-      <li
-        className="dat-album-link"
-        onClick={() =>
-          navigate(`/artists/${album.artistId}/albums/${album.id}`)
-        }
-      >
-        {album.title}
-      </li>
-      <li
-        className="dat-artist-link"
-        onClick={() => navigate(`/artists/${album.artistId}`)}
-      >
-        {album.artist}
-      </li>
-    </div>
-  ));
+  const albumTiles = initAlbumTiles(discoverAlbums, handleAlbumClick);
 
   return (
     <div id="discover-outer">
@@ -128,3 +84,53 @@ function Discover({ albums, genres }) {
 }
 
 export default Discover;
+
+function filterAlbums(albums, genreId) {
+  return albums.filter((album) => {
+    return album.genreIds.includes(genreId);
+  });
+}
+
+function initGenreTabs(genres, handleTabClick) {
+  return genres.map((genre) => (
+    <li
+      key={genre.id}
+      className="discover-genre-tab"
+      onClick={() => handleTabClick(genre.id)}
+    >
+      {genre.genre}
+    </li>
+  ));
+}
+
+function initAlbumTiles(albums, handleAlbumClick) {
+  return albums.slice(0, 8).map((album, i) => (
+    <div
+      key={album.id}
+      id={`discover-album-tile-${i}`}
+      className="discover-album-tile"
+    >
+      <img
+        src={album.photoUrl}
+        alt=""
+        className="discover-album-tile-photo"
+        onClick={() => handleAlbumClick(album)}
+      />
+
+      <li
+        className="dat-album-link"
+        onClick={() =>
+          navigate(`/artists/${album.artistId}/albums/${album.id}`)
+        }
+      >
+        {album.title}
+      </li>
+      <li
+        className="dat-artist-link"
+        onClick={() => navigate(`/artists/${album.artistId}`)}
+      >
+        {album.artist}
+      </li>
+    </div>
+  ));
+}

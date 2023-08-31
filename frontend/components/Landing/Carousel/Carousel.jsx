@@ -15,6 +15,13 @@ function Carousel() {
     queryKey: "carousel",
   });
 
+  useEffect(() => {
+    if (isLoading) {
+      return;
+    }
+    setItems(initCarousel(albumsData));
+  }, [isLoading, albumsData]);
+
   const addToCarousel = () => {
     setItems((prevItems) => {
       return updateItems(prevItems, albumsData);
@@ -22,13 +29,6 @@ function Carousel() {
   };
 
   useRandomInterval(addToCarousel, 1000, 3000);
-
-  useEffect(() => {
-    if (isLoading) {
-      return;
-    }
-    setItems(initCarousel(albumsData));
-  }, [isLoading, albumsData]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -65,7 +65,7 @@ function Carousel() {
 
 export default Carousel;
 
-const initCarousel = (albumsData) => {
+function initCarousel(albumsData) {
   const max = albumsData.length;
   const albums = albumsData;
   let initialItems = [];
@@ -80,9 +80,9 @@ const initCarousel = (albumsData) => {
     });
   }
   return initialItems;
-};
+}
 
-const updateItems = (previousState, albums) => {
+function updateItems(previousState, albums) {
   const newItems = [...previousState];
   const rand = ~~(Math.random() * albums.length);
   const album = albums[rand];
@@ -95,4 +95,4 @@ const updateItems = (previousState, albums) => {
 
   newItems.pop();
   return newItems;
-};
+}
