@@ -17,6 +17,7 @@ json.tracks do
         else
             json.extract! track, :songUrl
         end
+        json.showDate @album.show_date
     end
 end
 

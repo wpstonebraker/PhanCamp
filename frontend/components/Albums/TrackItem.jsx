@@ -1,18 +1,11 @@
 import React from "react";
 
-// const TrackItem = React.forwardRef(({ track, playTrack }, ref) => {
 const TrackItem = ({ track, onPlayTrack }) => {
   const handlePlayClick = () => {
     onPlayTrack(track);
   };
-  const playSong = () => {
-    // const audio = ref.current;
-    // audio.handleTrack(track.songUrl, track.trackName);
-    // handleTrack(track);
-    playTrack(track);
-  };
 
-  if (track === null) return null;
+  console.log(track);
   return (
     <tr key={track.id}>
       <td onClick={handlePlayClick}>
@@ -22,11 +15,13 @@ const TrackItem = ({ track, onPlayTrack }) => {
       <td className="track-num">{track.trackNum}</td>
       <td className="track-name">{track.trackName}</td>
 
-      <td>
-        <a href={track.songUrl} download>
-          Download
-        </a>
-      </td>
+      {!track.showDate && (
+        <td>
+          <a href={track.songUrl} download>
+            Download
+          </a>
+        </td>
+      )}
     </tr>
   );
 };

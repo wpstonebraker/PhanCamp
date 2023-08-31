@@ -4744,21 +4744,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-
-// const TrackItem = React.forwardRef(({ track, playTrack }, ref) => {
 var TrackItem = function TrackItem(_ref) {
   var track = _ref.track,
     onPlayTrack = _ref.onPlayTrack;
   var handlePlayClick = function handlePlayClick() {
     onPlayTrack(track);
   };
-  var playSong = function playSong() {
-    // const audio = ref.current;
-    // audio.handleTrack(track.songUrl, track.trackName);
-    // handleTrack(track);
-    playTrack(track);
-  };
-  if (track === null) return null;
+  console.log(track);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", {
     key: track.id
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
@@ -4771,7 +4763,7 @@ var TrackItem = function TrackItem(_ref) {
     className: "track-num"
   }, track.trackNum), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
     className: "track-name"
-  }, track.trackName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+  }, track.trackName), !track.showDate && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
     href: track.songUrl,
     download: true
   }, "Download")));
