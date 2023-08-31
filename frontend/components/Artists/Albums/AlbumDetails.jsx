@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import TrackItem from "./TrackItem";
 import MusicPlayer from "../../MusicPlayer/MusicPlayer";
-import useToggle from "../../../util/hooks/useToggle";
+import useMusicPlayer from "../../../util/hooks/useMusicPlayer";
 
 export default function AlbumDetails() {
-  const [currentTrack, setCurrentTrack] = useState("");
-  const [playing, setPlaying] = useToggle(false);
+  const { currentTrack, playing, handleLoadTrack, handlePlayTrack } =
+    useMusicPlayer();
 
   const { id: albumId } = useParams();
   const { data: albumData, isLoading } = useQuery({
@@ -20,27 +20,9 @@ export default function AlbumDetails() {
 
   useEffect(() => {
     if (albumData) {
-      setCurrentTrack(albumData.tracks[0]);
+      handleLoadTrack(albumData.tracks[0]);
     }
   }, [albumData]);
-
-  const handlePlayTrack = (track) => {
-    setCurrentTrack(track);
-    setPlaying(true);
-  };
-
-  const createTrackItems = (tracks) => {
-    return tracks.map((track, i) => {
-      return (
-        <TrackItem
-          track={track}
-          key={i}
-          onPlayTrack={handlePlayTrack}
-          isPlaying={track === currentTrack && playing}
-        />
-      );
-    });
-  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -48,7 +30,12 @@ export default function AlbumDetails() {
 
   const album = albumData.albums;
   const tracks = albumData.tracks;
-  const trackItems = createTrackItems(tracks);
+  const trackItems = createTrackItems(
+    tracks,
+    currentTrack,
+    playing,
+    handlePlayTrack
+  );
 
   return (
     <div className="album-show-page-box">
@@ -58,7 +45,6 @@ export default function AlbumDetails() {
           <p id="album-show-artist">by: {album.artistName}</p>
           <div>
             <MusicPlayer
-              // track={currentTrack}
               trackName={currentTrack.trackName}
               trackUrl={currentTrack.songUrl}
               playing={playing}
@@ -89,7 +75,7 @@ export default function AlbumDetails() {
   );
 }
 
-function createTrackItems(tracks) {
+function createTrackItems(tracks, currentTrack, playing, handlePlayTrack) {
   return tracks.map((track, i) => {
     return (
       <TrackItem
@@ -101,14 +87,3 @@ function createTrackItems(tracks) {
     );
   });
 }
-
-// const trackItems = tracks.map((track, i) => {
-//   return (
-//     <TrackItem
-//       track={track}
-//       key={i}
-//       onPlayTrack={handlePlayTrack}
-//       isPlaying={track === currentTrack && playing}
-//     />
-//   );
-// });

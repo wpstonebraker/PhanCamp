@@ -43,15 +43,8 @@ const SignupForm = (props) => {
       await signupMutation.mutateAsync(formData);
     } catch (error) {}
   };
-  useEffect(() => {
-    const errors = [];
-    // props.clearErrors(errors);
-  }, []);
 
   const errors = {};
-  //   props.errors.forEach((error) => {
-  //     errors[error.split(" ")[0].toLowerCase()] = error;
-  //   });
 
   return (
     <div className="suf-page">
