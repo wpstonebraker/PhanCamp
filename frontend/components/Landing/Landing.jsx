@@ -26,17 +26,6 @@ export default function Landing() {
   const features = landingData.features;
   const dailyAlbums = albums.slice(0, 8);
 
-  // let carouselAlbums = randomAlbums(albums, 8);
-  // function randomAlbums(albums, amount) {
-  //   const items = [];
-  //   for (let i = 0; i < amount; i++) {
-  //     const rand = ~~(Math.random() * albums.length);
-  //     const album = albums[rand];
-  //     items.push(album);
-  //   }
-  //   return items;
-  // }
-
   return (
     <>
       <Feature features={features} />

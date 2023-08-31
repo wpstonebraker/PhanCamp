@@ -5048,7 +5048,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_query__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-query */ "./node_modules/react-query/es/index.js");
 /* harmony import */ var _selling_now_selling_now_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../selling_now/selling_now_item */ "./frontend/components/selling_now/selling_now_item.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _util_hooks_useRandomInterval__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../util/hooks/useRandomInterval */ "./frontend/util/hooks/useRandomInterval.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -5068,13 +5067,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-function Carousel(props) {
+function Carousel() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     items = _useState2[0],
     setItems = _useState2[1];
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useNavigate)();
   var _useQuery = (0,react_query__WEBPACK_IMPORTED_MODULE_1__.useQuery)({
       queryFn: function () {
         var _queryFn = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -5107,64 +5104,16 @@ function Carousel(props) {
     albumsData = _useQuery.data,
     isLoading = _useQuery.isLoading;
   var addToCarousel = function addToCarousel() {
-    if (albumsData.length === 0) {
-      return;
-    }
-    console.log("adding");
-    var max = albumsData.length;
-    var albums = albumsData;
     setItems(function (prevItems) {
-      var newItems = _toConsumableArray(prevItems);
-      var rand = ~~(Math.random() * max);
-      var album = albums[rand];
-      newItems.unshift({
-        key: "selling-".concat(album.id + Math.random()),
-        album: album,
-        artist: album.artist,
-        seconds: rand
-      });
-      newItems.pop();
-      return newItems;
+      return updateItems(prevItems, albumsData);
     });
   };
-  (0,_util_hooks_useRandomInterval__WEBPACK_IMPORTED_MODULE_3__["default"])(addToCarousel, 1000, 5000);
+  (0,_util_hooks_useRandomInterval__WEBPACK_IMPORTED_MODULE_3__["default"])(addToCarousel, 1000, 3000);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // if data hasn't fetched, return
-    // we add it to dependency array so if isLoading changes, it'll run again
     if (isLoading) {
       return;
     }
-    var initCarousel = function initCarousel() {
-      if (albumsData.length === 0) {
-        return;
-      }
-
-      // push random array elements into array
-      var max = albumsData.length;
-      var albums = albumsData;
-      var initialItems = [];
-      for (var i = 0; i < 8; i++) {
-        var rand = ~~(Math.random() * max);
-        var album = albums[rand];
-        initialItems.push({
-          key: "selling-".concat(album.id + Math.random()),
-          album: album,
-          artist: album.artist,
-          seconds: rand
-        });
-      }
-
-      // set state
-      setItems(initialItems);
-    };
-
-    // init carousel
-    initCarousel();
-    // init loop
-    // cleanup
-    return function () {
-      setItems([]);
-    };
+    setItems(initCarousel(albumsData));
   }, [isLoading, albumsData]);
   if (isLoading) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Loading...");
@@ -5191,6 +5140,35 @@ function Carousel(props) {
   }))));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Carousel);
+var initCarousel = function initCarousel(albumsData) {
+  var max = albumsData.length;
+  var albums = albumsData;
+  var initialItems = [];
+  for (var i = 0; i < 8; i++) {
+    var rand = ~~(Math.random() * max);
+    var album = albums[rand];
+    initialItems.push({
+      key: "selling-".concat(album.id + Math.random()),
+      album: album,
+      artist: album.artist,
+      seconds: rand
+    });
+  }
+  return initialItems;
+};
+var updateItems = function updateItems(previousState, albums) {
+  var newItems = _toConsumableArray(previousState);
+  var rand = ~~(Math.random() * albums.length);
+  var album = albums[rand];
+  newItems.unshift({
+    key: "selling-".concat(album.id + Math.random()),
+    album: album,
+    artist: album.artist,
+    seconds: rand
+  });
+  newItems.pop();
+  return newItems;
+};
 
 /***/ }),
 
@@ -5657,18 +5635,6 @@ function Landing() {
   var genres = landingData.genres;
   var features = landingData.features;
   var dailyAlbums = albums.slice(0, 8);
-
-  // let carouselAlbums = randomAlbums(albums, 8);
-  // function randomAlbums(albums, amount) {
-  //   const items = [];
-  //   for (let i = 0; i < amount; i++) {
-  //     const rand = ~~(Math.random() * albums.length);
-  //     const album = albums[rand];
-  //     items.push(album);
-  //   }
-  //   return items;
-  // }
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Feature_Feature__WEBPACK_IMPORTED_MODULE_1__["default"], {
     features: features
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Carousel_Carousel__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Daily_Daily__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -5705,7 +5671,6 @@ function MusicPlayer(props) {
   var trackUrl = props.trackUrl,
     trackName = props.trackName,
     playing = props.playing;
-  // const [playing, setPlaying] = useState(false);
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("00:00"),
     _useState2 = _slicedToArray(_useState, 2),
     currentTime = _useState2[0],
@@ -5714,15 +5679,10 @@ function MusicPlayer(props) {
     _useState4 = _slicedToArray(_useState3, 2),
     duration = _useState4[0],
     setDuration = _useState4[1];
-  // const [src, setSrc] = useState(props.trackUrl);
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(window.playIcon),
     _useState6 = _slicedToArray(_useState5, 2),
     playButton = _useState6[0],
     setPlayButton = _useState6[1];
-  // const [title, setTitle] = useState(props.track.trackName);
-  // const [eCount1, setECount1] = useState(0);
-  // const [eCount2, setECount2] = useState(0);
-
   var audio = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var progressBar = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var progressPlayed = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();

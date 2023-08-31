@@ -2,14 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 
 function MusicPlayer(props) {
   const { trackUrl, trackName, playing } = props;
-  // const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState("00:00");
   const [duration, setDuration] = useState("00:00");
-  // const [src, setSrc] = useState(props.trackUrl);
   const [playButton, setPlayButton] = useState(window.playIcon);
-  // const [title, setTitle] = useState(props.track.trackName);
-  // const [eCount1, setECount1] = useState(0);
-  // const [eCount2, setECount2] = useState(0);
 
   const audio = useRef();
   const progressBar = useRef();

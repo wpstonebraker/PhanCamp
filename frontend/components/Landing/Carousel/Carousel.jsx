@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import SellingNowItem from "../../selling_now/selling_now_item";
-import { useNavigate } from "react-router-dom";
 import useRandomInterval from "../../../util/hooks/useRandomInterval";
 
-function Carousel(props) {
+function Carousel() {
   const [items, setItems] = useState([]);
-  const navigate = useNavigate();
 
   const { data: albumsData, isLoading } = useQuery({
     queryFn: async () => {
@@ -18,69 +16,18 @@ function Carousel(props) {
   });
 
   const addToCarousel = () => {
-    if (albumsData.length === 0) {
-      return;
-    }
-
-    console.log("adding");
-    const max = albumsData.length;
-    const albums = albumsData;
     setItems((prevItems) => {
-      const newItems = [...prevItems];
-      const rand = ~~(Math.random() * max);
-      const album = albums[rand];
-      newItems.unshift({
-        key: `selling-${album.id + Math.random()}`,
-        album,
-        artist: album.artist,
-        seconds: rand,
-      });
-
-      newItems.pop();
-      return newItems;
+      return updateItems(prevItems, albumsData);
     });
   };
 
-  useRandomInterval(addToCarousel, 1000, 5000);
+  useRandomInterval(addToCarousel, 1000, 3000);
 
   useEffect(() => {
-    // if data hasn't fetched, return
-    // we add it to dependency array so if isLoading changes, it'll run again
     if (isLoading) {
       return;
     }
-
-    const initCarousel = () => {
-      if (albumsData.length === 0) {
-        return;
-      }
-
-      // push random array elements into array
-      const max = albumsData.length;
-      const albums = albumsData;
-      let initialItems = [];
-      for (let i = 0; i < 8; i++) {
-        const rand = ~~(Math.random() * max);
-        const album = albums[rand];
-        initialItems.push({
-          key: `selling-${album.id + Math.random()}`,
-          album,
-          artist: album.artist,
-          seconds: rand,
-        });
-      }
-
-      // set state
-      setItems(initialItems);
-    };
-
-    // init carousel
-    initCarousel();
-    // init loop
-    // cleanup
-    return () => {
-      setItems([]);
-    };
+    setItems(initCarousel(albumsData));
   }, [isLoading, albumsData]);
 
   if (isLoading) {
@@ -117,3 +64,35 @@ function Carousel(props) {
 }
 
 export default Carousel;
+
+const initCarousel = (albumsData) => {
+  const max = albumsData.length;
+  const albums = albumsData;
+  let initialItems = [];
+  for (let i = 0; i < 8; i++) {
+    const rand = ~~(Math.random() * max);
+    const album = albums[rand];
+    initialItems.push({
+      key: `selling-${album.id + Math.random()}`,
+      album,
+      artist: album.artist,
+      seconds: rand,
+    });
+  }
+  return initialItems;
+};
+
+const updateItems = (previousState, albums) => {
+  const newItems = [...previousState];
+  const rand = ~~(Math.random() * albums.length);
+  const album = albums[rand];
+  newItems.unshift({
+    key: `selling-${album.id + Math.random()}`,
+    album,
+    artist: album.artist,
+    seconds: rand,
+  });
+
+  newItems.pop();
+  return newItems;
+};
